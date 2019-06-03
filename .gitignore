@@ -1,4 +1,4 @@
-*.properties
+pom.properties
 MANIFEST.MF
 
 # Compiled class file
