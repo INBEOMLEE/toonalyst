@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.toonalyst.controller">
+	<logger name="com.example.toonalyst.controller">
 		<level value="info" />
 	</logger>
 	
