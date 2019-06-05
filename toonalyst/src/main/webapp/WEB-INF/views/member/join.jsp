@@ -20,7 +20,7 @@
 	border: 1px solid red;
 }
 .join_input {
-	width: 500px;
+	width: 440px;
 	margin: 0 auto;
 	padding: 80px 0 30px;
 }
@@ -35,7 +35,7 @@
 	font-weight: 800;
 	font-size: 18px;
 	color: #191919;
-	margin-bottom: 10px;
+	margin-bottom: 25px;
 	display: inline-block;
 }
 .form_input {
@@ -63,6 +63,16 @@
 	border: 1px solid #d5d5d5; 
 	box-sizing: border-box;
 	background: #fff;
+}
+.err_msg {
+	display: none;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	color: tomato;
+	letter-spacing: -1;
+	font-size: 15px;
 }
 
 </style>
@@ -136,5 +146,16 @@
 			</div>
 		</div>
 	</section>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#join_id').focus();
+	
+	$('.form_input').keyup(function(){
+		
+		
+	});
+	
+});
+</script>
 </body>
 </html>

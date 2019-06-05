@@ -15,7 +15,7 @@
 			<div class="header_inline">
 				<ul class="header_menu">
 					<li><a href="#">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
+					<li><a href="${path}/member/join">회원가입</a></li>
 					<li class="dropbox_btn"><a href="#">고객센터<span class="caret"></span></a>
 						<ul class="header_dropbox">
 							<li><a href="#">DROPBOX</a></li>

@@ -151,7 +151,7 @@
 				var regEmpty = /\s/g;
 		
 				if(name == null || name.length == 0) {
-					$('.idpw_err_msg').eq(0).text('이름를 입력해주세요.').css('display', 'block');
+					$('.idpw_err_msg').eq(0).text('이름을 입력해주세요.').css('display', 'block');
 					$('#find_id_name').focus();
 					return false;
 				} else if(name.match(regEmpty)) {
@@ -191,7 +191,7 @@
 				}
 				
 				if(name == null || name.length == 0) {
-					$('.idpw_err_msg').eq(1).text('이름를 입력해주세요.').css('display', 'block');
+					$('.idpw_err_msg').eq(1).text('이름을 입력해주세요.').css('display', 'block');
 					$('#find_pw_name').focus();
 					return false;
 				} else if(name.match(regEmpty)) {
