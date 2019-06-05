@@ -10,7 +10,7 @@
 <style type="text/css">
 #cnt{
 	padding-bottom: 80px;
-	min-height: 500px;	
+	min-height: 350px;	
 	width:auto;	
 }
 .subtitle{
