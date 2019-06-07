@@ -169,13 +169,18 @@
 }
 .constract_content {
 	width: 440px;
-	height: 250px;
+	height: 0px;
 	border: none;
 	box-sizing: border-box;
 	background: #fff;
-	padding: 4px 20px;
-	display: none;
+	display: block;
 	overflow: auto;
+	transition: .5s;
+}
+.constract_content > div{
+	width: 420px;
+	padding: 4px 20px;
+	box-sizing: border-box;
 }
 </style>
 </head>
@@ -245,7 +250,9 @@
 								<input type="text" id="join_name" name="join_name" class="form_input" value="이용약관 동의 (필수)" readonly="readonly">
 								<span class="down_btn"><i class="fas fa-chevron-down"></i></span>
 							</div>
-							<div class="constract_content"></div>
+							<div class="constract_content">
+								<div>내용 삽입<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터<br>엔터</div>
+							</div>
 							<div class="box_name box_con_style constract_input_box">
 								<span class="chk"><i class="fas fa-check"></i></span>
 								<input type="text" id="join_name" name="join_name" class="form_input" value="개인정보 수집·이용 동의 (필수)" readonly="readonly">
@@ -329,20 +336,20 @@ $(document).ready(function(){
 	var flag = 0;
 	$('.down_btn').eq(0).click(function(){
 		if(flag == 0) {
-			$('.constract_content').eq(0).css('display', 'block').css('border', '1px solid #d5d5d5');
+			$('.constract_content').eq(0).css('height', '250px').css('border', '1px solid #d5d5d5').css('overflow','auto');
 			flag = 1;
 		} else {
-			$('.constract_content').eq(0).css('display', 'none').css('border', 'none');
+			$('.constract_content').eq(0).css('height', '0px').css('border', '0px solid #d5d5d5').css('overflow','hidden');
 			flag = 0;
 		}
 	});
 	var code = 0;
 	$('.down_btn').eq(1).click(function(){
 		if(code == 0) {
-			$('.constract_content').eq(1).css('display', 'block').css('border', '1px solid #d5d5d5');
+			$('.constract_content').eq(1).css('height', '250px').css('border', '1px solid #d5d5d5').css('overflow','auto');
 			code = 1;
 		} else {
-			$('.constract_content').eq(1).css('display', 'none').css('border', 'none');
+			$('.constract_content').eq(1).css('height', '0px').css('border', '0px solid #d5d5d5').css('overflow','hidden');
 			code = 0;
 		}
 	});
