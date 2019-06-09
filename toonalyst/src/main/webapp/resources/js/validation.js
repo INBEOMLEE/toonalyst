@@ -99,7 +99,59 @@ var joinValidate = {
 			return this.resultCode.success_id;
 		}
 		
-	} // checkId 끝 
+	}, // checkId 끝 
+	checkPw : function(memPw, memRpw) {
+		var regEmpty = /\s/g; // 공백문자
+		var pwReg= RegExp(/^[a-zA-Z0-9]{4,12}$/); // 비밀번호 체크
 		
+		if(memPw == "" || memPw.length == 0) {
+			return this.resultCode.empty_val;
+		} else if(memPw.match(regEmpty)) {
+			return this.resultCode.space_length_val;
+		} else if(!pwReg.test(memPw)) {
+			return this.resultCode.invalid_pw;
+		} else {
+			if(memRpw != null || memRpw.length != 0) {
+				if(memPw == memRpw) {
+					$('#inputrpw').next().text(this.resultCode.success_pw.desc)
+							             .css("display", "block")
+							             .css("color", "#0000FF");
+				} else {
+					$('#inputrpw').next().text(this.resultCode.other_pw.desc)
+							             .css("display", "block")
+							             .css("color", "#FF3636");
+					return false;
+				}
+			}
+			return this.resultCode.success_pw;
+		} 
+	}
 } // joinValidation 끝
 
+function ajaxCheck(memId) {
+	// 10. ajax 시작!
+	//     목적지: idCheck.fcryan
+	//     전달데이터: 이름표가 id인 memId 데이터
+	//     데이터 포장방법: json
+	//     데이터 전달방법: POST방식
+	$.ajax({
+		url: "idCheck.fcryan",
+		type: "POST",
+		dataType: "json",
+		data: "id="+memId,
+		success: function(data) {
+			if(data.message == "-1") {
+				$("#inputid").next().text("이미 사용 중인 아이디 입니다.")
+				                    .css("display", "block")
+				                    .css("color", "#FF3636");
+			} else {
+				$("#inputid").next().text("멋진 ID네요.")
+					                .css("display", "block")
+					                .css("color", "#0000FF");
+			} 
+		},
+		error: function() {
+			alert("System Error!!!");
+		}
+	});
+}

@@ -269,7 +269,7 @@
 			</div>
 		</div>
 	</section>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js1"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/validation.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
@@ -380,7 +380,7 @@ $(document).ready(function(){
 		var memPw = $.trim($('#join_pw').val());
 		var memRpw = $.trim($('#join_rpw').val());
 		// validation에가서 joinValidate의 checkPw다녀옴
-		var checkResult = joinValidate.checkPw(memRw, memRpw);
+		var checkResult = joinValidate.checkPw(memPw, memRpw);
 		
 		if(checkResult.code != 0) {
 			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'inline-block').css('color', '#FF3636');
