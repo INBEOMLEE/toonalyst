@@ -247,7 +247,7 @@
 							</div>
 							<div class="box_name box_con_style constract_input_box">
 								<span class="chk"><i class="fas fa-check"></i></span>
-								<input type="text" id="join_name" name="join_name" class="form_input" value="이용약관 동의 (필수)" readonly="readonly">
+								<input type="text" id="constract_use" name="constract_use" class="form_input" value="이용약관 동의 (필수)" readonly="readonly">
 								<span class="down_btn"><i class="fas fa-chevron-down"></i></span>
 							</div>
 							<div class="constract_content">
@@ -255,7 +255,7 @@
 							</div>
 							<div class="box_name box_con_style constract_input_box">
 								<span class="chk"><i class="fas fa-check"></i></span>
-								<input type="text" id="join_name" name="join_name" class="form_input" value="개인정보 수집·이용 동의 (필수)" readonly="readonly">
+								<input type="text" id="constract_private" name="constract_private" class="form_input" value="개인정보 수집·이용 동의 (필수)" readonly="readonly">
 								<span class="down_btn"><i class="fas fa-chevron-down"></i></span>
 							</div>
 							<div class="constract_content"></div>
@@ -269,7 +269,7 @@
 			</div>
 		</div>
 	</section>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js1"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/validation.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
@@ -375,24 +375,81 @@ $(document).ready(function(){
 		return false;
 	});
 	
+	
+
 	// PW 유효성체크
 	$('#join_pw').keyup(function(){
 		var memPw = $.trim($('#join_pw').val());
 		var memRpw = $.trim($('#join_rpw').val());
 		// validation에가서 joinValidate의 checkPw다녀옴
-		var checkResult = joinValidate.checkPw(memRw, memRpw);
-		
+		var checkResult = joinValidate.checkPw(memPw, memRpw);
+		alert(checkResult.code + ", " + checkResult.desc);
 		if(checkResult.code != 0) {
 			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'inline-block').css('color', '#FF3636');
-			$('.chk').eq(0).css('color', '#d5d5d5');
+			$('.chk').eq(1).css('color', '#d5d5d5');
+			alert("성공못함");
 			return false;
 		} else {
-			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'block').css('color', '#FF3636');
+			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'inline-block').css('color', '#FF3636');
+			if (memRpw != null || memRpw.length != 0){
+				if(memPw == memRpw){
+					$('.chk').eq(1).css('color', '#ff6c36');
+					$('.join_err_msg').eq(1).css('display', 'none');
+					return true;
+				} else {
+					$('.join_err_msg').eq(2).text(checkResult.desc).css("display", "inline-block").css("color", "#FF3636");
+					return false;
+				}	
+			}
+			return true;
 		}
-		
-		
+		return false;
 	});
 	
+	// 비밀번호 재확인(비교)
+	$('#join_rpw').keyup(function(){
+		var memPw = $.trim($('#join_pw').val());
+		var memRpw = $.trim($("#join_rpw").val());
+		
+		var checkResult = joinValidate.checkRpw(memPw, memRpw);
+		
+		if(checkResult.code != 0){
+			$('.join_err_msg').eq(2).text(checkResult.desc).css('display', 'inline-block').css('color', '#FF3636');
+			return false;
+		} else {
+			$('.join_err_msg').eq(2).text(checkResult.desc).css('display', 'inline-block').css('color', '#FF3636');
+			if (memPw != null || memPw.length != 0) {
+				if (memPw == memRpw) {
+					$('.chk').eq(2).css('color', '#ff6c36');
+					$('.join_err_msg').eq(2).css('display', 'none');
+					return true;
+				} else {
+					$('.join_err_msg').eq(2).text(checkResult.desc).css("display", "inline-block").css("color", "#FF3636");
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	});
+	
+	
+	// 이름
+	$('#join_name').keyup(function(){
+		var name = $.trim($('#join_name').val());
+		
+		var checkResult = joinValidate.checkName(name);
+		if(checkResult.code != 0) { // 실패, 경고메세지 출력
+			$('.join_err_msg').eq(3).text(checkResult.desc).css('display', 'inline-block').css('color', '#FF3636');
+			$('.chk').eq(3).css('color', '#d5d5d5');
+			return false;
+		} else { 
+			$('.chk').eq(3).css('color', '#ff6c36');
+			$('.join_err_msg').eq(3).css('display', 'none');
+			return true;
+		}
+		return false;
+	});
 	
 	
 	

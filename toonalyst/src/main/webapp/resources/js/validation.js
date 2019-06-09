@@ -99,7 +99,64 @@ var joinValidate = {
 			return this.resultCode.success_id;
 		}
 		
-	} // checkId 끝 
+	}, // checkId 끝
+	
+	checkPw : function(memPw, memRpw){
+		var regEmpty = /\s/g; 
+		var pwReg = RegExp(/^[a-zA-Z0-9]{4,12}$/); // 비밀번호 체크 /^이면 true, false가 반대가 된다
+		alert("여기까지왔나?");
+		if(memPw == "" || memPw.length == 0){
+			return this.resultCode.empty_val;
+		} else if(memPw.match(regEmpty)){
+			return this.resultCode.space_length_val;
+		} else if(!pwReg.test(memPw)){
+			return this.resultCode.invalid_pw;
+		} else {
+			return this.resultCode.success_pw;
+		}
+	},
+	
+	checkRpw : function(memPw, memRpw){
+		var regEmpty = /\s/g;
+		var pwReg = RegExp(/^[a-zA-Z0-9]{4,12}$/);
+	
+		if(memRpw == "" || memRpw.length == 0){
+			return this.resultCode.empty_val;
+		} else if(memRpw.match(regEmpty)){
+			return this.resultCode.space_length_val;
+		} else if(!pwReg.test(memRpw)){
+			return this.resultCode.invalid_pw;
+		} else {
+			return this.resultCode.success_pw;
+		}
+	},
+	
+	checkName : function(name){
+		var regEmpty = /\s/g; // 공백문자
+		var regKor = /[^가-힣]/; // 올바른 이름 형식
 		
+		if (name == "" || name.length == 0) {
+			return this.resultCode.empty_val;
+		} else if (name.match(regEmpty)) {
+			return this.resultCode.space_length_val;
+		} else if (regKor.test(name)) {
+			return this.resultCode.invalid_name;
+		} else if (name.length > 4 || name.length < 2) {
+			return this.resultCode.length_name;
+		} else {
+			return this.resultCode.success_name;
+		}
+		
+		
+	}
 } // joinValidation 끝
+
+
+// ID 중복체크 AJAX (DB와 비교)
+// 현재PW와 새PW 비교 (DB에있는 PW와 비교)
+
+
+
+
+
 
