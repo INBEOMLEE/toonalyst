@@ -384,7 +384,7 @@ $(document).ready(function(){
 		
 		if(checkResult.code != 0) {
 			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'inline-block').css('color', '#FF3636');
-			$('.chk').eq(0).css('color', '#d5d5d5');
+			$('.chk').eq(1).css('color', '#d5d5d5');
 			return false;
 		} else {
 			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'block').css('color', '#FF3636');

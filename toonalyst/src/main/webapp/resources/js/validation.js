@@ -21,7 +21,7 @@ var joinValidate = {
 		},
 		length_id : {
 			code : 4,
-			desc : 'iD는 공백없이 6자 이상~ 50자 이하여야 합니다.'
+			desc : 'ID는 공백없이 6자 이상~ 16자 이하여야 합니다.'
 		},
 		overlap_id : {
 			code : 5,
@@ -131,7 +131,7 @@ var joinValidate = {
 function ajaxCheck(memId) {
 	// 10. ajax 시작!
 	//     목적지: idCheck.fcryan
-	//     전달데이터: 이름표가 id인 memId 데이터
+	//     전달데이터: 이름표가 id인 memId 데이터d
 	//     데이터 포장방법: json
 	//     데이터 전달방법: POST방식
 	$.ajax({
