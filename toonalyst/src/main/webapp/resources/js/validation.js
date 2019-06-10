@@ -12,8 +12,7 @@ var joinValidate = {
 		},
 		// ID
 		success_id : {
-			code : 0,
-			desc : '멋진 ID입니다.'
+			code : 0
 		},
 		invaild_id : {
 			code : 3,
@@ -29,8 +28,7 @@ var joinValidate = {
 		},
 		// PW
 		success_pw : {
-			code : 0,
-			desc : '사용가능한 비밀번호입니다.'
+			code : 0
 		},
 		invalid_pw : {
 			code : 3,
@@ -42,8 +40,7 @@ var joinValidate = {
 		},
 		// name 
 		success_name : {
-			code : 0,
-			desc : '멋진 이름입니다.'
+			code : 0
 		},
 		invalid_name : {
 			code : 3,
@@ -55,8 +52,7 @@ var joinValidate = {
 		},
 		// phone
 		success_phone : {
-			code : 0,
-			desc : '사용가능한 번호입니다.'
+			code : 0
 		},
 		invalid_phone : {
 			code : 3,
@@ -68,12 +64,11 @@ var joinValidate = {
 		},
 		length_phone : {
 			code : 5,
-			desc : '(-)없이 10, 11자로 입력해주세요.'
+			desc : '(-) 없이 10, 11자로 입력해주세요.'
 		},
 		// email
 		success_email : {
-			code : 0,
-			desc : '사용가능한 이메일입니다.'
+			code : 0
 		},
 		invalid_email : {
 			code : 3,
@@ -111,20 +106,74 @@ var joinValidate = {
 		} else if(!pwReg.test(memPw)) {
 			return this.resultCode.invalid_pw;
 		} else {
-			if(memRpw != null || memRpw.length != 0) {
-				if(memPw == memRpw) {
-					$('#inputrpw').next().text(this.resultCode.success_pw.desc)
-							             .css("display", "block")
-							             .css("color", "#0000FF");
-				} else {
-					$('#inputrpw').next().text(this.resultCode.other_pw.desc)
-							             .css("display", "block")
-							             .css("color", "#FF3636");
-					return false;
-				}
-			}
 			return this.resultCode.success_pw;
 		} 
+	},
+	checkRpw : function(memPw, memRpw) {
+		var regEmpty = /\s/g; // 공백문자
+		var pwReg= RegExp(/^[a-zA-Z0-9]{4,12}$/); // 비밀번호 체크
+		
+		if(memRpw == "" || memRpw.length == 0) {
+			return this.resultCode.empty_val;
+		} else if(memRpw.match(regEmpty)) {
+			return this.resultCode.space_length_val;
+		} else if(!pwReg.test(memRpw)) {
+			return this.resultCode.invalid_pw;
+		} else {
+			if(memPw != memRpw) {
+				$('.chk').eq(2).css('color', '#d5d5d5');
+				$('.join_err_msg').eq(2).css('display', 'inline-block').text(this.resultCode.other_pw);
+				return this.resultCode.other_pw;
+			} 
+			return this.resultCode.success_pw;
+		} 
+	},
+	checkName : function(name) {
+		var regEmpty = /\s/g; // 공백문자
+		var regKor = /[^가-힣]/; // 올바른 이름 형식
+		
+		if(name == "" || name.length == 0) {
+			return this.resultCode.empty_val;
+		} else if(name.match(regEmpty)) {
+			return this.resultCode.space_length_val;
+		} else if(regKor.test(name)) {
+			return this.resultCode.invalid_name;
+		} else if(name.length > 4 || name.length < 2) {
+			return this.resultCode.length_name;
+		} else {
+			return this.resultCode.success_name;
+		} 
+	},
+	checkEmail : function(email) {
+		var regEmpty = /\s/g; // 공백문자			
+		var regEmail = RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i); // 이메일유효성검사
+		
+		if(email == "" || email.length == 0) {
+			return this.resultCode.empty_val;
+		} else if(email.match(regEmpty)) {
+			return this.resultCode.space_length_val;
+		} else if(!regEmail.test(email)) {
+			return this.resultCode.invalid_email;
+		} else {
+			return this.resultCode.success_email;
+		} 
+	},
+	checkPhone : function(phone) {
+		var regEmpty = /\s/g; // 공백문자			
+		
+		if (phone == "" || phone.length == 0) {
+			return this.resultCode.empty_val;
+		} else if (phone.match(regEmpty)) {
+			return this.resultCode.space_length_val;
+		} else if ($.isNumeric(phone) == false) {
+			return this.resultCode.number_phone;
+		} else if (phone.indexOf("01") != 0) {
+			return this.resultCode.invalid_phone;
+		} else if (!(phone.length == 10 || phone.length == 11)) {
+			return this.resultCode.length_phone;
+		} else {
+			return this.resultCode.success_phone;
+		}
 	}
 } // joinValidation 끝
 

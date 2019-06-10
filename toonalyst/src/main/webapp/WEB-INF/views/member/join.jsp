@@ -106,6 +106,7 @@
 	color: tomato;
 	letter-spacing: -1;
 	font-size: 15px;
+	color: #FF3636;
 }
 /* 약관동의 부분 */
 .constract_line {
@@ -230,10 +231,10 @@
 								</div>
 								<div class="box_addr box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
-									<input type="text" name="zipcode" id="sample6_postcode" class="addr_btn form_input" readonly="readonly" placeholder="우편번호"> 
+									<input type="text" name="zipcode" id="sample6_postcode" class="addr_btn form_input join_zipcode" readonly="readonly" placeholder="우편번호"> 
 									<input type="button" id="addr_btn" onclick="sample6_execDaumPostcode()" class="btn_normal" value="우편번호 찾기"><br>
-									<input type="text" name="addr1" id="sample6_address" placeholder="주소" class="addr_btn addr_style" readonly="readonly"><br> 
-									<input type="text" name="addr2" id="sample6_detailAddress" class="addr_btn addr_style" placeholder="상세항목">
+									<input type="text" name="addr1" id="sample6_address" placeholder="주소" class="addr_btn addr_style join_addr1" readonly="readonly"><br> 
+									<input type="text" name="addr2" id="sample6_detailAddress" class="addr_btn addr_style join_addr2" placeholder="상세항목">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 							</div>
@@ -247,7 +248,7 @@
 							</div>
 							<div class="box_name box_con_style constract_input_box">
 								<span class="chk"><i class="fas fa-check"></i></span>
-								<input type="text" id="join_name" name="join_name" class="form_input" value="이용약관 동의 (필수)" readonly="readonly">
+								<input type="text" class="form_input" value="이용약관 동의 (필수)" readonly="readonly">
 								<span class="down_btn"><i class="fas fa-chevron-down"></i></span>
 							</div>
 							<div class="constract_content">
@@ -255,7 +256,7 @@
 							</div>
 							<div class="box_name box_con_style constract_input_box">
 								<span class="chk"><i class="fas fa-check"></i></span>
-								<input type="text" id="join_name" name="join_name" class="form_input" value="개인정보 수집·이용 동의 (필수)" readonly="readonly">
+								<input type="text" class="form_input" value="개인정보 수집·이용 동의 (필수)" readonly="readonly">
 								<span class="down_btn"><i class="fas fa-chevron-down"></i></span>
 							</div>
 							<div class="constract_content"></div>
@@ -306,7 +307,7 @@
 						extraAddr = ' (' + extraAddr + ')';
 					}
 					// 조합된 참고항목을 해당 필드에 넣는다.
-					document.getElementById("sample6_detailAddress").value = extraAddr;
+					document.getElementById("sample6_detailAddress").value = '';
 				} else {
 					document.getElementById("sample6_detailAddress").value = '';
 				}
@@ -354,14 +355,14 @@ $(document).ready(function(){
 		}
 	});
 	
-	// id 유효성체크
+	// ID 유효성체크
 	$("#join_id").keyup(function() {
 		var memId = $.trim($("#join_id").val());
 		// validation에서 checkId() 함수를 실행 후 결과값(code, desc)을 변수 checkResult에 담음
 		var checkResult = joinValidate.checkId(memId);
 		
 		if(checkResult.code != 0) { // 실패, 경고메세지 출력
-			$('.join_err_msg').eq(0).text(checkResult.desc).css('display', 'inline-block').css('color', '#FF3636');
+			$('.join_err_msg').eq(0).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(0).css('color', '#d5d5d5');
 			return false;
 		} else { // 성공했기 때문에 중복인지 Ajax로 검증
@@ -382,23 +383,90 @@ $(document).ready(function(){
 		// validation에가서 joinValidate의 checkPw다녀옴
 		var checkResult = joinValidate.checkPw(memPw, memRpw);
 		
-		if(checkResult.code != 0) {
-			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'inline-block').css('color', '#FF3636');
+		if(checkResult.code != 0) { // 실패
+			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(1).css('color', '#d5d5d5');
 			return false;
-		} else {
-			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'block').css('color', '#FF3636');
+		} else { // 성공
+			$('.chk').eq(1).css('color', '#ff6c36');
+			$('.join_err_msg').eq(1).css('display', 'none');
 		}
-		
-		
 	});
 	
+	// RPW 유효성체크
+	$('#join_rpw').keyup(function(){
+		var memPw = $.trim($('#join_pw').val());
+		var memRpw = $.trim($('#join_rpw').val());
+		// validation에가서 joinValidate의 checkPw다녀옴
+		var checkResult = joinValidate.checkRpw(memPw, memRpw);
+		
+		if(checkResult.code != 0) {
+			$('.join_err_msg').eq(2).text(checkResult.desc).css('display', 'inline-block');
+			$('.chk').eq(2).css('color', '#d5d5d5');
+			return false;
+		} else { // 성공
+			$('.chk').eq(2).css('color', '#ff6c36');
+			$('.join_err_msg').eq(2).css('display', 'none');
+		}
+	});
 	
+	// NAME 유효성 체크
+	$('#join_name').keyup(function(){
+		var name = $.trim($('#join_name').val());
+		var checkResult = joinValidate.checkName(name);
+		
+		if(checkResult.code != 0) {
+			$('.join_err_msg').eq(3).text(checkResult.desc).css('display', 'inline-block');
+			$('.chk').eq(3).css('color', '#d5d5d5');
+			return false;
+		} else { // 성공
+			$('.chk').eq(3).css('color', '#ff6c36');
+			$('.join_err_msg').eq(3).css('display', 'none');
+		}
+	});
 	
+	// EMAIL 유효성 체크
+	$("#join_email").keyup(function() {
+		var email = $.trim($('#join_email').val());
+		var checkResult = joinValidate.checkEmail(email);
 	
+		if(checkResult.code != 0) {
+			$('.join_err_msg').eq(4).text(checkResult.desc).css('display', 'inline-block');
+			$('.chk').eq(4).css('color', '#d5d5d5');
+			return false;
+		} else { // 성공
+			$('.chk').eq(4).css('color', '#ff6c36');
+			$('.join_err_msg').eq(4).css('display', 'none');
+		}
+	});
 	
+	// 전화번호 유효성 체크
+	$("#join_phone").keyup(function() {
+		var phone = $.trim($('#join_phone').val());
+		var checkResult = joinValidate.checkPhone(phone);
 	
+		if(checkResult.code != 0) {
+			$('.join_err_msg').eq(5).text(checkResult.desc).css('display', 'inline-block');
+			$('.chk').eq(5).css('color', '#d5d5d5');
+			return false;
+		} else { // 성공
+			$('.chk').eq(5).css('color', '#ff6c36');
+			$('.join_err_msg').eq(5).css('display', 'none');
+		}
+	});
 	
+	// 주소 유효성 체크
+	$(".join_addr2").keyup(function() {
+		var zipcode = $.trim($('.join_zipcode').val());
+		var addr1 = $.trim($('.join_addr1').val());
+		var addr2 = $.trim($('.join_addr2').val());
+	
+		if(zipcode != "" && addr1 != "" && addr2 != ""){
+			$('.chk').eq(6).css('color', '#ff6c36');
+			$('.join_err_msg').eq(6).css('display', 'none');
+		}
+		
+	});
 });
 </script>
 </body>
