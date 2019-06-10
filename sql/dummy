@@ -1,0 +1,27 @@
+-- TOONALYST DUMMY DATA
+
+DROP TABLE toonalyst_member;
+CREATE TABLE toonalyst_member(
+    id VARCHAR2(30) PRIMARY KEY,
+    pw VARCHAR2(30) NOT NULL,
+    name VARCHAR2(30) NOT NULL,
+    email VARCHAR2(50) NOT NULL,
+    phone VARCHAR2(30) NOT NULL,
+    zipcode VARCHAR2(20) NOT NULL,
+    addr1 VARCHAR2(200) NOT NULL,
+    addr2 VARCHAR2(200) NOT NULL,
+    grade VARCHAR2(10) DEFAULT '1', 
+    regdate DATE DEFAULT SYSDATE
+);
+
+INSERT INTO toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
+VALUES('user01', '1234', '유수지', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
+INSERT INTO toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
+VALUES('user02', '1234', '최인준', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
+INSERT INTO toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
+VALUES('user03', '1234', '이인범', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
+INSERT INTO toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
+VALUES('user04', '1234', '조기훈', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
+
+SELECT * FROM toonalyst_member;
+COMMIT;
