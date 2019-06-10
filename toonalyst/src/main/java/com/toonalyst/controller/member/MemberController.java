@@ -39,7 +39,7 @@ public class MemberController {
 	}
 	@RequestMapping(value="/mypage", method = RequestMethod.GET)
 	public String myPageView() {
-		log.info(">>>>> 회원가입 페이지 출력");
+		log.info(">>>>> 마이페이지 출력");
 		
 		return "/member/mypage";
 	}

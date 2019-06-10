@@ -20,7 +20,7 @@ public class MemberDAOImpl implements MemberDAO{
 	// 로그인 기능 구현
 	@Override
 	public MemberDTO login(MemberDTO mDto) {
-		return sqlSession.selectOne("toonalyst.login", mDto);
+		return sqlSession.selectOne("member.login", mDto);
 	}
 
 }

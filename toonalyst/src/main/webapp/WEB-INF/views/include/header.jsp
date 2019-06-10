@@ -21,12 +21,12 @@
 						</c:when>
 						<c:otherwise>
 							<li><a href="${path}/member/logout">로그아웃</a></li>
-							<li><a href="#">마이페이지</a></li>
+							<li><a href="${path}/member/mypage">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
 					<li class="dropbox_btn"><a href="#">고객센터<span class="caret"></span></a>
 						<ul class="header_dropbox">
-							<li><a href="${path}/member/mypage">마이페이지(임시)</a></li>
+							<li><a href="#">DROPBOX</a></li>
 							<li><a href="#">DROPBOX</a></li>
 							<li><a href="#">DROPBOX</a></li>
 							<li><a href="#">DROPBOX</a></li>
