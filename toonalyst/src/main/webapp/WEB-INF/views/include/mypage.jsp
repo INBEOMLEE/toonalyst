@@ -30,7 +30,7 @@
     border-spacing: 2;
     font-size: 12px;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 200px;
     border: 1px solid #d7d7d7;
 }
 

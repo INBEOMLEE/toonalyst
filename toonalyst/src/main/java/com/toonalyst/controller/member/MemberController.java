@@ -37,6 +37,12 @@ public class MemberController {
 		
 		return "/member/login";
 	}
+	@RequestMapping(value="/mypage", method = RequestMethod.GET)
+	public String myPageView() {
+		log.info(">>>>> 회원가입 페이지 출력");
+		
+		return "/member/mypage";
+	}
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logoutView(HttpSession session) {

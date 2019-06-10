@@ -12,7 +12,7 @@
 #mypage{
 	width: 1180px;
     margin: 0 auto;
-	margin-bottom: 40px;
+	margin-bottom: 200px;
     border: 1px solid #d5d5d5;
     background: #fafafa;
 }
@@ -37,7 +37,7 @@
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    padding-inline-start: 0px;
 }
 #mypage .my_info ul li {
     display: table-cell;
@@ -80,5 +80,6 @@
 			</ul>		
 		</div>					
 	</div>
+<%@ include file="../include/footer.jsp" %>	
 </body>
 </html>
