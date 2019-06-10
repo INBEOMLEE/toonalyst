@@ -14,8 +14,16 @@
 		<div class="header_outline">
 			<div class="header_inline">
 				<ul class="header_menu">
-					<li><a href="#">로그인</a></li>
-					<li><a href="${path}/member/join">회원가입</a></li>
+					<c:choose>
+						<c:when test="${empty sessionScope.loginUser}">
+							<li><a href="${path}/member/login">로그인</a></li>
+							<li><a href="${path}/member/join">회원가입</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="${path}/member/logout">로그아웃</a></li>
+							<li><a href="#">마이페이지</a></li>
+						</c:otherwise>
+					</c:choose>
 					<li class="dropbox_btn"><a href="#">고객센터<span class="caret"></span></a>
 						<ul class="header_dropbox">
 							<li><a href="#">DROPBOX</a></li>
@@ -28,7 +36,7 @@
 			</div>
 		</div>
 		<h1 class="header_logo">
-			<a href="#">T O O N A L Y S T</a>
+			<a href="${path}/">T O O N A L Y S T</a>
 		</h1>
 		<div class="nav_outline">
 			<div class="nav_inline">

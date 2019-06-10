@@ -98,7 +98,7 @@
 					<legend class="legend">
 						<b>로 그 인</b>
 					</legend>
-					<form action="" method="POST" id="login_form">
+					<form action="${path}/member/login" method="POST" id="login_form">
 						<div class="login_content">
 							<label for="login_id">아이디</label>
 							<input type="text" name="id" id="login_id" class="login_input" placeholder="아이디">
@@ -117,6 +117,11 @@
 	</section>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			if(${result == 0}) {
+				$('.login_err_msg').text('아이디 또는 비밀번호를 다시 확인하세요.').css('display', 'block');
+			}
+			
 			$('#login_id').focus();
 			
 			$('.login_btn').click(function(){
@@ -146,7 +151,15 @@
 				}
 				
 				$('.login_err_msg').css('display', 'none');
+				
+				$('#login_form').submit();
+				
 			});
+			
+			$('.idpw_find_btn').click(function(){
+				location.href = "${path}/member/idpw";
+			});
+			
 			
 		});
 	</script>
