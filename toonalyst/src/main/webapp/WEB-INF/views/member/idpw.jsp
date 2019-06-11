@@ -211,10 +211,13 @@
 				}
 				
 				$('.idpw_err_msg').eq(1).css('display', 'none');
+					location.href = "${path}/member/changepw";
+				
 			});
 		});
 		
 	
 	</script>
+<%@ include file="../include/footer.jsp" %>			
 </body>
 </html>

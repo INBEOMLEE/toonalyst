@@ -60,6 +60,14 @@ public class MemberController {
 		return "/member/idpw";
 	}
 	
+	@RequestMapping(value="/changepw", method = RequestMethod.GET)
+	public String changepwView() {
+		log.info(">>>>> 비밀번호 수정 출력");
+		
+		return "/member/changepw";
+	}
+	
+	
 	
 	// DB 작업
 	
