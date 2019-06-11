@@ -9,46 +9,57 @@
 <style type="text/css">
 	.section_outline {
 		width: 100%;
-		height: 100%;
+		height: auto;
 	}
 	.section_inline {
 		width: 1180px;
-		height: 100%;
+		height: auto;
 		margin: 70px auto;
 	}
 	.section_title {
-		padding: 30px 0 50px;
-		text-align: center;
+		padding-left: 20px;
+		padding-bottom: 10px;
+		display: flex;
+		align-items: center;
+	}
+	.section_title img {
+		width: 70px;
+		height: 70px;
 	}
 	.section_title h3 {
 		font-size: 28px;
 		letter-spacing: -.02em;
+		display: inline-block;
 	}
 	.section_title p{
-		padding-top: 20px;
 		font-weight: 600;
-		font-size: 17px;
+		font-size: 20px;
+		text-align: center;
+		display: inline-block;
+		padding-top: 8px;
+		padding-left: 15px;
 	}
-	.rank_box {
+	.rank_outbox {
 		width: 1180px;
 		height: 390px;
 		border: 1px solid #fafafa;
 		border-radius: 10px;
 		background: #fafafa;
+		margin-bottom: 70px;
 	}
-	.rank_content {
+	.rank_inbox {
 		width: 1140px;
 		height: 350px;
 		margin: 20px auto;
 		overflow: hidden;
 	}
-	.rank_naver {
+	.rank_box_1, .rank_box_2, .rank_box_3, .rank_box_4 {
 		width: 2660px;
 		height: 350px;
 		overflow: auto;
 		display: flex;
 	}
-	.naver_toon {
+	.webtoon {
 		width: 250px;
 		height: 350px;
 		position: relative;
@@ -91,6 +102,21 @@
 		text-align: center;
 		margin: 30px auto;
 	}
+	#lezhin_logo {
+		width: 50px;
+		height: 50px;
+		margin-right: 10px;
+	}
+	#daum_logo {
+		width: 50px;
+		height: 50px;
+		margin-right: 10px;
+	}
+	#kakao_logo {
+		width: 50px;
+		height: 50px;
+		margin-right: 10px;
+	}
 
 </style>
 </head>
@@ -99,77 +125,320 @@
 		<div class="section_outline">
 			<div class="section_inline">
 				<div class="section_title">
-					<h3>Rank. NAVER WebToon</h3>
-					<p>2019.06.11 15:41</p>
+					<img alt="네이버웹툰로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png"><h3>Ranking</h3>
+					<p>2019.06.11 15:41 TUE</p>
 				</div>
-				<div class="rank_box">
-					<div class="rank_content">
-						<div class="rank_naver">
-							<div class="naver_toon">
+				<div class="rank_outbox">
+					<div class="rank_inbox">
+						<div class="rank_box_1">
+							<div class="webtoon">
 								<p class="webtoon_title">유미의 세포들</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
-							<div class="naver_toon">
+							<div class="webtoon">
 								<p class="webtoon_title">복학왕</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
-							<div class="naver_toon">
+							<div class="webtoon">
 								<p class="webtoon_title">연놈</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
-							<div class="naver_toon">
+							<div class="webtoon">
 								<p class="webtoon_title">세상은 돈과 권력</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
-							<div class="naver_toon">
+							<div class="webtoon">
 								<p class="webtoon_title">개장수</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
-							<div class="naver_toon">
+							<div class="webtoon">
 								<p class="webtoon_title">이츠마인</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
-							<div class="naver_toon">
+							<div class="webtoon">
 								<p class="webtoon_title">헬퍼 2: 킬베로스</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
-							<div class="naver_toon">
+							<div class="webtoon">
 								<p class="webtoon_title">아도나이</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
-							<div class="naver_toon">
+							<div class="webtoon">
 								<p class="webtoon_title">신암행어사</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
-							<div class="naver_toon">
+							<div class="webtoon">
 								<p class="webtoon_title">신석기녀</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="empty_bar"></div>
+						</div>
+					</div>
+				</div>
+				<div class="section_title">
+					<img alt="레진코믹스로고" src="${path}/resources/img/Lezhin_Webtoon_logo.png" id="lezhin_logo"><h3>Ranking</h3>
+					<p>2019.06.11 15:41 TUE</p>
+				</div>
+				<div class="rank_outbox">
+					<div class="rank_inbox">
+						<div class="rank_box_2">
+							<div class="webtoon">
+								<p class="webtoon_title">레바툰</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">아가씨와 우렁총각</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">4컷용사</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">바나나툰</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">그 끝에 있는 것</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">하루종일 조아영</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">킹스메이커</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">박쥐사육</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">천지해</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">롤플레잉겜만화</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="empty_bar"></div>
+						</div>
+					</div>
+				</div>
+				<div class="section_title">
+					<img alt="다음웹툰로고" src="${path}/resources/img/Daum_Webtoon_logo.png" id="daum_logo"><h3>Ranking</h3>
+					<p>2019.06.11 15:41 TUE</p>
+				</div>
+				<div class="rank_outbox">
+					<div class="rank_inbox">
+						<div class="rank_box_3">
+							<div class="webtoon">
+								<p class="webtoon_title">아비무쌍</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">우리집이거든요!</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">화양연화</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">겟 레디 위드 미</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">지옥사원</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">오무라이스 잼잼</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">아쿠아맨</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">살생부 (2014)</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">허세남길들이기</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">취향저격 그녀</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="empty_bar"></div>
+						</div>
+					</div>
+				</div>
+				<div class="section_title">
+					<img alt="카카오웹툰로고" src="${path}/resources/img/Kakao_Webtoon_logo.png" id="kakao_logo"><h3>Ranking</h3>
+					<p>2019.06.11 15:41 TUE</p>
+				</div>
+				<div class="rank_outbox">
+					<div class="rank_inbox">
+						<div class="rank_box_4">
+							<div class="webtoon">
+								<p class="webtoon_title">너네 스킬 다 내꺼!</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">이것이 명의다</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">하드캐리 서포터</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">내 남자 주인공의 아내</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">해연</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">강호사설</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">게임 폐인의 리셋 라이프</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">분홍색</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">패스파인더</p>
+								<div class="webtoon_img"></div>
+								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
+								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
+								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							</div>
+							<div class="webtoon">
+								<p class="webtoon_title">악녀의 후견인</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -185,14 +454,47 @@
 <%@ include file="include/footer.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.rank_naver').scroll(function() {
+		$('.rank_box_1').scroll(function() {
 			var scrollValue = $(this).scrollTop();
 			if(scrollValue <= 0) {
-				$('.rank_naver div').css('top', '0').css('left', '0');
+				$('.rank_box_1 div').css('top', '0').css('left', '0');
 			} else if(0 < scrollValue && scrollValue <= 1492) {
-				$('.rank_naver div').css('top', scrollValue+'px').css('left', -scrollValue+'px');
+				$('.rank_box_1 div').css('top', scrollValue+'px').css('left', -scrollValue+'px');
 			} else {
-				$('.rank_naver div').css('top', scrollValue+'px').css('left', '-1492px');
+				$('.rank_box_1 div').css('top', scrollValue+'px').css('left', '-1492px');
+			}
+		});
+		
+		$('.rank_box_2').scroll(function() {
+			var scrollValue = $(this).scrollTop();
+			if(scrollValue <= 0) {
+				$('.rank_box_2 div').css('top', '0').css('left', '0');
+			} else if(0 < scrollValue && scrollValue <= 1492) {
+				$('.rank_box_2 div').css('top', scrollValue+'px').css('left', -scrollValue+'px');
+			} else {
+				$('.rank_box_2 div').css('top', scrollValue+'px').css('left', '-1492px');
+			}
+		});
+		
+		$('.rank_box_3').scroll(function() {
+			var scrollValue = $(this).scrollTop();
+			if(scrollValue <= 0) {
+				$('.rank_box_3 div').css('top', '0').css('left', '0');
+			} else if(0 < scrollValue && scrollValue <= 1492) {
+				$('.rank_box_3 div').css('top', scrollValue+'px').css('left', -scrollValue+'px');
+			} else {
+				$('.rank_box_3 div').css('top', scrollValue+'px').css('left', '-1492px');
+			}
+		});
+		
+		$('.rank_box_4').scroll(function() {
+			var scrollValue = $(this).scrollTop();
+			if(scrollValue <= 0) {
+				$('.rank_box_4 div').css('top', '0').css('left', '0');
+			} else if(0 < scrollValue && scrollValue <= 1492) {
+				$('.rank_box_4 div').css('top', scrollValue+'px').css('left', -scrollValue+'px');
+			} else {
+				$('.rank_box_4 div').css('top', scrollValue+'px').css('left', '-1492px');
 			}
 		});
 	});
