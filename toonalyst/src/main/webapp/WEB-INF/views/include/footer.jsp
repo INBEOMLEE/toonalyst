@@ -27,6 +27,7 @@
 	}
 	.footer_info{
 		background: #f6f6f6;
+		text-align: center;
 	}
 	.footer_info_menu{
 		border: 1px solid #ebebeb;
@@ -35,6 +36,9 @@
 	.footer_wrap_inner{
 		width: 1180px;
     	margin: 0 auto;
+    	display: flex;
+    	justify-content: center;
+    	align-content: center;
 	}
 	.footer_wrap_inner li{
 		float: left;
