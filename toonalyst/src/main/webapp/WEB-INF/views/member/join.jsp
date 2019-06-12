@@ -659,20 +659,19 @@
 	}
 </script>
 <script type="text/javascript">
+
+// 가입하기 버튼 활성화 비활성화
+var id_check = false;
+var pw_check = false;
+var rpw_check = false;
+var name_check = false;
+var email_check = false;
+var phone_check = false;
+var addr_check = false;
+var constract_check = false;
+var all_check = false;
+
 $(document).ready(function(){
-	
-	// 가입하기 버튼 활성화 비활성화
-	var flag_btn = 0;
-	
-	$('').change(function(){
-		if (flag_btn == 1) {
-			$('.btn_agree').css('background', '#ff6c36').css('border', '1px solid #ff6c36');
-			flag_btn = 0;
-		} else {
-			$('.btn_agree').css('background', '#d5d5d5').css('border', '1px solid #d5d5d5');
-			flag_btn = 1;
-		}
-	});
 	
 	// 우편번호, 주소 클릭시 다음주소 API 창 출력
 	$('.addr_btn').click(function() {
@@ -715,6 +714,7 @@ $(document).ready(function(){
 		if(checkResult.code != 0) { // 실패, 경고메세지 출력
 			$('.join_err_msg').eq(0).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(0).css('color', '#d5d5d5');
+			id_check = false;
 			return false;
 		} else { // 성공했기 때문에 중복인지 Ajax로 검증
 			/* if(ajaxCheck(memId) == "1"){
@@ -722,7 +722,8 @@ $(document).ready(function(){
 			} */
 			$('.chk').eq(0).css('color', '#ff6c36');
 			$('.join_err_msg').eq(0).css('display', 'none');
-			flag_btn = 1;
+			id_check = true;
+			check_btn();
 			return true;
 		}
 		return false;
@@ -738,10 +739,13 @@ $(document).ready(function(){
 		if(checkResult.code != 0) { // 실패
 			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(1).css('color', '#d5d5d5');
+			pw_check = false;
 			return false;
 		} else { // 성공
 			$('.chk').eq(1).css('color', '#ff6c36');
 			$('.join_err_msg').eq(1).css('display', 'none');
+			pw_check = true;
+			check_btn();
 		}
 	});
 	
@@ -755,10 +759,13 @@ $(document).ready(function(){
 		if(checkResult.code != 0) {
 			$('.join_err_msg').eq(2).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(2).css('color', '#d5d5d5');
+			rpw_check = false;
 			return false;
 		} else { // 성공
 			$('.chk').eq(2).css('color', '#ff6c36');
 			$('.join_err_msg').eq(2).css('display', 'none');
+			rpw_check = true;
+			check_btn();
 		}
 	});
 	
@@ -770,10 +777,13 @@ $(document).ready(function(){
 		if(checkResult.code != 0) {
 			$('.join_err_msg').eq(3).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(3).css('color', '#d5d5d5');
+			name_check = false;
 			return false;
 		} else { // 성공
 			$('.chk').eq(3).css('color', '#ff6c36');
 			$('.join_err_msg').eq(3).css('display', 'none');
+			name_check = true;
+			check_btn();
 		}
 	});
 	
@@ -785,10 +795,13 @@ $(document).ready(function(){
 		if(checkResult.code != 0) {
 			$('.join_err_msg').eq(4).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(4).css('color', '#d5d5d5');
+			email_check = false;
 			return false;
 		} else { // 성공
 			$('.chk').eq(4).css('color', '#ff6c36');
 			$('.join_err_msg').eq(4).css('display', 'none');
+			email_check = true;
+			check_btn();
 		}
 	});
 	
@@ -800,10 +813,13 @@ $(document).ready(function(){
 		if(checkResult.code != 0) {
 			$('.join_err_msg').eq(5).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(5).css('color', '#d5d5d5');
+			phone_check = false;
 			return false;
 		} else { // 성공
 			$('.chk').eq(5).css('color', '#ff6c36');
 			$('.join_err_msg').eq(5).css('display', 'none');
+			phone_check = true;
+			check_btn();
 		}
 	});
 	
@@ -816,6 +832,8 @@ $(document).ready(function(){
 		if(zipcode != "" && addr1 != "" && addr2 != ""){
 			$('.chk').eq(6).css('color', '#ff6c36');
 			$('.join_err_msg').eq(6).css('display', 'none');
+			addr_check = true;
+			check_btn();
 		}
 	});
 	
@@ -828,25 +846,51 @@ $(document).ready(function(){
 			$('#check_btn').removeClass('check_off');
 			$('.chk').eq(7).css('color', '#ff6c36');
 			$('.chk').eq(8).css('color', '#ff6c36');
+			constract_check = true;
+			check_btn();
 		} else {
 			$('#check_btn').addClass('check_off');
 			$('#check_btn').removeClass('check_on');
 			$('.chk').eq(7).css('color', '#d5d5d5');
 			$('.chk').eq(8).css('color', '#d5d5d5');
+			constract_check = false;
 			return false;
 		}
 	});
-	// 가입하기 눌렀을 때 
+	
+	// 가입하기 눌렀을 때
 	$('.btn_agree').click(function() {
-		var must = $('#agree_check').is(':checked');
-		if (must == true) {
-			location.href = "${path}/member/create";
-		} else {
-			$(".join_err_msg").eq(7).css("display", "inline-block");
+		if(all_check == true) { // 유효성체크 모두 통과, 서브밋
+			$(".join_err_msg").eq(7).css("display", "none");
+			$(this).submit();
+		} else if(constract_check == false) { // 약관동의 체크 안한 경우 경고창
+			$(".join_err_msg").eq(7).text("필수사항 약관동의를 체크해주세요.").css("display", "inline-block");
 			return false;
+		} else { // 유효성체크 통과하지 못한 경우
+			$(".join_err_msg").eq(7).text("회원가입 필수사항을 입력해주세요.").css("display", "inline-block");
 		}
 	});
 });
+
+// 가입하기 버튼의 색 변화
+function check_btn() {
+	if(
+		id_check == true
+		&& pw_check == true 
+		&& rpw_check == true
+		&& name_check == true
+		&& email_check == true
+		&& phone_check == true
+		&& addr_check == true
+		&& constract_check == true
+	  ) {
+		$('.btn_agree').css('background', '#ff6c36').css('border', '1px solid #ff6c36');
+		all_check = true;
+	} else {
+		$('.btn_agree').css('background', '#d5d5d5').css('border', '1px solid #d5d5d5');
+		all_check = false;
+	}
+}
 
 
 </script>
