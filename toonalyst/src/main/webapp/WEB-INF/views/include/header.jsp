@@ -10,9 +10,10 @@
 <title>TOONALYST</title>
 </head>
 <body>
-	<header>
+	<header class="header">
 		<div class="header_outline">
 			<div class="header_inline">
+				<div class="toonalyst_logo">T O O N A L Y S T</div>
 				<ul class="header_menu">
 					<c:choose>
 						<c:when test="${empty sessionScope.loginUser}">
@@ -35,9 +36,11 @@
 				</ul>
 			</div>
 		</div>
-		<h1 class="header_logo">
-			<a href="${path}/">T O O N A L Y S T</a>
-		</h1>
+		<div class="header_logo_outline">
+			<h1 class="header_logo">
+				<a href="${path}/">T O O N A L Y S T</a>
+			</h1>
+		</div>
 		<div class="nav_outline">
 			<div class="nav_inline">
 				<div class="wrap_inner">
@@ -52,6 +55,12 @@
 			</div>
 		</div>
 	</header>
+	<div class="empty_box"></div>
+	<aside>
+		<button id="topBtn">
+			<i class="fas fa-arrow-up"></i>
+		</button>
+	</aside>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var flag = 0;
@@ -63,6 +72,26 @@
 					$('.header_dropbox').css("display", "none");
 					flag = 0;
 				}
+			});
+			
+			$(window).scroll(function() {
+				var scrollValue = $(this).scrollTop();
+				if(scrollValue > 40) {
+					$('#topBtn').fadeIn();
+					$('.toonalyst_logo').css('top', '0');
+					$('.header_logo_outline').css('height', '0');
+				} else {
+					$('#topBtn').fadeOut();
+					$('.toonalyst_logo').css('top', '-35px');
+					$('.header_logo_outline').css('height', '157px');
+				}
+			});
+			$('#topBtn').click(function(){
+				$('html, body').animate({scrollTop : 0}, 800);
+			});
+			
+			$('.index_header').hover(function(){
+				$(this).css('transition', '0.7s').css('opacity', '1');
 			});
 		});
 	</script>
