@@ -1,12 +1,16 @@
 package test;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.Test;
+
+import com.toonalyst.domain.webtoon.WebtoonDTO;
 
 /*
  * webParser.java
@@ -35,12 +39,36 @@ public class webParser {
 		String historical = url+"historical";	//시대극
 		String sports = url+"sports";			//스포츠
 		
-		Document doc = Jsoup.connect(daily).get();
+		
+		List<WebtoonDTO> dailylist = allList(daily);
+		List<WebtoonDTO> comiclist = allList(comic);
+		List<WebtoonDTO> fantasylist = allList(fantasy);
+		List<WebtoonDTO> actionlist = allList(action);
+		List<WebtoonDTO> dramalist = allList(drama);
+		List<WebtoonDTO> purelist = allList(pure);
+		List<WebtoonDTO> sensibilitylist = allList(sensibility);
+		List<WebtoonDTO> thrilllist = allList(thrill);
+		List<WebtoonDTO> historicallist = allList(historical);
+		List<WebtoonDTO> sportslist = allList(sports);
+	}
+	
+	public List<WebtoonDTO> allList(String genre) throws IOException{
+		List<WebtoonDTO> toonlist = new ArrayList<WebtoonDTO>();
+		Document doc = Jsoup.connect(genre).get();
 		Elements list = doc.select(".img_list > li");
 		for (Element element : list) {
-			System.out.print(element.select(".thumb > a").attr("href").split("=")[1]+" ");
-			System.out.print(element.select(".thumb > a").attr("title")+" ");
-			System.out.println(element.select(".thumb > a > img").attr("src"));
+			int titleId = Integer.parseInt(element.select(".thumb > a").attr("href").split("=")[1]);
+			String titleName = element.select(".thumb > a").attr("title");
+			String writer = element.select(".desc > a").text();
+			double rating = Double.parseDouble(element.select(".rating_type > strong").text());
+			double innerrating = 0;
+			int finish = 0;
+			if(element.select(".thumb > a > img").hasClass("finish")){
+				finish = 1;
+			}
+			String bannerImg = element.select(".thumb > a > img").attr("src");
+			toonlist.add(new WebtoonDTO(titleId, titleName, writer, rating, innerrating, finish, bannerImg));
 		}
+		return toonlist;
 	}
 }
