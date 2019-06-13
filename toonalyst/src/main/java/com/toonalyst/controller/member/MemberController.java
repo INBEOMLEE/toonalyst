@@ -85,6 +85,15 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping(value="/delete", method = RequestMethod.GET)
+	public String deleteView() {
+		log.info(">>>>> 회원 탈퇴 페이지 출력");
+		return "/member/delete";
+	}
+
+
+	
+	
 	// DB 작업
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
