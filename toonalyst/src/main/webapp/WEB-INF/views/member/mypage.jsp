@@ -80,6 +80,7 @@
 			</ul>		
 		</div>					
 	</div>
+<%@ include file="../include/my_footer.jsp" %>		
 <%@ include file="../include/footer.jsp" %>	
 </body>
 </html>
