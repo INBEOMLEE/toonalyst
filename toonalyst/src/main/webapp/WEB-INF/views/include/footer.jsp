@@ -42,7 +42,7 @@
 	}
 	.footer_wrap_inner li{
 		float: left;
-   		padding: 0 18px 0 3px;
+   		padding: 0 5px;
 	}
 	.footer_wrap_inner li a{
 		display: block;

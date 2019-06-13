@@ -76,7 +76,7 @@
 			
 			$(window).scroll(function() {
 				var scrollValue = $(this).scrollTop();
-				if(scrollValue > 40) {
+				if(scrollValue > 120) {
 					$('#topBtn').fadeIn();
 					$('.toonalyst_logo').css('top', '0');
 					$('.header_logo_outline').css('height', '0');
