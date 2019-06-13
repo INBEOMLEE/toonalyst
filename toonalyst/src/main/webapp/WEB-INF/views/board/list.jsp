@@ -8,6 +8,9 @@
 <meta charset="UTF-8">
 <title>TOONALYST</title>
 <style type="text/css">
+.notice {
+	margin-top: 50px;
+}
 .notice .notice_body {
 	padding-bottom: 80px;
 	min-height: 500px;
@@ -21,13 +24,29 @@
 	top: 0;
 	margin: 0 0 50px;
 }
-.wrap_inner {
+.board_menu {
 	width: 1180px;
 	margin: 0 auto;
 }
 .notice_body {
 	width: 1180px;
 	margin: 0 auto;
+}
+.new_time {
+	background-color: white;/* #FF8224 */
+	border: 1px solid #FF6C36;
+	font-size: 11px;
+	color: #FF6C36;
+	/* border-radius: 25px; */
+	padding: 1px 3px;
+	animation-name: twinkle;
+	animation-duration: 1.2s;
+	animation-iteration-count:infinite;
+	margin-left: 5px;	
+}
+@keyframes twinkle {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
 }
 .sub_tab ul {
 	display: table;
@@ -41,8 +60,9 @@
 /* li.selecte */
 .sub_tab ul > li {
 	display: table-cell;
-	border: 1px solid #d5d5d5;
-	background: #fff;
+	border: 1px solid #fff;
+	background: #d5d5d5;
+	color: white;
 }
 /* li.selected a 태그필요 */
 .sub_tab ul > li a {
@@ -54,6 +74,7 @@
 .board_list {
 	width: 100%;
 }
+
 .board_col {
 	border-spacing: 0;
 	table-layout: fixed;
@@ -69,14 +90,22 @@
 	color: #666;
 	
 }
+.title_td {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 .board_head > th {
 	padding: 15px 0;
 	border-top: 1px solid #e0e0e0;
 	border-bottom: 1px solid #e0e0e0;
-	font-weight: normal;
+	font-weight: 700;
 	text-align: center;
 	vertical-align: middle;
-	font-size: 12px;
+	font-size: 14px;
+}
+.board_list_con {
+	font-size: 14px;
 }
 .board_search select {
 	border: 0;
@@ -98,11 +127,7 @@
 	right: 0;
 	top: 0;
 	display: inline-block;
-	text-align: center;
 	vertical-align: top;
-}
-.box_btn a {
-	display: inline-block;
 	margin: 0;
 	padding: 8px 12px;
 	border: 1px solid #dedfda;
@@ -110,15 +135,17 @@
 	background: #dedfda;
 	color: #fff;
 	font-size: 14px;
-	font-weight: normal;
 	text-align: center;
-	vertical-align: middle;
-	line-height: 1.4;
 	white-space: nowrap;
 	cursor: pointer;
 	-webkit-appearance: none;
 	transition: all .2s ease;
 	width: 100px;
+	z-index: 5;
+}
+.box_btn:hover {
+	background: #FF6C36;
+	border: 1px solid #FF6C36;
 }
 /* 페이지네이션 */
 .page_write {
@@ -128,7 +155,6 @@
 }
 .paging {
 	margin-top: 30px;
-	font-size: 0;
 	text-align: center;
 }
 .paging li {
@@ -188,6 +214,9 @@
 	text-indent: -9999px;
 	cursor: pointer;
 }
+.board_menu ul li.active {
+	background: #FF6C36;
+}
 
 </style>
 </head>
@@ -196,13 +225,10 @@
 		<!-- 게시판 목록 부분 -->
 		<div class="sticky">
 			<div class="sub_tab">
-				<div class="wrap_inner">
+				<div class="board_menu">
 					<ul>
 						<li>
-							<a href="#">NOTICE</a>
-						</li>
-						<li>
-							<a href="#">FAQ</a>
+							<a href="#" class="sub_notice">NOTICE</a>
 						</li>
 						<li>
 							<a href="#">Q&A</a>
@@ -211,10 +237,22 @@
 				</div>
 			</div>
 		</div>
+		<!-- 게시물 정렬 영역 -->
+		<div class="array_list">
+		
+		
+		</div>
 		<!-- 게시글 영역 -->
 		<div class="notice_body">
 			<div class="board_list">
 				<table class="board_col">
+					<colgroup>
+						<col style="width: 8%">
+						<col>
+						<col style="width: 10%">
+						<col style="width: 12%">
+						<col style="width: 8%">
+					</colgroup>
 					<thead>
 						<tr class="board_head">
 							<th>번호</th>
@@ -224,13 +262,14 @@
 							<th>조회수</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="board_list_con">
 						<tr>
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td class="title_td">
 								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+								<span class="new_time">N</span>
 							</td>
 							<td>운영자</td>
 							<td>2019-05-29</td>
@@ -361,10 +400,11 @@
 				
 				<!-- 검색창 부분 -->
 				<div class="board_search">
-					<form action="#" method="GET" name="frm_srch">
+					<form action="${path}/" method="GET" name="frm_srch">
 						<input type="hidden" name="">
 						<input type="hidden" name="db">
 						<select name="search">
+							<option value="all">제목+내용</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
 							<option value="name">작성자</option>
@@ -379,5 +419,17 @@
 
 
 <%@ include file="../include/footer.jsp" %>  
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.board_menu ul li').eq(0).addClass("active");
+	
+	$('.board_menu ul li').click(function(){
+		$('.board_menu ul li').removeClass("active");
+		$(this).addClass("active");
+	});
+	
+});
+	
+</script>
 </body>
 </html>

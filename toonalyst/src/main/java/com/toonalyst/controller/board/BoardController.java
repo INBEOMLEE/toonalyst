@@ -22,6 +22,8 @@ public class BoardController {
 	}
 
 	// DB 작업
+
+	
 	
 	// Ajax
 	

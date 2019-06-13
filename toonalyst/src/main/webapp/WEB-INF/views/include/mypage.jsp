@@ -133,8 +133,9 @@
 						</td>
 						<td class="last">
 							<ul>
-								<li><a href="#" class="underline">나의 정보수정</a></li>
-								<li><a href="#" class="underline">회원 탈퇴</a></li>
+								<li><a href="${path}/member/update" class="underline">나의 정보수정</a></li>
+								<li><a href="${path}/member/pwupdate" class="underline">비밀번호 수정</a></li>
+								<li><a href="${path}/member/delete" class="underline">회원 탈퇴</a></li>
 							</ul>
 						</td>
 					</tr>

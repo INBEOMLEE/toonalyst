@@ -178,29 +178,27 @@ var joinValidate = {
 } // joinValidation 끝
 
 function ajaxCheck(memId) {
-	// 10. ajax 시작!
-	//     목적지: idCheck.fcryan
-	//     전달데이터: 이름표가 id인 memId 데이터d
-	//     데이터 포장방법: json
-	//     데이터 전달방법: POST방식
+	var return_val = false;
 	$.ajax({
-		url: "idCheck.fcryan",
+		url: "idcheck",
 		type: "POST",
 		dataType: "json",
 		data: "id="+memId,
+		async: false,
 		success: function(data) {
-			if(data.message == "-1") {
-				$("#inputid").next().text("이미 사용 중인 아이디 입니다.")
-				                    .css("display", "block")
-				                    .css("color", "#FF3636");
+			if(data == "1") {
+				$('.chk').eq(0).css('color', '#d5d5d5');
+				$('.join_err_msg').eq(0).text(joinValidate.resultCode.overlap_id.desc).css('display', 'inline-block');
+				return_val = false;
 			} else {
-				$("#inputid").next().text("멋진 ID네요.")
-					                .css("display", "block")
-					                .css("color", "#0000FF");
+				$('.chk').eq(0).css('color', '#ff6c36');
+				$('.join_err_msg').eq(0).css('display', 'none');
+				return_val = true;
 			} 
 		},
 		error: function() {
 			alert("System Error!!!");
 		}
 	});
+	return return_val;
 }

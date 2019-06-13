@@ -1,5 +1,7 @@
  package com.toonalyst.service.member;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -38,5 +40,48 @@ public class MemberServiceImpl implements MemberService{
 		session.invalidate();
 		log.info(">>>>> 로그아웃 성공");
 	}
+
+	@Override
+	public void create(MemberDTO mDto) {
+		mDao.create(mDto);
+		log.info(">>>>> 회원가입 성공");
+	}
+
+	@Override
+	public int idCheck(String id) {
+		int result = mDao.selectOne(id);
+		if(result > 0) {
+			log.info(">>>>> 이미 사용중인 아이디");
+		} else {
+			log.info(">>>>> 사용 가능한 아이디");
+		}
+		return result;
+	}
+
+	@Override
+	public MemberDTO updateView(String id) {
+		return mDao.updateView(id);
+	}
+
+	@Override
+	public void updatePlay(MemberDTO mDto, HttpSession session) {
+		mDao.updatePlay(mDto);
+	}
+
+	@Override
+	public void pwUpdatePlay(String id, String pw, HttpSession session) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("pw", pw);
+		
+		mDao.pwUpdatePlay(map);
+		MemberDTO loginUser = mDao.updateView(id);
+		session.removeAttribute("loginUser");
+		session.setAttribute("loginUser", loginUser);
+		
+		MemberDTO d1234 = (MemberDTO) session.getAttribute("loginUser");
+		
+	}
+
 
 }

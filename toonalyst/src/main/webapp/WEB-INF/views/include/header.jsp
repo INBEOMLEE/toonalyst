@@ -21,6 +21,7 @@
 							<li><a href="${path}/member/join">회원가입</a></li>
 						</c:when>
 						<c:otherwise>
+							<li><a>${sessionScope.loginUser.name}(${sessionScope.loginUser.id})</a></li>
 							<li><a href="${path}/member/logout">로그아웃</a></li>
 							<li><a href="${path}/member/mypage">마이페이지</a></li>
 						</c:otherwise>

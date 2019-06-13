@@ -11,7 +11,6 @@
 /* 전체 */
 .section_outline {
 	position: relative;
-	background-color: #fafafa;
 	width: 100%;
 }
 .section_inline {
@@ -156,7 +155,7 @@
 	width: 440px;
 	height: 58px;
 }
-.btn_agree {
+.join_btn_agree {
 	width: 440px;
 	height: 58px;
 	border: 1px solid #d5d5d5;
@@ -237,6 +236,7 @@
 .hidden {
 	visibility: hidden;
 }
+
 </style>
 </head>
 <body>
@@ -248,39 +248,39 @@
 					<div class="join_title">
 					 	<h2>회원 정보 입력</h2>
 					</div>
-					<form action="${path}/member/create" method="POST" name="frm_mem" id="frm_mem">
+					<form action="${path}/member/create" method="POST" name="join_form" id="join_form">
 						<!-- 입력부분 -->
 						<div class="join_content">
 							<span class="con_title">기본정보입력(필수)</span>
 							<div class="box">
 								<div class="box_id box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
-									<input type="text" id="join_id" maxlength="16" name="join_id" class="form_input" placeholder="아이디">
+									<input type="text" id="join_id" maxlength="16" name="id" class="form_input" placeholder="아이디">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_pw box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
-									<input type="password" id="join_pw" name="join_pw" class="form_input" placeholder="비밀번호">
+									<input type="password" id="join_pw" name="pw" class="form_input" placeholder="비밀번호">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_rpw box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
-									<input type="password" id="join_rpw" name="join_rpw" class="form_input" placeholder="비밀번호 재확인">
+									<input type="password" id="join_rpw" class="form_input" placeholder="비밀번호 재확인">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_name box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
-									<input type="text" id="join_name" name="join_name" class="form_input" placeholder="이름">
+									<input type="text" id="join_name" name="name" class="form_input" placeholder="이름">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_email box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
-									<input type="text" id="join_email" name="join_email" class="form_input" placeholder="이메일">
+									<input type="text" id="join_email" name="email" class="form_input" placeholder="이메일">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_phone box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
-									<input type="text" id="join_phone" name="join_phone" class="form_input" placeholder="전화번호">
+									<input type="text" id="join_phone" name="phone" class="form_input" placeholder="전화번호">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_addr box_con_style">
@@ -600,7 +600,7 @@
 						</div>
 						<!-- 가입하기 버튼 -->
 						<div class="join_btn">
-							<button class="btn_agree">가입하기</button>
+							<input type="button" class="join_btn_agree" value="가입하기">
 						</div>
 					</form>
 				</div>
@@ -715,18 +715,14 @@ $(document).ready(function(){
 			$('.join_err_msg').eq(0).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(0).css('color', '#d5d5d5');
 			id_check = false;
-			return false;
 		} else { // 성공했기 때문에 중복인지 Ajax로 검증
-			/* if(ajaxCheck(memId) == "1"){
-				return true; // 사용가능한 ID
-			} */
-			$('.chk').eq(0).css('color', '#ff6c36');
-			$('.join_err_msg').eq(0).css('display', 'none');
-			id_check = true;
-			check_btn();
-			return true;
+			if(ajaxCheck(memId) == "true"){
+				id_check = true;	
+			} else {
+				id_check = false;
+			}
 		}
-		return false;
+		check_btn();
 	});
 	
 	// PW 유효성체크
@@ -740,13 +736,12 @@ $(document).ready(function(){
 			$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(1).css('color', '#d5d5d5');
 			pw_check = false;
-			return false;
 		} else { // 성공
 			$('.chk').eq(1).css('color', '#ff6c36');
 			$('.join_err_msg').eq(1).css('display', 'none');
 			pw_check = true;
-			check_btn();
 		}
+		check_btn();
 	});
 	
 	// RPW 유효성체크
@@ -760,13 +755,12 @@ $(document).ready(function(){
 			$('.join_err_msg').eq(2).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(2).css('color', '#d5d5d5');
 			rpw_check = false;
-			return false;
 		} else { // 성공
 			$('.chk').eq(2).css('color', '#ff6c36');
 			$('.join_err_msg').eq(2).css('display', 'none');
 			rpw_check = true;
-			check_btn();
 		}
+		check_btn();
 	});
 	
 	// NAME 유효성 체크
@@ -778,13 +772,12 @@ $(document).ready(function(){
 			$('.join_err_msg').eq(3).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(3).css('color', '#d5d5d5');
 			name_check = false;
-			return false;
 		} else { // 성공
 			$('.chk').eq(3).css('color', '#ff6c36');
 			$('.join_err_msg').eq(3).css('display', 'none');
 			name_check = true;
-			check_btn();
 		}
+		check_btn();
 	});
 	
 	// EMAIL 유효성 체크
@@ -796,13 +789,12 @@ $(document).ready(function(){
 			$('.join_err_msg').eq(4).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(4).css('color', '#d5d5d5');
 			email_check = false;
-			return false;
 		} else { // 성공
 			$('.chk').eq(4).css('color', '#ff6c36');
 			$('.join_err_msg').eq(4).css('display', 'none');
 			email_check = true;
-			check_btn();
 		}
+		check_btn();
 	});
 	
 	// 전화번호 유효성 체크
@@ -814,13 +806,12 @@ $(document).ready(function(){
 			$('.join_err_msg').eq(5).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(5).css('color', '#d5d5d5');
 			phone_check = false;
-			return false;
 		} else { // 성공
 			$('.chk').eq(5).css('color', '#ff6c36');
 			$('.join_err_msg').eq(5).css('display', 'none');
 			phone_check = true;
-			check_btn();
 		}
+		check_btn();
 	});
 	
 	// 주소 유효성 체크
@@ -833,8 +824,12 @@ $(document).ready(function(){
 			$('.chk').eq(6).css('color', '#ff6c36');
 			$('.join_err_msg').eq(6).css('display', 'none');
 			addr_check = true;
-			check_btn();
+		} else {
+			$('.chk').eq(6).css('color', '#d5d5d5');
+			$('.join_err_msg').eq(6).css('display', 'inline-block');
+			addr_check = false;
 		}
+		check_btn();
 	});
 	
 	// 약관동의에서 전체동의를 클릭했을 때 	
@@ -847,27 +842,25 @@ $(document).ready(function(){
 			$('.chk').eq(7).css('color', '#ff6c36');
 			$('.chk').eq(8).css('color', '#ff6c36');
 			constract_check = true;
-			check_btn();
 		} else {
 			$('#check_btn').addClass('check_off');
 			$('#check_btn').removeClass('check_on');
 			$('.chk').eq(7).css('color', '#d5d5d5');
 			$('.chk').eq(8).css('color', '#d5d5d5');
 			constract_check = false;
-			return false;
 		}
+		check_btn();
 	});
 	
 	// 가입하기 눌렀을 때
-	$('.btn_agree').click(function() {
+	$('.join_btn_agree').click(function() {
 		if(all_check == true) { // 유효성체크 모두 통과, 서브밋
 			$(".join_err_msg").eq(7).css("display", "none");
-			$(this).submit();
+			$("#join_form").submit();
 		} else if(constract_check == false) { // 약관동의 체크 안한 경우 경고창
 			$(".join_err_msg").eq(7).text("필수사항 약관동의를 체크해주세요.").css("display", "inline-block");
-			return false;
 		} else { // 유효성체크 통과하지 못한 경우
-			$(".join_err_msg").eq(7).text("회원가입 필수사항을 입력해주세요.").css("display", "inline-block");
+			$(".join_err_msg").eq(7).text("필수사항을 모두 입력해주세요.").css("display", "inline-block");
 		}
 	});
 });
@@ -884,10 +877,10 @@ function check_btn() {
 		&& addr_check == true
 		&& constract_check == true
 	  ) {
-		$('.btn_agree').css('background', '#ff6c36').css('border', '1px solid #ff6c36');
+		$('.join_btn_agree').css('background', '#ff6c36').css('border', '1px solid #ff6c36');
 		all_check = true;
 	} else {
-		$('.btn_agree').css('background', '#d5d5d5').css('border', '1px solid #d5d5d5');
+		$('.join_btn_agree').css('background', '#d5d5d5').css('border', '1px solid #d5d5d5');
 		all_check = false;
 	}
 }
