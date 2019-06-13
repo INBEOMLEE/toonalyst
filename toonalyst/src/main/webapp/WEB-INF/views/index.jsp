@@ -85,6 +85,10 @@
 		width: 218px;
 		height: 120px;
 		margin: 16px auto 25px;
+		text-align: center;
+	}
+	.webtoon_img > img{
+		height: 100%;
 	}
 	.lately_score, .total_score {
 		width: 180px;
@@ -454,6 +458,57 @@
 <%@ include file="include/footer.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$.ajax({
+			url: "${path}/rank/naver",
+			type: 'GET',
+			success: function(result){
+				console.log(result);
+				var starscore = '';
+				var rating = 0;
+				for (var i = 0; i < 10; i++) {
+					$('.rank_box_1 > .webtoon').eq(i).children('.webtoon_title').text(result[i].titleName);
+					$('.rank_box_1 > .webtoon').eq(i).children('.webtoon_img').html('<img src="'+result[i].bannerimg+'">');
+					starscore = '';
+					rating = result[i].rating;
+					if(rating > 0){
+						if(rating<2){
+							starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+						}else{
+							starscore = starscore+'<i class="fas fa-star"></i>';
+							if(rating<4){
+								starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+							}else{
+								starscore = starscore+'<i class="fas fa-star"></i>';
+								if(rating<6){
+									starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+								}else{
+									starscore = starscore+'<i class="fas fa-star"></i>';
+									if(rating<8){
+										starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+									}else{
+										starscore = starscore+'<i class="fas fa-star"></i>';
+										if(rating<10){
+											starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+										}else{
+											starscore = starscore+'<i class="fas fa-star"></i>';
+										}
+									}
+								}
+							}
+						}
+					}
+					$('.rank_box_1 > .webtoon').eq(i).children('.star_score').html(starscore);
+				}
+			},
+			beforeSend:function(){
+				for (var i = 0; i < 10; i++) {
+					$('.rank_box_1 > .webtoon').eq(i).children('.webtoon_img').html('<img src="${path}/resources/img/ajax-loading2.gif" style="height: 100%;">');
+				}
+		    },
+			error: function(){
+				alert("System Error!");
+			}
+		});
 		$('.rank_box_1').scroll(function() {
 			var scrollValue = $(this).scrollTop();
 			if(scrollValue <= 0) {
