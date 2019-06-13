@@ -35,12 +35,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    addr2 = #{addr2}
 		WHERE id = #{id}
 	</update>
+	<!-- 현재 비밀번호와 입력한 비밀번호가 같은지 체크 -->
+	<select id="pwCheck" parameterType="HashMap" resultType="int">
+		SELECT COUNT(*) FROM toonalyst_member
+		WHERE id = #{id} AND pw = #{pw}
+	</select>
 	<!-- 비밀번호 수정 -->
 	<update id="pwUpdatePlay" parameterType="HashMap">
 		UPDATE toonalyst_member
 		SET pw = #{pw}
 		WHERE id = #{id}
 	</update>
+	
 </mapper>
 
 

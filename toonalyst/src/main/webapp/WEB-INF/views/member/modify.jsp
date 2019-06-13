@@ -236,7 +236,13 @@
 .hidden {
 	visibility: hidden;
 }
-
+.modify_err_box {
+	width: 440px;
+	text-align: center;
+}
+#last_err_box {
+	margin-top: 10px;
+}
 </style>
 </head>
 <body>
@@ -256,21 +262,29 @@
 								<div class="box_id box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="text" id="join_id" maxlength="16" name="id" class="form_input" placeholder="아이디" readonly="readonly" value="${mDto.id}">
+								</div>
+								<div class="modify_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_name box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="text" id="join_name" name="name" class="form_input" placeholder="이름" value="${mDto.name}">
+								</div>
+								<div class="modify_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_email box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="text" id="join_email" name="email" class="form_input" placeholder="이메일" value="${mDto.email}">
+								</div>
+								<div class="modify_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_phone box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="text" id="join_phone" name="phone" class="form_input" placeholder="전화번호" value="${mDto.phone}">
+								</div>
+								<div class="modify_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_addr box_con_style">
@@ -279,12 +293,11 @@
 									<input type="button" id="addr_btn" onclick="sample6_execDaumPostcode()" class="btn_normal" value="우편번호 찾기"><br>
 									<input type="text" name="addr1" id="sample6_address" placeholder="주소" class="addr_btn addr_style join_addr1" readonly="readonly" value="${mDto.addr1}"><br> 
 									<input type="text" name="addr2" id="sample6_detailAddress" class="addr_btn addr_style join_addr2" placeholder="상세항목" value="${mDto.addr2}">
-									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 							</div>
 						</div>
-						<div class="box_con_style">
-					 		<span class="join_err_msg">필수 동의 사항입니다.</span>
+						<div class="modify_err_box" id="last_err_box">
+							<span class="join_err_msg">필수 입력 사항입니다.</span>
 						</div>
 						<!-- 수정하기 버튼 -->
 						<div class="join_btn">
@@ -441,10 +454,10 @@ $(document).ready(function(){
 	// 가입하기 눌렀을 때
 	$('.join_btn_agree').click(function() {
 		if(all_check == true) { // 유효성체크 모두 통과, 서브밋
-			$(".join_err_msg").eq(5).css("display", "none");
+			$(".join_err_msg").eq(4).css("display", "none");
 			$("#modify_form").submit();
 		} else { // 유효성체크 통과하지 못한 경우
-			$(".join_err_msg").eq(5).text("필수사항을 모두 입력해주세요.").css("display", "inline-block");
+			$(".join_err_msg").eq(4).text("필수사항을 다시 확인해주세요.").css("display", "inline-block");
 		}
 	});
 });

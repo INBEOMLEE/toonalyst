@@ -83,5 +83,16 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	@Override
+	public int pwCheck(String id, String pw) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("pw", pw);
+		
+		return mDao.pwCheck(map);
+	}
+
+
+
 
 }

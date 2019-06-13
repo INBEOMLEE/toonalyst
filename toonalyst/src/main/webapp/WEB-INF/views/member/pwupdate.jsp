@@ -103,11 +103,11 @@
 .join_err_msg {
 	display: none;
 	padding: 10px;
-	margin-bottom: 10px;
-	color: tomato;
-	letter-spacing: -1;
-	font-size: 15px;
-	color: #FF3636;
+    margin-bottom: 10px;
+    text-align: center;
+    color: tomato;
+    letter-spacing: -1;
+    font-size: 15px;
 }
 /* 약관동의 부분 */
 .constract_line {
@@ -239,6 +239,10 @@
 hr {
 	margin-bottom: 10px;
 }
+.pwupdate_err_box {
+	width: 440px;
+	text-align: center;
+}
 
 </style>
 </head>
@@ -259,6 +263,8 @@ hr {
 								<div class="box_pw box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="password" id="join_oldpw" class="form_input" placeholder="현재 비밀번호">
+								</div>
+								<div class="pwupdate_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<br>
@@ -267,11 +273,16 @@ hr {
 								<div class="box_pw box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="password" id="join_pw" name="pw" class="form_input" placeholder="새 비밀번호">
+								</div>
+								<div class="pwupdate_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_rpw box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="password" id="join_rpw" name="rpw"class="form_input" placeholder="새 비밀번호 재확인">
+									
+								</div>
+								<div class="pwupdate_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 							</div>
@@ -295,24 +306,15 @@ hr {
 	var all_check = false;
 	
 	$(document).ready(function(){
-		// ( 현재 비밀번호 유효성 체크 )
+		// 현재 비밀번호 유효성 체크
 		$('#join_oldpw').keyup(function(){
 			var oldPw = $.trim($('#join_oldpw').val());
-			var curPw = "${sessionScope.loginUser.pw}"
+			oldpw_check = ajaxPwCheck(oldPw);
 			
-			if(oldPw != curPw) { // 실패
-				$('.join_err_msg').eq(0).text("현재 비밀번호와 일치하지 않습니다.").css('display', 'inline-block');
-				$('.chk').eq(0).css('color', '#d5d5d5');
-				oldpw_check = false;
-			} else { // 성공
-				$('.chk').eq(0).css('color', '#ff6c36');
-				$('.join_err_msg').eq(0).css('display', 'none');
-				oldpw_check = true;
-			}
 			check_btn();
 		});
 		
-		// PW 유효성체크 ( 새 비밀번호 체크 )
+		// PW 유효성체크
 		$('#join_pw').keyup(function(){
 			var memPw = $.trim($('#join_pw').val());
 			var memRpw = $.trim($('#join_rpw').val());
@@ -326,12 +328,16 @@ hr {
 			} else { // 성공
 				$('.chk').eq(1).css('color', '#ff6c36');
 				$('.join_err_msg').eq(1).css('display', 'none');
+				if(memPw == memRpw) {
+					$('.chk').eq(2).css('color', '#ff6c36');
+					$('.join_err_msg').eq(2).css('display', 'none');
+				}
 				pw_check = true;
 			}
 			check_btn();
 		});
 		
-		// RPW 유효성체크 ( 새 비밀번호 재확인 체크 )
+		// RPW 유효성체크
 		$('#join_rpw').keyup(function(){
 			var memPw = $.trim($('#join_pw').val());
 			var memRpw = $.trim($('#join_rpw').val());
@@ -345,6 +351,10 @@ hr {
 			} else { // 성공
 				$('.chk').eq(2).css('color', '#ff6c36');
 				$('.join_err_msg').eq(2).css('display', 'none');
+				if(memPw == memRpw) {
+					$('.chk').eq(1).css('color', '#ff6c36');
+					$('.join_err_msg').eq(1).css('display', 'none');
+				}
 				rpw_check = true;
 			}
 			check_btn();
@@ -364,7 +374,7 @@ hr {
 					$(".join_err_msg").eq(2).text("현재 비밀번호와 새 비밀번호가 같습니다.").css("display", "inline-block");
 				}
 			} else { // 유효성체크 통과하지 못한 경우
-				$(".join_err_msg").eq(2).text("필수사항을 모두 입력해주세요.").css("display", "inline-block");
+				$(".join_err_msg").eq(2).text("필수사항을 다시 확인해주세요.").css("display", "inline-block");
 			}
 		});
 	});

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>    
-<%@ include file="../include/common.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,7 +133,8 @@
 	outline: none;
 	background: #dedfda;
 	color: #fff;
-	font-size: 14px;
+	font-size: 15px;
+	font-weight: 500;
 	text-align: center;
 	white-space: nowrap;
 	cursor: pointer;
@@ -142,6 +142,7 @@
 	transition: all .2s ease;
 	width: 100px;
 	z-index: 5;
+	transition: 0.3s;
 }
 .box_btn:hover {
 	background: #FF6C36;
@@ -247,11 +248,11 @@
 			<div class="board_list">
 				<table class="board_col">
 					<colgroup>
-						<col style="width: 8%">
-						<col>
-						<col style="width: 10%">
-						<col style="width: 12%">
-						<col style="width: 8%">
+						<col style="width: 5%">
+						<col style="width: 15%">
+						<col style="width: 5%">
+						<col style="width: 5%">
+						<col style="width: 5%">
 					</colgroup>
 					<thead>
 						<tr class="board_head">
@@ -267,8 +268,8 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td class="title_td">
-								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+							<td>
+								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 								<span class="new_time">N</span>
 							</td>
 							<td>운영자</td>
@@ -280,7 +281,7 @@
 								<strong>[공지]</strong>
 							</td>
 							<td>
-								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
 							<td>운영자</td>
 							<td>2019-05-29</td>
@@ -291,7 +292,7 @@
 								<strong>[공지]</strong>
 							</td>
 							<td>
-								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
 							<td>운영자</td>
 							<td>2019-05-29</td>
@@ -302,7 +303,7 @@
 								<strong>[공지]</strong>
 							</td>
 							<td>
-								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
 							<td>운영자</td>
 							<td>2019-05-29</td>
@@ -313,7 +314,7 @@
 								<strong>[공지]</strong>
 							</td>
 							<td>
-								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
 							<td>운영자</td>
 							<td>2019-05-29</td>
@@ -324,7 +325,7 @@
 								<strong>[공지]</strong>
 							</td>
 							<td>
-								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
 							<td>운영자</td>
 							<td>2019-05-29</td>
@@ -335,7 +336,7 @@
 								<strong>[공지]</strong>
 							</td>
 							<td>
-								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
 							<td>운영자</td>
 							<td>2019-05-29</td>
@@ -346,7 +347,7 @@
 								<strong>[공지]</strong>
 							</td>
 							<td>
-								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
 							<td>운영자</td>
 							<td>2019-05-29</td>
@@ -357,7 +358,7 @@
 								<strong>[공지]</strong>
 							</td>
 							<td>
-								<a href="">5월 29일(수) 고객센터 운영 안내</a>
+								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
 							<td>운영자</td>
 							<td>2019-05-29</td>
@@ -426,6 +427,10 @@ $(document).ready(function(){
 	$('.board_menu ul li').click(function(){
 		$('.board_menu ul li').removeClass("active");
 		$(this).addClass("active");
+	});
+	
+	$('.register_btn').click(function(){
+		location.href="${path}/board/register";
 	});
 	
 });

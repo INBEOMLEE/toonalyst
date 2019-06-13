@@ -46,5 +46,9 @@ public class MemberDAOImpl implements MemberDAO{
 	public void pwUpdatePlay(HashMap<String, String> map) {
 		sqlSession.update("member.pwUpdatePlay", map);
 	}
+	@Override
+	public int pwCheck(HashMap<String, String> map) {
+		return sqlSession.selectOne("member.pwCheck", map);
+	}
 
 }

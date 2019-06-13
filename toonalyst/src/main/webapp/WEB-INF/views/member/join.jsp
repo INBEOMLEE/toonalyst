@@ -236,7 +236,16 @@
 .hidden {
 	visibility: hidden;
 }
-
+.join_err_box {
+	width: 440px;
+	text-align: center;
+}
+#last_err_box {
+	margin-top: 16px;
+}
+#last_err_msg {
+	margin-bottom: 0px;
+}
 </style>
 </head>
 <body>
@@ -256,31 +265,43 @@
 								<div class="box_id box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="text" id="join_id" maxlength="16" name="id" class="form_input" placeholder="아이디">
+								</div>
+								<div class="join_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_pw box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="password" id="join_pw" name="pw" class="form_input" placeholder="비밀번호">
+								</div>
+								<div class="join_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_rpw box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="password" id="join_rpw" class="form_input" placeholder="비밀번호 재확인">
+								</div>
+								<div class="join_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_name box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="text" id="join_name" name="name" class="form_input" placeholder="이름">
+								</div>
+								<div class="join_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_email box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="text" id="join_email" name="email" class="form_input" placeholder="이메일">
+								</div>
+								<div class="join_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_phone box_con_style">
 									<span class="chk"><i class="fas fa-check"></i></span>
 									<input type="text" id="join_phone" name="phone" class="form_input" placeholder="전화번호">
+								</div>
+								<div class="join_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 								<div class="box_addr box_con_style">
@@ -289,6 +310,8 @@
 									<input type="button" id="addr_btn" onclick="sample6_execDaumPostcode()" class="btn_normal" value="우편번호 찾기"><br>
 									<input type="text" name="addr1" id="sample6_address" placeholder="주소" class="addr_btn addr_style join_addr1" readonly="readonly"><br> 
 									<input type="text" name="addr2" id="sample6_detailAddress" class="addr_btn addr_style join_addr2" placeholder="상세항목">
+								</div>
+								<div class="join_err_box">
 									<span class="join_err_msg">필수 입력 사항입니다.</span>
 								</div>
 							</div>
@@ -594,9 +617,9 @@
 									</tbody>
 								</table>
 							</div>
-							 <div class="box_con_style">
-							 	<span class="join_err_msg">필수 동의 사항입니다.</span>
-							 </div>
+							<div class="join_err_box" id="last_err_box">
+								<span class="join_err_msg" id="last_err_msg">필수 입력 사항입니다.</span>
+							</div>
 						</div>
 						<!-- 가입하기 버튼 -->
 						<div class="join_btn">
@@ -716,7 +739,7 @@ $(document).ready(function(){
 			$('.chk').eq(0).css('color', '#d5d5d5');
 			id_check = false;
 		} else { // 성공했기 때문에 중복인지 Ajax로 검증
-			if(ajaxCheck(memId) == "true"){
+			if(ajaxIdCheck(memId) == "true"){
 				id_check = true;	
 			} else {
 				id_check = false;
@@ -739,6 +762,10 @@ $(document).ready(function(){
 		} else { // 성공
 			$('.chk').eq(1).css('color', '#ff6c36');
 			$('.join_err_msg').eq(1).css('display', 'none');
+			if(memPw == memRpw) {
+				$('.chk').eq(2).css('color', '#ff6c36');
+				$('.join_err_msg').eq(2).css('display', 'none');
+			}
 			pw_check = true;
 		}
 		check_btn();
@@ -758,6 +785,10 @@ $(document).ready(function(){
 		} else { // 성공
 			$('.chk').eq(2).css('color', '#ff6c36');
 			$('.join_err_msg').eq(2).css('display', 'none');
+			if(memPw == memRpw) {
+				$('.chk').eq(1).css('color', '#ff6c36');
+				$('.join_err_msg').eq(1).css('display', 'none');
+			}
 			rpw_check = true;
 		}
 		check_btn();
@@ -860,7 +891,7 @@ $(document).ready(function(){
 		} else if(constract_check == false) { // 약관동의 체크 안한 경우 경고창
 			$(".join_err_msg").eq(7).text("필수사항 약관동의를 체크해주세요.").css("display", "inline-block");
 		} else { // 유효성체크 통과하지 못한 경우
-			$(".join_err_msg").eq(7).text("필수사항을 모두 입력해주세요.").css("display", "inline-block");
+			$(".join_err_msg").eq(7).text("필수사항을 다시 확인해주세요.").css("display", "inline-block");
 		}
 	});
 });

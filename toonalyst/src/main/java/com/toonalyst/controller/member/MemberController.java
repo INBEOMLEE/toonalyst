@@ -137,5 +137,14 @@ public class MemberController {
 		return service.idCheck(id);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/pwcheck", method=RequestMethod.POST)
+	public int pwcheck(String pw, HttpSession session) {
+		log.info(">>>>> ajax: pw check" );
+		MemberDTO loginUser = (MemberDTO) session.getAttribute("loginUser");
+		String id = loginUser.getId();
+		return service.pwCheck(id, pw);
+	}
+	
 	
 }

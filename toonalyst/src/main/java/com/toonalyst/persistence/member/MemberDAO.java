@@ -17,4 +17,6 @@ public interface MemberDAO {
 	public void updatePlay(MemberDTO mDto);
 	// 비밀번호 수정 기능 구현
 	public void pwUpdatePlay(HashMap<String, String> map);
+	// 현재 비밀번호와 입력한 비밀번호 같은지 체크
+	public int pwCheck(HashMap<String, String> map);
 }

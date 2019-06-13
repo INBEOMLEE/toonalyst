@@ -19,5 +19,7 @@ public interface MemberService {
 	public void updatePlay(MemberDTO mDto, HttpSession session);
 	// 비밀번호 수정 구현
 	public void pwUpdatePlay(String id, String pw, HttpSession session);
+	// 현재 비밀번호와 입력한 비밀번호 같은지 체크
+	public int pwCheck(String id, String pw);
 	
 }
