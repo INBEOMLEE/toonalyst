@@ -56,8 +56,6 @@ public class webNaverParser {
 	List<WebtoonDTO> storylist;
 
 	
-	List<WebtoonDTO> AllWebToonList = new ArrayList<WebtoonDTO>();
-	
 	
 	
 	
@@ -97,9 +95,9 @@ public class webNaverParser {
 //		historicallist = genreList(historical);
 //		sportslist = genreList(sports);
 		
-//		episodelist = genreList(episode);
+		episodelist = genreList(episode);
 		omnibuslist = genreList(omnibus);
-//		storylist = genreList(story);		
+		storylist = genreList(story);
 	}
 	
 	public List<WebtoonDTO> genreList(String genre) throws IOException{
@@ -109,7 +107,7 @@ public class webNaverParser {
 		Document doc2 = null;
 		Elements list = doc.select(".img_list > li");
 		for (Element element : list) {
-			int titleId = Integer.parseInt(list.select(".thumb > a").attr("href").split("=")[1]);
+			int titleId = Integer.parseInt(element.select(".thumb > a").attr("href").split("=")[1]);
 			String titleName = element.select(".thumb > a").attr("title");
 			String writer = element.select(".desc > a").text();
 			float rating = Float.parseFloat(element.select(".rating_type > strong").text());
@@ -118,22 +116,19 @@ public class webNaverParser {
 			if(element.select(".thumb > a > img").hasClass("finish")){
 				finish = 1;
 			}
-			//String bannerImg = element.select(".thumb > a > img").attr("src");
-			doc2 = Jsoup.connect("https://comic.naver.com/webtoon/detail.nhn?titleId="+titleId+"&no=0").get();
-			String bannerImg = doc.select(".thumb > a > img").attr("src");
+			String bannerImg = element.select(".thumb > a > img").attr("src");
+//			doc2 = Jsoup.connect("https://comic.naver.com/webtoon/detail.nhn?titleId="+titleId+"&no=0").get();
+			//String bannerImg = doc.select(".thumb > a > img").attr("src");
 			WebtoonDTO webtemp = new WebtoonDTO(platForm, titleId, titleName, writer, rating, innerrating, finish, bannerImg);
 			toonlist.add(webtemp);
 			if(genre.contains("episode")) {
-				AllWebToonList.add(webtemp);
-				System.out.println(webtemp.getTitleName()+"추가");
+				alltoonList.add(webtemp);
 			}
 			if(genre.contains("omnibus")) {
-				AllWebToonList.add(webtemp);
-				System.out.println(webtemp.getTitleName()+"추가");
+				alltoonList.add(webtemp);
 			}
 			if(genre.contains("story")) {
-				AllWebToonList.add(webtemp);
-				System.out.println(webtemp.getTitleName()+"추가");
+				alltoonList.add(webtemp);
 			}
 		}
 		return toonlist;

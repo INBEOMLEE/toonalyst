@@ -11,7 +11,7 @@ import com.toonalyst.domain.webtoon.WebtoonDTO;
 public class WebtoonDAOImpl implements WebtoonDAO {
 
 	@Inject
-	SqlSession sqlsession;
+	private SqlSession sqlsession;
 	
 	@Override
 	public void create(WebtoonDTO wDto) {

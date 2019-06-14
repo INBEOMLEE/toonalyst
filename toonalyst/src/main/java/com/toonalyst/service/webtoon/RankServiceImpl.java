@@ -39,6 +39,7 @@ public class RankServiceImpl implements RankService {
 			WebtoonDTO webDto = new WebtoonDTO();
 			for (int i = 1; i < 10; i++) {
 				rank1 = list.select(".rank0"+i+" > a").text().split("-")[0];
+				System.out.println(rank1);
 				for(WebtoonDTO webtoonDTO :allnavertoon.getAlltoonList()) {
 					if(webtoonDTO.getTitleName().equals(rank1)) {
 						webDto = webtoonDTO;
