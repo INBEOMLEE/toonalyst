@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.toonalyst.domain.webtoon.WebtoonDTO;
-import com.toonalyst.service.rank.RankService;
+import com.toonalyst.service.webtoon.RankService;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="webtoon">
+	<insert id="create" parameterType="com.toonalyst.domain.webtoon.WebtoonDTO">
+		insert into TBL_WEBTOON(PLATFORM,TITLEID,TITLENAME,WRITER,RATING,INNERRATING,FINISH,BANNERIMG)
+		values(#{platForm},#{titleId},#{titleName},#{writer},#{rating},#{innerrating},#{finish},#{bannerimg})
+	</insert>
+	<select id="selectone" parameterType="int" resultType="com.toonalyst.domain.webtoon.WebtoonDTO">
+		select * from tbl_webtoon
+		where titleid = #{titleId}
+	</select>
+</mapper>

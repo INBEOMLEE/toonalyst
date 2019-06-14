@@ -26,11 +26,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class WebtoonDTO {
+	private String platForm;	//제공플랫폼
 	private int titleId;		//웹툰 고유 ID 숫자로 구성됨
 	private String titleName;	//웹툰 제목
 	private String writer;		//작가
-	private double rating;		//웹툰 제공 플랫폼 별점
-	private double innerrating;	//우리 페이지 별점
+	private float rating;		//웹툰 제공 플랫폼 별점
+	private float innerrating;	//우리 페이지 별점
 	private int finish;			//완결 여부
 	private String bannerimg;	//배너이미지
 }

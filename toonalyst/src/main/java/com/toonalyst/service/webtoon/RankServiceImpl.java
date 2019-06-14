@@ -1,4 +1,4 @@
-package com.toonalyst.service.rank;
+package com.toonalyst.service.webtoon;
 
 import java.io.IOException;
 import java.util.ArrayList;

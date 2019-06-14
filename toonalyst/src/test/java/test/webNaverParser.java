@@ -1,5 +1,7 @@
 package test;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,6 +50,18 @@ public class webNaverParser {
 	List<WebtoonDTO> thrilllist;
 	List<WebtoonDTO> historicallist;
 	List<WebtoonDTO> sportslist;
+	
+	List<WebtoonDTO> episodelist;
+	List<WebtoonDTO> omnibuslist;
+	List<WebtoonDTO> storylist;
+
+	
+	List<WebtoonDTO> AllWebToonList = new ArrayList<WebtoonDTO>();
+	
+	
+	
+	
+	
 	List<WebtoonDTO> alltoonList;
 
 
@@ -66,37 +80,61 @@ public class webNaverParser {
 		String sports = url+"sports";			//스포츠
 		
 		
-		dailylist = allList(daily);
-		comiclist = allList(comic);
-		fantasylist = allList(fantasy);
-		actionlist = allList(action);
-		dramalist = allList(drama);
-		purelist = allList(pure);
-		sensibilitylist = allList(sensibility);
-		thrilllist = allList(thrill);
-		historicallist = allList(historical);
-		sportslist = allList(sports);
+		//스토리 진행 방식에 따른 장르
+		String episode = url+"episode";			//에피소드
+		String omnibus = url+"omnibus";			//옵니버스
+		String story = url+"story";				//스토리
+		
+		
+//		dailylist = genreList(daily);
+//		comiclist = genreList(comic);
+//		fantasylist = genreList(fantasy);
+//		actionlist = genreList(action);
+//		dramalist = genreList(drama);
+//		purelist = genreList(pure);
+//		sensibilitylist = genreList(sensibility);
+//		thrilllist = genreList(thrill);
+//		historicallist = genreList(historical);
+//		sportslist = genreList(sports);
+		
+//		episodelist = genreList(episode);
+		omnibuslist = genreList(omnibus);
+//		storylist = genreList(story);		
 	}
 	
-	public List<WebtoonDTO> allList(String genre) throws IOException{
+	public List<WebtoonDTO> genreList(String genre) throws IOException{
 		List<WebtoonDTO> toonlist = new ArrayList<WebtoonDTO>();
+		String platForm = "naver";
 		Document doc = Jsoup.connect(genre).get();
+		Document doc2 = null;
 		Elements list = doc.select(".img_list > li");
 		for (Element element : list) {
 			int titleId = Integer.parseInt(list.select(".thumb > a").attr("href").split("=")[1]);
 			String titleName = element.select(".thumb > a").attr("title");
 			String writer = element.select(".desc > a").text();
-			double rating = Double.parseDouble(element.select(".rating_type > strong").text());
-			double innerrating = 0;
+			float rating = Float.parseFloat(element.select(".rating_type > strong").text());
+			float innerrating = 0;
 			int finish = 0;
 			if(element.select(".thumb > a > img").hasClass("finish")){
 				finish = 1;
 			}
-			String bannerImg = element.select(".thumb > a > img").attr("src");
-			WebtoonDTO webtemp = new WebtoonDTO(titleId, titleName, writer, rating, innerrating, finish, bannerImg);
+			//String bannerImg = element.select(".thumb > a > img").attr("src");
+			doc2 = Jsoup.connect("https://comic.naver.com/webtoon/detail.nhn?titleId="+titleId+"&no=0").get();
+			String bannerImg = doc.select(".thumb > a > img").attr("src");
+			WebtoonDTO webtemp = new WebtoonDTO(platForm, titleId, titleName, writer, rating, innerrating, finish, bannerImg);
 			toonlist.add(webtemp);
-			
-			alltoonList.add(webtemp);
+			if(genre.contains("episode")) {
+				AllWebToonList.add(webtemp);
+				System.out.println(webtemp.getTitleName()+"추가");
+			}
+			if(genre.contains("omnibus")) {
+				AllWebToonList.add(webtemp);
+				System.out.println(webtemp.getTitleName()+"추가");
+			}
+			if(genre.contains("story")) {
+				AllWebToonList.add(webtemp);
+				System.out.println(webtemp.getTitleName()+"추가");
+			}
 		}
 		return toonlist;
 	}
