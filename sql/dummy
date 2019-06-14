@@ -10,7 +10,11 @@ CREATE TABLE toonalyst_member(
     zipcode VARCHAR2(20) NOT NULL,
     addr1 VARCHAR2(200) NOT NULL,
     addr2 VARCHAR2(200) NOT NULL,
-    grade VARCHAR2(10) DEFAULT '1', 
+    gradeimg VARCHAR2(200),
+    grade VARCHAR2(10) DEFAULT '1',
+    memexp NUMBER DEFAULT 0,
+    boardcnt NUMBER DEFAULT 0,
+    commentcnt NUMBER DEFAULT 0,
     regdate DATE DEFAULT SYSDATE
 );
 
