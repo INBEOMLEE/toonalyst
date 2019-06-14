@@ -302,7 +302,6 @@ hr {
 	// 가입하기 버튼 활성화 비활성화
 	var oldpw_check = false;
 	var pw_check = false;
-	var rpw_check = false;
 	var all_check = false;
 	
 	$(document).ready(function(){
@@ -331,8 +330,10 @@ hr {
 				if(memPw == memRpw) {
 					$('.chk').eq(2).css('color', '#ff6c36');
 					$('.join_err_msg').eq(2).css('display', 'none');
+					pw_check = true;
+				} else {
+					pw_check = false;
 				}
-				pw_check = true;
 			}
 			check_btn();
 		});
@@ -347,15 +348,17 @@ hr {
 			if(checkResult.code != 0) {
 				$('.join_err_msg').eq(2).text(checkResult.desc).css('display', 'inline-block');
 				$('.chk').eq(2).css('color', '#d5d5d5');
-				rpw_check = false;
+				pw_check = false;
 			} else { // 성공
 				$('.chk').eq(2).css('color', '#ff6c36');
 				$('.join_err_msg').eq(2).css('display', 'none');
 				if(memPw == memRpw) {
 					$('.chk').eq(1).css('color', '#ff6c36');
 					$('.join_err_msg').eq(1).css('display', 'none');
+					pw_check = true;
+				} else {
+					pw_check = false;
 				}
-				rpw_check = true;
 			}
 			check_btn();
 		});
@@ -384,7 +387,6 @@ hr {
 		if
 		(   oldpw_check == true
 			&& pw_check == true 
-			&& rpw_check == true
 		) {
 			$('.join_btn_agree').css('background', '#ff6c36').css('border', '1px solid #ff6c36');
 			all_check = true;

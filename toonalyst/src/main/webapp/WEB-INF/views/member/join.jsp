@@ -686,7 +686,6 @@
 // 가입하기 버튼 활성화 비활성화
 var id_check = false;
 var pw_check = false;
-var rpw_check = false;
 var name_check = false;
 var email_check = false;
 var phone_check = false;
@@ -765,8 +764,10 @@ $(document).ready(function(){
 			if(memPw == memRpw) {
 				$('.chk').eq(2).css('color', '#ff6c36');
 				$('.join_err_msg').eq(2).css('display', 'none');
+				pw_check = true;
+			} else {
+				pw_check = false;
 			}
-			pw_check = true;
 		}
 		check_btn();
 	});
@@ -781,15 +782,17 @@ $(document).ready(function(){
 		if(checkResult.code != 0) {
 			$('.join_err_msg').eq(2).text(checkResult.desc).css('display', 'inline-block');
 			$('.chk').eq(2).css('color', '#d5d5d5');
-			rpw_check = false;
+			pw_check = false;
 		} else { // 성공
 			$('.chk').eq(2).css('color', '#ff6c36');
 			$('.join_err_msg').eq(2).css('display', 'none');
 			if(memPw == memRpw) {
 				$('.chk').eq(1).css('color', '#ff6c36');
 				$('.join_err_msg').eq(1).css('display', 'none');
+				pw_check = true;
+			} else {
+				pw_check = false;
 			}
-			rpw_check = true;
 		}
 		check_btn();
 	});
@@ -901,7 +904,6 @@ function check_btn() {
 	if(
 		id_check == true
 		&& pw_check == true 
-		&& rpw_check == true
 		&& name_check == true
 		&& email_check == true
 		&& phone_check == true
