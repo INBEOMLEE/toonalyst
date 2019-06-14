@@ -31,9 +31,11 @@
 #delete_form {
 	margin-top: 16px;
 	margin-bottom: 32px;
-	padding: 15px;
+	padding: 20px;
+	padding-bottom: 30px;
 	background: #fbfbfb;
 	border-top: 1px solid #d5d5d5;
+	border-bottom: 1px solid #d5d5d5;
 }
 .delete_content {
 	margin: 32px 0;
@@ -42,69 +44,17 @@
 }
 .delete_radio {
 	margin-bottom: 12px;
-	display: block;
 	letter-spacing: -1;
 	line-height: 20px;
 	font-style: normal;
 	padding-left: 3px;
 }
-.delete_radio > i:before {
-	content: '';
-	border: 2px solid rgba(1,1,1,0.54);
-	background: #fff;
-	opacity: .6;
-	position: absolute;
-	left: 0;
-	width: 15px;
-	height: 15px;
-	border-radius: 50%;	
-}
-.delete_radio>:checked+i:before {
-	border-color: #FF6C36;
-	opacity: 1;
-}
-.delete_radio>:checked+i:after {
-	content: '';
-	width: 8px;
-	height: 8px;
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	margin: auto;
-	background: #FF6C36;
-	border-radius: 50%;
-}
-.delete_radio>:checked+i:after {
-	border-color: #FF6C36;
-	opacity: 1;
-}
 #delete_cause {
 	width: 100%;
+	padding: 20px;
 }
-.box_con_style {
-	margin-bottom: 10px;
-	position: relative;
-}
-.form_input {
-	height: 40px;
-	padding: 4px 20px;
-	border-width: 0 0 0 1px;
-	border:1px solid #d5d5d5;
-	font-size: 16px;
-	width: 100%;
-	background: #fff;
-	outline: none;
-	margin-top: 10px;
-}
-
-.join_err_msg {
-	display: none;
-	padding: 10px;
-	margin-bottom: 10px;
-	color: tomato;
-	letter-spacing: -1;
-	font-size: 15px;
-	color: #FF3636;
+.radio_style {
+	margin: 7px 0;
 }
 .box {
 	width: 100%;
@@ -112,6 +62,32 @@
 	position: relative;
 	box-sizing: border-box;
 }
+.box_con_style {
+	position: relative;
+}
+.form_input {
+	height: 40px;
+	border-width: 0 0 0 1px;
+	border:1px solid #d5d5d5;
+	font-size: 16px;
+	width: 100%;
+	background: #fff;
+	outline: none;
+}
+.join_err_msg {
+	display: none;
+	padding: 7px;
+	margin-bottom: 10px;
+	color: tomato;
+	letter-spacing: -1;
+	font-size: 15px;
+	color: #FF3636;
+}
+.p_bottom_style {
+	line-height: 1.5;
+	margin-bottom: 16px;
+}
+
 .delete_btn_agree {
 	position: absolute;
 	top: 0;
@@ -127,9 +103,80 @@
 	cursor: pointer;
 	outline: none;
 }
+/* 모달창 */
+#delete_modal {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: flex; /* 여기위치가 container이다 */
+	align-items: center;
+	justify-content: center;
+	display: none;
+}
+#delete_content {
+	margin: 10px 0px;
+	/* width가 있으면 양쪽에 여백을 반토막내서 가운데 정렬해주는것이 margin: 0 auto이다; */
+	height: 400px;
+	text-align: center;
+}
+#close_btn {
+	position: absolute;
+	top: -26px;
+	right: -26px;
+	width: 20px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #333;
+	cursor: pointer;
+	transition: .2s linear;
+	z-index: 9;
+	color: white;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.wrap_btn {
+	display: flex;
+	justify-content: space-evenly;
+}
 </style>
 </head>
 <body>
+	<!-- 탈퇴하기 모달창 -->
+	<div id="delete_modal">
+		<div id="delete_content">
+			<div id="login_content">
+				<div id="login_area">
+					<div id="subtitle">Login</div>
+					<div id="close_btn">
+						<i class="fas fa-times" id="x_icon"></i>
+					</div>
+					<div id="container">
+						<form name="" action="" method="POST" id="login_form">
+							<input type="text" class="idpw" id="login_id" name="" placeholder="아이디"></input> 
+							<input type="password" class="idpw" id="login_pw" name="" placeholder="비밀번호"></input> 
+							<span class="err_msg">필수정보입니다.</span>
+						</form>
+						<div class="wrap_btn">
+							<a href="#" id="delete_no_btn"> 
+								<span>취소</span> 
+							</a> 
+							<a id="delete_yes_btn"> 
+								<span>탈퇴하기</span> 
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<section>
 		<div class="section_outline">
 			<div class="section_inline">
@@ -142,29 +189,25 @@
 						<!-- 입력부분 -->
 						<p>회원님의 탈퇴 사유를 알려주세요. 더 좋은 TOONALYST가 되기 위해 노력하겠습니다.</p>
 						<div class="delete_content">
-							<label class="delete_radio">
-								<input type="radio" name="delete_reason" value="errors">
-								<i>이용이 불편하고 장애가 많음</i>
-							</label>
-							<label class="delete_radio">
-								<input type="radio" name="delete_reason" value="errors">
-								<i>다른 사이트가 더 좋아서</i>
-							</label>
-							<label class="delete_radio">
-								<input type="radio" name="delete_reason" value="errors">
-								<i>사용빈도가 낮아서</i>
-							</label>
-							<label class="delete_radio">
-								<input type="radio" name="delete_reason" value="errors">
-								<i>콘텐츠 불만</i>
-							</label>
-							<label class="delete_radio">
-								<input type="radio" name="delete_reason" value="errors">
-								<i>기타</i>
-							</label>
+						
+							<input type="radio" id="reason_uncomfortable" class="radio_style" name="delete_reason" value="errors">
+							<label for="reason_uncomfortable" class="delete_radio">이용이 불편하고 장애가 많음</label>
+							<br>
+							<input type="radio" id="reason_competitor" class="radio_style" name="delete_reason" value="errors">
+							<label for="reason_competitor" class="delete_radio">다른 사이트가 더 좋아서</label>
+							<br>
+							<input type="radio" id="reason_frequency" class="radio_style" name="delete_reason" value="errors">
+							<label for="reason_frequency" class="delete_radio">사용빈도가 낮아서</label>
+							<br>
+							<input type="radio" id="reason_content" class="radio_style" name="delete_reason" value="errors">
+							<label for="reason_content"class="delete_radio">콘텐츠 불만</label>
+							<br>
+							<input type="radio" id="reason_etc" class="radio_style" name="delete_reason" value="errors">
+							<label for="reason_etc" id="reason_etc" class="delete_radio">기타</label>
 							<textarea name="delete_cause" id="delete_cause"></textarea>
+							
 						</div>
-						<p>
+						<p class="p_bottom_style">
 							TOONALYST 회원을 탈퇴하시면 콘텐츠 이용이 더이상 불가합니다. 또한 탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.
 						</p>
 						<div class="box">
@@ -185,101 +228,31 @@
 <script type="text/javascript" src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 
-	// 가입하기 버튼 활성화 비활성화
-	var oldpw_check = false;
-	var pw_check = false;
-	var rpw_check = false;
-	var all_check = false;
-	
-	$(document).ready(function(){
-		// ( 현재 비밀번호 유효성 체크 )
-		$('#join_oldpw').keyup(function(){
-			var oldPw = $.trim($('#join_oldpw').val());
-			var curPw = "${sessionScope.loginUser.pw}"
-			
-			if(oldPw != curPw) { // 실패
-				$('.join_err_msg').eq(0).text("현재 비밀번호와 일치하지 않습니다.").css('display', 'inline-block');
-				$('.chk').eq(0).css('color', '#d5d5d5');
-				oldpw_check = false;
-			} else { // 성공
-				$('.chk').eq(0).css('color', '#ff6c36');
-				$('.join_err_msg').eq(0).css('display', 'none');
-				oldpw_check = true;
-			}
-			check_btn();
-		});
-		
-		// PW 유효성체크 ( 새 비밀번호 체크 )
-		$('#join_pw').keyup(function(){
-			var memPw = $.trim($('#join_pw').val());
-			var memRpw = $.trim($('#join_rpw').val());
-			// validation에가서 joinValidate의 checkPw다녀옴
-			var checkResult = joinValidate.checkPw(memPw, memRpw);
-			
-			if(checkResult.code != 0) { // 실패
-				$('.join_err_msg').eq(1).text(checkResult.desc).css('display', 'inline-block');
-				$('.chk').eq(1).css('color', '#d5d5d5');
-				pw_check = false;
-			} else { // 성공
-				$('.chk').eq(1).css('color', '#ff6c36');
-				$('.join_err_msg').eq(1).css('display', 'none');
-				pw_check = true;
-			}
-			check_btn();
-		});
-		
-		// RPW 유효성체크 ( 새 비밀번호 재확인 체크 )
-		$('#join_rpw').keyup(function(){
-			var memPw = $.trim($('#join_pw').val());
-			var memRpw = $.trim($('#join_rpw').val());
-			// validation에가서 joinValidate의 checkPw다녀옴
-			var checkResult = joinValidate.checkRpw(memPw, memRpw);
-			
-			if(checkResult.code != 0) {
-				$('.join_err_msg').eq(2).text(checkResult.desc).css('display', 'inline-block');
-				$('.chk').eq(2).css('color', '#d5d5d5');
-				rpw_check = false;
-			} else { // 성공
-				$('.chk').eq(2).css('color', '#ff6c36');
-				$('.join_err_msg').eq(2).css('display', 'none');
-				rpw_check = true;
-			}
-			check_btn();
-		});
-		
-		
-		// 가입하기 눌렀을 때
-		$('.delete_btn_agree').click(function() {
-			var oldPw = $.trim($('#join_oldpw').val());
-			var memPw = $.trim($('#join_pw').val());
-			
-			if(all_check == true) { // 유효성체크 모두 통과, 서브밋
-				if(oldPw != memPw) {
-					$(".join_err_msg").eq(2).css("display", "none");
-					$("#delete_form").submit();
-				} else {
-					$(".join_err_msg").eq(2).text("현재 비밀번호와 새 비밀번호가 같습니다.").css("display", "inline-block");
-				}
-			} else { // 유효성체크 통과하지 못한 경우
-				$(".join_err_msg").eq(2).text("필수사항을 모두 입력해주세요.").css("display", "inline-block");
-			}
-		});
-	});
-	
-	// 수정하기 버튼의 색 변화
-	function check_btn() {
-		if
-		(   oldpw_check == true
-			&& pw_check == true 
-			&& rpw_check == true
-		) {
+// 가입하기 버튼 활성화 비활성화
+var curPw_check = false;
+
+$(document).ready(function(){
+	// 현재 비밀번호 유효성 체크
+	$('#join_pw').keyup(function(){
+		var curPw = $.trim($('#join_pw').val());
+		curPw_check = ajaxPwCheck(curPw);
+		if(curPw_check){
 			$('.delete_btn_agree').css('background', '#ff6c36').css('border', '1px solid #ff6c36');
-			all_check = true;
 		} else {
 			$('.delete_btn_agree').css('background', '#d5d5d5').css('border', '1px solid #d5d5d5');
-			all_check = false;
 		}
-	}
+	});
+	
+	// textarea에 포커스갔을 때 기타input태그의 radio버튼이 checked되게 함
+	$("#delete_cause").focus(function(){
+		$("#reason_etc").prop("checked", true);
+	});
+	
+	
+	
+	
+});
+
 </script>
 </body>
 </html>
