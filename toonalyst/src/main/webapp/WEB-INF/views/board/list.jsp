@@ -87,6 +87,7 @@
 	text-align: center;
 	vertical-align: middle;
 	color: #666;
+	height: 50px;
 	
 }
 .title_td {
@@ -218,6 +219,22 @@
 .board_menu ul li.active {
 	background: #FF6C36;
 }
+.board_list_con tr{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 1180px;
+}
+.board_list_con td{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+}
+#list_title {
+	flex: 3;
+}
+
 
 </style>
 </head>
@@ -268,11 +285,11 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td id="list_title">
 								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 								<span class="new_time">N</span>
 							</td>
-							<td>운영자</td>
+							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>2019-05-29</td>
 							<td>178</td>
 						</tr>
@@ -280,10 +297,10 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td id="list_title">
 								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
-							<td>운영자</td>
+							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>2019-05-29</td>
 							<td>178</td>
 						</tr>
@@ -291,10 +308,10 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td id="list_title">
 								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
-							<td>운영자</td>
+							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>2019-05-29</td>
 							<td>178</td>
 						</tr>
@@ -302,10 +319,10 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td id="list_title">
 								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
-							<td>운영자</td>
+							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>2019-05-29</td>
 							<td>178</td>
 						</tr>
@@ -313,10 +330,10 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td id="list_title">
 								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
-							<td>운영자</td>
+							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>2019-05-29</td>
 							<td>178</td>
 						</tr>
@@ -324,10 +341,10 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td id="list_title">
 								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
-							<td>운영자</td>
+							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>2019-05-29</td>
 							<td>178</td>
 						</tr>
@@ -335,10 +352,10 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td id="list_title">
 								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
-							<td>운영자</td>
+							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>2019-05-29</td>
 							<td>178</td>
 						</tr>
@@ -346,10 +363,10 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td id="list_title">
 								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
-							<td>운영자</td>
+							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>2019-05-29</td>
 							<td>178</td>
 						</tr>
@@ -357,10 +374,10 @@
 							<td>
 								<strong>[공지]</strong>
 							</td>
-							<td>
+							<td id="list_title">
 								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
 							</td>
-							<td>운영자</td>
+							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>2019-05-29</td>
 							<td>178</td>
 						</tr>
