@@ -1,6 +1,7 @@
 package com.toonalyst.controller.member;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -33,9 +34,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public String loginView() {
+	public String loginView(HttpSession session, HttpServletRequest request) {
 		log.info(">>>>> 로그인 페이지 출력");
-		
+		String referer = request.getHeader("referer");
+		session.setAttribute("URI", referer);
 		return "/member/login";
 	}
 	@RequestMapping(value="/mypage", method = RequestMethod.GET)
@@ -102,7 +104,7 @@ public class MemberController {
 		
 		int result = service.login(mDto, session);
 		
-		if(result > 0) return "index";
+		if(result > 0) return "redirect:"+ session.getAttribute("URI");
 		
 		
 		model.addAttribute("result", result);
