@@ -48,11 +48,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public String logoutView(HttpSession session) {
+	public String logoutView(HttpSession session, HttpServletRequest request) {
 		log.info(">>>>> 로그아웃 페이지 출력");
 		service.logout(session);
-		
-		return "index";
+		if(request.getHeader("referer") != null) {
+			return "redirect:" + request.getHeader("referer");
+		} else {
+			return "redirect:/";
+		}
 	}
 	
 	
@@ -103,9 +106,11 @@ public class MemberController {
 		log.info(">>>>> 로그인 기능 구현");
 		
 		int result = service.login(mDto, session);
-		
-		if(result > 0) return "redirect:"+ session.getAttribute("URI");
-		
+		if(session.getAttribute("URI") != null) {
+			if(result > 0) return "redirect:"+ session.getAttribute("URI");
+		} else {
+			return "redirect:/";
+		}
 		
 		model.addAttribute("result", result);
 		return "/member/login";
