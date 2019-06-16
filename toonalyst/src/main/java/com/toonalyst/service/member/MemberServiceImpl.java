@@ -92,6 +92,20 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.pwCheck(map);
 	}
 
+	@Override
+	public void delete(HttpSession session) {
+		log.info(">>>>세션안에있는것>>>>"+session.getAttribute("loginUser"));
+		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
+		String id = mDto.getId();
+		log.info(">>>>>>>mDto아이디맞나용>>"+mDto.getId());
+		log.info(">>>>>>>ID아이디맞나용>>"+id);
+		int result = mDao.delete(id);
+		if(result > 0) {
+			session.invalidate();
+		}
+		
+	}
+
 
 
 

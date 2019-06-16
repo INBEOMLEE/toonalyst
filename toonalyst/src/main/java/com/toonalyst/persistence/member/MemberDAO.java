@@ -19,4 +19,6 @@ public interface MemberDAO {
 	public void pwUpdatePlay(HashMap<String, String> map);
 	// 현재 비밀번호와 입력한 비밀번호 같은지 체크
 	public int pwCheck(HashMap<String, String> map);
+	// 회원탈퇴 기능 구현
+	public int delete(String id);
 }

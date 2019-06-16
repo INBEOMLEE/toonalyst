@@ -42,19 +42,33 @@
 	position: relative;
 	font-style: normal;
 }
+.radio_img {
+	width: 26px;
+	height: 26px;
+	background: url(${path}/resources/img/radio_off.png) no-repeat;
+	background-size: 100%;
+}
+.radio_on {
+	background-image: url(${path}/resources/img/radio_on.png) no-repeat;
+}
+.reason {
+	display: flex;
+	justify-content: flex-start;
+}
 .delete_radio {
-	margin-bottom: 12px;
 	letter-spacing: -1;
-	line-height: 20px;
-	font-style: normal;
+	line-height: 26px;
 	padding-left: 3px;
+	color: dimgray;
 }
 #delete_cause {
 	width: 100%;
 	padding: 20px;
+	display: none;
 }
 .radio_style {
 	margin: 7px 0;
+	display: none;
 }
 .box {
 	width: 100%;
@@ -65,10 +79,12 @@
 .box_con_style {
 	position: relative;
 }
+/* 비밀번호 입력 input */
 .form_input {
 	height: 40px;
 	border-width: 0 0 0 1px;
 	border:1px solid #d5d5d5;
+	padding-left: 10px;
 	font-size: 16px;
 	width: 100%;
 	background: #fff;
@@ -103,6 +119,7 @@
 	cursor: pointer;
 	outline: none;
 }
+
 /* 모달창 */
 #delete_modal {
 	position: fixed;
@@ -118,65 +135,75 @@
 	justify-content: center;
 	display: none;
 }
-#delete_content {
-	margin: 10px 0px;
-	/* width가 있으면 양쪽에 여백을 반토막내서 가운데 정렬해주는것이 margin: 0 auto이다; */
-	height: 400px;
+#delete_modal_content {
+	width: 300px;
+	height: 200px;
 	text-align: center;
+	display: inline-block;
+	background-color: white;
+	border-radius: 10px;
+	position: relative;
 }
 #close_btn {
 	position: absolute;
-	top: -26px;
-	right: -26px;
-	width: 20px;
-	height: 25px;
-	border-radius: 3px;
-	background-color: #333;
+	top: 7px;
+	right: 2px;
+	width: 30px;
+	height: 30px;
 	cursor: pointer;
-	transition: .2s linear;
-	z-index: 9;
-	color: white;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	color: lightgray;
+}
+#close_btn:hover {
+	color: dimgray;
+}
+#delete_modal_area {
+	width: 100%;
+	height: 200px;
 }
 .wrap_btn {
 	display: flex;
 	justify-content: space-evenly;
+}
+.modal_con {
+	font-size: 18px;
+	margin: 50px auto;
+}
+#delete_no_btn	{
+	background-color: #ff6c36;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	color: white;
+}
+#delete_yes_btn	{
+	background-color: #d5d5d5;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	color: white;
 }
 </style>
 </head>
 <body>
 	<!-- 탈퇴하기 모달창 -->
 	<div id="delete_modal">
-		<div id="delete_content">
-			<div id="login_content">
-				<div id="login_area">
-					<div id="subtitle">Login</div>
-					<div id="close_btn">
-						<i class="fas fa-times" id="x_icon"></i>
-					</div>
-					<div id="container">
-						<form name="" action="" method="POST" id="login_form">
-							<input type="text" class="idpw" id="login_id" name="" placeholder="아이디"></input> 
-							<input type="password" class="idpw" id="login_pw" name="" placeholder="비밀번호"></input> 
-							<span class="err_msg">필수정보입니다.</span>
-						</form>
-						<div class="wrap_btn">
-							<a href="#" id="delete_no_btn"> 
-								<span>취소</span> 
-							</a> 
-							<a id="delete_yes_btn"> 
-								<span>탈퇴하기</span> 
-							</a>
-						</div>
+		<div id="delete_modal_content">
+			<div id="close_btn"><i class="fas fa-times"></i></div>
+			<div id="delete_modal_area">
+				<div id="wrap_delete">
+					<div class="modal_con">정말 탈퇴하시겠습니까?</div>
+					<div class="wrap_btn">
+						<a id="delete_no_btn"> 
+							<span>취소</span> 
+						</a> 
+						<a id="delete_yes_btn"> 
+							<span>탈퇴하기</span> 
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<section>
 		<div class="section_outline">
 			<div class="section_inline">
@@ -185,34 +212,43 @@
 					<div class="join_title">
 					 	<h2>계정 탈퇴</h2>
 					</div>
-					<form action="${path}/member/pwupdate" method="POST" name="delete_form" id="delete_form">
+					<form action="${path}/member/delete" method="POST" name="delete_form" id="delete_form">
 						<!-- 입력부분 -->
-						<p>회원님의 탈퇴 사유를 알려주세요. 더 좋은 TOONALYST가 되기 위해 노력하겠습니다.</p>
+						<p><b>${sessionScope.loginUser.name}</b>님의 탈퇴 사유를 알려주세요. 더 좋은 TOONALYST가 되기 위해 노력하겠습니다.</p>
 						<div class="delete_content">
-						
-							<input type="radio" id="reason_uncomfortable" class="radio_style" name="delete_reason" value="errors">
-							<label for="reason_uncomfortable" class="delete_radio">이용이 불편하고 장애가 많음</label>
-							<br>
-							<input type="radio" id="reason_competitor" class="radio_style" name="delete_reason" value="errors">
-							<label for="reason_competitor" class="delete_radio">다른 사이트가 더 좋아서</label>
-							<br>
-							<input type="radio" id="reason_frequency" class="radio_style" name="delete_reason" value="errors">
-							<label for="reason_frequency" class="delete_radio">사용빈도가 낮아서</label>
-							<br>
-							<input type="radio" id="reason_content" class="radio_style" name="delete_reason" value="errors">
-							<label for="reason_content"class="delete_radio">콘텐츠 불만</label>
-							<br>
-							<input type="radio" id="reason_etc" class="radio_style" name="delete_reason" value="errors">
-							<label for="reason_etc" id="reason_etc" class="delete_radio">기타</label>
+							<div class="reason">
+								<div class="radio_img"></div>
+								<input type="radio" id="reason_uncomfortable" class="radio_style" name="delete_reason" value="errors">
+								<label for="reason_uncomfortable" class="delete_radio">이용이 불편하고 장애가 많음</label>
+							</div>
+							<div class="reason">
+								<div class="radio_img"></div>						
+								<input type="radio" id="reason_competitor" class="radio_style" name="delete_reason" value="errors">
+								<label for="reason_competitor" class="delete_radio">다른 사이트가 더 좋아서</label>
+							</div>
+							<div class="reason">
+								<div class="radio_img"></div>
+								<input type="radio" id="reason_frequency" class="radio_style" name="delete_reason" value="errors">
+								<label for="reason_frequency" class="delete_radio">사용빈도가 낮아서</label>
+							</div>
+							<div class="reason">
+								<div class="radio_img"></div>
+								<input type="radio" id="reason_content" class="radio_style" name="delete_reason" value="errors">
+								<label for="reason_content"class="delete_radio">콘텐츠 불만</label>
+							</div>
+							<div class="reason">
+								<div class="radio_img"></div>
+								<input type="radio" id="reason_etc" class="radio_style" name="delete_reason" value="errors">
+								<label for="reason_etc" id="reason_etc" class="delete_radio">기타</label>
+							</div>
 							<textarea name="delete_cause" id="delete_cause"></textarea>
-							
 						</div>
 						<p class="p_bottom_style">
 							TOONALYST 회원을 탈퇴하시면 콘텐츠 이용이 더이상 불가합니다. 또한 탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.
 						</p>
 						<div class="box">
 							<div class="box_pw box_con_style">
-								<input type="password" id="join_pw" name="pw" class="form_input" placeholder="비밀번호를 입력해주세요.">
+								<input type="password" id="cur_pw" name="pw" class="form_input" placeholder="비밀번호를 입력해주세요.">
 								<span class="join_err_msg">필수 입력 사항입니다.</span>
 							</div>
 							<!-- "탈퇴하기" 버튼 -->
@@ -228,13 +264,13 @@
 <script type="text/javascript" src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 
-// 가입하기 버튼 활성화 비활성화
+// 탈퇴하기 버튼 활성화 비활성화
 var curPw_check = false;
 
 $(document).ready(function(){
 	// 현재 비밀번호 유효성 체크
-	$('#join_pw').keyup(function(){
-		var curPw = $.trim($('#join_pw').val());
+	$('#cur_pw').keyup(function(){
+		var curPw = $.trim($('#cur_pw').val());
 		curPw_check = ajaxPwCheck(curPw);
 		if(curPw_check){
 			$('.delete_btn_agree').css('background', '#ff6c36').css('border', '1px solid #ff6c36');
@@ -242,17 +278,53 @@ $(document).ready(function(){
 			$('.delete_btn_agree').css('background', '#d5d5d5').css('border', '1px solid #d5d5d5');
 		}
 	});
-	
-	// textarea에 포커스갔을 때 기타input태그의 radio버튼이 checked되게 함
-	$("#delete_cause").focus(function(){
-		$("#reason_etc").prop("checked", true);
+
+	// 기타를 선택했을 때 textarea 나타남
+	$('#reason_etc').click(function(){
+		$('#delete_cause').css('display', 'block');
 	});
 	
+	// 탈퇴이유가 호버되었을 때 글씨가 진해짐
+	$('.delete_radio').hover(function(){
+		$(this).css('color', 'black').css('font-weight', '600');
+		
+	});
 	
+	/* 
+	$(".radio_img").click(function(){
+		$(this).addClass("radio_on");
+	}); */
+	
+/* 	$(".radio_style").click(function(){
+		var state = $(".radio_style").is(":checked");
+		if(state){
+			$(".radio_img").addClass(".radio_on");
+		} else {
+			$(".radio_img").removeClass(".radio_on");
+		}
+		
+	}); */
+	
+	
+	// 탈퇴하기 모달창 열고, 닫기
+	$('.delete_btn').click(function(){
+		$('#delete_modal').css('display', 'flex');
+	});
+	$('#close_btn').click(function(){
+		$('#delete_modal').css('display', 'none');
+	});
+	$('#delete_no_btn').click(function(){
+		$('#delete_modal').css('display', 'none');
+	});
+	// 모달창에서 탈퇴하기 누를 경우 탈퇴됨
+	$('#delete_yes_btn').click(function(){
+		location.href="${path}/member/deleteplay";
+	});
 	
 	
 });
 
 </script>
+<%@ include file="../include/footer.jsp" %>		
 </body>
 </html>

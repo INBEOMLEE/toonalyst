@@ -144,6 +144,16 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/deleteplay", method = RequestMethod.GET)
+	public String deletePlay(HttpSession session) {
+		log.info(">>>>> 회원탈퇴 기능 구현");
+		
+		service.delete(session);
+		
+		return "redirect:/";
+	}
+	
+	
 	// Ajax
 	@ResponseBody
 	@RequestMapping(value="/idcheck", method=RequestMethod.POST)

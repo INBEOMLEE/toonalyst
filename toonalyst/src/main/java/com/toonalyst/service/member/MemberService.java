@@ -21,5 +21,7 @@ public interface MemberService {
 	public void pwUpdatePlay(String id, String pw, HttpSession session);
 	// 현재 비밀번호와 입력한 비밀번호 같은지 체크
 	public int pwCheck(String id, String pw);
+	// 회원탈퇴 기능 구현
+	public void delete(HttpSession session);
 	
 }

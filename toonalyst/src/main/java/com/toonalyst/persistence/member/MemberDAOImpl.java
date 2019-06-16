@@ -50,5 +50,9 @@ public class MemberDAOImpl implements MemberDAO{
 	public int pwCheck(HashMap<String, String> map) {
 		return sqlSession.selectOne("member.pwCheck", map);
 	}
+	@Override
+	public int delete(String id) {
+		return sqlSession.delete("member.delete", id);
+	}
 
 }
