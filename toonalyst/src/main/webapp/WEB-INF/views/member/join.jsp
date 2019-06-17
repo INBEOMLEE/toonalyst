@@ -738,7 +738,7 @@ $(document).ready(function(){
 			$('.chk').eq(0).css('color', '#d5d5d5');
 			id_check = false;
 		} else { // 성공했기 때문에 중복인지 Ajax로 검증
-			if(ajaxIdCheck(memId) == "true"){
+			if(ajaxIdCheck(memId) == true){
 				id_check = true;	
 			} else {
 				id_check = false;

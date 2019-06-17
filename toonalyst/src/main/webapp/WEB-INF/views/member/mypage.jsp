@@ -12,7 +12,7 @@
 #mypage{
 	width: 1180px;
     margin: 0 auto;
-	margin-bottom: 200px;
+	margin-bottom: 100px;
     border: 1px solid #d5d5d5;
     background: #fafafa;
 }
@@ -55,6 +55,7 @@
     color: #818181;
     text-decoration: none;
     cursor: pointer;
+    line-height: 1.4;
 }
 #mypage .my_info ul li span {
     display: block;
@@ -72,11 +73,11 @@
 		<div class="my_info">
 		<p><strong>이인범 씨</strong>의 마이페이지</p>
 			<ul>
-				<li><a href="#">회원등급<span>KING</span></a></li>
-				<li><a href="#">적립금<span>5억</span></a></li>			
-				<li><a href="#">쿠폰<span>412장</span></a></li>
-				<li><a href="#">장바구니<span>251</span></a></li>
-				<li><a href="#">관심상품<span>14</span></a></li>
+				<li><a href="#">회원 등급<span>평민</span></a></li>
+				<li><a href="#">회원 레벨<span>Lv.3</span></a></li>			
+				<li><a href="#">E X P<span>1740점</span></a></li>
+				<li><a href="#">작성한 게시글 수<span>18</span></a></li>
+				<li><a href="#">작성한 댓글 수<span>36</span></a></li>
 			</ul>		
 		</div>					
 	</div>

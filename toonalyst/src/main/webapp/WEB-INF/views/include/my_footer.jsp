@@ -16,7 +16,7 @@
     list-style-type: disc;
 }
 #footer .cs_info {
-    padding-bottom: 40px;
+    padding-bottom: 100px;
 }
 #footer .cs_info > ul > li {
     display: inline-block;

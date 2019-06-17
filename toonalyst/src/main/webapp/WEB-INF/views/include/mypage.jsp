@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 <style type="text/css">
 #cnt{
-	padding-bottom: 80px;
-	min-height: 350px;	
 	width:auto;	
 }
 .subtitle{
@@ -30,7 +28,7 @@
     border-spacing: 2;
     font-size: 12px;
     width: 100%;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
     border: 1px solid #d7d7d7;
 }
 
