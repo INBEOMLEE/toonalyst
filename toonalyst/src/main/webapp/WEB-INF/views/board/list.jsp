@@ -384,9 +384,13 @@
 					</tbody>
 				</table>
 				<div class="wrap_btn">
-					<div class="box_btn write">
-						<a href="${path}/board/register" class="register_btn">글쓰기</a>
-					</div>
+					
+						<c:if test="${!empty sessionScope.loginUser}">
+							<div class="box_btn write">
+							<a href="${path}/board/register" class="register_btn">글쓰기</a>
+							</div>
+						</c:if>						
+					
 				</div>
 				<!-- 페이지 네이션 부분 -->
 				<div class="page_write">

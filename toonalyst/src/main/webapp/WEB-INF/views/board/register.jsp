@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 작성</title>
+<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <style type="text/css">
 #counsel_write{
 	width: 1180px;
@@ -35,13 +36,16 @@ h3.title {
     vertical-align: middle;
 }
 .tbl_row td {
-    padding: 15px 10px;
+    padding: 15px 5px;
     border-bottom: 1px solid #e0e0e0;
     text-align: left;
     vertical-align: middle;
     word-break: break-all;
     word-wrap: break-word;
     display: table-cell;
+}
+.writing_area.block {
+    width: 100% !important;
 }
 .form_input.block {
     width: 100% !important;
@@ -105,7 +109,7 @@ h3.title {
 <body>
 <div id="counsel_write">
 	<h3 class="title first">게시글 작성</h3>
-	<form method="post" action="#" target="#" enctype='multipart/form-data' onSubmit="" style="margin:0px;text-align:center;" >
+	<form method="post" action="${path}/board/register" target="#" enctype='multipart/form-data' onSubmit="" style="margin:0px;text-align:center;" >
 		<table class="tbl_row">
 			<caption class="hidden"></caption>
 				<colgroup>
@@ -122,8 +126,18 @@ h3.title {
 						<td><input type="text" name="title" id="counsel_title" class="form_input block"></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="counsel_cnt">문의내용</label></th>
-						<td><textarea name="content" id="counsel_cnt" class="form_input block"></textarea></td>
+						<th scope="row"><label for="counsel_cnt">수정내용</label></th>
+						<td><textarea name="content" id="replyInsert" class="writing_area block"></textarea></td>
+						<script type="text/javascript">
+								var oEditors = [];
+								nhn.husky.EZCreator.createInIFrame({
+								 oAppRef: oEditors,
+								 elPlaceHolder: "replyInsert",
+								 sSkinURI: "${path}/resources/smarteditor/SmartEditor2Skin.html",
+								 fCreator: "createSEditor2",
+								 htParams: { fOnBeforeUnload : function(){} } /* 에디터 내용 변경 경고창 끄기 */
+								});
+						</script>				
 					</tr>
 				</tbody>
 		</table>
@@ -133,6 +147,7 @@ h3.title {
 			</div>
 	</form>
 </div>
+
 <%@ include file="../include/footer.jsp" %>  
 </body>
 </html>

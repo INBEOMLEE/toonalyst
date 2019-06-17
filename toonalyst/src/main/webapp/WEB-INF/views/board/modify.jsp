@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 작성</title>
+<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <style type="text/css">
 #counsel_write{
 	width: 1180px;
@@ -35,7 +36,7 @@ h3.title {
     vertical-align: middle;
 }
 .tbl_row td {
-    padding: 15px 10px;
+    padding: 15px 9px;
     border-bottom: 1px solid #e0e0e0;
     text-align: left;
     vertical-align: middle;
@@ -43,6 +44,9 @@ h3.title {
     word-wrap: break-word;
     display: table-cell;
 }
+.writing_area.block {
+    width: 100% !important;
+}s
 .form_input.block {
     width: 100% !important;
 }
@@ -115,7 +119,7 @@ h3.title {
 				<tbody>				
 					<tr>
 						<th scope="row">분류</th>
-						<td>수정</td>
+						<td>건의</td>
 					</tr>				
 					<tr>
 						<th scope="row"><label for="counsel_title">제목</label></th>
@@ -123,7 +127,17 @@ h3.title {
 					</tr>
 					<tr>
 						<th scope="row"><label for="counsel_cnt">문의내용</label></th>
-						<td><textarea name="content" id="counsel_cnt" class="form_input block"></textarea></td>
+						<td><textarea name="content" id="replyInsert" class="writing_area block"></textarea></td>
+						<script type="text/javascript">
+								var oEditors = [];
+								nhn.husky.EZCreator.createInIFrame({
+								 oAppRef: oEditors,
+								 elPlaceHolder: "replyInsert",
+								 sSkinURI: "${path}/resources/smarteditor/SmartEditor2Skin.html",
+								 fCreator: "createSEditor2",
+								 htParams: { fOnBeforeUnload : function(){} } /* 에디터 내용 변경 경고창 끄기 */
+								});
+						</script>				
 					</tr>
 				</tbody>
 		</table>
@@ -133,6 +147,17 @@ h3.title {
 			</div>
 	</form>
 </div>
+<script type="text/javascript">
+$(document).ready(function){
+	$('#conform').click(function){
+		oEditors.getByID["boardInsert"].exec("UPDATE_CONTENTS_field")
+	});
+	
+	
+});
+
+
+</script>
 <%@ include file="../include/footer.jsp" %>  
 </body>
 </html>

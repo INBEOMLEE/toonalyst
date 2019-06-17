@@ -33,6 +33,14 @@ public class BoardController {
 		return "/board/register";
 	}
 	
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+	public String registerPlay() {
+		log.info(">>>>> 게시글  실제등록! ");
+		
+		
+		return "/board/list";
+	}
+	
 
 	// DB 작업
 
