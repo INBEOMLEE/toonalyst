@@ -1,7 +1,7 @@
 -- TOONALYST DUMMY DATA
 
-DROP TABLE toonalyst_member;
-CREATE TABLE toonalyst_member(
+DROP TABLE tbl_toonalyst_member;
+CREATE TABLE tbl_toonalyst_member(
     id VARCHAR2(30) PRIMARY KEY,
     pw VARCHAR2(30) NOT NULL,
     name VARCHAR2(30) NOT NULL,
@@ -18,16 +18,16 @@ CREATE TABLE toonalyst_member(
     regdate DATE DEFAULT SYSDATE
 );
 
-INSERT INTO toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
+INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
 VALUES('user01', '1234', '유수지', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
-INSERT INTO toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
+INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
 VALUES('user02', '1234', '최인준', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
-INSERT INTO toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
+INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
 VALUES('user03', '1234', '이인범', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
-INSERT INTO toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
+INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
 VALUES('user04', '1234', '조기훈', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
 
-SELECT * FROM toonalyst_member;
+SELECT * FROM tbl_toonalyst_member;
 COMMIT;
 
 DROP TABLE TBL_WEBTOON;
@@ -53,8 +53,8 @@ CREATE TABLE TBL_WEBTOON
 );
 
 -- TOONALYST BOARD TABLE
-DROP TABLE toonalyst_board;
-CREATE TABLE toonalyst_board(
+DROP TABLE tbl_toonalyst_board;
+CREATE TABLE tbl_toonalyst_board(
     bno NUMBER PRIMARY KEY,
     btitle VARCHAR2(200) NOT NULL,
     bcontent VARCHAR2(1000) NOT NULL,
@@ -70,16 +70,17 @@ CREATE TABLE toonalyst_board(
     bregdate DATE DEFAULT SYSDATE
 );
 
-SELECT * FROM toonalyst_board;
+SELECT * FROM tbl_toonalyst_board;
 
-DROP SEQUENCE toonalyst_board_seq_bno;
-CREATE SEQUENCE toonalyst_board_seq_bno
+DROP SEQUENCE seq_toonalyst_board_bno;
+CREATE SEQUENCE seq_toonalyst_board_bno
 START WITH 1
 INCREMENT BY 1
 NOCYCLE;
 
-DROP SEQUENCE toonalyst_board_seq_origin;
-CREATE SEQUENCE toonalyst_board_seq_origin
+DROP SEQUENCE seq_toonalyst_board_origin;
+CREATE SEQUENCE seq_toonalyst_board_origin
 START WITH 1
 INCREMENT BY 1
 NOCYCLE;
+
