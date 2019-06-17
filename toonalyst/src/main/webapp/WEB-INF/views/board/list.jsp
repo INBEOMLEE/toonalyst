@@ -385,7 +385,7 @@
 				</table>
 				<div class="wrap_btn">
 					<div class="box_btn write">
-						<a href="#" class="register_btn">글쓰기</a>
+						<a href="${path}/board/register" class="register_btn">글쓰기</a>
 					</div>
 				</div>
 				<!-- 페이지 네이션 부분 -->

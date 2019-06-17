@@ -171,7 +171,21 @@
 				}
 				
 				$('.idpw_err_msg').eq(0).css('display', 'none');
+				$.ajax({
+					url: "${path}/member/idfind",					
+					type: "POST",	
+					dataType: "text", 
+					data:  "id="+id,
+					success: function(data) {
+					  	alert(data);
+					},
+					error: function() {
+						alert("System Error!!!");
+					}
+				});			
+				
 			});
+			
 			
 			$('.pw_btn').click(function(){
 				var id = $.trim($('#find_pw_id').val());

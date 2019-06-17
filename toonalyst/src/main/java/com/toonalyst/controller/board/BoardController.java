@@ -26,6 +26,13 @@ public class BoardController {
 		return "/board/view";
 	}
 	
+	@RequestMapping(value="/register", method=RequestMethod.GET)
+	public String registerView() {
+		log.info(">>>>> 게시글  등록 페이지출력");
+		
+		return "/board/register";
+	}
+	
 
 	// DB 작업
 
