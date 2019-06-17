@@ -13,7 +13,7 @@
 	<header class="header">
 		<div class="header_outline">
 			<div class="header_inline">
-				<div class="toonalyst_logo">T O O N A L Y S T</div>
+				<a href="${path}/" class="toonalyst_logo">T O O N A L Y S T</a>
 				<ul class="header_menu">
 					<c:choose>
 						<c:when test="${empty sessionScope.loginUser}">
@@ -44,12 +44,48 @@
 		<div class="nav_outline">
 			<div class="nav_inline">
 				<div class="wrap_inner">
-					<ul class="catogory">
-						<li><a href="#">Navigation</a></li>
-						<li><a href="#">Navigation</a></li>
-						<li><a href="#">Navigation</a></li>
-						<li><a href="#">Navigation</a></li>
-						<li><a href="#">Navigation</a></li>
+					<ul class="category">
+						<li>
+							<a href="#">Navigation</a>
+							<div class="nav_dropdown">
+								<a href="#"><span><span>Nav DROPDOWN</span></span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+							</div>
+						</li>
+						<li><a href="#">Genre Rank</a>
+							<div class="nav_dropdown">
+								<a href="${path}/genre/naver"><span>Naver</span></a>
+								<a href="${path}/genre/lezhin"><span>Lezhin</span></a>
+								<a href="${path}/genre/daum"><span>Daum</span></a>
+								<a href="${path}/genre/kakao"><span>Kakao</span></a>
+							</div>
+						</li>
+						<li><a href="#">Navigation</a>
+							<div class="nav_dropdown">
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+							</div>
+						</li>
+						<li><a href="#">Navigation</a>
+							<div class="nav_dropdown">
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+							</div>
+						</li>
+						<li><a href="#">Navigation</a>
+							<div class="nav_dropdown">
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="#"><span>Nav DROPDOWN</span></a>
+							</div>
+						</li>
 					</ul>
 				</div>
 			</div>
