@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>TOONALYST</title>
-<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <style type="text/css">
 .notice {
 	margin-top: 50px;
@@ -104,12 +103,14 @@
 	background: #FF6C36;
 	border: 1px solid #FF6C36;
 }
-
-
-
-
-
 /* 댓글창 디자인 */
+.comment_outline {
+	width: 100%;
+}
+.comment_inline {
+	width: 1180px;
+	margin: 0 auto;
+}
 .comment_area {
 	padding: 10px;
 	width: 100%;
@@ -148,9 +149,13 @@
 	background-color: #fafafa;
 }
 .writing_box {
+	display: flex;
+	width: 1180px;
 	border-radius: 5px;
 	height: auto;
 	padding: 10px;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .reg_date {
@@ -163,7 +168,7 @@
 	font-weight: bold;
 }
 .comment_body {
-	width: 90%;
+	width: 100%;
 	height: auto;
 	margin-top: 10px;
 	padding:10px;
@@ -178,9 +183,10 @@
 	font-weight: bold;
 }
 .writing_area {
-	width: 650px;
-	margin: 20px auto;
-	
+	width: 1000px;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 15px;
 }
 .btn_comment {
 	float: right;
@@ -189,12 +195,18 @@
 .writer_top {
 	font-weight: bold;
 	display: inline-block;
-	padding-bottom: 10px;
+	width: 170px;
+	height: 50px;
+	border: 1px solid rgb(169, 169, 169);
+	line-height: 50px;
+	text-align: center;
+	margin-right: 2px;
+
 }
 .btn_comment {
 	display: inline-block;
 	width: 100px;
-	height: 35px;
+	height: 50px;
     padding: 8px 12px;
     margin: 20px 0;
     border: 1px solid #dedfda;
@@ -205,7 +217,9 @@
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    transition: 0.3s
+    transition: 0.3s;
+    margin-left: 2px;
+    
 }
 .btn_comment:hover {
 	background: #FF6C36;
@@ -218,9 +232,9 @@
 	margin: 6px 5px;
 }
 
-
-
-
+#user img {
+	margin-right: 3px;
+}
 </style>
 </head>
 <body>
@@ -252,121 +266,43 @@
 					</colgroup>
 					<tr>
 						<th>제목</th>
-						<td>5월 29일(수) 고객센터 운영 안내</td>
+						<td>${bDto.btitle}</td>
 						<th>조회수</th>
-						<td>187</td>
+						<td>${bDto.bviewcnt}</td>
 					</tr>
 					<tr>
 						<th>작성자</td>
 						<td>운영자</td>
 						<th>작성일</td>
-						<td>2019-05-29</td>
+						<td>
+							<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
+							${regdate}
+						</td>
 					</tr>
 				</table>
 				<div class="board_view_content">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					${bDto.bcontent}
 				</div>
 				<div class="list_btn_box">
 					<div class="list_btn">목록</div>
 				</div>
-				
-				<!-- 댓글 리스트 영역 -->
-				<!-- 댓글이 없을 때 디자인 -->
-					<div class="noncomment_list_wrap each_space">
-						<div class="top_comment"> 
-							<span>댓글</span>
-						</div>
+				<!-- 댓글영역 -->
+				<div class="comment_outline">
+					<div class="comment_inline" id="commentList">
+					<!-- 여기에 commentlist띄움 -->
+						
+					
 					</div>
-					<div class="empty_box">
-						등록된 댓글이 없습니다. 첫번째 댓글을 남겨주세요:)
-					</div>
-	
-	
-				<!-- 댓글이 있을 때 디자인 -->
-				<!-- forEach에서 목록을 띄움 item안의 list에 값이 없으면 아예 실행을 안함 item안에 들어온 건수만큼 반복을 시켜라라는 뜻이기 때문이다. 범위를 주고싶으면 begin, end를 사용하면 된다-->
-				
-					<div class="comment_list_wrap each_space">
-							<div class="top_comment"> 
-								<span>댓글</span>
-								<span class="comment_cnt">${replyList.size()}</span>
-								<span>개</span>
-							</div>
-							<div class="comment_box">
-								<div class="writer_comment">
-									<div class="comment_head">
-										<span>${replyview.writer}</span>
-										<div class="reg_date">
-											<i class="far fa-clock"></i>
-											<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${replyview.regdate}" />
-										</div>
-										<c:if test="${sessionScope.userid == replyview.writer}">
-											<a class="comment_delete_btn reply_del" data_num="${replyview.rno}">삭제</a>
-										</c:if>
-									</div>
-									<div class="comment_body">
-										${replyview.content}
-									</div>
-								</div>					
-							</div>
-					</div>
-				
-				
-				<!-- 비로그인 시, 로그인 시 댓글 작성 영역-->
-				<!--비로그인 시 로그인 하라는 경고창 -->
-						<div class="writing_logout_wrap each_space">
-							<div class="top_comment"> 
-								<span>댓글 쓰기</span>
-							</div>						
-							<div class="empty_box">
-								<span id="login_txt">로그인</span>을 하시면 댓글을 등록할 수 있습니다.
-							</div>
-						</div>
-						<form action="${path}/reply/replyAdd" method="POST" name="frm_reply" id="frm_reply">
-							<div class="writing_logout_wrap each_space">
-								<div class="top_comment"> 
-									<span>댓글 쓰기</span>
-								</div>						
-								<div class="writing_box">
-									<div class="writer_top">
-										<span id="writer">작성자: </span><span id="user">${sessionScope.userid}</span>
-									</div>				
-									<textarea id="replyInsert" name="content" class="writing_area"></textarea>
-									<script type="text/javascript">
-										var oEditors = [];
-										nhn.husky.EZCreator.createInIFrame({
-										 oAppRef: oEditors,
-										 elPlaceHolder: "replyInsert",
-										 sSkinURI: "${path}/resources/smarteditor/SmartEditor2Skin.html",
-										 fCreator: "createSEditor2",
-										 htParams: { fOnBeforeUnload : function(){} } /* 에디터 내용 변경 경고창 끄기 */
-										});
-									</script>
-								</div>
-								<span id="txt_box" >내용을 입력해 주세요</span>
-								<button type="button" id="reply_btn" class="btn_comment">댓글 등록</button>
-								
-								<!-- input태그 안에 써서 작성자와 게시글번호를 form태그 안으로 보내는 것이다 -->
-								<input type="hidden" name="writer" value="${sessionScope.userid}">
-								<input type="hidden" id="re_bno" name="bno">
-							</div>
-						</form>
-				
-				
-				
-				
-				
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
 <%@ include file="../include/footer.jsp" %>  
 <script type="text/javascript">
 $(document).ready(function(){
+	// 문서가 준비되면 댓글 목록을 조회하는 AJAX실행
+	comment_list();
+	
 	$('.board_menu ul li').eq(0).addClass("active");
 	
 	$('.board_menu ul li').click(function(){
@@ -374,6 +310,71 @@ $(document).ready(function(){
 		$(this).addClass("active");
 	});
 	
+	// 댓글 등록 버튼
+	$('.btn_comment').hover(function(){
+		$(this).css('background-color', 'white').css('color','#333');
+	},
+	function(){
+		$(this).css('background-color', '#333').css('color','white');
+	});
+	
+});
+
+//댓글 띄우는 함수
+function comment_list(){		
+	$.ajax({
+		type:"get",
+		url: "${path}/comment/list",
+		data: "bno=${bDto.bno}",
+		success: function(result){ 
+			$('#commentList').html(result); 
+		}
+	});
+}
+
+// 댓글 등록 
+$(document).on("click", "#reply_btn", function(){
+	var content = $("#replyInsert").val();
+	
+	if(content == null || content.length == 0) { 
+		// 유효성체크(Null 체크)
+		$("#replyInsert").focus();
+		$("#txt_box").css("display", "inline-block");
+		return false;
+	} else {
+		// 게시글번호 담아서 보냄
+		var bno = '${bDto.bno}';
+		$('#re_bno').val(bno);
+		$.ajax({ 
+			type:"POST",
+			url: "${path}/reply/replyAdd",
+			data: $("#frm_reply").serialize(),  
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			success: function(){ 
+				comment_list(); 
+				$('#replyInsert').val(""); 
+			},
+			error: function(){
+				alert("System Error!!!");
+			}
+		});
+	}
+});
+//댓글 삭제
+$(document).on("click", ".reply_del", function(){
+	var rno = $(this).attr("data_num");
+	var bno = '${bDto.bno}';
+	
+	$.ajax({
+		url: "${path}/reply/replyRemove",
+		data: "rno=" + rno + "&bno=" + bno,
+		success: function(){
+			comment_list();
+		},
+		error: function(){
+			alert("System Error!!!");
+		}
+	});
 });
 	
 </script>

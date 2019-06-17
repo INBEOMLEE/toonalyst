@@ -1,5 +1,7 @@
 package com.toonalyst.service.board;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -21,6 +23,16 @@ public class BoardServiceImpl implements BoardService {
 	public int register(BoardDTO bDto) {
 		
 		return bDao.register(bDto);
+	}
+
+	@Override
+	public List<BoardDTO> listAll() {
+		return bDao.listAll();
+	}
+
+	@Override
+	public BoardDTO read(int bno) {
+		return bDao.read(bno);
 	}
 
 }

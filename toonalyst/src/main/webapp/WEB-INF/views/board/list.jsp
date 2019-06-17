@@ -281,106 +281,37 @@
 						</tr>
 					</thead>
 					<tbody class="board_list_con">
+					
+					<jsp:useBean id="now" class="java.util.Date"/>
+					<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+					<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
+					
+					<c:forEach items="${list}" var="bDto">
 						<tr>
 							<td>
 								<strong>[공지]</strong>
 							</td>
 							<td id="list_title">
-								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
-								<span class="new_time">N</span>
+								<a href="${path}/board/view?bno=${bDto.bno}">${bDto.btitle}</a>
+								<c:if test="${today == regdate }">
+									<span class="new_time">N</span>
+								</c:if>
 							</td>
 							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
-							<td>2019-05-29</td>
-							<td>178</td>
-						</tr>
-						<tr>
 							<td>
-								<strong>[공지]</strong>
+								<c:choose>
+									<c:when test="${today == regdate }">
+										<fmt:formatDate pattern="hh:mm:ss" value="${bDto.bregdate}" />
+									</c:when>
+									<c:otherwise>
+										<fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}" />
+									</c:otherwise>
+								</c:choose>
 							</td>
-							<td id="list_title">
-								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
-							<td>2019-05-29</td>
-							<td>178</td>
+							<td>${bDto.bviewcnt}</td>
 						</tr>
-						<tr>
-							<td>
-								<strong>[공지]</strong>
-							</td>
-							<td id="list_title">
-								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
-							<td>2019-05-29</td>
-							<td>178</td>
-						</tr>
-						<tr>
-							<td>
-								<strong>[공지]</strong>
-							</td>
-							<td id="list_title">
-								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
-							<td>2019-05-29</td>
-							<td>178</td>
-						</tr>
-						<tr>
-							<td>
-								<strong>[공지]</strong>
-							</td>
-							<td id="list_title">
-								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
-							<td>2019-05-29</td>
-							<td>178</td>
-						</tr>
-						<tr>
-							<td>
-								<strong>[공지]</strong>
-							</td>
-							<td id="list_title">
-								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
-							<td>2019-05-29</td>
-							<td>178</td>
-						</tr>
-						<tr>
-							<td>
-								<strong>[공지]</strong>
-							</td>
-							<td id="list_title">
-								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
-							<td>2019-05-29</td>
-							<td>178</td>
-						</tr>
-						<tr>
-							<td>
-								<strong>[공지]</strong>
-							</td>
-							<td id="list_title">
-								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
-							<td>2019-05-29</td>
-							<td>178</td>
-						</tr>
-						<tr>
-							<td>
-								<strong>[공지]</strong>
-							</td>
-							<td id="list_title">
-								<a href="${path}/board/view">5월 29일(수) 고객센터 운영 안내</a>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
-							<td>2019-05-29</td>
-							<td>178</td>
-						</tr>
+					</c:forEach>
+						
 					</tbody>
 				</table>
 				<div class="wrap_btn">

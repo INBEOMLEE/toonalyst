@@ -6,27 +6,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member">
 	<!-- 로그인 -->
 	<select id="login" parameterType="com.toonalyst.domain.member.MemberDTO" resultType="com.toonalyst.domain.member.MemberDTO">
-		SELECT * FROM toonalyst_member
+		SELECT * FROM tbl_toonalyst_member
 		WHERE id = #{id} AND pw = #{pw}
 	</select>
 	<!-- 회원가입 -->
 	<insert id="create" parameterType="com.toonalyst.domain.member.MemberDTO">
-		INSERT INTO toonalyst_member(id, pw, name, phone, email, zipcode, addr1, addr2)
+		INSERT INTO tbl_toonalyst_member(id, pw, name, phone, email, zipcode, addr1, addr2)
 		VALUES (#{id}, #{pw}, #{name}, #{phone}, #{email}, #{zipcode}, #{addr1}, #{addr2})
 	</insert>
 	<!-- 아이디 중복 체크 -->
 	<select id="selectOne" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM toonalyst_member
+		SELECT COUNT(*) FROM tbl_toonalyst_member
 		WHERE id = #{id}
 	</select>
 	<!-- 회원정보 가져오기 -->
 	<select id="updateView" parameterType="String" resultType="com.toonalyst.domain.member.MemberDTO">
-		SELECT * FROM toonalyst_member
+		SELECT * FROM tbl_toonalyst_member
 		WHERE id = #{id}
 	</select>
 	<!-- 회원수정 -->
 	<update id="updatePlay" parameterType="com.toonalyst.domain.member.MemberDTO">
-		UPDATE toonalyst_member
+		UPDATE tbl_toonalyst_member
 		SET name = #{name},
 		    email = #{email},
 		    phone = #{phone},
@@ -37,33 +37,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 현재 비밀번호와 입력한 비밀번호가 같은지 체크 -->
 	<select id="pwCheck" parameterType="HashMap" resultType="int">
-		SELECT COUNT(*) FROM toonalyst_member
+		SELECT COUNT(*) FROM tbl_toonalyst_member
 		WHERE id = #{id} AND pw = #{pw}
 	</select>
 	<!-- 비밀번호 수정 -->
 	<update id="pwUpdatePlay" parameterType="HashMap">
-		UPDATE toonalyst_member
+		UPDATE tbl_toonalyst_member
 		SET pw = #{pw}
 		WHERE id = #{id}
 	</update>
 	<!-- 회원탈퇴 -->
 	<delete id="delete">
-		DELETE FROM toonalyst_member
+		DELETE FROM tbl_toonalyst_member
 		WHERE id = #{id}
 	</delete>
 	<!-- 아이디 찾기 -->
 	<select id="idFind" parameterType="HashMap" resultType="String">
-		SELECT id FROM toonalyst_member
+		SELECT id FROM tbl_toonalyst_member
 		WHERE name = #{name} AND phone = #{phone}
 	</select>
 	<!-- 비밀번호 찾기 -->
 	<select id="pwFind" parameterType="HashMap" resultType="int">
-		SELECT COUNT(*) FROM toonalyst_member
+		SELECT COUNT(*) FROM tbl_toonalyst_member
 		WHERE id = #{id} AND name = #{name} AND phone = #{phone}
 	</select>
 	<!-- 비밀번호 변경 -->
 	<update id="changePw" parameterType="HashMap">
-		UPDATE toonalyst_member
+		UPDATE tbl_toonalyst_member
 		SET pw = #{pw}
 		WHERE id = #{id}
 	</update>
