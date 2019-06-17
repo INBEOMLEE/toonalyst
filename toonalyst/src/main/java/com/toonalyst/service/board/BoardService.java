@@ -11,4 +11,5 @@ public interface BoardService {
 	public List<BoardDTO> listAll();
 	// 상세 게시글 (1건) 출력
 	public BoardDTO read(int bno);
+	
 }
