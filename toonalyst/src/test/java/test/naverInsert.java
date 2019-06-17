@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.stereotype.Component;
@@ -25,13 +27,14 @@ public class naverInsert {
 	MemberDAO mDao;
 	
 	@Test
-	@Transactional
 	public void naverInsertAll() throws IOException {
-		webNaverParser naver = new webNaverParser();
-		List<WebtoonDTO> list = naver.getAlltoonList();
-		System.out.println(list.size());
-		for (WebtoonDTO webtoonDTO : list) {
-			System.out.println(mDao.toString());
-		}
+//		webNaverParser naver = new webNaverParser();
+//		List<WebtoonDTO> list = naver.getAlltoonList();
+//		for (WebtoonDTO webtoonDTO : list) {
+//			System.out.println(webtoonDTO.toString());
+//		}
+//		System.out.println(list.size());
+		Document doc = Jsoup.connect("https://www.lezhin.com/ko/adultkind?path=%2Fko%2Ftop100&sw=kid").get();
+		System.out.println(doc.text());
 	}
 }

@@ -21,6 +21,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 /*
  * webParser.java
@@ -35,6 +36,7 @@ import lombok.ToString;
  * 마지막 수정 : 19.06.13 최인준 
  */
 
+@Slf4j
 @AllArgsConstructor
 @Getter
 @Setter
@@ -55,11 +57,6 @@ public class webNaverParser {
 	List<WebtoonDTO> omnibuslist;
 	List<WebtoonDTO> storylist;
 
-	
-	
-	
-	
-	
 	List<WebtoonDTO> alltoonList;
 
 
@@ -116,9 +113,9 @@ public class webNaverParser {
 			if(element.select(".thumb > a > img").hasClass("finish")){
 				finish = 1;
 			}
-			String bannerImg = element.select(".thumb > a > img").attr("src");
-//			doc2 = Jsoup.connect("https://comic.naver.com/webtoon/detail.nhn?titleId="+titleId+"&no=0").get();
-			//String bannerImg = doc.select(".thumb > a > img").attr("src");
+			//String bannerImg = element.select(".thumb > a > img").attr("src");
+			doc2 = Jsoup.connect("https://comic.naver.com/webtoon/detail.nhn?titleId="+titleId+"&no=0").get();
+			String bannerImg = doc2.select(".thumb > a > img").attr("src");
 			WebtoonDTO webtemp = new WebtoonDTO(platForm, titleId, titleName, writer, rating, innerrating, finish, bannerImg);
 			toonlist.add(webtemp);
 			if(genre.contains("episode")) {
@@ -130,6 +127,7 @@ public class webNaverParser {
 			if(genre.contains("story")) {
 				alltoonList.add(webtemp);
 			}
+			log.info(webtemp.getTitleName()+" - 파싱 완료");
 		}
 		return toonlist;
 	}

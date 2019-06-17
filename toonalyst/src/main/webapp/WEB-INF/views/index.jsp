@@ -80,8 +80,7 @@
 		font-weight: 600;
 	}
 	.webtoon_img {
-		border: 1px solid black;
-		border-radius: 10px;
+		border: none;
 		width: 218px;
 		height: 120px;
 		margin: 16px auto 25px;

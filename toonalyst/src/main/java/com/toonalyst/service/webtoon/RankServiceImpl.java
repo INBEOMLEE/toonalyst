@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.toonalyst.domain.webtoon.WebtoonDTO;
+import com.toonalyst.persistence.webtoon.WebtoonDAO;
 
 import test.webNaverParser;
 
@@ -27,38 +31,24 @@ import test.webNaverParser;
 @Service
 public class RankServiceImpl implements RankService {
 
-	@Override
+	@Inject
+	public WebtoonDAO wDao;
+	
+	@Transactional
 	public List<WebtoonDTO> naver() {
-		webNaverParser allnavertoon;
 		ArrayList<WebtoonDTO> ranklist = new ArrayList<WebtoonDTO>();
 		try {
-			allnavertoon = new webNaverParser();
 			Document doc = Jsoup.connect("https://comic.naver.com/webtoon/weekdayList.nhn?week=").get();
 			Elements list = doc.select("#realTimeRankFavorite");
 			String rank1 = "";
 			WebtoonDTO webDto = new WebtoonDTO();
 			for (int i = 1; i < 10; i++) {
-				rank1 = list.select(".rank0"+i+" > a").text().split("-")[0];
+				rank1 = list.select(".rank0"+i+" > a").attr("href").split("&no")[0].split("=")[1];
 				System.out.println(rank1);
-				for(WebtoonDTO webtoonDTO :allnavertoon.getAlltoonList()) {
-					if(webtoonDTO.getTitleName().equals(rank1)) {
-						webDto = webtoonDTO;
-						break;
-					}
-				}
-				ranklist.add(webDto);
+				ranklist.add(wDao.selectone(Integer.parseInt(rank1)));
 			}
-			rank1 = list.select(".rank10 > a").text().split("-")[0];
-			for(WebtoonDTO webtoonDTO :allnavertoon.getAlltoonList()) {
-				if(webtoonDTO.getTitleName().equals(rank1)) {
-					webDto = webtoonDTO;
-					ranklist.add(webDto);
-					break;
-				}
-			}
-			for (WebtoonDTO webtoonDTO : ranklist) {
-				System.out.println(webtoonDTO.toString());
-			}
+			rank1 = list.select(".rank10 > a").attr("href").split("&no")[0].split("=")[1];
+			ranklist.add(wDao.selectone(Integer.parseInt(rank1)));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
