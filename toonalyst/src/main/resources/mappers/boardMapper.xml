@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
     <insert id="register" parameterType="com.toonalyst.domain.board.BoardDTO">          
-       INSERT INTO toonalyst_board (bno, btitle, bcontent,btext,bcategory, bwriter)
-        VALUES(toonalyst_board_seq_bno.NEXTVAL,#{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter})       
+       INSERT INTO  tbl_toonalyst_board(bno, btitle, bcontent,btext,bcategory, bwriter)
+        VALUES(seq_toonalyst_board_bno.NEXTVAL,#{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter})       
    </insert>	
 	
 	
