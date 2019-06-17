@@ -127,9 +127,14 @@
 		background: #FF6C36;
 		border: 1px solid #FF6C36;
 	}
-	.flatform_score img{
+	.flatform_score img {
 		width: 40px;
 		height: 40px;
+	}
+	.toonalyst_score img {
+		width: 30px;
+		height: 30px;
+		margin-right: 5px;
 	}
 	
 
@@ -156,7 +161,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 1</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -167,7 +175,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 2</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -178,7 +189,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 3</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -193,7 +207,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 1</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -204,7 +221,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 2</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -215,7 +235,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 3</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -230,7 +253,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 1</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -241,7 +267,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 2</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -252,7 +281,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 3</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -267,7 +299,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 1</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -278,7 +313,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 2</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -289,7 +327,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 3</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -304,7 +345,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 1</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -315,7 +359,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 2</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -326,7 +373,10 @@
 						<div class="webtoon_img">웹툰 이미지</div>
 						<div class="webtoon_info"><span>RANK 3</span>마음의 소리 ( 조 석 )</div>
 						<div class="webtoon_score">
-							<div class="toonalyst_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+							<div class="toonalyst_score">
+								<img alt="로고" src="${path}/resources/img/toonalyst_logo.png">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+							</div>
 							<div class="flatform_score">
 								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>

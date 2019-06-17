@@ -1,5 +1,6 @@
 package com.toonalyst.controller.board;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,10 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.service.board.BoardService;
+import com.toonalyst.service.board.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,12 +26,32 @@ public class BoardController {
 	
 	// 페이지 이동
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(Model model) {
-		log.info(">>>>> 게시글목록 출력");
+	public String list(
+			Model model,
+			@RequestParam(defaultValue = "all") String search_option,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "1") int curPage ) {
+		log.info(">>>>> 게시글 목록 출력");
+		
+		// 레코드 개수 계산
+		int count = service.countArticle(search_option, keyword);
+		
+		// 페이지 관련 설정
+		Pager pager = new Pager(count, curPage);
+		int start = pager.getPageBegin();
+		int end = pager.getPageEnd();
 		
 		// 페이지 출력할 게시글 목록
-		List<BoardDTO> list = service.listAll();
-		model.addAttribute("list", list);
+		List<BoardDTO> list = service.listAll(search_option, keyword, start, end);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("pager", pager);
+		map.put("search_option", search_option);
+		map.put("keyword", keyword);
+		
+		model.addAttribute("map", map);
 		
 		return "/board/list";
 	}

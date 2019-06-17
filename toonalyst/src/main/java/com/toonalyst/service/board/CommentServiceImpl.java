@@ -21,4 +21,14 @@ public class CommentServiceImpl implements CommentService {
 		return cDao.listAll(bno);
 	}
 
+	@Override
+	public int create(CommentDTO cDto) {
+		return cDao.create(cDto);
+	}
+
+	@Override
+	public void delete(int cno) {
+		cDao.delete(cno);
+	}
+
 }

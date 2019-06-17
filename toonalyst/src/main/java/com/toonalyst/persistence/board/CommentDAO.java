@@ -8,4 +8,8 @@ public interface CommentDAO {
 
 	public List<CommentDTO> listAll(int bno);
 
+	public int create(CommentDTO cDto);
+
+	public void delete(int cno);
+
 }

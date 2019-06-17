@@ -21,4 +21,14 @@ public class CommentDAOImpl implements CommentDAO {
 		return sqlSession.selectList("comment.listAll", bno);
 	}
 
+	@Override
+	public int create(CommentDTO cDto) {
+		return sqlSession.insert("comment.create", cDto);
+	}
+
+	@Override
+	public void delete(int cno) {
+		sqlSession.delete("comment.delete",cno);
+	}
+
 }

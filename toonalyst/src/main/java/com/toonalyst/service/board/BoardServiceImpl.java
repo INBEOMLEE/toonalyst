@@ -26,13 +26,18 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> listAll() {
-		return bDao.listAll();
+	public BoardDTO read(int bno) {
+		return bDao.read(bno);
 	}
 
 	@Override
-	public BoardDTO read(int bno) {
-		return bDao.read(bno);
+	public int countArticle(String search_option, String keyword) {
+		return bDao.countArticle(search_option, keyword);
+	}
+
+	@Override
+	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end) {
+		return bDao.listAll(search_option, keyword, start, end);
 	}
 
 }

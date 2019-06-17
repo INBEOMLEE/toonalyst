@@ -9,8 +9,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE bno = #{bno}
 	</select>
 	
+	<insert id="create" parameterType="com.toonalyst.domain.board.CommentDTO">
+		INSERT INTO tbl_toonalyst_comment(cno, ccontent, cwriter, bno)
+		VALUES(seq_toonalyst_comment.NEXTVAL, #{ccontent}, #{cwriter}, #{bno})
+	</insert>
 	
-	
+	<delete id="delete" parameterType="int">
+		DELETE FROM tbl_toonalyst_comment
+		WHERE cno = #{cno}
+	</delete>
 </mapper>
 
 

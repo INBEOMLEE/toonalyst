@@ -140,7 +140,7 @@
 .comment_cnt {
 	color: tomato;
 }
-.empty_box {
+.comment_empty_box {
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	height: 80px;
@@ -153,7 +153,6 @@
 	width: 1180px;
 	border-radius: 5px;
 	height: auto;
-	padding: 10px;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -232,7 +231,8 @@
 	margin: 6px 5px;
 }
 
-#user img {
+#user img, .comment_head img {
+	vertical-align: middle;
 	margin-right: 3px;
 }
 </style>
@@ -290,8 +290,6 @@
 				<div class="comment_outline">
 					<div class="comment_inline" id="commentList">
 					<!-- 여기에 commentlist띄움 -->
-						
-					
 					</div>
 				</div>
 			</div>
@@ -333,12 +331,12 @@ function comment_list(){
 }
 
 // 댓글 등록 
-$(document).on("click", "#reply_btn", function(){
-	var content = $("#replyInsert").val();
+$(document).on("click", "#comment_btn", function(){
+	var content = $("#textarea").val();
 	
 	if(content == null || content.length == 0) { 
 		// 유효성체크(Null 체크)
-		$("#replyInsert").focus();
+		$("#textarea").focus();
 		$("#txt_box").css("display", "inline-block");
 		return false;
 	} else {
@@ -347,12 +345,15 @@ $(document).on("click", "#reply_btn", function(){
 		$('#re_bno').val(bno);
 		$.ajax({ 
 			type:"POST",
-			url: "${path}/reply/replyAdd",
-			data: $("#frm_reply").serialize(),  
+			url: "${path}/comment/create",
+			data: $("#frm_comment").serialize(),
+			dataType: "json",
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			success: function(){ 
-				comment_list(); 
-				$('#replyInsert').val(""); 
+			success: function(data){
+				if(data == 1) {
+					comment_list(); 
+					$('#textarea').val(""); 
+				}
 			},
 			error: function(){
 				alert("System Error!!!");
@@ -360,14 +361,14 @@ $(document).on("click", "#reply_btn", function(){
 		});
 	}
 });
+
 //댓글 삭제
-$(document).on("click", ".reply_del", function(){
-	var rno = $(this).attr("data_num");
-	var bno = '${bDto.bno}';
+$(document).on("click", ".comment_delete_btn", function(){
+	var cno = $(this).attr("data_num");
 	
 	$.ajax({
-		url: "${path}/reply/replyRemove",
-		data: "rno=" + rno + "&bno=" + bno,
+		url: "${path}/comment/delete",
+		data: "cno=" + cno,
 		success: function(){
 			comment_list();
 		},

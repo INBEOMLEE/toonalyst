@@ -150,39 +150,39 @@
 	border: 1px solid #FF6C36;
 }
 /* 페이지네이션 */
-.page_write {
-	position: relative;
-	min-height: 34px;
-	margin-top: 30px;
+.pagination_box {
+	width: 100%;
+	height: auto;
 }
-.paging {
-	margin-top: 30px;
+.pagination {
+	width: 500px;
+	margin: 20px auto 0;
+	height: 30px;
 	text-align: center;
 }
-.paging li {
-	display: inline;
-	padding: 0 2px;
-	color: #9e9e9e;
-	vertical-align: middle;
-}
-.paging li a {
+.pagination a {
 	display: inline-block;
-	width: 34px;
-	height: 34px;
-	border: 1px solid #e0e0e0;
-	background: #fff;
-	color: #6e6e6e;
-	line-height: 34px;
+	width: 30px;
+	color: black;
+	border: 1px solid #ddd;
+	text-align: center;
+	margin-right: 1px;
+	font-weight: 700;
+	height: 23px;
+	text-align: center;
+	line-height: 22px;
+	color: #242424;
 }
-.paging li strong {
-	display: inline-block;
-	width: 34px;
-	height: 34px;
-	border: 1px solid #676767;
-	background: #676767;
-	color: #fff;
-	line-height: 34px;
-	vertical-align: middle;
+.pagination i {
+	width: 30px;
+	display: block;
+	line-height: 23px;
+	color: #242424;
+}
+.pagination a.active {
+	background-color: #FF6C36;
+	border: 1px solid #FF6C36;
+	color: white;
 }
 .board_search {
 	clear : both;
@@ -234,6 +234,9 @@
 #list_title {
 	flex: 3;
 }
+.board_col img {
+	margin-right: 3px;
+}
 
 
 </style>
@@ -282,11 +285,12 @@
 					</thead>
 					<tbody class="board_list_con">
 					
-					<jsp:useBean id="now" class="java.util.Date"/>
-					<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-					<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
 					
-					<c:forEach items="${list}" var="bDto">
+					
+					<c:forEach items="${map.list}" var="bDto">
+						<jsp:useBean id="now" class="java.util.Date"/>
+						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+						<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
 						<tr>
 							<td>
 								<strong>[공지]</strong>
@@ -315,40 +319,29 @@
 					</tbody>
 				</table>
 				<div class="wrap_btn">
-					
-						<c:if test="${!empty sessionScope.loginUser}">
-							<div class="box_btn write">
-							<a href="${path}/board/register" class="register_btn">글쓰기</a>
-							</div>
-						</c:if>						
-					
+					<c:if test="${!empty sessionScope.loginUser}">
+						<div class="box_btn write">
+						<a href="${path}/board/register" class="register_btn">글쓰기</a>
+						</div>
+					</c:if>						
 				</div>
 				<!-- 페이지 네이션 부분 -->
-				<div class="page_write">
-					<ul class="paging">
-						<li>
-							<a href="#">&laquo;</a>
-						</li>
-						<li>
-							<strong>1</strong>
-						</li>
-						<li>
-							<a>...</a>
-						</li>
+				<div class="pagination_box">
+					<div class="pagination">
+						<c:if test="${map.pager.curBlock > 1}">
+							<a href="${path}/board/list?curPage=1&keyword=${map.keyword}&search_option=${map.search_option}"><i class="fas fa-angle-double-left"></i></a>
+							<a href="${path}/board/list?curPage=${map.pager.blockBegin - 10}&keyword=${map.keyword}&search_option=${map.search_option}"><i class="fas fa-angle-left"></i></a> 
+						</c:if>
 						
-						<li>
-							<a href="#">2</a>
-						</li>
-						<li>
-							<a>...</a>
-						</li>
-						<li>
-							<a href="#">3</a>
-						</li>
-						<li>
-							<a href="#">&raquo;</a>
-						</li>						
-					</ul>
+						<c:forEach begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}" var="idx">
+							<a href="${path}/board/list?curPage=${idx}&keyword=${map.keyword}&search_option=${map.search_option}" <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>${idx}</a>
+						</c:forEach>
+						
+						<c:if test="${map.pager.curBlock < map.pager.totBlock}">
+							<a href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&keyword=${map.keyword}&search_option=${map.search_option}"><i class="fas fa-angle-right"></i></a>
+							<a href="${path}/board/list?curPage=${map.pager.totPage}&keyword=${map.keyword}&search_option=${map.search_option}"><i class="fas fa-angle-double-right"></i></a> 
+						</c:if>
+					</div>
 				</div>
 				
 				<!-- 검색창 부분 -->
@@ -360,7 +353,7 @@
 							<option value="all">제목+내용</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
-							<option value="name">작성자</option>
+							<option value="writer">작성자</option>
 						</select>
 						<input type="text" name="search_str" class="form_input search">
 						<input type="submit" value="검색" class="btn_search">
@@ -384,6 +377,8 @@ $(document).ready(function(){
 	$('.register_btn').click(function(){
 		location.href="${path}/board/register";
 	});
+	
+	
 	
 });
 	

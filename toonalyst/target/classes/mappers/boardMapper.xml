@@ -4,11 +4,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
-	<select id="listAll"  resultType="com.toonalyst.domain.board.BoardDTO">
-		SELECT * FROM tbl_toonalyst_board
-		WHERE bcategory = 0
-	</select>
-	
 	<select id="read" parameterType="int" resultType="com.toonalyst.domain.board.BoardDTO">
 		SELECT * FROM tbl_toonalyst_board
 		WHERE bno = #{bno}
@@ -17,10 +12,70 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <insert id="register" parameterType="com.toonalyst.domain.board.BoardDTO">          
        INSERT INTO  tbl_toonalyst_board(bno, btitle, bcontent,btext,bcategory, bwriter)
-        VALUES(seq_toonalyst_board_bno.NEXTVAL,#{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter})       
-   </insert>	
+       VALUES(seq_toonalyst_board_bno.NEXTVAL,#{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter})       
+   	</insert>	
 	
 	
+	<!-- 레코드 개수 계산 -->
+	<select id="countArticle" parameterType="HashMap" resultType="int">
+		SELECT COUNT(*)
+		FROM tbl_toonalyst_board b, tbl_toonalyst_member m
+		<choose>
+			<when test="search_option != 'all'">
+                <if test="search_option == 'title'">
+                	WHERE b.bwriter = m.id
+                	AND btitle LIKE #{keyword}
+                </if>
+                <if test="search_option == 'content'">
+                	WHERE b.bwriter = m.id
+                	AND btext LIKE #{keyword}
+                </if>
+                <if test="search_option == 'writer'">
+                	WHERE b.bwriter = m.id
+                	AND bwriter LIKE #{keyword}
+                </if>
+			</when>
+			<otherwise>
+				WHERE b.bwriter = m.id
+				AND (bwriter LIKE #{keyword}
+					 OR btitle LIKE #{keyword}
+					 OR btext LIKE #{keyword} )
+			</otherwise>
+		</choose>	
+	</select>
+	
+	<!-- 게시글 목록 출력 -->
+	<select id="listAll" parameterType="HashMap" resultType="com.toonalyst.domain.board.BoardDTO">
+		SELECT *
+		FROM ( SELECT rownum AS rnum, a.*
+			   FROM ( SELECT bno, btitle, bcontent, bwriter, m.id, bviewcnt, bgoodcnt, bcategory, bregdate
+					  FROM tbl_toonalyst_board b, tbl_toonalyst_member m
+				  	  <choose>
+						  <when test="search_option != 'all'">
+			                  <if test="search_option == 'title'">
+			                	  WHERE b.bwriter = m.id
+			                	  AND btitle LIKE #{keyword}
+			                  </if>
+			                  <if test="search_option == 'content'">
+			                	  WHERE b.bwriter = m.id
+			                	  AND btext LIKE #{keyword}
+			                  </if>
+			                  <if test="search_option == 'writer'">
+			                	  WHERE b.bwriter = m.id
+			                	  AND bwriter LIKE #{keyword}
+			                  </if>
+						  </when>
+						  <otherwise>
+							  WHERE b.bwriter = m.id
+							  AND (bwriter LIKE #{keyword}
+								   OR btitle LIKE #{keyword}
+								   OR btext LIKE #{keyword} )
+						  </otherwise>
+					  </choose>	
+					  ORDER BY bno DESC
+		            ) a
+		      ) WHERE bcategory = 0 AND (rnum BETWEEN #{start} AND #{end})
+	</select>
 </mapper>
 
 
