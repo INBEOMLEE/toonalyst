@@ -92,10 +92,10 @@ NOCYCLE;
 -- TOONALYST COMMENT TABLE
 DROP TABLE tbl_toonalyst_comment;
 CREATE TABLE tbl_toonalyst_comment(
-    rno NUMBER PRIMARY KEY,
-    rcontent VARCHAR2(2000) NOT NULL,
-    rwriter VARCHAR2(30) NOT NULL,
-    regdate DATE DEFAULT SYSDATE,
+    cno NUMBER PRIMARY KEY,
+    ccontent VARCHAR2(2000) NOT NULL,
+    cwriter VARCHAR2(30) NOT NULL,
+    cregdate DATE DEFAULT SYSDATE,
     bno NUMBER NOT NULL
     
 );
@@ -113,13 +113,13 @@ ON DELETE CASCADE;
 COMMIT;
 
 DELETE FROM tbl_toonalyst_comment;
-INSERT INTO tbl_toonalyst_comment(rno, rcontent, rwriter, bno)
+INSERT INTO tbl_toonalyst_comment(cno, ccontent, cwriter, bno)
 VALUES(seq_toonalyst_comment.NEXTVAL, '댓글1', 'user01', 1);
-INSERT INTO tbl_toonalyst_comment(rno, rcontent, rwriter, bno)
+INSERT INTO tbl_toonalyst_comment(cno, ccontent, cwriter, bno)
 VALUES(seq_toonalyst_comment.NEXTVAL, '댓글2', 'user02', 1);
-INSERT INTO tbl_toonalyst_comment(rno, rcontent, rwriter, bno)
+INSERT INTO tbl_toonalyst_comment(cno, ccontent, cwriter, bno)
 VALUES(seq_toonalyst_comment.NEXTVAL, '댓글3', 'user03', 1);
-INSERT INTO tbl_toonalyst_comment(rno, rcontent, rwriter, bno)
+INSERT INTO tbl_toonalyst_comment(cno, ccontent, cwriter, bno)
 VALUES(seq_toonalyst_comment.NEXTVAL, '댓글4', 'user04', 1);
 
 COMMIT;
