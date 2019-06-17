@@ -42,15 +42,6 @@
 	position: relative;
 	font-style: normal;
 }
-.radio_img {
-	width: 26px;
-	height: 26px;
-	background: url(${path}/resources/img/radio_off.png) no-repeat;
-	background-size: 100%;
-}
-.radio_on {
-	background-image: url(${path}/resources/img/radio_on.png) no-repeat;
-}
 .reason {
 	display: flex;
 	justify-content: flex-start;
@@ -60,11 +51,16 @@
 	line-height: 26px;
 	padding-left: 3px;
 	color: dimgray;
+	background: url(${path}/resources/img/radio_off.png) no-repeat;
+	background-position: left top;
+	background-size: 25px;
+	padding-left: 25px;
 }
 #delete_cause {
-	width: 100%;
-	padding: 20px;
+	width: 95%;
+	height: 50px;
 	display: none;
+	margin-left: 25px;
 }
 .radio_style {
 	margin: 7px 0;
@@ -217,29 +213,24 @@
 						<p><b>${sessionScope.loginUser.name}</b>님의 탈퇴 사유를 알려주세요. 더 좋은 TOONALYST가 되기 위해 노력하겠습니다.</p>
 						<div class="delete_content">
 							<div class="reason">
-								<div class="radio_img"></div>
 								<input type="radio" id="reason_uncomfortable" class="radio_style" name="delete_reason" value="errors">
 								<label for="reason_uncomfortable" class="delete_radio">이용이 불편하고 장애가 많음</label>
 							</div>
 							<div class="reason">
-								<div class="radio_img"></div>						
 								<input type="radio" id="reason_competitor" class="radio_style" name="delete_reason" value="errors">
 								<label for="reason_competitor" class="delete_radio">다른 사이트가 더 좋아서</label>
 							</div>
 							<div class="reason">
-								<div class="radio_img"></div>
 								<input type="radio" id="reason_frequency" class="radio_style" name="delete_reason" value="errors">
 								<label for="reason_frequency" class="delete_radio">사용빈도가 낮아서</label>
 							</div>
 							<div class="reason">
-								<div class="radio_img"></div>
 								<input type="radio" id="reason_content" class="radio_style" name="delete_reason" value="errors">
 								<label for="reason_content"class="delete_radio">콘텐츠 불만</label>
 							</div>
 							<div class="reason">
-								<div class="radio_img"></div>
 								<input type="radio" id="reason_etc" class="radio_style" name="delete_reason" value="errors">
-								<label for="reason_etc" id="reason_etc" class="delete_radio">기타</label>
+								<label for="reason_etc" class="delete_radio">기타</label>
 							</div>
 							<textarea name="delete_cause" id="delete_cause"></textarea>
 						</div>
@@ -279,32 +270,31 @@ $(document).ready(function(){
 		}
 	});
 
-	// 기타를 선택했을 때 textarea 나타남
-	$('#reason_etc').click(function(){
-		$('#delete_cause').css('display', 'block');
-	});
-	
 	// 탈퇴이유가 호버되었을 때 글씨가 진해짐
 	$('.delete_radio').hover(function(){
 		$(this).css('color', 'black').css('font-weight', '600');
-		
+		$(this).css('background-image', 'url(${path}/resources/img/radio_on.png)');
 	});
-	
-	/* 
-	$(".radio_img").click(function(){
-		$(this).addClass("radio_on");
-	}); */
-	
-/* 	$(".radio_style").click(function(){
-		var state = $(".radio_style").is(":checked");
-		if(state){
-			$(".radio_img").addClass(".radio_on");
-		} else {
-			$(".radio_img").removeClass(".radio_on");
+	$('.delete_radio').mouseout(function(){
+		if(!$(this).parent().find('input').prop('checked')){
+			$(this).css('color', 'dimgray').css('font-weight', 'normal');
+			$(this).css('background-image', 'url(${path}/resources/img/radio_off.png)');
 		}
-		
-	}); */
-	
+	});
+	$('.delete_content').find('.radio_style').change(function(){
+		for(var i = 0; i < $('.delete_radio').length ; i++){
+			if(!$('.reason').eq(i).find('input').prop('checked')){
+				$('.reason').eq(i).find('.delete_radio').css('color', 'dimgray').css('font-weight', 'normal');
+				$('.reason').eq(i).find('.delete_radio').css('background-image', 'url(${path}/resources/img/radio_off.png)');
+			}
+		}
+		// 기타를 선택했을 때 textarea 나타남
+		if($('.reason').eq(4).find('input').prop('checked')){
+			$('#delete_cause').css('display', 'block');
+		}else{
+			$('#delete_cause').css('display', 'none');
+		}
+	});
 	
 	// 탈퇴하기 모달창 열고, 닫기
 	$('.delete_btn').click(function(){
