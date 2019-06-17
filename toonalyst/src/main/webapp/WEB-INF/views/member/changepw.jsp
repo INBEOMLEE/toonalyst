@@ -187,7 +187,7 @@
 				if(pw_check == true) {
 					$('.pw_btn').css("background", "#FF6C36");
 				} else {
-					$('.pw_btn').css("background", "##dedfda");
+					$('.pw_btn').css("background", "#dedfda");
 				}
 			});
 			
