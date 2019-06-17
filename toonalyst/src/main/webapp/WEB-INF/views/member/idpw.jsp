@@ -175,9 +175,16 @@
 					url: "${path}/member/idfind",					
 					type: "POST",	
 					dataType: "text", 
-					data:  "id="+id,
+					data:  "name=" + name +"&phone=" + phone,
 					success: function(data) {
-					  	alert(data);
+						if(data != ""){
+							alert("회원님의 아이디는 " + "' " + data + " '" + " 입니다.");
+							$('#find_pw_id').val(data);
+							$('#find_pw_name').val(name);
+						} else {
+							alert("입력하신 정보와 일치하는 회원이 없습니다.");
+						}
+						
 					},
 					error: function() {
 						alert("System Error!!!");
@@ -225,7 +232,25 @@
 				}
 				
 				$('.idpw_err_msg').eq(1).css('display', 'none');
-					location.href = "${path}/member/changepw";
+				
+				$.ajax({
+					url: "${path}/member/pwfind",					
+					type: "POST",	
+					dataType: "text", 
+					data:  "id=" + id + "&name=" + name + "&phone=" + phone,
+					success: function(data) {
+						if(data == 1) {
+							location.href = "${path}/member/changepw?id=" + id + "&name=" + name;
+						} else {
+							alert("입력하신 정보와 일치하는 회원이 없습니다.");
+						}
+					},
+					error: function() {
+						alert("System Error!!!");
+					}
+				});
+				
+					
 				
 			});
 		});

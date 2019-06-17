@@ -54,5 +54,27 @@ public class MemberDAOImpl implements MemberDAO{
 	public int delete(String id) {
 		return sqlSession.delete("member.delete", id);
 	}
+	@Override
+	public String idFind(String name, String phone) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("name", name);
+		map.put("phone", phone);
+		return sqlSession.selectOne("member.idFind", map);
+	}
+	@Override
+	public int pwFind(String id, String name, String phone) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("name", name);
+		map.put("phone", phone);
+		return sqlSession.selectOne("member.pwFind", map);
+	}
+	@Override
+	public void changePw(String id, String pw) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("pw", pw);
+		sqlSession.update("member.changePw", map);
+	}
 
 }

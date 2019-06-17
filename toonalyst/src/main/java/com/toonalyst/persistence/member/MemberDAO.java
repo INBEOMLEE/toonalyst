@@ -21,4 +21,10 @@ public interface MemberDAO {
 	public int pwCheck(HashMap<String, String> map);
 	// 회원탈퇴 기능 구현
 	public int delete(String id);
+	// 아이디 찾기 기능 구현
+	public String idFind(String name, String phone);
+	// 비밀번호 찾기 기능 구현
+	public int pwFind(String id, String name, String phone);
+	// 비밀번호 변경 기능 구현
+	public void changePw(String id, String pw);
 }

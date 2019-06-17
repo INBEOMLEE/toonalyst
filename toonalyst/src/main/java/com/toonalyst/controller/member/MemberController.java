@@ -67,8 +67,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/changepw", method = RequestMethod.GET)
-	public String changepwView() {
+	public String changepwView(String id, String name, Model model) {
 		log.info(">>>>> 비밀번호 수정 출력");
+		
+		model.addAttribute("id", id);
+		model.addAttribute("name", name);
 		
 		return "/member/changepw";
 	}
@@ -153,6 +156,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/changepw", method = RequestMethod.POST)
+	public String changePw(String id, String pw) {
+		log.info(">>>>> 비밀번호 변경 기능 구현");
+		service.changePw(id, pw);
+		return "redirect:/";
+	}
+	
 	
 	// Ajax
 	@ResponseBody
@@ -172,5 +182,17 @@ public class MemberController {
 		return service.pwCheck(id, pw);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/idfind", method=RequestMethod.POST)
+	public String idFind(String name, String phone) {
+		log.info(">>>>> ajax: id find" );
+		return service.idFind(name, phone);
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="/pwfind", method=RequestMethod.POST)
+	public int pwFind(String id, String name, String phone) {
+		log.info(">>>>> ajax: pw find" );
+		return service.pwFind(id, name, phone);
+	}
 }

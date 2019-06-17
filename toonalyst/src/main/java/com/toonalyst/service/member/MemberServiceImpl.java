@@ -79,8 +79,6 @@ public class MemberServiceImpl implements MemberService{
 		session.removeAttribute("loginUser");
 		session.setAttribute("loginUser", loginUser);
 		
-		MemberDTO d1234 = (MemberDTO) session.getAttribute("loginUser");
-		
 	}
 
 	@Override
@@ -103,7 +101,21 @@ public class MemberServiceImpl implements MemberService{
 		if(result > 0) {
 			session.invalidate();
 		}
-		
+	}
+
+	@Override
+	public String idFind(String name, String phone) {
+		return mDao.idFind(name, phone);
+	}
+
+	@Override
+	public int pwFind(String id, String name, String phone) {
+		return mDao.pwFind(id, name, phone);
+	}
+
+	@Override
+	public void changePw(String id, String pw) {
+		mDao.changePw(id, pw);
 	}
 
 
