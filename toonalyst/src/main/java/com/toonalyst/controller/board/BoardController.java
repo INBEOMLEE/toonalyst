@@ -50,6 +50,15 @@ public class BoardController {
 		
 		return "/board/register";
 	}
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+    public String registerPlay(BoardDTO bDto) {
+       log.info(">>>>> 게시글  실제등록! ");
+       
+       log.info(">>>>> 데이터 등록유뮤 확인 " + bDto.toString());
+       service.register(bDto);
+       
+       return "/board/list";
+    }
 	
 
 	// DB 작업
