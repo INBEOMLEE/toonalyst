@@ -69,6 +69,9 @@ CREATE TABLE tbl_toonalyst_board(
     badmin NUMBER(5) DEFAULT 0,
     bregdate DATE DEFAULT SYSDATE
 );
+INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
+VALUES(seq_toonalyst_board_bno.NEXTVAL, '안녕하세요', '내용입니다', '내용입니다', 'user01', 0);
+COMMIT;
 
 SELECT * FROM tbl_toonalyst_board;
 
@@ -83,4 +86,44 @@ CREATE SEQUENCE seq_toonalyst_board_origin
 START WITH 1
 INCREMENT BY 1
 NOCYCLE;
+
+
+
+-- TOONALYST COMMENT TABLE
+DROP TABLE tbl_toonalyst_comment;
+CREATE TABLE tbl_toonalyst_comment(
+    rno NUMBER PRIMARY KEY,
+    rcontent VARCHAR2(2000) NOT NULL,
+    rwriter VARCHAR2(30) NOT NULL,
+    regdate DATE DEFAULT SYSDATE,
+    bno NUMBER NOT NULL
+    
+);
+
+DROP SEQUENCE seq_toonalyst_comment;
+CREATE SEQUENCE seq_toonalyst_comment
+START WITH 1
+INCREMENT BY 1
+NOCYCLE;
+
+ALTER TABLE tbl_toonalyst_comment
+ADD CONSTRAINT tbl_comment_fk_bno
+FOREIGN KEY(bno) REFERENCES tbl_toonalyst_board(bno)
+ON DELETE CASCADE;
+COMMIT;
+
+DELETE FROM tbl_toonalyst_comment;
+INSERT INTO tbl_toonalyst_comment(rno, rcontent, rwriter, bno)
+VALUES(seq_toonalyst_comment.NEXTVAL, '댓글1', 'user01', 1);
+INSERT INTO tbl_toonalyst_comment(rno, rcontent, rwriter, bno)
+VALUES(seq_toonalyst_comment.NEXTVAL, '댓글2', 'user02', 1);
+INSERT INTO tbl_toonalyst_comment(rno, rcontent, rwriter, bno)
+VALUES(seq_toonalyst_comment.NEXTVAL, '댓글3', 'user03', 1);
+INSERT INTO tbl_toonalyst_comment(rno, rcontent, rwriter, bno)
+VALUES(seq_toonalyst_comment.NEXTVAL, '댓글4', 'user04', 1);
+
+COMMIT;
+SELECT * FROM tbl_toonalyst_comment;
+
+
 
