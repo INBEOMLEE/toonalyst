@@ -164,11 +164,16 @@ $(document).on("click", "#conform", function(){
     var text = content.replace(/[<][^>]*[>]/gi, "");
     $('#input_btext').val(text);
     
-    if(content == "<p><br></p>") {
-       $("#btitle").focus();
-       $(".error").css("display", "block");
-       return false;
-    }
+     if(title == ""){   	
+        $(".error").css("display", "block");
+        return false;
+    }else if(content == "<p><br></p>") {
+        $("#btitle").focus();
+        $(".error").css("display", "block");
+        return false;
+     }
+    
+    
     $("#frm_bin").submit();
 });
 </script>
