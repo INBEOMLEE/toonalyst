@@ -84,13 +84,15 @@
 			</div>
 			<!-- 검색창 부분 -->
 			<div class="board_search">
-				<form method="GET" name="frm_srch">
+				<form action="${path}/board/boardlist" method="GET" name="frm_srch" id="boardlist_form">
 					<select name="search_option" class="search_option">
 						<option value="all" selected="selected">제목+내용</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 					</select>
 					<input type="text" name="keyword" class="form_input search keyword">
+					<input type="hidden" name="flag" value="${map.flag}">
+					<input type="hidden" name="curPage" value="${map.pager.curPage}">
 					<input type="button" value="검색" class="btn_search">
 				</form>
 			</div>
