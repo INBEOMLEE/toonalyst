@@ -62,6 +62,7 @@ CREATE TABLE tbl_toonalyst_board(
     bwriter VARCHAR2(30) NOT NULL,
     bviewcnt NUMBER(10) DEFAULT 0,
     bgoodcnt NUMBER(10) DEFAULT 0,
+    bcommentcnt NUMBER(10) DEFAULT 0,
     bcategory NUMBER(5) NOT NULL,
     borigin NUMBER(5) DEFAULT 0,
     bturn NUMBER(5) DEFAULT 0,
@@ -69,10 +70,6 @@ CREATE TABLE tbl_toonalyst_board(
     badmin NUMBER(5) DEFAULT 0,
     bregdate DATE DEFAULT SYSDATE
 );
-INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
-VALUES(seq_toonalyst_board_bno.NEXTVAL, '안녕하세요', '내용입니다', '내용입니다', 'user01', 0);
-COMMIT;
-
 SELECT * FROM tbl_toonalyst_board;
 
 DROP SEQUENCE seq_toonalyst_board_bno;
@@ -87,6 +84,9 @@ START WITH 1
 INCREMENT BY 1
 NOCYCLE;
 
+INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
+VALUES(seq_toonalyst_board_bno.NEXTVAL, '안녕하세요', '내용입니다', '내용입니다', 'user01', 0);
+COMMIT;
 
 
 -- TOONALYST COMMENT TABLE
