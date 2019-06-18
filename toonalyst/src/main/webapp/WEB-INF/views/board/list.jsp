@@ -346,17 +346,14 @@
 				
 				<!-- 검색창 부분 -->
 				<div class="board_search">
-					<form action="${path}/" method="GET" name="frm_srch">
-						<input type="hidden" name="">
-						<input type="hidden" name="db">
-						<select name="search">
-							<option value="all">제목+내용</option>
+					<form action="" method="GET" name="frm_srch">
+						<select name="search_option" class="search_option">
+							<option value="all" selected="selected">제목+내용</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
-							<option value="writer">작성자</option>
 						</select>
-						<input type="text" name="search_str" class="form_input search">
-						<input type="submit" value="검색" class="btn_search">
+						<input type="text" name="keyword" class="form_input search keyword">
+						<input type="button" value="검색" class="btn_search">
 					</form>
 				</div>
 			</div>
@@ -378,8 +375,19 @@ $(document).ready(function(){
 		location.href="${path}/board/register";
 	});
 	
-	
-	
+	$('.btn_search').click(function(){
+		var search_option = $('.search_option').val();
+		var keyword = $.trim($('.keyword').val());
+		
+		if(keyword == null || keyword.length == 0) {
+			$('.keyword').focus();
+			$('.keyword').css('border', '1px solid rgb(231, 29, 54)');
+			return false;
+		} else {
+			$('.keyword').css('border', '1px solid #ddd');
+		}
+		location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword;
+	});
 });
 	
 </script>

@@ -134,7 +134,7 @@
 	.toonalyst_score img {
 		width: 30px;
 		height: 30px;
-		margin-right: 5px;
+		margin-right: 7px;
 	}
 	
 
