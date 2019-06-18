@@ -2,6 +2,8 @@ package com.toonalyst.service.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.toonalyst.domain.board.BoardDTO;
 
 public interface BoardService {
@@ -16,5 +18,7 @@ public interface BoardService {
 	// 게시글 삭제 작업 진행
 	public void delete(int bno);
 	public void update(BoardDTO bDto);
+	// 조회수 증가
+	public void increaseViewCnt(int bno, HttpSession session);
 	
 }

@@ -61,4 +61,9 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 
+	@Override
+	public void increaseViewCnt(int bno) {
+		sqlSession.update("board.increaseViewCnt", bno);		
+	}
+
 }
