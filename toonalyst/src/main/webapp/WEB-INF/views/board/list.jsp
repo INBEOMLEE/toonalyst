@@ -275,10 +275,12 @@
 <%@ include file="../include/footer.jsp" %>  
 <script type="text/javascript">
 $(document).ready(function(){
-	var flag = ${flag};
-	var curPage = ${curPage};
+	var flag = "${flag}";
+	var curPage = "${curPage}";
+	var search_option = "${search_option}";
+	var keyword = "${keyword}";
 	
-	board_list(flag, curPage);
+	board_list(flag, curPage, search_option, keyword);
 	
 	if(flag == 0) {
 		$('.board_menu ul li').eq(0).addClass("active");
@@ -294,39 +296,30 @@ $(document).ready(function(){
 	$('#noticeboard').click(function(){
 		flag = 0;
 		curPage = 1;
-		board_list(flag, curPage);
+		search_option = "all";
+		keyword = "";
+		board_list(flag, curPage, search_option, keyword);
 	});
 	
 	$('#qaboard').click(function(){
 		flag = 1;
 		curPage = 1;
-		board_list(flag, curPage);
+		search_option = "all";
+		keyword = "";
+		board_list(flag, curPage, search_option, keyword);
 	});
 	
 	$('.register_btn').click(function(){
 		location.href="${path}/board/register";
 	});
 	
-	$('.btn_search').click(function(){
-		var search_option = $('.search_option').val();
-		var keyword = $.trim($('.keyword').val());
-		
-		if(keyword == null || keyword.length == 0) {
-			$('.keyword').focus();
-			$('.keyword').css('border', '1px solid rgb(231, 29, 54)');
-			return false;
-		} else {
-			$('.keyword').css('border', '1px solid #ddd');
-		}
-		location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword;
-	});
 });
 
-function board_list(flag, curPage) {
+function board_list(flag, curPage, search_option, keyword) {
 	$.ajax({
 		url: "${path}/board/list",
 		type: "GET",
-		data: "search_option=" + "${search_option}" + "&keyword=" + "${keyword}" + "&curPage=" + curPage + "&flag=" + flag,
+		data: "search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&flag=" + flag,
 		success: function(result){
 			$('#board_list_open').html(result); 
 		},

@@ -39,7 +39,7 @@
 							</td>
 							<td id="list_title">
 								<a href="${path}/board/view?bno=${bDto.bno}">${bDto.btitle}</a>
-								<c:if test="${today == regdate }">
+								<c:if test="${today == regdate}">
 									<span class="new_time">N</span>
 								</c:if>
 							</td>
@@ -84,7 +84,7 @@
 			</div>
 			<!-- 검색창 부분 -->
 			<div class="board_search">
-				<form action="" method="GET" name="frm_srch">
+				<form method="GET" name="frm_srch">
 					<select name="search_option" class="search_option">
 						<option value="all" selected="selected">제목+내용</option>
 						<option value="title">제목</option>
@@ -96,5 +96,27 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var flag = "${map.flag}";
+		var curPage = "${map.pager.curPage}";
+		var search_option = "${map.search_option}";
+		var keyword = "${map.keyword}";
+		
+		$('.btn_search').click(function(){
+			var search_option = $('.search_option').val();
+			var keyword = $.trim($('.keyword').val());
+			
+			if(keyword == null || keyword.length == 0) {
+				$('.keyword').focus();
+				$('.keyword').css('border', '1px solid rgb(231, 29, 54)');
+				return false;
+			} else {
+				$('.keyword').css('border', '1px solid #ddd');
+			}
+			location.href="${path}/board/boardlist?search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&flag=" + flag;
+		});
+	});
+	</script>
 </body>
 </html>
