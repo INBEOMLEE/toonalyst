@@ -16,12 +16,10 @@
 }
 .sticky {
 	height: 56px;
-	margin-bottom: 50px;
 }
 .sub_tab {
 	position: relative;
 	top: 0;
-	margin: 0 0 50px;
 }
 .board_menu {
 	width: 1180px;
@@ -237,6 +235,48 @@
 .board_col img {
 	margin-right: 3px;
 }
+/* 정렬디자인 */
+.array_list {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 10px 0 15px;
+	width: 1180px;
+	height: 16px;
+}
+.array_style {
+    display: inline-block;
+    position: relative;
+    color: #666;
+    margin-left: 10px;
+}
+.array_style a {
+	font-size: 14px;
+	font-weight: 600;
+}
+.array_style:before{
+	position: absolute;
+    right: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 1px;
+    background: #333;
+    content: '';
+    transition: 0.3s;
+}
+.array_style:after {
+	position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 1px;
+    background: #333;
+    content: '';
+    transition: 0.3s;
+}
+.array_style:hover:after, .array_style:hover:before {
+    width: 50%; 
+}
 
 
 </style>
@@ -249,10 +289,10 @@
 				<div class="board_menu">
 					<ul>
 						<li>
-							<a href="#" class="sub_notice" id="noticeboard">NOTICE</a>
+							<a class="sub_notice" id="noticeboard">NOTICE</a>
 						</li>
 						<li>
-							<a href="#" id="qaboard">Q&A</a>
+							<a id="qaboard">Q&A</a>
 						</li>
 					</ul>
 				</div>
@@ -279,8 +319,9 @@ $(document).ready(function(){
 	var curPage = "${curPage}";
 	var search_option = "${search_option}";
 	var keyword = "${keyword}";
+	var sort_option = "${sort_option}";
 	
-	board_list(flag, curPage, search_option, keyword);
+	board_list(sort_option, flag, curPage, search_option, keyword);
 	
 	if(flag == 0) {
 		$('.board_menu ul li').eq(0).addClass("active");
@@ -298,7 +339,8 @@ $(document).ready(function(){
 		curPage = 1;
 		search_option = "all";
 		keyword = "";
-		board_list(flag, curPage, search_option, keyword);
+		sort_option = "new";
+		board_list(sort_option, flag, curPage, search_option, keyword);
 	});
 	
 	$('#qaboard').click(function(){
@@ -306,20 +348,17 @@ $(document).ready(function(){
 		curPage = 1;
 		search_option = "all";
 		keyword = "";
-		board_list(flag, curPage, search_option, keyword);
-	});
-	
-	$('.register_btn').click(function(){
-		location.href="${path}/board/register";
+		sort_option = "new";
+		board_list(sort_option, flag, curPage, search_option, keyword);
 	});
 	
 });
 
-function board_list(flag, curPage, search_option, keyword) {
+function board_list(sort_option, flag, curPage, search_option, keyword) {
 	$.ajax({
 		url: "${path}/board/list",
 		type: "GET",
-		data: "search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&flag=" + flag,
+		data:  "sort_option=" + sort_option + "&search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&flag=" + flag,
 		success: function(result){
 			$('#board_list_open').html(result); 
 		},

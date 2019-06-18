@@ -210,13 +210,17 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	margin: 10px 0;
+	margin: 10px 0 15px;
 }
 .array_style {
     display: inline-block;
     position: relative;
     color: #666;
     margin-left: 10px;
+}
+.array_style a {
+	font-size: 14px;
+	font-weight: 600;
 }
 .array_style:before{
 	position: absolute;

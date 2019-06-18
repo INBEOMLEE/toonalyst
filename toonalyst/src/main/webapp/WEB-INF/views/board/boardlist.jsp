@@ -10,6 +10,26 @@
 <body>
 	<!-- 게시글 영역 -->
 	<div class="notice_body">
+		<c:if test="${map.flag == 0}">
+			<div class="array_list"></div>
+		</c:if>
+		<c:if test="${map.flag == 1}">
+			<div class="array_list">
+				<span class="array_style">
+					<a href="${path}/board/boardlist?sort_option=new&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderNew">최신순</a>
+				</span>
+				<span class="array_style">
+					<a href="${path}/board/boardlist?sort_option=good&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderGood">추천순</a>
+				</span>
+				<span class="array_style">
+					<a href="${path}/board/boardlist?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderComment">댓글순</a>
+				</span>
+				<span class="array_style">
+					<a href="${path}/board/boardlist?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderCnt">조회순</a>
+				</span>
+			</div>
+		</c:if>
+	
 		<div class="board_list">
 			<table class="board_col">
 				<colgroup>
@@ -21,7 +41,7 @@
 				</colgroup>
 				<thead>
 					<tr class="board_head">
-						<th>번호</th>
+						<th>분류</th>
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
@@ -35,10 +55,15 @@
 						<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
 						<tr>
 							<td>
-								<strong>[공지]</strong>
+								<c:if test="${map.flag == 0}">
+									<strong>[공지]</strong>
+								</c:if>
+								<c:if test="${map.flag == 1}">
+									<strong>[질문]</strong>
+								</c:if>
 							</td>
 							<td id="list_title">
-								<a href="${path}/board/view?bno=${bDto.bno}">${bDto.btitle}</a>
+								<a href="${path}/board/view?bno=${bDto.bno}&flag=${map.flag}">${bDto.btitle}</a>
 								<c:if test="${today == regdate}">
 									<span class="new_time">N</span>
 								</c:if>
@@ -46,7 +71,7 @@
 							<td><img alt="level" src="${path}/resources/img/level/50.gif">운영자</td>
 							<td>
 								<c:choose>
-									<c:when test="${today == regdate }">
+									<c:when test="${today == regdate}">
 										<fmt:formatDate pattern="hh:mm:ss" value="${bDto.bregdate}" />
 									</c:when>
 									<c:otherwise>
@@ -61,8 +86,8 @@
 			</table>
 			<div class="wrap_btn">
 				<c:if test="${!empty sessionScope.loginUser}">
-					<div class="box_btn write">
-					<a href="${path}/board/register" class="register_btn">글쓰기</a>
+					<div class="box_btn write" id="register_btn">
+						<a class="register_btn">글쓰기</a>
 					</div>
 				</c:if>						
 			</div>
@@ -70,15 +95,15 @@
 			<div class="pagination_box">
 				<div class="pagination">
 					<c:if test="${map.pager.curBlock > 1}">
-						<a href="${path}/board/boardlist?curPage=1&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-double-left"></i></a>
-						<a href="${path}/board/boardlist?curPage=${map.pager.blockBegin - 10}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-left"></i></a> 
+						<a href="${path}/board/boardlist?curPage=1&keyword=${map.keyword}&sort_option=${map.sort_option}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-double-left"></i></a>
+						<a href="${path}/board/boardlist?curPage=${map.pager.blockBegin - 10}&sort_option=${map.sort_option}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-left"></i></a> 
 					</c:if>
 					<c:forEach begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}" var="idx">
-						<a href="${path}/board/boardlist?curPage=${idx}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>${idx}</a>
+						<a href="${path}/board/boardlist?curPage=${idx}&keyword=${map.keyword}&sort_option=${map.sort_option}&search_option=${map.search_option}&flag=${map.flag}" <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>${idx}</a>
 					</c:forEach>
 					<c:if test="${map.pager.curBlock < map.pager.totBlock}">
-						<a href="${path}/board/boardlist?curPage=${map.pager.blockEnd + 1}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-right"></i></a>
-						<a href="${path}/board/boardlist?curPage=${map.pager.totPage}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-double-right"></i></a> 
+						<a href="${path}/board/boardlist?curPage=${map.pager.blockEnd + 1}&sort_option=${map.sort_option}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-right"></i></a>
+						<a href="${path}/board/boardlist?curPage=${map.pager.totPage}&sort_option=${map.sort_option}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-double-right"></i></a> 
 					</c:if>
 				</div>
 			</div>
@@ -92,6 +117,7 @@
 					</select>
 					<input type="text" name="keyword" class="form_input search keyword">
 					<input type="hidden" name="flag" value="${map.flag}">
+					<input type="hidden" name="sort_option" value="${map.sort_option}">
 					<input type="hidden" name="curPage" value="${map.pager.curPage}">
 					<input type="button" value="검색" class="btn_search">
 				</form>
@@ -104,6 +130,7 @@
 		var curPage = "${map.pager.curPage}";
 		var search_option = "${map.search_option}";
 		var keyword = "${map.keyword}";
+		var sort_option = "${map.sort_option}";
 		
 		$('.btn_search').click(function(){
 			var search_option = $('.search_option').val();
@@ -116,7 +143,11 @@
 			} else {
 				$('.keyword').css('border', '1px solid #ddd');
 			}
-			location.href="${path}/board/boardlist?search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&flag=" + flag;
+			location.href="${path}/board/boardlist?sort_option=" + sort_option + "&search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&flag=" + flag;
+		});
+		
+		$('#register_btn').click(function(){
+			location.href="${path}/board/register?flag=${map.flag}";
 		});
 	});
 	</script>

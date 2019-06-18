@@ -101,55 +101,77 @@ h3.title {
 #cancle :hover{
     background-color: #F6F6F6;
 }
+.register_err_msg {
+	width: 100%;
+	height: auto;
+}
+.register_err_message {
+	width: 1180px;
+	margin: 0 auto;
+	text-align: center;
+	color: tomato;
+	display: none;
+}
 </style>
 </head>
 <body>
-<div id="counsel_write">
-    <h3 class="title first">게시글 작성</h3>
-    <form method="post" action="${path}/board/register" id="frm_bin" name="frm_bin">
-       <table class="tbl_row">
-           <caption class="hidden"></caption>
-           <colgroup>
-               <col style="width:15%;">
-               <col>
-           </colgroup>
-           <tbody>           
-               <tr>
-                  <th scope="row">분류</th>
-                  <td>건의</td>
-               </tr>             
-               <tr>
-                  <th scope="row"><label for="counsel_title">제목</label></th>
-                  <td><input type="text" name="btitle" id="counsel_title" class="form_input block"></td>
-               </tr>
-               <tr>
-                  <th scope="row">
-                      <label for="counsel_cnt">수정내용</label>
-                  </th>
-                  <td>
-                      <textarea name="bcontent" id="bcontent" class="writing_area block"></textarea>
-                  </td>
-                  <script type="text/javascript">
-                          var oEditors = [];
-                          nhn.husky.EZCreator.createInIFrame({
-                           oAppRef: oEditors,
-                           elPlaceHolder: "bcontent",
-                           sSkinURI: "${path}/resources/smarteditor/SmartEditor2Skin.html",
-                           fCreator: "createSEditor2",
-                           htParams: { fOnBeforeUnload : function(){} } /* 에디터 내용 변경 경고창 끄기 */
-                          });
-                  </script>             
-               </tr>
-           </tbody>
-       </table>
-       <div class="btn">
-           <span id="conforms" class="box_btn large w150"><input type="button" id="conform" value="확인"></span>
-           <span id="cancle" class="box_btn large w150 white"><a href="${path}/board/list">취소</a></span>
-       </div>
-       <input type="hidden" name="btext" id="input_btext">
-       <input type="hidden" name="bwriter" value="${sessionScope.loginUser.id}">
-    </form>
-</div> 
+	<div id="counsel_write">
+    	<h3 class="title first">게시글 작성</h3>
+		<form method="post" action="${path}/board/register" id="frm_bin" name="frm_bin">
+			<table class="tbl_row">
+				<caption class="hidden"></caption>
+				<colgroup>
+					<col style="width:15%;">
+				</colgroup>
+				<tbody>           
+					<tr>
+						<th scope="row">분류</th>
+						<td>건의</td>
+					</tr>             
+					<tr>
+						<th scope="row">
+							<label for="counsel_title">제목</label>
+						</th>
+						<td>
+							<input type="text" name="btitle" id="counsel_title" class="form_input block">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							<label for="counsel_cnt">수정내용</label>
+						</th>
+						<td>
+							<textarea name="bcontent" id="bcontent" class="writing_area block"></textarea>
+						</td>
+						<script type="text/javascript">
+							var oEditors = [];
+							nhn.husky.EZCreator.createInIFrame({
+								oAppRef: oEditors,
+								elPlaceHolder: "bcontent",
+								sSkinURI: "${path}/resources/smarteditor/SmartEditor2Skin.html",
+								fCreator: "createSEditor2",
+								htParams: { fOnBeforeUnload : function(){} } /* 에디터 내용 변경 경고창 끄기 */
+							});
+						</script>             
+					</tr>
+				</tbody>
+			</table>
+			<div class="register_err_msg">
+				<div class="register_err_message"></div>
+			</div>
+			<div class="btn">
+				<span id="conforms" class="box_btn large w150">
+					<input type="button" id="conform" value="확인">
+				</span>
+				<span id="cancle" class="box_btn large w150 white">
+					<a href="${path}/board/list">취소</a>
+				</span>
+			</div>
+			<input type="hidden" name="bcategory" value="${flag}">
+			<input type="hidden" name="btext" id="input_btext">
+			<input type="hidden" name="bwriter" value="${sessionScope.loginUser.id}">
+		</form>
+	</div> 
     
     
     
@@ -162,12 +184,16 @@ $(document).on("click", "#conform", function(){
     var text = content.replace(/[<][^>]*[>]/gi, "");
     $('#input_btext').val(text);
     
-    if(content == "<p><br></p>") {
-       $("#btitle").focus();
-       $(".error").css("display", "block");
-       return false;
-    }
-    $("#frm_bin").submit();
+    if(title == "" || title.length == 0) {
+    	$('.register_err_message').text("제목을 입력해주세요.").css('display', 'block');
+		return false;
+	} else if(content == "<p><br></p>") {
+		$('.register_err_message').text("내용을 입력해주세요.").css('display', 'block');
+		return false;
+	}
+    $('.register_err_message').text("").css('display', 'none');
+	$('#frm_bin').submit();
+    
 });
 </script>
 <%@ include file="../include/footer.jsp" %> 

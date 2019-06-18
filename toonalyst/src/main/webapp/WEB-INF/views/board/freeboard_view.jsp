@@ -85,10 +85,6 @@
 .tbl_writer_con {
 	width: 9%;
 }
-
-
-
-
 .list_btn_box {
 	display: flex;
 	width: 1180px;
@@ -283,9 +279,7 @@
 						</td>
 					</tr>
 				</table>
-				<div class="board_view_content">
-					${bDto.bcontent}
-				</div>
+				<div class="board_view_content">${bDto.bcontent}</div>
 				<div class="list_btn_box">
 					<div class="list_btn_box1">
 						<c:if test="${sessionScope.loginUser.id == bDto.bwriter}">

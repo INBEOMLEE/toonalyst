@@ -35,7 +35,6 @@ public class BoardController {
 			@RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue = "0") int flag ) {
 		log.info(">>>>> 게시글 목록 출력");
-		
 		// 레코드 개수 계산
 		int count = service.countArticle(search_option, keyword, flag);
 		
@@ -48,7 +47,6 @@ public class BoardController {
 		List<BoardDTO> list = service.listAll(sort_option, search_option, keyword, start, end, flag);
 		
 		HashMap<String, Object> map = new HashMap<>();
-		log.info(">>>>>>>>>>>>>list☆★☆★☆★☆★☆★☆★>>>>>>>>>>"+list.toString());
 		map.put("list", list);
 		map.put("count", count);
 		map.put("pager", pager);
@@ -56,7 +54,6 @@ public class BoardController {
 		map.put("search_option", search_option);
 		map.put("keyword", keyword);
 		map.put("flag", flag);
-		log.info("★★★★★★★★★★★★★★★" + flag);
 		
 		model.addAttribute("map", map);
 		
@@ -83,102 +80,76 @@ public class BoardController {
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("flag", flag);
-		
 		return "/board/list";
 	}
 	
 	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public String view(int bno, Model model, HttpSession session) {
+	public String view(int bno, int flag, Model model, HttpSession session) {
 		log.info(">>>>> 상세 게시글 출력");
-		
-		// 조회수 증가처리
 		service.increaseViewCnt(bno, session);
-		
 		BoardDTO bDto = service.read(bno);
 		model.addAttribute("bDto", bDto);
-		
+		model.addAttribute("flag", flag);
 		return "/board/view";
 	}
 	
 	@RequestMapping(value="/freeView", method=RequestMethod.GET)
 	public String freeboardView(int bno, Model model, HttpSession session) {
-		log.info(">>>>> 자유게시판 상세 게시글 출력");
-		
-		// 조회수 증가처리
+		log.info(">>>>> 자유 게시판 상세 게시글 출력");
 		service.increaseViewCnt(bno, session);
-		
 		BoardDTO bDto = service.read(bno);
 		model.addAttribute("bDto", bDto);
-		
 		return "/board/freeboard_view";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String registerView() {
-		log.info(">>>>> 게시글  등록 페이지출력");
-		
+	public String registerView(int flag, Model model) {
+		log.info(">>>>> 게시글  등록 페이지 출력");
+		model.addAttribute("flag", flag);
 		return "/board/register";
 	}
 	
 	@RequestMapping(value="/freeRegister", method=RequestMethod.GET)
 	public String freeRegisterView() {
-		log.info(">>>>> 게시글  등록 페이지출력");
-		
+		log.info(">>>>> 자유 게시글  등록 페이지 출력");
 		return "/board/freeboard_register";
 	}
 	
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
     public String registerPlay(BoardDTO bDto) {
-       log.info(">>>>> 게시글  실제등록! ");
-       
-       log.info(">>>>> 데이터 등록유뮤 확인 " + bDto.toString());
+       log.info(">>>>> 게시글  등록 기능 구현 ");
        service.register(bDto);
-       
-		/* return "redirect:/board/list"; */
-       
-       return "redirect:/board/view?bno=" + bDto.getBno(); 
+       return "redirect:/board/boardlist?flag=" + bDto.getBcategory(); 
     }
 	
 	
 	// 게시글 삭제 작업 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(int bno) {
-		
+	public String delete(int bno, int flag) {
 		service.delete(bno);
-		
-				
-		return "redirect:/board/list"; 
+		return "redirect:/board/boardlist?flag=" + flag; 
 	}
 	
 	// 게시글 수정 출력
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateView(int bno, Model model) {
-		
+	public String updateView(int bno, int flag, Model model) {
 		BoardDTO bDto = service.read(bno);
 		model.addAttribute("bDto",bDto);
-		
-		
-				
+		model.addAttribute("flag", flag);
 		return "board/modify"; 
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updatePlay(int bno, BoardDTO bDto, Model model) {
-		
 		service.update(bDto);
-		
-		
-		
-		return "redirect:/board/view?bno=" + bDto.getBno(); 
+		return "redirect:/board/view?bno=" + bDto.getBno() + "&flag=" + bDto.getBcategory(); 
 	}
 	
 	
 
-	// DB 작업
 
 	
 	
-	// Ajax
 	
 }

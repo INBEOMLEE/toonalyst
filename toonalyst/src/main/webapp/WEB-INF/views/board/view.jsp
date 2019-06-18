@@ -76,10 +76,27 @@
 	padding: 60px 30px;
 	font-size: 18px;
 }
+.tbl_title, .tbl_viewcnt, .tbl_viewcnt_con, .tbl_writer, .tbl_good, .tbl_good_con, .tbl_date, .tbl_date_con {
+	width: 3%;
+}
+.tbl_title_con {
+	width: 12%;
+}
+.tbl_writer_con {
+	width: 9%;
+}
 .list_btn_box {
+	display: flex;
 	width: 1180px;
 	border-top: 1px solid #e0e0e0;
 	border-bottom: 1px solid #e0e0e0;
+}
+.list_btn_box1 {
+	flex: 1;
+	text-align: left;
+}
+.list_btn_box2 {
+	flex: 1;
 	text-align: right;
 }
 .list_btn {
@@ -235,6 +252,7 @@
 	vertical-align: middle;
 	margin-right: 3px;
 }
+
 </style>
 </head>
 <body>
@@ -245,10 +263,10 @@
 				<div class="board_menu">
 					<ul>
 						<li>
-							<a href="#" class="sub_notice">NOTICE</a>
+							<a href="${path}/board/boardlist?flag=0" class="sub_notice">NOTICE</a>
 						</li>
 						<li>
-							<a href="#">Q&A</a>
+							<a href="${path}/board/boardlist?flag=1">Q&A</a>
 						</li>
 					</ul>
 				</div>
@@ -257,39 +275,68 @@
 		<!-- 게시글 영역 -->
 		<div class="notice_body">
 			<div class="board_list">
-				<table class="board_view_table">
-					<colgroup>
-						<col style="width: 3%">
-						<col style="width: 12%">
-						<col style="width: 3%">
-						<col style="width: 3%">
-					</colgroup>
-					<tr>
-						<th>제목</th>
-						<td>${bDto.btitle}</td>
-						<th>조회수</th>
-						<td>${bDto.bviewcnt}</td>
-					</tr>
-					<tr>
-						<th>작성자</td>
-						<td>운영자</td>
-						<th>작성일</td>
-						<td>
-							<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
-							${regdate}
-						</td>
-					</tr>
-				</table>
-				<div class="board_view_content">
-					${bDto.bcontent}
-				</div>
+				<c:if test="${flag == 0}">
+					<table class="board_view_table">
+						<colgroup>
+							<col style="width: 3%">
+							<col style="width: 12%">
+							<col style="width: 3%">
+							<col style="width: 3%">
+						</colgroup>
+						<tr>
+							<th>제목</th>
+							<td>${bDto.btitle}</td>
+							<th>조회수</th>
+							<td>${bDto.bviewcnt}</td>
+						</tr>
+						<tr>
+							<th>작성자</td>
+							<td>운영자</td>
+							<th>작성일</td>
+							<td>
+								<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />${regdate}
+							</td>
+						</tr>
+					</table>
+				</c:if>
+				<c:if test="${flag == 1 }">
+					<table class="board_view_table">
+						<tr>
+							<th class="tbl_title">제목</th>
+							<td colspan="3"  class="tbl_title_con">${bDto.btitle}</td>
+							<th class="tbl_viewcnt">조회수</th>
+							<td class="tbl_viewcnt_con">${bDto.bviewcnt}</td>
+						</tr>
+						<tr>
+							<th class="tbl_writer">작성자</td>
+							<td class="tbl_writer_con">운영자</td>
+							<th class="tbl_good">좋아요</th>
+							<td class="tbl_good_con">0</td>
+							<th class="tbl_date">작성일</td>
+							<td class="tbl_date_con">
+								<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
+								${regdate}
+							</td>
+						</tr>
+					</table>
+				</c:if>
+				
+				<div class="board_view_content">${bDto.bcontent}</div>
 				<div class="list_btn_box">
-					<div class="list_btn" OnClick="location.href='${path}/board/list'">목록</div>
-					<c:if test="${sessionScope.loginUser.id == bDto.bwriter}">
-					<button class="list_btn" id="remove_btn">삭제</button>
-					<button class="list_btn" id="update_btn">수정</button>
-					</c:if>
-										
+					<div class="list_btn_box1">
+						<c:if test="${sessionScope.loginUser.id == bDto.bwriter}">
+							<button class="list_btn" id="update_btn">수정</button>
+							<button class="list_btn" id="remove_btn">삭제</button>
+						</c:if>
+					</div>
+					<div class="list_btn_box2">
+						<c:if test="${!empty sessionScope.loginUser.id}">
+							<c:if test="${flag == 1}">
+								<div class="list_btn" >좋아요</div>
+							</c:if>
+						</c:if>
+						<div class="list_btn" id="board_list_btn">목록</div>
+					</div>
 				</div>
 				<!-- 댓글영역 -->
 				<div class="comment_outline">
@@ -303,10 +350,19 @@
 <%@ include file="../include/footer.jsp" %>  
 <script type="text/javascript">
 $(document).ready(function(){
+	var flag = "${flag}";
+	
+	if(flag == 0) {
+		$('.board_menu ul li').removeClass("active");
+		$('.board_menu ul li').eq(0).addClass("active");
+	} else if (flag == 1) {
+		$('.board_menu ul li').removeClass("active");
+		$('.board_menu ul li').eq(1).addClass("active");
+	}
+	
+	
 	// 문서가 준비되면 댓글 목록을 조회하는 AJAX실행
 	comment_list();
-	
-	$('.board_menu ul li').eq(0).addClass("active");
 	
 	$('.board_menu ul li').click(function(){
 		$('.board_menu ul li').removeClass("active");
@@ -323,77 +379,80 @@ $(document).ready(function(){
 	
 });
 
-//댓글 띄우는 함수
-function comment_list(){		
-	$.ajax({
-		type:"get",
-		url: "${path}/comment/list",
-		data: "bno=${bDto.bno}",
-		success: function(result){ 
-			$('#commentList').html(result); 
+	//댓글 띄우는 함수
+	function comment_list(){		
+		$.ajax({
+			type:"get",
+			url: "${path}/comment/list",
+			data: "bno=${bDto.bno}",
+			success: function(result){ 
+				$('#commentList').html(result); 
+			}
+		});
+	}
+
+	// 댓글 등록 
+	$(document).on("click", "#comment_btn", function(){
+		var content = $("#textarea").val();
+		
+		if(content == null || content.length == 0) { 
+			// 유효성체크(Null 체크)
+			$("#textarea").focus();
+			$("#txt_box").css("display", "inline-block");
+			return false;
+		} else {
+			// 게시글번호 담아서 보냄
+			var bno = '${bDto.bno}';
+			$('#re_bno').val(bno);
+			$.ajax({ 
+				type:"POST",
+				url: "${path}/comment/create",
+				data: $("#frm_comment").serialize(),
+				dataType: "json",
+				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+				success: function(data){
+					if(data == 1) {
+						comment_list(); 
+						$('#textarea').val(""); 
+					}
+				},
+				error: function(){
+					alert("System Error!!!");
+				}
+			});
 		}
 	});
-}
 
-// 댓글 등록 
-$(document).on("click", "#comment_btn", function(){
-	var content = $("#textarea").val();
-	
-	if(content == null || content.length == 0) { 
-		// 유효성체크(Null 체크)
-		$("#textarea").focus();
-		$("#txt_box").css("display", "inline-block");
-		return false;
-	} else {
-		// 게시글번호 담아서 보냄
-		var bno = '${bDto.bno}';
-		$('#re_bno').val(bno);
-		$.ajax({ 
-			type:"POST",
-			url: "${path}/comment/create",
-			data: $("#frm_comment").serialize(),
-			dataType: "json",
-			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			success: function(data){
-				if(data == 1) {
-					comment_list(); 
-					$('#textarea').val(""); 
-				}
+	//댓글 삭제
+	$(document).on("click", ".comment_delete_btn", function(){
+		var cno = $(this).attr("data_num");
+		
+		$.ajax({
+			url: "${path}/comment/delete",
+			data: "cno=" + cno,
+			success: function(){
+				comment_list();
 			},
 			error: function(){
 				alert("System Error!!!");
 			}
 		});
-	}
-});
-
-//댓글 삭제
-$(document).on("click", ".comment_delete_btn", function(){
-	var cno = $(this).attr("data_num");
-	
-	$.ajax({
-		url: "${path}/comment/delete",
-		data: "cno=" + cno,
-		success: function(){
-			comment_list();
-		},
-		error: function(){
-			alert("System Error!!!");
-		}
 	});
-});
 
 
-$(document).on("click", "#remove_btn", function(){
-	location.href="${path}/board/delete?bno=${bDto.bno}";
-		
-});
+	$(document).on("click", "#remove_btn", function(){
+		location.href="${path}/board/delete?bno=${bDto.bno}&flag=${flag}";
+			
+	});
 
 
-$(document).on("click", "#update_btn", function(){
-	location.href="${path}/board/update?bno=${bDto.bno}";
-		
-});
+	$(document).on("click", "#update_btn", function(){
+		location.href="${path}/board/update?bno=${bDto.bno}&flag=${flag}";
+	});
+	
+	$(document).on("click", "#board_list_btn", function(){
+		location.href="${path}/board/boardlist?flag=${flag}";
+	});
 	
 </script>
 </body>
