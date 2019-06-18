@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<div class="comment_empty_box">
-				등록된 댓글이 없습니다. 첫번째 댓글을 남겨주세요:)
+				등록된 댓글이 없습니다. 첫번째 댓글을 남겨주세요 :)
 			</div>
 		</c:when>
 		<c:otherwise>

@@ -57,7 +57,11 @@ public class BoardController {
 		
 		model.addAttribute("map", map);
 		
-		return "/board/boardlist";
+		if(flag == 2) {
+			return "board/freeboard_list";
+		} else {
+			return "board/boardlist";
+		}
 	}
 	
 	// 페이지 이동
@@ -91,11 +95,31 @@ public class BoardController {
 		return "/board/view";
 	}
 	
+	@RequestMapping(value="/freeView", method=RequestMethod.GET)
+	public String freeboardView(int bno, Model model, HttpSession session) {
+		log.info(">>>>> 자유게시판 상세 게시글 출력");
+		
+		// 조회수 증가처리
+		service.increaseViewCnt(bno, session);
+		
+		BoardDTO bDto = service.read(bno);
+		model.addAttribute("bDto", bDto);
+		
+		return "/board/freeboard_view";
+	}
+	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String registerView() {
 		log.info(">>>>> 게시글  등록 페이지출력");
 		
 		return "/board/register";
+	}
+	
+	@RequestMapping(value="/freeRegister", method=RequestMethod.GET)
+	public String freeRegisterView() {
+		log.info(">>>>> 게시글  등록 페이지출력");
+		
+		return "/board/freeboard_register";
 	}
 	
 	

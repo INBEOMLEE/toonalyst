@@ -78,13 +78,8 @@
 								<a href="#"><span>Nav DROPDOWN</span></a>
 							</div>
 						</li>
-						<li><a href="#">Navigation</a>
-							<div class="nav_dropdown">
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-							</div>
+						<li>
+							<a href="${path}/board/list?flag=2">FreeBoard</a>
 						</li>
 					</ul>
 				</div>
