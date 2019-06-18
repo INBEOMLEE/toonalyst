@@ -11,8 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
     <insert id="register" parameterType="com.toonalyst.domain.board.BoardDTO">          
-       INSERT INTO  tbl_toonalyst_board(bno, btitle, bcontent,btext,bcategory, bwriter)
-       VALUES(seq_toonalyst_board_bno.NEXTVAL,#{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter})
+       INSERT INTO  tbl_toonalyst_board(bno, btitle, bcontent, btext, bcategory, bwriter)
+       VALUES(seq_toonalyst_board_bno.NEXTVAL, #{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter})
        <selectKey keyProperty="bno" resultType="Integer" order="AFTER">
 	 	SELECT seq_toonalyst_board_bno.CURRVAL FROM dual
 	 </selectKey>       
@@ -67,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listAll" parameterType="HashMap" resultType="com.toonalyst.domain.board.BoardDTO">
 		SELECT *
 		FROM ( SELECT rownum AS rnum, a.*
-			   FROM ( SELECT bno, btitle, bcontent, bwriter, m.id, bviewcnt, bgoodcnt, bcategory, bregdate
+			   FROM ( SELECT b.*, m.id
 					  FROM tbl_toonalyst_board b, tbl_toonalyst_member m
 				  	  <choose>
 						  <when test="search_option != 'all'">
@@ -94,8 +94,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								   OR btext LIKE #{keyword} )
 							  AND bcategory = #{flag}
 						  </otherwise>
-					  </choose>	
-					  ORDER BY bno DESC
+					  </choose>
+						<if test="sort_option == 'new'">
+							ORDER BY bno DESC
+						</if>
+						<if test="sort_option == 'good'">
+							ORDER BY bgoodcnt DESC, bno DESC
+						</if>
+						<if test="sort_option == 'comment'">
+							ORDER BY bcommentcnt DESC, bno DESC
+						</if>
+						<if test="sort_option == 'view'">
+							ORDER BY bviewcnt DESC, bno DESC
+						</if>
 		            ) a
 		      ) WHERE rnum BETWEEN #{start} AND #{end}
 	</select>

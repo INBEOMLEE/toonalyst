@@ -148,6 +148,7 @@ h3.title {
        </div>
        <input type="hidden" name="btext" id="input_btext">
        <input type="hidden" name="bwriter" value="${sessionScope.loginUser.id}">
+       <input type="hidden" name="bcategory" value="2">
     </form>
 </div> 
     

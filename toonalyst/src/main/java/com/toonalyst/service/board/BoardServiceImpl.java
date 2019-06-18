@@ -37,8 +37,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end, int flag) {
-		return bDao.listAll(search_option, keyword, start, end, flag);
+	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end, int flag) {
+		return bDao.listAll(sort_option, search_option, keyword, start, end, flag);
 	}
 
 	@Override

@@ -76,10 +76,31 @@
 	padding: 60px 30px;
 	font-size: 18px;
 }
+.tbl_title, .tbl_viewcnt, .tbl_viewcnt_con, .tbl_writer, .tbl_good, .tbl_good_con, .tbl_date, .tbl_date_con {
+	width: 3%;
+}
+.tbl_title_con {
+	width: 12%;
+}
+.tbl_writer_con {
+	width: 9%;
+}
+
+
+
+
 .list_btn_box {
+	display: flex;
 	width: 1180px;
 	border-top: 1px solid #e0e0e0;
 	border-bottom: 1px solid #e0e0e0;
+}
+.list_btn_box1 {
+	flex: 1;
+	text-align: left;
+}
+.list_btn_box2 {
+	flex: 1;
 	text-align: right;
 }
 .list_btn {
@@ -240,42 +261,23 @@
 </head>
 <body>
 	<div class="notice">
-		<!-- 게시판 목록 부분 -->
-		<div class="sticky">
-			<div class="sub_tab">
-				<div class="board_menu">
-					<ul>
-						<li>
-							<a href="#" class="sub_notice">NOTICE</a>
-						</li>
-						<li>
-							<a href="#">Q&A</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
 		<!-- 게시글 영역 -->
 		<div class="notice_body">
 			<div class="board_list">
 				<table class="board_view_table">
-					<colgroup>
-						<col style="width: 3%">
-						<col style="width: 12%">
-						<col style="width: 3%">
-						<col style="width: 3%">
-					</colgroup>
 					<tr>
-						<th>제목</th>
-						<td>${bDto.btitle}</td>
-						<th>조회수</th>
-						<td>${bDto.bviewcnt}</td>
+						<th class="tbl_title">제목</th>
+						<td colspan="3"  class="tbl_title_con">${bDto.btitle}</td>
+						<th class="tbl_viewcnt">조회수</th>
+						<td class="tbl_viewcnt_con">${bDto.bviewcnt}</td>
 					</tr>
 					<tr>
-						<th>작성자</td>
-						<td>운영자</td>
-						<th>작성일</td>
-						<td>
+						<th class="tbl_writer">작성자</td>
+						<td class="tbl_writer_con">운영자</td>
+						<th class="tbl_good">좋아요</th>
+						<td class="tbl_good_con">0</td>
+						<th class="tbl_date">작성일</td>
+						<td class="tbl_date_con">
 							<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
 							${regdate}
 						</td>
@@ -285,15 +287,18 @@
 					${bDto.bcontent}
 				</div>
 				<div class="list_btn_box">
-					<div class="list_btn" OnClick="location.href='${path}/board/list'">목록</div>
-					
-					
-					
-					<c:if test="${sessionScope.loginUser.id == bDto.bwriter}">
-						<button class="list_btn" id="remove_btn">삭제</button>
-						<button class="list_btn" id="update_btn">수정</button>
-					</c:if>
-										
+					<div class="list_btn_box1">
+						<c:if test="${sessionScope.loginUser.id == bDto.bwriter}">
+							<button class="list_btn" id="update_btn">수정</button>
+							<button class="list_btn" id="remove_btn">삭제</button>
+						</c:if>
+					</div>
+					<div class="list_btn_box2">
+						<c:if test="${!empty sessionScope.loginUser.id}">
+							<div class="list_btn" OnClick="location.href='#'">좋아요</div>
+						</c:if>
+						<div class="list_btn" OnClick="location.href='${path}/board/list'">목록</div>
+					</div>
 				</div>
 				<!-- 댓글영역 -->
 				<div class="comment_outline">

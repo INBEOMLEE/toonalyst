@@ -29,6 +29,7 @@ public class BoardController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(
 			Model model,
+			@RequestParam(defaultValue = "new") String sort_option,
 			@RequestParam(defaultValue = "all") String search_option,
 			@RequestParam(defaultValue = "") String keyword,
 			@RequestParam(defaultValue = "1") int curPage,
@@ -44,12 +45,14 @@ public class BoardController {
 		int end = pager.getPageEnd();
 		
 		// 페이지 출력할 게시글 목록
-		List<BoardDTO> list = service.listAll(search_option, keyword, start, end, flag);
+		List<BoardDTO> list = service.listAll(sort_option, search_option, keyword, start, end, flag);
 		
 		HashMap<String, Object> map = new HashMap<>();
+		log.info(">>>>>>>>>>>>>list☆★☆★☆★☆★☆★☆★>>>>>>>>>>"+list.toString());
 		map.put("list", list);
 		map.put("count", count);
 		map.put("pager", pager);
+		map.put("sort_option", sort_option);
 		map.put("search_option", search_option);
 		map.put("keyword", keyword);
 		map.put("flag", flag);
@@ -68,12 +71,14 @@ public class BoardController {
 	@RequestMapping(value="/boardlist", method=RequestMethod.GET)
 	public String boardlist(
 			Model model,
+			@RequestParam(defaultValue = "new") String sort_option,
 			@RequestParam(defaultValue = "all") String search_option,
 			@RequestParam(defaultValue = "") String keyword,
 			@RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue = "0") int flag
 			) {
 		log.info(">>>>> 게시글 목록 출력");
+		model.addAttribute("sort_option", sort_option);
 		model.addAttribute("search_option", search_option);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("curPage", curPage);

@@ -20,6 +20,7 @@ public class BoardDTO {
 	private String bwriter; 	 // 게시글 작성자
     private int	 bviewcnt;        // 조회수
     private int	 bgoodcnt;        // 좋아요
+    private int	 bcommentcnt;     // 댓글수
     private int bcategory;       // 상세 카테고리
     private int borigin;   		 // 숙주 	
     private int bturn;

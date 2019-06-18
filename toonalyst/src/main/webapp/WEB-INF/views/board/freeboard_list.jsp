@@ -19,6 +19,14 @@
 	width: 1180px;
 	margin: 0 auto;
 }
+.commentcnt_style {
+	background-color: white;/* rgb(231, 29, 54) */
+	font-size: 15px; /* 11px */
+	color: rgb(231, 29, 54); /* white */
+	border-radius: 25px;
+	padding: 2px 5px;
+	font-weight: bold;
+}
 /* 새로운 게시글 효과 */
 .new_time {
 	background-color: white;/* #FF8224 */
@@ -241,16 +249,16 @@
 		<div class="array_list">
 			<!-- sort_type: 최신순 new(default), 추천순 good, 댓글순 reply, 조회순 view // 주로 a 태그를 사용해서 만든다 -->
 			<span class="array_style">
-				<a href="${path}/board/freelist?sort_option=new&keyword=${map.keyword}&search_option=${map.search_option}" id="orderNew">최신순</a>
+				<a href="${path}/board/list?sort_option=new&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderNew">최신순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/freelist?sort_option=good&keyword=${map.keyword}&search_option=${map.search_option}" id="orderGood">추천순</a>
+				<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderGood">추천순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/freelist?sort_option=reply&keyword=${map.keyword}&search_option=${map.search_option}" id="orderReply">댓글순</a>
+				<a href="${path}/board/list?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderComment">댓글순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/freeslist?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}" id="orderCnt">조회순</a>
+				<a href="${path}/board/list?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderCnt">조회순</a>
 			</span>
 		</div>
 		<!-- 게시글 영역 -->
@@ -289,6 +297,9 @@
 							</td>
 							<td id="list_title">
 								<a href="${path}/board/freeView?bno=${bDto.bno}">${bDto.btitle}</a>
+								<c:if test="${bDto.bcommentcnt > 0}">
+									<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
+								</c:if>
 								<c:if test="${today == regdate }">
 									<span class="new_time">N</span>
 								</c:if>
@@ -321,17 +332,17 @@
 				<div class="pagination_box">
 					<div class="pagination">
 						<c:if test="${map.pager.curBlock > 1}">
-							<a href="${path}/board/list?curPage=1&keyword=${map.keyword}&search_option=${map.search_option}"><i class="fas fa-angle-double-left"></i></a>
-							<a href="${path}/board/list?curPage=${map.pager.blockBegin - 10}&keyword=${map.keyword}&search_option=${map.search_option}"><i class="fas fa-angle-left"></i></a> 
+							<a href="${path}/board/list?curPage=1&keyword=${map.keyword}&search_option=${map.search_option}&flag=2"><i class="fas fa-angle-double-left"></i></a>
+							<a href="${path}/board/list?curPage=${map.pager.blockBegin - 10}&keyword=${map.keyword}&search_option=${map.search_option}&flag=2"><i class="fas fa-angle-left"></i></a> 
 						</c:if>
 						
 						<c:forEach begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}" var="idx">
-							<a href="${path}/board/list?curPage=${idx}&keyword=${map.keyword}&search_option=${map.search_option}" <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>${idx}</a>
+							<a href="${path}/board/list?curPage=${idx}&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>${idx}</a>
 						</c:forEach>
 						
 						<c:if test="${map.pager.curBlock < map.pager.totBlock}">
-							<a href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&keyword=${map.keyword}&search_option=${map.search_option}"><i class="fas fa-angle-right"></i></a>
-							<a href="${path}/board/list?curPage=${map.pager.totPage}&keyword=${map.keyword}&search_option=${map.search_option}"><i class="fas fa-angle-double-right"></i></a> 
+							<a href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&keyword=${map.keyword}&search_option=${map.search_option}&flag=2"><i class="fas fa-angle-right"></i></a>
+							<a href="${path}/board/list?curPage=${map.pager.totPage}&keyword=${map.keyword}&search_option=${map.search_option}&flag=2"><i class="fas fa-angle-double-right"></i></a> 
 						</c:if>
 					</div>
 				</div>
