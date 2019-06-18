@@ -32,13 +32,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int countArticle(String search_option, String keyword) {
-		return bDao.countArticle(search_option, keyword);
+	public int countArticle(String search_option, String keyword, int flag) {
+		return bDao.countArticle(search_option, keyword, flag);
 	}
 
 	@Override
-	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end) {
-		return bDao.listAll(search_option, keyword, start, end);
+	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end, int flag) {
+		return bDao.listAll(search_option, keyword, start, end, flag);
 	}
 
 	@Override

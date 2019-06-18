@@ -30,21 +30,23 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int countArticle(String search_option, String keyword) {
-		Map<String, String> map = new HashMap<>();
+	public int countArticle(String search_option, String keyword, int flag) {
+		Map<String, Object> map = new HashMap<>();
 		map.put("search_option", search_option);
 		map.put("keyword", "%"+keyword+"%");
+		map.put("flag", flag);
 		
 		return sqlSession.selectOne("board.countArticle", map);
 	}
 
 	@Override
-	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end) {
+	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end, int flag) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("search_option", search_option);
 		map.put("keyword", "%"+keyword+"%");
 		map.put("start", start);
 		map.put("end", end);
+		map.put("flag", flag);
 		
 		return sqlSession.selectList("board.listAll", map);
 	}

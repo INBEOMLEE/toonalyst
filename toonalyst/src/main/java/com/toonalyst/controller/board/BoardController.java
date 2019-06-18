@@ -31,11 +31,12 @@ public class BoardController {
 			Model model,
 			@RequestParam(defaultValue = "all") String search_option,
 			@RequestParam(defaultValue = "") String keyword,
-			@RequestParam(defaultValue = "1") int curPage ) {
+			@RequestParam(defaultValue = "1") int curPage,
+			@RequestParam(defaultValue = "0") int flag ) {
 		log.info(">>>>> 게시글 목록 출력");
 		
 		// 레코드 개수 계산
-		int count = service.countArticle(search_option, keyword);
+		int count = service.countArticle(search_option, keyword, flag);
 		
 		// 페이지 관련 설정
 		Pager pager = new Pager(count, curPage);
@@ -43,7 +44,7 @@ public class BoardController {
 		int end = pager.getPageEnd();
 		
 		// 페이지 출력할 게시글 목록
-		List<BoardDTO> list = service.listAll(search_option, keyword, start, end);
+		List<BoardDTO> list = service.listAll(search_option, keyword, start, end, flag);
 		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", list);
@@ -51,8 +52,28 @@ public class BoardController {
 		map.put("pager", pager);
 		map.put("search_option", search_option);
 		map.put("keyword", keyword);
+		map.put("flag", flag);
+		log.info("★★★★★★★★★★★★★★★" + flag);
 		
 		model.addAttribute("map", map);
+		
+		return "/board/boardlist";
+	}
+	
+	// 페이지 이동
+	@RequestMapping(value="/boardlist", method=RequestMethod.GET)
+	public String boardlist(
+			Model model,
+			@RequestParam(defaultValue = "all") String search_option,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "1") int curPage,
+			@RequestParam(defaultValue = "0") int flag
+			) {
+		log.info(">>>>> 게시글 목록 출력");
+		model.addAttribute("search_option", search_option);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("flag", flag);
 		
 		return "/board/list";
 	}

@@ -37,14 +37,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 <if test="search_option == 'title'">
                 	WHERE b.bwriter = m.id
                 	AND btitle LIKE #{keyword}
+                	AND bcategory = #{flag}
                 </if>
                 <if test="search_option == 'content'">
                 	WHERE b.bwriter = m.id
                 	AND btext LIKE #{keyword}
+                	AND bcategory = #{flag}
                 </if>
                 <if test="search_option == 'writer'">
                 	WHERE b.bwriter = m.id
                 	AND bwriter LIKE #{keyword}
+                	AND bcategory = #{flag}
                 </if>
 			</when>
 			<otherwise>
@@ -52,6 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				AND (bwriter LIKE #{keyword}
 					 OR btitle LIKE #{keyword}
 					 OR btext LIKE #{keyword} )
+				AND bcategory = #{flag}
 			</otherwise>
 		</choose>	
 	</select>
@@ -67,14 +71,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			                  <if test="search_option == 'title'">
 			                	  WHERE b.bwriter = m.id
 			                	  AND btitle LIKE #{keyword}
+			                	  AND bcategory = #{flag}
 			                  </if>
 			                  <if test="search_option == 'content'">
 			                	  WHERE b.bwriter = m.id
 			                	  AND btext LIKE #{keyword}
+			                	  AND bcategory = #{flag}
 			                  </if>
 			                  <if test="search_option == 'writer'">
 			                	  WHERE b.bwriter = m.id
 			                	  AND bwriter LIKE #{keyword}
+			                	  AND bcategory = #{flag}
 			                  </if>
 						  </when>
 						  <otherwise>
@@ -82,15 +89,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							  AND (bwriter LIKE #{keyword}
 								   OR btitle LIKE #{keyword}
 								   OR btext LIKE #{keyword} )
+							  AND bcategory = #{flag}
 						  </otherwise>
 					  </choose>	
 					  ORDER BY bno DESC
 		            ) a
-		      ) WHERE bcategory = 0 AND (rnum BETWEEN #{start} AND #{end})
+		      ) WHERE rnum BETWEEN #{start} AND #{end}
 	</select>
 	
 	<!-- 조회수 증가 -->
-	<update id="increaseViewCnt">
+	<update id="increaseViewCnt" parameterType="int">
 		UPDATE tbl_toonalyst_board
 		SET bviewcnt = bviewcnt + 1
 		WHERE bno = #{bno}

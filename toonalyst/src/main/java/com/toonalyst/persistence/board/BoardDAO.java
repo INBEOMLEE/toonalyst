@@ -8,11 +8,11 @@ public interface BoardDAO {
 	
 	public int register(BoardDTO bDto);
 
-	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end);
+	public List<BoardDTO> listAll(String search_option, String keyword, int start, int end, int flag);
 
 	public BoardDTO read(int bno);
 
-	public int countArticle(String search_option, String keyword);
+	public int countArticle(String search_option, String keyword, int flag);
 
 	public void delete(int bno);
 
