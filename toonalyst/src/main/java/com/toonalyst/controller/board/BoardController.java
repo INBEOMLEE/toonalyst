@@ -106,7 +106,9 @@ public class BoardController {
        log.info(">>>>> 데이터 등록유뮤 확인 " + bDto.toString());
        service.register(bDto);
        
-       return "redirect:/board/list";
+		/* return "redirect:/board/list"; */
+       
+       return "redirect:/board/view?bno=" + bDto.getBno(); 
     }
 	
 	
@@ -133,12 +135,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePlay(BoardDTO bDto) {
+	public String updatePlay(int bno, BoardDTO bDto, Model model) {
+		
 		service.update(bDto);
 		
 		
-				
-		return "redirect:/board/list";
+		
+		return "redirect:/board/view?bno=" + bDto.getBno(); 
 	}
 	
 	

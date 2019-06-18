@@ -284,7 +284,7 @@
 					${bDto.bcontent}
 				</div>
 				<div class="list_btn_box">
-					<div class="list_btn">목록</div>
+					<div class="list_btn" OnClick="location.href='${path}/board/list'">목록</div>
 					<c:if test="${sessionScope.loginUser.id == bDto.bwriter}">
 					<button class="list_btn" id="remove_btn">삭제</button>
 					<button class="list_btn" id="update_btn">수정</button>
