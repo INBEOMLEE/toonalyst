@@ -84,6 +84,39 @@ public class BoardController {
        return "redirect:/board/list";
     }
 	
+	
+	// 게시글 삭제 작업 
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(int bno) {
+		
+		service.delete(bno);
+		
+				
+		return "redirect:/board/list"; 
+	}
+	
+	// 게시글 수정 출력
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String updateView(int bno, Model model) {
+		
+		BoardDTO bDto = service.read(bno);
+		model.addAttribute("bDto",bDto);
+		
+		
+				
+		return "board/modify"; 
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updatePlay(BoardDTO bDto) {
+		service.update(bDto);
+		
+		
+				
+		return "redirect:/board/list";
+	}
+	
+	
 
 	// DB 작업
 

@@ -285,6 +285,11 @@
 				</div>
 				<div class="list_btn_box">
 					<div class="list_btn">목록</div>
+					<c:if test="${sessionScope.loginUser.id == bDto.bwriter}">
+					<button class="list_btn" id="remove_btn">삭제</button>
+					<button class="list_btn" id="update_btn">수정</button>
+					</c:if>
+										
 				</div>
 				<!-- 댓글영역 -->
 				<div class="comment_outline">
@@ -376,6 +381,18 @@ $(document).on("click", ".comment_delete_btn", function(){
 			alert("System Error!!!");
 		}
 	});
+});
+
+
+$(document).on("click", "#remove_btn", function(){
+	location.href="${path}/board/delete?bno=${bDto.bno}";
+		
+});
+
+
+$(document).on("click", "#update_btn", function(){
+	location.href="${path}/board/update?bno=${bDto.bno}";
+		
 });
 	
 </script>

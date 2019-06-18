@@ -13,5 +13,8 @@ public interface BoardService {
 	public BoardDTO read(int bno);
 	// 레코드 수 구하기
 	public int countArticle(String search_option, String keyword);
+	// 게시글 삭제 작업 진행
+	public void delete(int bno);
+	public void update(BoardDTO bDto);
 	
 }

@@ -14,6 +14,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        INSERT INTO  tbl_toonalyst_board(bno, btitle, bcontent,btext,bcategory, bwriter)
        VALUES(seq_toonalyst_board_bno.NEXTVAL,#{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter})       
    	</insert>	
+	  <!-- 게시글 삭제 작업 -->
+	 <delete id="delete" parameterType="com.toonalyst.domain.board.BoardDTO">
+		 DELETE FROM  tbl_toonalyst_board 
+		 WHERE bno = #{bno}	 	 
+	 </delete> 
+	 
+	 <update id="update" parameterType="com.toonalyst.domain.board.BoardDTO">
+		 update tbl_toonalyst_board 
+		 SET btitle = #{btitle},
+		 	bcontent = #{bcontent},
+		 	btext = #{btext}			 		 
+		 WHERE bno = #{bno}	 	 
+	 </update> 
+	
+	
+	
+	
 	
 	
 	<!-- 레코드 개수 계산 -->

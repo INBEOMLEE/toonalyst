@@ -13,4 +13,8 @@ public interface BoardDAO {
 	public BoardDTO read(int bno);
 
 	public int countArticle(String search_option, String keyword);
+
+	public void delete(int bno);
+
+	public void update(BoardDTO bDto);
 }

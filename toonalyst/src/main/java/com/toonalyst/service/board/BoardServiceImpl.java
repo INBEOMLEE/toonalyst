@@ -40,4 +40,16 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.listAll(search_option, keyword, start, end);
 	}
 
+	@Override
+	public void delete(int bno) {
+		 bDao.delete(bno);
+				
+	}
+
+	@Override
+	public void update(BoardDTO bDto) {
+		bDao.update(bDto);
+		
+	} 
+
 }
