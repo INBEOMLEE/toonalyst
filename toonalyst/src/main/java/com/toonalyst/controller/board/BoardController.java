@@ -95,11 +95,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/freeView", method=RequestMethod.GET)
-	public String freeboardView(int bno, Model model, HttpSession session) {
+	public String freeboardView(int bno, int flag, Model model, HttpSession session) {
 		log.info(">>>>> 자유 게시판 상세 게시글 출력");
 		service.increaseViewCnt(bno, session);
 		BoardDTO bDto = service.read(bno);
 		model.addAttribute("bDto", bDto);
+		model.addAttribute("flag", flag);
 		return "/board/freeboard_view";
 	}
 	
@@ -129,23 +130,38 @@ public class BoardController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(int bno, int flag) {
 		service.delete(bno);
-		return "redirect:/board/boardlist?flag=" + flag; 
+		
+		if(flag == 2) {
+			return "redirect:/board/list?flag=" + flag;
+		} else {
+			return "redirect:/board/boardlist?flag=" + flag;
+		}
 	}
 	
 	// 게시글 수정 출력
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateView(int bno, int flag, Model model) {
+		 log.info(">>>>> 게시글 수정 페이지 출력");
 		BoardDTO bDto = service.read(bno);
-		model.addAttribute("bDto",bDto);
+		model.addAttribute("bDto", bDto);
 		model.addAttribute("flag", flag);
 		return "board/modify"; 
 	}
 	
+	// 게시글 수정 기능 구현
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePlay(int bno, BoardDTO bDto, Model model) {
+	public String updatePlay(BoardDTO bDto, Model model) {
+		log.info(">>>>> 게시글 수정 기능 구현 ");
 		service.update(bDto);
-		return "redirect:/board/view?bno=" + bDto.getBno() + "&flag=" + bDto.getBcategory(); 
+		if(bDto.getBcategory() == 2) {
+			return "redirect:/board/freeView?bno=" + bDto.getBno() + "&flag=" + bDto.getBcategory();
+		} else {
+			return "redirect:/board/view?bno=" + bDto.getBno() + "&flag=" + bDto.getBcategory();
+		}
 	}
+	
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/goodcheck", method = RequestMethod.POST)

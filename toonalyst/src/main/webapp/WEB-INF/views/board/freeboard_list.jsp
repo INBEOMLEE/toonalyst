@@ -262,7 +262,7 @@
 				<a href="${path}/board/list?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderComment">댓글순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/list?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderCnt">조회순</a>
+				<a href="${path}/board/list?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderView">조회순</a>
 			</span>
 		</div>
 		<!-- 게시글 영역 -->
@@ -297,7 +297,7 @@
 								<strong>${bDto.bno}</strong>
 							</td>
 							<td id="list_title">
-								<a href="${path}/board/freeView?bno=${bDto.bno}">${bDto.btitle}</a>
+								<a href="${path}/board/freeView?bno=${bDto.bno}&flag=2">${bDto.btitle}</a>
 								<c:if test="${bDto.bcommentcnt > 0}">
 									<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
 								</c:if>
@@ -368,6 +368,21 @@
 <%@ include file="../include/footer.jsp" %>  
 <script type="text/javascript">
 $(document).ready(function(){
+	var sort_option = "${map.sort_option}";
+	
+	if(sort_option == "new") {
+		$('#orderNew').css("color", "#FF6C36");
+	}
+	if(sort_option == "good") {
+		$('#orderGood').css("color", "#FF6C36");
+	}
+	if(sort_option == "comment") {
+		$('#orderComment').css("color", "#FF6C36");
+	}
+	if(sort_option == "view") {
+		$('#orderView').css("color", "#FF6C36");
+	}
+	
 	$('.register_btn').click(function(){
 		location.href="${path}/board/register";
 	});

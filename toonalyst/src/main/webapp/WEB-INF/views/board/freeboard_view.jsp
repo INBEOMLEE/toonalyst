@@ -113,8 +113,8 @@
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    transition: 0.3s
-	
+    transition: 0.3s;
+    user-select: none;
 }
 .list_btn:hover {
 	background: #FF6C36;
@@ -173,7 +173,6 @@
 	justify-content: space-between;
 	align-items: center;
 }
-
 .reg_date {
 	display: inline-block;
 	color: dimgray;
@@ -269,7 +268,7 @@
 					</tr>
 					<tr>
 						<th class="tbl_writer">작성자</td>
-						<td class="tbl_writer_con">운영자</td>
+						<td class="tbl_writer_con">${bDto.bwriter}</td>
 						<th class="tbl_good">좋아요</th>
 						<td class="tbl_good_con">${bDto.bgoodcnt}</td>
 						<th class="tbl_date">작성일</td>
@@ -291,7 +290,7 @@
 						<c:if test="${!empty sessionScope.loginUser.id}">
 							<div class="list_btn" id="btn_good">좋아요</div>
 						</c:if>
-						<div class="list_btn" OnClick="location.href='${path}/board/list'">목록</div>
+						<div class="list_btn" id="freelist_btn">목록</div>
 					</div>
 				</div>
 				<!-- 댓글영역 -->
@@ -329,7 +328,6 @@ $(document).ready(function(){
 	
 	// 좋아요 클릭했을 때 증감
 	$('#btn_good').click(function(){
-		alert("좋아요 클릭했음");
 		var id = "${sessionScope.loginUser.id}";
 		var bno = "${bDto.bno}";
 		$.ajax({
@@ -338,7 +336,6 @@ $(document).ready(function(){
 			dataType: "json",
 			data: "id=" + id + "&bno=" + bno,
 			success: function(data){
-				alert("SUCCESS");
 				good_check();
 				$('.tbl_good_con').text(data);
 			},
@@ -420,16 +417,20 @@ $(document).on("click", ".comment_delete_btn", function(){
 
 
 $(document).on("click", "#remove_btn", function(){
-	location.href="${path}/board/delete?bno=${bDto.bno}";
+	location.href="${path}/board/delete?bno=${bDto.bno}&flag=2";
 		
 });
 
 
 $(document).on("click", "#update_btn", function(){
-	location.href="${path}/board/update?bno=${bDto.bno}";
+	location.href="${path}/board/update?bno=${bDto.bno}&flag=${flag}";
 		
 });
 
+$(document).on("click", "#freelist_btn", function(){
+	location.href="${path}/board/list?flag=${flag}";
+		
+});
 
 //좋아요 확인 함수
 function good_check(){
@@ -441,13 +442,12 @@ function good_check(){
 		dataType: "json",
 		data: "bno=" + bno + "&id="+ id,
 		success: function(result){ 
-			console.log(result);
 			if(result == "0"){
 				 // 좋아요 안누른 상태
-				 $('#btn_good').css('border', '1px solid black').css('background', 'white').css('color', 'black');
+				 $('#btn_good').css('border', '1px solid #dedfda').css('background', 'white').css('color', 'dimgray');
 			} else {
 				 // 좋아요 누른 상태
-				 $('#btn_good').css('border', '1px solid blue').css('background', 'blue').css('color', 'white');
+				 $('#btn_good').css('border', '1px solid #FF6C36').css('background', '#FF6C36').css('color', 'white');
 			}
 		}
 	});
