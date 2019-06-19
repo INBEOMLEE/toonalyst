@@ -21,5 +21,10 @@ public interface BoardService {
 	public void update(BoardDTO bDto);
 	// 조회수 증가
 	public void increaseViewCnt(int bno, HttpSession session);
+	// 좋아요 스위치
+	public int goodCheck(String id, int bno);
+	// 좋아요 증가와 감소
+	public int goodSwitch(String id, int bno);
+	
 	
 }

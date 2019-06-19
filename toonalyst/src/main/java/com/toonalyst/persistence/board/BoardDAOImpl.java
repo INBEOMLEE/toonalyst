@@ -69,4 +69,34 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.update("board.increaseViewCnt", bno);		
 	}
 
+	@Override
+	public int goodCheck(Map<String, Object> map) {
+		return sqlSession.selectOne("board.goodCheck", map);
+	}
+
+	@Override
+	public void goodPlus(Map<String, Object> map) {
+		sqlSession.insert("board.goodPlus", map);
+		
+	}
+
+	@Override
+	public void goodMinus(Map<String, Object> map) {
+		sqlSession.delete("board.goodMinus", map);
+	}
+
+	@Override
+	public int goodCntView(int bno) {
+		return sqlSession.selectOne("board.goodCntView", bno);
+		
+	}
+
+	@Override
+	public void goodCntUpdate(int bgoodcnt, int bno) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("bgoodcnt", bgoodcnt);
+		sqlSession.selectOne("board.goodCntUpdate", map);
+	}
+
 }

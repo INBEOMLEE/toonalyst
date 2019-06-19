@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.service.board.BoardService;
@@ -146,10 +147,22 @@ public class BoardController {
 		return "redirect:/board/view?bno=" + bDto.getBno() + "&flag=" + bDto.getBcategory(); 
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/goodcheck", method = RequestMethod.POST)
+	public int goodCheck(String id, int bno) {
+		log.info(">>>>> AJAX: 좋아요 눌렀을 때");
+		
+		return service.goodCheck(id, bno);
+	}
 	
-
-
-	
+	@ResponseBody
+	@RequestMapping(value="/goodswitch", method = RequestMethod.POST)
+	public int goodSwitch(String id, int bno) {
+		log.info(">>>>> AJAX: 좋아요 눌렀을 때 증감");
+		int bgoodcnt = service.goodSwitch(id, bno);
+		
+		return bgoodcnt;
+	}
 	
 	
 }

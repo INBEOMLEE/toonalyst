@@ -1,6 +1,8 @@
 package com.toonalyst.service.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -71,6 +73,36 @@ public class BoardServiceImpl implements BoardService {
 			session.setAttribute("update_time_"+bno, current_time);
 			
 		}
+	}
+
+	@Override
+	public int goodCheck(String id, int bno) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("bno", bno);
+		
+		return bDao.goodCheck(map);
+	}
+
+	@Override
+	public int goodSwitch(String id, int bno) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("bno", bno);
+		
+		int result = bDao.goodCheck(map);
+		if (result > 0) { // 좋아요 누른 상태인 경우
+			bDao.goodMinus(map);
+			
+		} else { // 좋아요 누르지 않은 상태인 경우
+			bDao.goodPlus(map);
+		}
+		
+		// tbl_toonalyst_good 테이블 COUNT해서 tbl_toonalyst_board에 update함
+		int bgoodcnt = bDao.goodCntView(bno);
+		bDao.goodCntUpdate(bgoodcnt, bno);
+		
+		return bgoodcnt;
 	} 
 
 }

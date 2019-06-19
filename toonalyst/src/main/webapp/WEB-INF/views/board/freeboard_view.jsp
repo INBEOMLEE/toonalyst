@@ -271,7 +271,7 @@
 						<th class="tbl_writer">작성자</td>
 						<td class="tbl_writer_con">운영자</td>
 						<th class="tbl_good">좋아요</th>
-						<td class="tbl_good_con">0</td>
+						<td class="tbl_good_con">${bDto.bgoodcnt}</td>
 						<th class="tbl_date">작성일</td>
 						<td class="tbl_date_con">
 							<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
@@ -289,7 +289,7 @@
 					</div>
 					<div class="list_btn_box2">
 						<c:if test="${!empty sessionScope.loginUser.id}">
-							<div class="list_btn" OnClick="location.href='#'">좋아요</div>
+							<div class="list_btn" id="btn_good">좋아요</div>
 						</c:if>
 						<div class="list_btn" OnClick="location.href='${path}/board/list'">목록</div>
 					</div>
@@ -306,6 +306,9 @@
 <%@ include file="../include/footer.jsp" %>  
 <script type="text/javascript">
 $(document).ready(function(){
+	// 좋아요 실시간 현황
+	good_check();
+	
 	// 문서가 준비되면 댓글 목록을 조회하는 AJAX실행
 	comment_list();
 	
@@ -323,6 +326,28 @@ $(document).ready(function(){
 	function(){
 		$(this).css('background-color', '#333').css('color','white');
 	});
+	
+	// 좋아요 클릭했을 때 증감
+	$('#btn_good').click(function(){
+		alert("좋아요 클릭했음");
+		var id = "${sessionScope.loginUser.id}";
+		var bno = "${bDto.bno}";
+		$.ajax({
+			type:"post",
+			url: "${path}/board/goodswitch",
+			dataType: "json",
+			data: "id=" + id + "&bno=" + bno,
+			success: function(data){
+				alert("SUCCESS");
+				good_check();
+				$('.tbl_good_con').text(data);
+			},
+			error: function(){
+				alert("SYSTEM ERROR!");
+			}
+		});
+	});
+	
 	
 
 });
@@ -369,6 +394,12 @@ $(document).on("click", "#comment_btn", function(){
 			}
 		});
 	}
+	
+	
+	
+	
+	
+	
 });
 
 //댓글 삭제
@@ -398,6 +429,30 @@ $(document).on("click", "#update_btn", function(){
 	location.href="${path}/board/update?bno=${bDto.bno}";
 		
 });
+
+
+//좋아요 확인 함수
+function good_check(){
+	var id = "${sessionScope.loginUser.id}";
+	var bno = "${bDto.bno}";
+	$.ajax({
+		type:"post",
+		url: "${path}/board/goodcheck",
+		dataType: "json",
+		data: "bno=" + bno + "&id="+ id,
+		success: function(result){ 
+			console.log(result);
+			if(result == "0"){
+				 // 좋아요 안누른 상태
+				 $('#btn_good').css('border', '1px solid black').css('background', 'white').css('color', 'black');
+			} else {
+				 // 좋아요 누른 상태
+				 $('#btn_good').css('border', '1px solid blue').css('background', 'blue').css('color', 'white');
+			}
+		}
+	});
+	
+}
 	
 </script>
 </body>

@@ -118,6 +118,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE bno = #{bno}
 	</update>
 	
+	<!-- 좋아요 확인 -->
+	<select id="goodCheck" parameterType="HashMap" resultType="int">
+		SELECT COUNT(*) FROM tbl_toonalyst_good
+		WHERE id = #{id} AND bno = #{bno} 
+	</select>
+	<!-- 좋아요 증가 -->
+	<insert id="goodPlus" parameterType="HashMap">
+		INSERT INTO tbl_toonalyst_good(id, bno)
+		VALUES (#{id}, #{bno})
+	</insert>
+	<!-- 좋아요 감소 -->
+	<delete id="goodMinus" parameterType="HashMap">
+		DELETE FROM tbl_toonalyst_good
+		WHERE id = #{id} AND bno = #{bno}
+	</delete>
+	<!-- 1개 게시글 좋아요 개수 확인 -->
+	<select id="goodCntView" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM tbl_toonalyst_good
+		WHERE bno = #{bno} 
+	</select>
+	<!-- 게시판 테이블에 goodcnt 추가 -->
+	<update id="goodCntUpdate" parameterType="HashMap">
+		UPDATE tbl_toonalyst_board
+		SET bgoodcnt = #{bgoodcnt}
+		WHERE bno = #{bno}
+	</update>
+	
+	
 </mapper>
 
 

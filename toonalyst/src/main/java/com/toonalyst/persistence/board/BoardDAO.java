@@ -1,6 +1,8 @@
 package com.toonalyst.persistence.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.toonalyst.domain.board.BoardDTO;
 
@@ -19,4 +21,15 @@ public interface BoardDAO {
 	public void update(BoardDTO bDto);
 
 	public void increaseViewCnt(int bno);
+
+	public int goodCheck(Map<String, Object> map);
+
+	public void goodPlus(Map<String, Object> map);
+	
+	public void goodMinus(Map<String, Object> map);
+
+	public int goodCntView(int bno);
+
+	public void goodCntUpdate(int bgoodcnt, int bno);
+	
 }
