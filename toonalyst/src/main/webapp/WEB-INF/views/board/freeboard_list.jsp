@@ -288,9 +288,6 @@
 						</tr>
 					</thead>
 					<tbody class="board_list_con">
-					
-					
-					
 					<c:forEach items="${map.list}" var="bDto">
 						<jsp:useBean id="now" class="java.util.Date"/>
 						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />

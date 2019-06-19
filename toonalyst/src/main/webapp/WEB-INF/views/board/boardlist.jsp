@@ -25,65 +25,103 @@
 					<a href="${path}/board/boardlist?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderComment">댓글순</a>
 				</span>
 				<span class="array_style">
-					<a href="${path}/board/boardlist?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderCnt">조회순</a>
+					<a href="${path}/board/boardlist?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderView">조회순</a>
 				</span>
 			</div>
 		</c:if>
-	
 		<div class="board_list">
-			<table class="board_col">
-				<colgroup>
-					<col style="width: 5%">
-					<col style="width: 15%">
-					<col style="width: 5%">
-					<col style="width: 5%">
-					<col style="width: 5%">
-				</colgroup>
-				<thead>
-					<tr class="board_head">
-						<th>분류</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회수</th>
-					</tr>
-				</thead>
-				<tbody class="board_list_con">
-					<c:forEach items="${map.list}" var="bDto">
-						<jsp:useBean id="now" class="java.util.Date"/>
-						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-						<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
-						<tr>
-							<td>
-								<c:if test="${map.flag == 0}">
-									<strong>[공지]</strong>
-								</c:if>
-								<c:if test="${map.flag == 1}">
-									<strong>[질문]</strong>
-								</c:if>
-							</td>
-							<td id="list_title">
-								<a href="${path}/board/view?bno=${bDto.bno}&flag=${map.flag}">${bDto.btitle}</a>
-								<c:if test="${today == regdate}">
-									<span class="new_time">N</span>
-								</c:if>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">${bDto.bwriter}</td>
-							<td>
-								<c:choose>
-									<c:when test="${today == regdate}">
-										<fmt:formatDate pattern="hh:mm:ss" value="${bDto.bregdate}" />
-									</c:when>
-									<c:otherwise>
-										<fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}" />
-									</c:otherwise>
-								</c:choose>
-							</td>
-							<td>${bDto.bviewcnt}</td>
+			<jsp:useBean id="now" class="java.util.Date"/>
+			<c:if test="${map.flag == 0}">
+				<table class="board_col">
+					<thead class="board_head_menu">
+						<tr class="board_head">
+							<th>분류</th>
+							<th id="noticeboard_title">제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>조회수</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody class="board_list_con">
+						<c:forEach items="${map.list}" var="bDto">
+							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+							<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
+							<tr>
+								<td>
+									<c:if test="${map.flag == 0}">
+										<strong>[공지]</strong>
+									</c:if>
+								</td>
+								<td id="list_title">
+									<a href="${path}/board/view?bno=${bDto.bno}&flag=${map.flag}">${bDto.btitle}</a>
+									<c:if test="${today == regdate}">
+										<span class="new_time">N</span>
+									</c:if>
+								</td>
+								<td><img alt="level" src="${path}/resources/img/level/50.gif">${bDto.bwriter}</td>
+								<td>
+									<c:choose>
+										<c:when test="${today == regdate}">
+											<fmt:formatDate pattern="hh:mm:ss" value="${bDto.bregdate}" />
+										</c:when>
+										<c:otherwise>
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}" />
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td>${bDto.bviewcnt}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:if>
+			<c:if test="${map.flag == 1}">
+				<table class="board_col">
+					<thead>
+						<tr class="qaboard_head_menu">
+							<th>분류</th>
+							<th id="qaboard_title">제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th id="qaboard_goodcnt_title">좋아요</th>
+							<th id="qaboard_viewcnt_title">조회수</th>
+						</tr>
+					</thead>
+					<tbody class="board_list_con">
+						<c:forEach items="${map.list}" var="bDto">
+							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+							<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
+							<tr>
+								<td>
+									<strong>[질문]</strong>
+								</td>
+								<td id="list_title">
+									<a href="${path}/board/view?bno=${bDto.bno}&flag=${map.flag}">${bDto.btitle}</a>
+									<c:if test="${bDto.bcommentcnt > 0}">
+										<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
+									</c:if>
+									<c:if test="${today == regdate }">
+										<span class="new_time">N</span>
+									</c:if>
+								</td>
+								<td><img alt="level" src="${path}/resources/img/level/50.gif">${bDto.bwriter}</td>
+								<td>
+									<c:choose>
+										<c:when test="${today == regdate }">
+											<fmt:formatDate pattern="hh:mm:ss" value="${bDto.bregdate}" />
+										</c:when>
+										<c:otherwise>
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}" />
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td id="qaboard_goodcnt">${bDto.bgoodcnt}</td>
+								<td id="qaboard_viewcnt">${bDto.bviewcnt}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:if>
 			<div class="wrap_btn">
 				<c:if test="${!empty sessionScope.loginUser}">
 					<div class="box_btn write" id="register_btn">
@@ -132,6 +170,19 @@
 		var keyword = "${map.keyword}";
 		var sort_option = "${map.sort_option}";
 		
+		if(sort_option == "new") {
+			$('#orderNew').css("color", "#FF6C36");
+		}
+		if(sort_option == "good") {
+			$('#orderGood').css("color", "#FF6C36");
+		}
+		if(sort_option == "comment") {
+			$('#orderComment').css("color", "#FF6C36");
+		}
+		if(sort_option == "view") {
+			$('#orderView').css("color", "#FF6C36");
+		}
+		
 		$('.btn_search').click(function(){
 			var search_option = $('.search_option').val();
 			var keyword = $.trim($('.keyword').val());
@@ -149,6 +200,7 @@
 		$('#register_btn').click(function(){
 			location.href="${path}/board/register?flag=${map.flag}";
 		});
+		
 	});
 	</script>
 </body>

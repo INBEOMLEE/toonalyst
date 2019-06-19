@@ -277,6 +277,41 @@
 .array_style:hover:after, .array_style:hover:before {
     width: 50%; 
 }
+.board_head_menu tr {
+	width: 1180px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.board_head_menu th {
+	flex: 1;
+}
+#noticeboard_title {
+	flex: 3;
+}
+.qaboard_head_menu {
+	width: 1180px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.qaboard_head_menu th {
+	flex: 1;
+    padding: 15px 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+}
+#qaboard_title {
+	flex: 3;
+}
+#qaboard_goodcnt_title, #qaboard_viewcnt_title, #qaboard_goodcnt, #qaboard_viewcnt {
+	flex: 0.6;
+} 
+
 
 
 </style>
