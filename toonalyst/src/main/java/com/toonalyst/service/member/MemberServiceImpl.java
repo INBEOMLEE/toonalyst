@@ -1,13 +1,17 @@
  package com.toonalyst.service.member;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+
+import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
+import com.toonalyst.persistence.board.BoardDAO;
 import com.toonalyst.persistence.member.MemberDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +22,8 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Inject
 	private MemberDAO mDao;
+	
+	
 	
 	// 로그인 기능 구현
 	@Override
@@ -118,6 +124,22 @@ public class MemberServiceImpl implements MemberService{
 		mDao.changePw(id, pw);
 	}
 
+	@Override
+	public HashMap<String, List<BoardDTO>> noticetList() {
+		List<BoardDTO> nList = mDao.noticeList(0);
+		List<BoardDTO> qList = mDao.noticeList(1);
+		List<BoardDTO> bList = mDao.noticeList(2);
+		
+		HashMap<String, List<BoardDTO>> map = new HashMap<>();
+		map.put("nList", nList);
+		map.put("qList", qList);
+		map.put("bList", bList);
+		return map;
+	} 
+
+	
+
+	
 
 
 

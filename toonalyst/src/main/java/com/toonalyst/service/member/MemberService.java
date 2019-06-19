@@ -1,7 +1,13 @@
 package com.toonalyst.service.member;
 
+
+
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
 
 public interface MemberService {
@@ -29,5 +35,9 @@ public interface MemberService {
 	public int pwFind(String id, String name, String phone);
 	// 비밀번호 변경
 	public void changePw(String id, String pw);
+	// 마이페이지 게시글 출력
+	public HashMap<String, List<BoardDTO>> noticetList();	
+
+	
 	
 }

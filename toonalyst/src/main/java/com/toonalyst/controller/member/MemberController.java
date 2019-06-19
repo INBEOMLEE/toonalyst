@@ -1,5 +1,8 @@
 package com.toonalyst.controller.member;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
 import com.toonalyst.service.member.MemberService;
 
@@ -40,12 +44,14 @@ public class MemberController {
 		session.setAttribute("URI", referer);
 		return "/member/login";
 	}
-	@RequestMapping(value="/mypage", method = RequestMethod.GET)
-	public String myPageView() {
-		log.info(">>>>> 마이페이지 출력");
-		
-		return "/member/mypage";
-	}
+	/*
+	 * @RequestMapping(value="/mypage", method = RequestMethod.GET) public String
+	 * myPageView() { log.info(">>>>> 마이페이지 출력");
+	 * 
+	 * return "/member/mypage"; }
+	 */
+
+	
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logoutView(HttpSession session, HttpServletRequest request) {
@@ -195,4 +201,20 @@ public class MemberController {
 		log.info(">>>>> ajax: pw find" );
 		return service.pwFind(id, name, phone);
 	}
-}
+	
+	
+	
+	// 마이페이지 게시글 조회
+	@RequestMapping(value="/mypage", method = RequestMethod.GET)
+	public String myPagePlay(Model model) {
+		log.info(">>>>> 마이페이지 게시글 출력");
+		
+		HashMap<String, List<BoardDTO>> map = service.noticetList();	
+		
+		model.addAttribute("nList", map);
+		
+		return "/member/mypage";
+		
+	}
+	
+}	

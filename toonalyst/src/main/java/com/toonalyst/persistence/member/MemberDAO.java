@@ -1,7 +1,9 @@
 package com.toonalyst.persistence.member;
 
 import java.util.HashMap;
+import java.util.List;
 
+import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
 
 public interface MemberDAO {
@@ -27,4 +29,6 @@ public interface MemberDAO {
 	public int pwFind(String id, String name, String phone);
 	// 비밀번호 변경 기능 구현
 	public void changePw(String id, String pw);
+	// 마이페이지 조회	
+	public List<BoardDTO> noticeList(int bcategory);
 }

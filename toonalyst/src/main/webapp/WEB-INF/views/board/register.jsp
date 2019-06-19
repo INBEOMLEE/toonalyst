@@ -35,7 +35,7 @@ h3.title {
     vertical-align: middle;
 }
 .tbl_row td {
-    padding: 15px 5px;
+    padding: 15px 0px;
     border-bottom: 1px solid #e0e0e0;
     text-align: left;
     vertical-align: middle;

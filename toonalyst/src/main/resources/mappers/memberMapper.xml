@@ -67,6 +67,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET pw = #{pw}
 		WHERE id = #{id}
 	</update>
+	
+	<select id="newlist" parameterType="int" resultType="com.toonalyst.domain.board.BoardDTO">
+  		<![CDATA[
+     	  SELECT *
+ 			FROM (SELECT * FROM tbl_toonalyst_board
+         	WHERE  bcategory = #{bcategory}
+      		ORDER BY bregdate DESC)
+ 			WHERE rownum <= 5
+ 	 	 ]]>  	 	
+    </select>
+
+	
+	
 </mapper>
 
 

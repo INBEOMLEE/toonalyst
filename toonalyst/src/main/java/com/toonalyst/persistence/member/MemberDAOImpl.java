@@ -1,12 +1,14 @@
 package com.toonalyst.persistence.member;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -76,5 +78,11 @@ public class MemberDAOImpl implements MemberDAO{
 		map.put("pw", pw);
 		sqlSession.update("member.changePw", map);
 	}
+	
+	
+	  @Override public List<BoardDTO> noticeList(int bcategory) {
+	  
+	  return sqlSession.selectList("member.newlist",bcategory); 
+	  }
 
 }
