@@ -85,7 +85,13 @@ INCREMENT BY 1
 NOCYCLE;
 
 INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
-VALUES(seq_toonalyst_board_bno.NEXTVAL, '안녕하세요', '내용입니다', '내용입니다', 'user01', 0);
+VALUES(seq_toonalyst_board_bno.NEXTVAL, '안녕하세요', '내용입니다', '내용입니다', 'user01', 2);
+INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
+VALUES(seq_toonalyst_board_bno.NEXTVAL, '2안녕하세요', '내용입니다', '내용입니다', 'user02', 2);
+INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
+VALUES(seq_toonalyst_board_bno.NEXTVAL, '3안녕하세요', '내용입니다', '내용입니다', 'user03', 2);
+INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
+VALUES(seq_toonalyst_board_bno.NEXTVAL, '4안녕하세요', '내용입니다', '내용입니다', 'user04', 2);
 COMMIT;
 
 
@@ -126,4 +132,16 @@ COMMIT;
 SELECT * FROM tbl_toonalyst_comment;
 
 
+
+-- 좋아요 테이블
+DROP TABLE tbl_toonalyst_good;
+CREATE TABLE tbl_toonalyst_good(
+    id VARCHAR2(30) NOT NULL,
+    bno NUMBER NOT NULL);
+-- 좋아요 테이블 복합키
+alter table "JAVA"."TBL_TOONALYST_GOOD" add constraint tbl_good_PK_IDBNO primary key("ID","BNO");
+alter table "JAVA"."TBL_TOONALYST_GOOD" add constraint tbl_good_FK_id foreign key("ID") references "TBL_TOONALYST_MEMBER"("ID") ON DELETE CASCADE;
+alter table "JAVA"."TBL_TOONALYST_GOOD" add constraint tbl_good_FK_bno foreign key("BNO") references "TBL_TOONALYST_BOARD"("BNO") ON DELETE CASCADE;
+
+SELECT * FROM tbl_toonalyst_good;
 
