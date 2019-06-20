@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.toonalyst.domain.webtoon.WebtoonDTO;
 import com.toonalyst.service.webtoon.WebtoonService;
@@ -40,5 +41,13 @@ public class IndexController {
 		}
 		model.addAttribute("list",list);
 		return "updateresult";
+	}
+	
+	
+	@RequestMapping(value="/introduction", method=RequestMethod.GET)
+	public String introduction() {
+		log.info(">>>>> 사이트 소개 페이지 출력");
+		
+		return "/introduction";
 	}
 }

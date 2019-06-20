@@ -46,7 +46,7 @@
 				<div class="wrap_inner">
 					<ul class="category">
 						<li>
-							<a href="#">Navigation</a>
+							<a href="${path}/introduction">Introduction</a>
 							<div class="nav_dropdown">
 								<a href="#"><span><span>Nav DROPDOWN</span></span></a>
 								<a href="#"><span>Nav DROPDOWN</span></a>
