@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.toonalyst.domain.board.CommentDTO;
+import com.toonalyst.persistence.board.BoardDAO;
 import com.toonalyst.persistence.board.CommentDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CommentServiceImpl implements CommentService {
 	@Inject
 	private CommentDAO cDao;
+	@Inject
+	private BoardDAO bDao;
 	
 	@Override
 	public List<CommentDTO> listAll(int bno) {
@@ -23,6 +26,11 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public int create(CommentDTO cDto) {
+		int bno = cDto.getBno();
+		bDao.commentCntUpdate(bno);
+		
+		
+		
 		return cDao.create(cDto);
 	}
 

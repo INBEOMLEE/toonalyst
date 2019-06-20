@@ -99,4 +99,9 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.selectOne("board.goodCntUpdate", map);
 	}
 
+	@Override
+	public void commentCntUpdate(int bno) {
+		sqlSession.update("board.commentCntUpdate", bno);
+	}
+
 }

@@ -321,6 +321,7 @@
 							<th id="qaboard_viewcnt_title">조회수</th>
 						</tr>
 					</thead>
+					<jsp:useBean id="now" class="java.util.Date"/>
 					<tbody class="board_list_con">
 						<c:forEach items="${map.list}" var="bDto">
 							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
@@ -341,7 +342,7 @@
 								<td><img alt="level" src="${path}/resources/img/level/50.gif">${bDto.bwriter}</td>
 								<td>
 									<c:choose>
-										<c:when test="${today == regdate }">
+										<c:when test="${today == regdate}">
 											<fmt:formatDate pattern="hh:mm:ss" value="${bDto.bregdate}" />
 										</c:when>
 										<c:otherwise>

@@ -145,7 +145,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE bno = #{bno}
 	</update>
 	
-	
+	<!-- 댓글 등록을 한 이후 Board 테이블에 commentCnt Update -->
+	<update id="commentCntUpdate" parameterType="int">
+		UPDATE tbl_toonalyst_board
+		SET bcommentcnt = bcommentcnt + 1
+		WHERE bno = #{bno}
+	</update>
 </mapper>
 
 
