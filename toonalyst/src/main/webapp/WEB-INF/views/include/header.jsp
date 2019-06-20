@@ -79,7 +79,7 @@
 							</div>
 						</li>
 						<li>
-							<a href="${path}/board/list?flag=2">FreeBoard</a>
+							<a href="${path}/board/list?flag=2">Free Board</a>
 						</li>
 					</ul>
 				</div>

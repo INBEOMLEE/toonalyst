@@ -36,6 +36,7 @@ public class BoardController {
 			@RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue = "0") int flag ) {
 		log.info(">>>>> 게시글 목록 출력");
+		
 		// 레코드 개수 계산
 		int count = service.countArticle(search_option, keyword, flag);
 		
@@ -122,7 +123,11 @@ public class BoardController {
     public String registerPlay(BoardDTO bDto) {
        log.info(">>>>> 게시글  등록 기능 구현 ");
        service.register(bDto);
-       return "redirect:/board/boardlist?flag=" + bDto.getBcategory(); 
+       if(bDto.getBcategory() == 2) {
+    	   return "redirect:/board/list?flag=" + bDto.getBcategory();
+       } else {
+    	   return "redirect:/board/boardlist?flag=" + bDto.getBcategory(); 
+       }
     }
 	
 	

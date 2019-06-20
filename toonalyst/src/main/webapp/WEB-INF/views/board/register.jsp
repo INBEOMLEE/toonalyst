@@ -107,7 +107,7 @@ h3.title {
 }
 .register_err_message {
 	width: 1180px;
-	margin: 0 auto;
+	margin: 30px auto;
 	text-align: center;
 	color: tomato;
 	display: none;

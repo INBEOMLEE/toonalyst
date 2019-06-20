@@ -444,7 +444,7 @@ function good_check(){
 		success: function(result){ 
 			if(result == "0"){
 				 // 좋아요 안누른 상태
-				 $('#btn_good').css('border', '1px solid #dedfda').css('background', 'white').css('color', 'dimgray');
+				 $('#btn_good').css('border', '1px solid #dedfda').css('background', '#dedfda').css('color', 'white');
 			} else {
 				 // 좋아요 누른 상태
 				 $('#btn_good').css('border', '1px solid #FF6C36').css('background', '#FF6C36').css('color', 'white');

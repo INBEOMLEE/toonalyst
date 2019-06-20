@@ -332,7 +332,7 @@
 					<div class="list_btn_box2">
 						<c:if test="${!empty sessionScope.loginUser.id}">
 							<c:if test="${flag == 1}">
-								<div class="list_btn" >좋아요</div>
+								<div class="list_btn" id="btn_good">좋아요</div>
 							</c:if>
 						</c:if>
 						<div class="list_btn" id="board_list_btn">목록</div>
@@ -360,6 +360,8 @@ $(document).ready(function(){
 		$('.board_menu ul li').eq(1).addClass("active");
 	}
 	
+	// 좋아요 실시간 현황
+	good_check();
 	
 	// 문서가 준비되면 댓글 목록을 조회하는 AJAX실행
 	comment_list();
@@ -377,7 +379,47 @@ $(document).ready(function(){
 		$(this).css('background-color', '#333').css('color','white');
 	});
 	
+	// 좋아요 클릭했을 때 증감
+	$('#btn_good').click(function(){
+		var id = "${sessionScope.loginUser.id}";
+		var bno = "${bDto.bno}";
+		$.ajax({
+			type:"post",
+			url: "${path}/board/goodswitch",
+			dataType: "json",
+			data: "id=" + id + "&bno=" + bno,
+			success: function(data){
+				good_check();
+				$('.tbl_good_con').text(data);
+			},
+			error: function(){
+				alert("SYSTEM ERROR!");
+			}
+		});
+	});
+	
 });
+	//좋아요 확인 함수
+	function good_check(){
+		var id = "${sessionScope.loginUser.id}";
+		var bno = "${bDto.bno}";
+		$.ajax({
+			type:"post",
+			url: "${path}/board/goodcheck",
+			dataType: "json",
+			data: "bno=" + bno + "&id="+ id,
+			success: function(result){ 
+				if(result == "0"){
+					 // 좋아요 안누른 상태
+					 $('#btn_good').css('border', '1px solid #dedfda').css('color', 'white').css('background', '#dedfda');
+				} else {
+					 // 좋아요 누른 상태
+					 $('#btn_good').css('border', '1px solid #FF6C36').css('color', 'white').css('background', '#FF6C36');
+				}
+			}
+		});
+		
+	}
 
 	//댓글 띄우는 함수
 	function comment_list(){		

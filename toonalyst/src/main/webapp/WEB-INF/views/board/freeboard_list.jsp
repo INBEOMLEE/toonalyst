@@ -193,13 +193,19 @@
 	cursor: pointer;
 }
 .board_list_con tr{
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 1180px;
 }
 .board_list_con td{
+	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex: 1;
+}
+#list_title {
+	flex: 3;
 }
 .board_col img {
 	margin-right: 3px;
@@ -211,6 +217,8 @@
 	justify-content: flex-start;
 	align-items: center;
 	margin: 10px 0 15px;
+	width: 1180px;
+	height: 16px;
 }
 .array_style {
     display: inline-block;
@@ -245,6 +253,40 @@
 .array_style:hover:after, .array_style:hover:before {
     width: 50%; 
 }
+.board_head_menu tr {
+	width: 1180px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.board_head_menu th {
+	flex: 1;
+}
+#noticeboard_title {
+	flex: 3;
+}
+.qaboard_head_menu {
+	width: 1180px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.qaboard_head_menu th {
+	flex: 1;
+    padding: 15px 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+}
+#qaboard_title {
+	flex: 3;
+}
+#qaboard_goodcnt_title, #qaboard_viewcnt_title, #qaboard_goodcnt, #qaboard_viewcnt {
+	flex: 0.6;
+} 
 </style>
 </head>
 <body>
@@ -269,63 +311,54 @@
 		<div class="freeboard_body">
 			<div class="board_list">
 				<table class="board_col">
-					<colgroup>
-						<col style="width: 5%">
-						<col style="width: 20%">
-						<col style="width: 5%">
-						<col style="width: 5%">
-						<col style="width: 3%">
-						<col style="width: 3%">
-					</colgroup>
 					<thead>
-						<tr class="board_head">
-							<th>번호</th>
-							<th>제목</th>
+						<tr class="qaboard_head_menu">
+							<th>분류</th>
+							<th id="qaboard_title">제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
-							<th>좋아요</th>
-							<th>조회수</th>
+							<th id="qaboard_goodcnt_title">좋아요</th>
+							<th id="qaboard_viewcnt_title">조회수</th>
 						</tr>
 					</thead>
 					<tbody class="board_list_con">
-					<c:forEach items="${map.list}" var="bDto">
-						<jsp:useBean id="now" class="java.util.Date"/>
-						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-						<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
-						<tr>
-							<td>
-								<strong>${bDto.bno}</strong>
-							</td>
-							<td id="list_title">
-								<a href="${path}/board/freeView?bno=${bDto.bno}&flag=2">${bDto.btitle}</a>
-								<c:if test="${bDto.bcommentcnt > 0}">
-									<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
-								</c:if>
-								<c:if test="${today == regdate }">
-									<span class="new_time">N</span>
-								</c:if>
-							</td>
-							<td><img alt="level" src="${path}/resources/img/level/50.gif">${bDto.bwriter}</td>
-							<td>
-								<c:choose>
-									<c:when test="${today == regdate }">
-										<fmt:formatDate pattern="hh:mm:ss" value="${bDto.bregdate}" />
-									</c:when>
-									<c:otherwise>
-										<fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}" />
-									</c:otherwise>
-								</c:choose>
-							</td>
-							<td>${bDto.bgoodcnt}</td>
-							<td>${bDto.bviewcnt}</td>
-						</tr>
-					</c:forEach>
+						<c:forEach items="${map.list}" var="bDto">
+							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+							<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
+							<tr>
+								<td>
+									<strong>[자유]</strong>
+								</td>
+								<td id="list_title">
+									<a href="${path}/board/freeView?bno=${bDto.bno}&flag=${map.flag}">${bDto.btitle}</a>
+									<c:if test="${bDto.bcommentcnt > 0}">
+										<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
+									</c:if>
+									<c:if test="${today == regdate }">
+										<span class="new_time">N</span>
+									</c:if>
+								</td>
+								<td><img alt="level" src="${path}/resources/img/level/50.gif">${bDto.bwriter}</td>
+								<td>
+									<c:choose>
+										<c:when test="${today == regdate }">
+											<fmt:formatDate pattern="hh:mm:ss" value="${bDto.bregdate}" />
+										</c:when>
+										<c:otherwise>
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}" />
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td id="qaboard_goodcnt">${bDto.bgoodcnt}</td>
+								<td id="qaboard_viewcnt">${bDto.bviewcnt}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<div class="wrap_btn">
 					<c:if test="${!empty sessionScope.loginUser}">
-						<div class="box_btn write">
-						<a href="${path}/board/freeRegister" class="register_btn">글쓰기</a>
+						<div class="box_btn write register_btn_box">
+							<a href="${path}/board/freeRegister" class="register_btn">글쓰기</a>
 						</div>
 					</c:if>						
 				</div>
@@ -383,9 +416,6 @@ $(document).ready(function(){
 		$('#orderView').css("color", "#FF6C36");
 	}
 	
-	$('.register_btn').click(function(){
-		location.href="${path}/board/register";
-	});
 	$('.btn_search').click(function(){
 		var search_option = $('.search_option').val();
 		var keyword = $.trim($('.keyword').val());
@@ -399,6 +429,11 @@ $(document).ready(function(){
 		}
 		location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword;
 	});
+	
+	$('.register_btn_box').click(function(){
+		location.href = "${path}/board/freeRegister";
+	});
+	
 });
 	
 </script>
