@@ -43,7 +43,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void logout(HttpSession session) {
-		session.invalidate();
+		session.removeAttribute("loginUser");
 		log.info(">>>>> 로그아웃 성공");
 	}
 

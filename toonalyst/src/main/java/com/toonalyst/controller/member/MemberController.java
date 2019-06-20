@@ -1,5 +1,6 @@
 package com.toonalyst.controller.member;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
+import com.toonalyst.service.exp.ExpService;
 import com.toonalyst.service.member.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -110,13 +113,20 @@ public class MemberController {
 	
 	// DB 작업
 	
+	@Inject
+	private ExpService expservice;
+	
+	@Transactional
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public String loginPlay(MemberDTO mDto, HttpSession session, Model model) {
 		log.info(">>>>> 로그인 기능 구현");
 		
 		int result = service.login(mDto, session);
+		expservice.expUpdate(mDto.getId(), 0, "로그인 경험치", "", session);
 		if(session.getAttribute("URI") != null) {
-			if(result > 0) return "redirect:"+ session.getAttribute("URI");
+			if(result > 0) {
+				return "redirect:"+ session.getAttribute("URI");
+			}
 		} else {
 			return "redirect:/";
 		}

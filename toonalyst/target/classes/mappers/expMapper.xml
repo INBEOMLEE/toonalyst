@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="exp">
+	<update id="expUpdate" parameterType="hashmap">
+		UPDATE TBL_TOONALYST_MEMBER 
+		SET MEMEXP = MEMEXP + #{exp}
+		WHERE ID = #{id}
+	</update>
+	<select id="codeToVal" parameterType="int" resultType="int">
+		select exp
+		from tbl_exp_code
+		where code = #{code}
+	</select>
+	<insert id="logInsert" parameterType="com.toonalyst.domain.exp.ExpLogDTO">
+		INSERT INTO TBL_EXP_LOG (ID, CODE, EXP, REASON, REF) 
+		VALUES (#{id}, #{code}, #{exp}, #{reason}, #{ref})
+	</insert>
+	<select id="logSelect" parameterType="String" resultType="com.toonalyst.domain.exp.ExpLogDTO">
+		select * from tbl_exp_log
+		where id = #{id}
+	</select>
+	<update id="level" parameterType="String">
+	<![CDATA[
+		UPDATE tbl_toonalyst_member
+   		SET GRADE = (SELECT MAX(TLEVEL) FROM TBL_EXP_TABLE WHERE TOTALEXP < (SELECT MEMEXP FROM tbl_toonalyst_member WHERE ID = #{id}))
+		WHERE ID = #{id}
+	]]>
+	</update>
+</mapper>

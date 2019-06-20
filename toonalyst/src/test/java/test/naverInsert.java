@@ -1,6 +1,7 @@
 package test;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,11 +21,6 @@ import com.toonalyst.persistence.member.MemberDAO;
 import com.toonalyst.persistence.webtoon.WebtoonDAO;
 
 public class naverInsert {
-	@Inject
-	WebtoonDAO wDao;
-	
-	@Inject
-	MemberDAO mDao;
 	
 	@Test
 	public void naverInsertAll() throws IOException {
@@ -34,7 +30,16 @@ public class naverInsert {
 //			System.out.println(webtoonDTO.toString());
 //		}
 //		System.out.println(list.size());
-		Document doc = Jsoup.connect("https://www.lezhin.com/ko/adultkind?path=%2Fko%2Ftop100&sw=kid").get();
-		System.out.println(doc.text());
+//		Document doc = Jsoup.connect("https://www.lezhin.com/ko/adultkind?path=%2Fko%2Ftop100&sw=kid").get();
+//		System.out.println(doc.text());
+		Calendar cal = null;
+		Calendar today = Calendar.getInstance();
+		String calstr = "";
+		String todaystr = today.get(Calendar.YEAR)+""+today.get(Calendar.MONTH)+today.get(Calendar.DATE);
+		
+		if(cal != null) {
+			calstr = cal.get(Calendar.YEAR)+""+cal.get(Calendar.MONTH)+cal.get(Calendar.DATE);
+		}
+		System.out.println(todaystr);
 	}
 }
