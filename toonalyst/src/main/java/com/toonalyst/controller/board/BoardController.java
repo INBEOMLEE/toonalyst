@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.service.board.BoardService;
 import com.toonalyst.service.board.Pager;
+import com.toonalyst.service.exp.ExpService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	@Inject
 	private BoardService service;
+	@Inject
+	private ExpService expservice;
 	
 	// 페이지 이동
 	@RequestMapping(value="/list", method=RequestMethod.GET)
@@ -118,11 +122,12 @@ public class BoardController {
 		return "/board/freeboard_register";
 	}
 	
-	
+	@Transactional
 	@RequestMapping(value="/register", method=RequestMethod.POST)
     public String registerPlay(BoardDTO bDto) {
        log.info(">>>>> 게시글  등록 기능 구현 ");
        service.register(bDto);
+       expservice.expUpdate(bDto.getBwriter(), 1, "게시글 등록 경험치 부여", "");
        if(bDto.getBcategory() == 2) {
     	   return "redirect:/board/list?flag=" + bDto.getBcategory();
        } else {
@@ -132,15 +137,18 @@ public class BoardController {
 	
 	
 	// 게시글 삭제 작업 
+	@Transactional
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(int bno, int flag) {
-		service.delete(bno);
 		
-		if(flag == 2) {
-			return "redirect:/board/list?flag=" + flag;
-		} else {
-			return "redirect:/board/boardlist?flag=" + flag;
-		}
+		// 평문통신이어서 보안이 이루어지지 않고있는데 패킷을 볼 수 있다면 ID와PW도 드러나고 변조해서 보낼 수도있는데 확인작업이 없다.
+		// 최소한의 정보로 모든 정보를 뽑아내서 그 정보로 동작하게 만드는 게 좋다
+		// bno가 고유번호이니까 그 정보에서 id를 가져와서 경험치를 처리하는게 바람직하다. 
+		// 삭제할 게시물 아이디와 == 현재 세션의 아이디 
+		// 다르면 남이 남의 게시물 삭제를 시도한다는 뜻이다. 운영자와 본인 외에는 비정상적인 접근으로 처리해서 보낸다.
+		
+		expservice.expUpdate(service.read(bno).getBwriter(), 2, "게시물 삭제 경험치 차감", "");
+		return service.delete(bno, flag);
 	}
 	
 	// 게시글 수정 출력

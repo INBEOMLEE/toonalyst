@@ -30,6 +30,9 @@ public class MemberController {
 	
 	@Inject
 	private MemberService service;
+	
+	@Inject
+	private ExpService expservice;
 
 	// 페이지 이동
 	
@@ -112,9 +115,7 @@ public class MemberController {
 	
 	
 	// DB 작업
-	
-	@Inject
-	private ExpService expservice;
+
 	
 	@Transactional
 	@RequestMapping(value="/login", method = RequestMethod.POST)
