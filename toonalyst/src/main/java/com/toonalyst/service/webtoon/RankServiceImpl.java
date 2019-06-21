@@ -37,10 +37,12 @@ public class RankServiceImpl implements RankService {
 	@Transactional
 	public List<WebtoonDTO> naver() {
 		ArrayList<WebtoonDTO> ranklist = new ArrayList<WebtoonDTO>();
-		try {
-			Document doc = Jsoup.connect("https://comic.naver.com/webtoon/weekdayList.nhn?week=").get();
-			Elements list = doc.select("#realTimeRankFavorite");
-			String rank1 = "";
+		// 주로 I/O에서 예외가 발생하는데 그 상황에 처리하기 위해서 try ~ catch사용
+		try { // jsoup에서 사용한다. 각종 예외상황에 대해서 예외발생해도 프로그램 종료안되고 대처하기 위해서 사용함
+			// java외의 문제 가능성이 있을 때 자바에서 try~catch를 강제한다. connect의 주소가 없는 경우 등
+			Document doc = Jsoup.connect("https://comic.naver.com/webtoon/weekdayList.nhn?week=").get(); // jsoup의 connect()를 이용해서 get 방식으로 접속 html 문서가 넘어옴
+			Elements list = doc.select("#realTimeRankFavorite"); // 랭킹부분 파싱
+			String rank1 = ""; 
 			WebtoonDTO webDto = new WebtoonDTO();
 			for (int i = 1; i < 10; i++) {
 				rank1 = list.select(".rank0"+i+" > a").attr("href").split("&no")[0].split("=")[1];
