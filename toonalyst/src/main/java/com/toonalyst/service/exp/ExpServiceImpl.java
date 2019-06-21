@@ -30,7 +30,7 @@ public class ExpServiceImpl implements ExpService {
 		int exp = 0;
 		exp = eDao.expCodeToExpval(code);
 		eDao.expUpdate(id, exp);
-		eDao.expLogInsert(new ExpLogDTO(id, code, exp, reason, null, ref));
+		eDao.expLogInsert(new ExpLogDTO(id, code, exp, reason, ref));
 		eDao.totalexpToLevel(id);
 	}
 	
@@ -51,7 +51,7 @@ public class ExpServiceImpl implements ExpService {
 			session.setAttribute("lastLoginExp"+id, todaystr);
 			exp = eDao.expCodeToExpval(code);
 			eDao.expUpdate(id, exp);
-			eDao.expLogInsert(new ExpLogDTO(id, code, exp, reason, null, ref));
+			eDao.expLogInsert(new ExpLogDTO(id, code, exp, reason, ref));
 		}else {
 			log.info("경험치 획득 실패");
 		}

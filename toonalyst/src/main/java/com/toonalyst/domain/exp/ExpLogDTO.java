@@ -20,4 +20,13 @@ public class ExpLogDTO {
 	private String reason;
 	private Date ldate;
 	private String ref;
+	
+	public ExpLogDTO(String id, int code, int exp, String reason, String ref) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.exp = exp;
+		this.reason = reason;
+		this.ref = ref;
+	}
 }
