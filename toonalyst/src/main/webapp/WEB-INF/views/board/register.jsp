@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 작성</title>
+<title>TOONALYST</title>
 <script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <style type="text/css">
 #counsel_write{
@@ -126,7 +126,13 @@ h3.title {
 				<tbody>           
 					<tr>
 						<th scope="row">분류</th>
-						<td>건의</td>
+						<c:if test="${flag == 0}">
+							<td>공지</td>
+						</c:if>
+						<c:if test="${flag == 1}">
+							<td>공지</td>
+						</c:if>
+						
 					</tr>             
 					<tr>
 						<th scope="row">

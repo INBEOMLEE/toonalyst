@@ -135,6 +135,24 @@ public class MemberServiceImpl implements MemberService{
 		map.put("qList", qList);
 		map.put("bList", bList);
 		return map;
+	}
+
+	@Override
+	public void boardCntUpdate(String id, int code, HttpSession session) {
+		mDao.boardCntUpdate(id, code);
+		session.removeAttribute("loginUser");
+		MemberDTO loginUser = mDao.updateView(id);
+		session.setAttribute("loginUser", loginUser);
+		log.info("게시글 작성 시 boardCnt 업데이트 및 세션 초기화 완료");
+	}
+
+	@Override
+	public void commentCntUpdate(String id, int code, HttpSession session) {
+		mDao.commentCntUpdate(id, code);
+		session.removeAttribute("loginUser");
+		MemberDTO loginUser = mDao.updateView(id);
+		session.setAttribute("loginUser", loginUser);
+		log.info("댓글 작성 시 commentCnt 업데이트 및 세션 초기화 완료");
 	} 
 
 	

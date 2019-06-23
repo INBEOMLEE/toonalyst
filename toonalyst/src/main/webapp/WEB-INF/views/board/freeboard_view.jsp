@@ -402,10 +402,12 @@ $(document).on("click", "#comment_btn", function(){
 //댓글 삭제
 $(document).on("click", ".comment_delete_btn", function(){
 	var cno = $(this).attr("data_num");
+	var id = "${sessionScope.loginUser.id}";
+	var bno = '${bDto.bno}';
 	
 	$.ajax({
 		url: "${path}/comment/delete",
-		data: "cno=" + cno,
+		data: "cno=" + cno + "&id="+ id + "&bno=" + bno,
 		success: function(){
 			comment_list();
 		},

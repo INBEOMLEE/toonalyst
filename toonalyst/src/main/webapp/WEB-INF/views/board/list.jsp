@@ -311,6 +311,14 @@
 #qaboard_goodcnt_title, #qaboard_viewcnt_title, #qaboard_goodcnt, #qaboard_viewcnt {
 	flex: 0.6;
 } 
+.commentcnt_style {
+	background-color: white;/* rgb(231, 29, 54) */
+	font-size: 15px; /* 11px */
+	color: rgb(231, 29, 54); /* white */
+	border-radius: 25px;
+	padding: 2px 5px;
+	font-weight: bold;
+}
 
 
 

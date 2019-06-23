@@ -31,4 +31,8 @@ public interface MemberDAO {
 	public void changePw(String id, String pw);
 	// 마이페이지 조회	
 	public List<BoardDTO> noticeList(int bcategory);
+	// 게시글 작성과 삭제 시 boardCnt Update
+	public void boardCntUpdate(String id, int code);
+	// 댓글 작성과 삭제 시 commentCnt Update
+	public void commentCntUpdate(String id, int code);
 }

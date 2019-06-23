@@ -100,8 +100,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void commentCntUpdate(int bno) {
-		sqlSession.update("board.commentCntUpdate", bno);
+	public void commentCntUpdate(int bno, int code) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("code", code);
+		sqlSession.update("board.commentCntUpdate", map);
 	}
 
 }

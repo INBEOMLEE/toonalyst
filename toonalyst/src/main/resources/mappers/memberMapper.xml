@@ -78,6 +78,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 	 ]]>  	 	
     </select>
 
+	<update id="boardCntUpdate" parameterType="HashMap">
+		UPDATE tbl_toonalyst_member
+		<if test="code == 1">
+			SET boardcnt = boardcnt + 1
+		</if>
+		<if test="code == 0">
+			SET boardcnt = boardcnt - 1
+		</if>
+		WHERE id = #{id}
+	</update>
+	
+	<update id="commentCntUpdate" parameterType="HashMap">
+		UPDATE tbl_toonalyst_member
+		<if test="code == 1">
+			SET commentcnt = commentcnt + 1
+		</if>
+		<if test="code == 0">
+			SET commentcnt = commentcnt - 1
+		</if>
+		WHERE id = #{id}
+	</update>
 	
 	
 </mapper>

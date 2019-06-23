@@ -31,6 +31,6 @@ public interface BoardDAO {
 
 	public void goodCntUpdate(int bgoodcnt, int bno);
 
-	public void commentCntUpdate(int bno);
+	public void commentCntUpdate(int bno, int code);
 	
 }

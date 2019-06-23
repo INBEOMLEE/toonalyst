@@ -148,7 +148,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 댓글 등록을 한 이후 Board 테이블에 commentCnt Update -->
 	<update id="commentCntUpdate" parameterType="int">
 		UPDATE tbl_toonalyst_board
-		SET bcommentcnt = bcommentcnt + 1
+		<if test="code == 1">
+			SET bcommentcnt = bcommentcnt + 1
+		</if>
+		<if test="code == 0">
+			SET bcommentcnt = bcommentcnt - 1
+		</if>
 		WHERE bno = #{bno}
 	</update>
 </mapper>

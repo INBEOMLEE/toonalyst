@@ -27,16 +27,14 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public int create(CommentDTO cDto) {
 		int bno = cDto.getBno();
-		bDao.commentCntUpdate(bno);
-		
-		
-		
+		bDao.commentCntUpdate(bno, 1);
 		return cDao.create(cDto);
 	}
 
 	@Override
-	public void delete(int cno) {
+	public void delete(int cno, int bno) {
 		cDao.delete(cno);
+		bDao.commentCntUpdate(bno, 0);
 	}
 
 }

@@ -66,18 +66,23 @@
 #mypage .my_info ul li+li {
     border-left: 1px solid #d5d5d5;
 }
+#gradeimg {
+	width: 37.5px;
+	height: 24px;
+	margin-top: 5px;
+}
 </style>
 </head>
 <body>
 	<div id="mypage">
 		<div class="my_info">
-		<p><strong>이인범 씨</strong>의 마이페이지</p>
+		<p><strong>${sessionScope.loginUser.name} 씨</strong>의 마이페이지</p>
 			<ul>
-				<li><a href="#">회원 등급<span>평민</span></a></li>
-				<li><a href="#">회원 레벨<span>Lv.3</span></a></li>			
-				<li><a href="#">E X P<span>1740점</span></a></li>
-				<li><a href="#">작성한 게시글 수<span>18</span></a></li>
-				<li><a href="#">작성한 댓글 수<span>36</span></a></li>
+				<li><a href="#">회원 등급<span><img alt="회원 등급" src="${path}/resources/img/level/${sessionScope.loginUser.grade}.gif" id="gradeimg"></span></a></li>
+				<li><a href="#">회원 레벨<span>${sessionScope.loginUser.grade}</span></a></li>			
+				<li><a href="#">E X P<span>${sessionScope.loginUser.memexp}</span></a></li>
+				<li><a href="#">작성한 게시글 수<span>${sessionScope.loginUser.boardcnt}</span></a></li>
+				<li><a href="#">작성한 댓글 수<span>${sessionScope.loginUser.commentcnt}</span></a></li>
 			</ul>		
 		</div>					
 	</div>

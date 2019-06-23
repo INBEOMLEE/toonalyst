@@ -18,6 +18,7 @@ import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.service.board.BoardService;
 import com.toonalyst.service.board.Pager;
 import com.toonalyst.service.exp.ExpService;
+import com.toonalyst.service.member.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,6 +30,8 @@ public class BoardController {
 	private BoardService service;
 	@Inject
 	private ExpService expservice;
+	@Inject
+	private MemberService memservice;
 	
 	// 페이지 이동
 	@RequestMapping(value="/list", method=RequestMethod.GET)
@@ -124,10 +127,13 @@ public class BoardController {
 	
 	@Transactional
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-    public String registerPlay(BoardDTO bDto) {
+    public String registerPlay(BoardDTO bDto, HttpSession session) {
        log.info(">>>>> 게시글  등록 기능 구현 ");
        service.register(bDto);
        expservice.expUpdate(bDto.getBwriter(), 1, "게시글 등록 경험치 부여", "");
+       // 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
+       memservice.boardCntUpdate(bDto.getBwriter(), 1, session);
+       
        if(bDto.getBcategory() == 2) {
     	   return "redirect:/board/list?flag=" + bDto.getBcategory();
        } else {
@@ -139,7 +145,7 @@ public class BoardController {
 	// 게시글 삭제 작업 
 	@Transactional
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(int bno, int flag) {
+	public String delete(int bno, int flag, HttpSession session) {
 		
 		// 평문통신이어서 보안이 이루어지지 않고있는데 패킷을 볼 수 있다면 ID와PW도 드러나고 변조해서 보낼 수도있는데 확인작업이 없다.
 		// 최소한의 정보로 모든 정보를 뽑아내서 그 정보로 동작하게 만드는 게 좋다
@@ -148,6 +154,8 @@ public class BoardController {
 		// 다르면 남이 남의 게시물 삭제를 시도한다는 뜻이다. 운영자와 본인 외에는 비정상적인 접근으로 처리해서 보낸다.
 		
 		expservice.expUpdate(service.read(bno).getBwriter(), 2, "게시물 삭제 경험치 차감", "");
+		// 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
+	    memservice.boardCntUpdate(service.read(bno).getBwriter(), 0, session);
 		return service.delete(bno, flag);
 	}
 	

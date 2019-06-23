@@ -116,7 +116,7 @@ h3.title {
            <tbody>           
                <tr>
                   <th scope="row">분류</th>
-                  <td>건의</td>
+                  <td>자유</td>
                </tr>             
                <tr>
                   <th scope="row"><label for="counsel_title">제목</label></th>
