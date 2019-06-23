@@ -428,7 +428,7 @@ $(document).ready(function(){
 		} else {
 			$('.keyword').css('border', '1px solid #ddd');
 		}
-		location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword;
+		location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword+"&flag=2";
 	});
 	
 	$('.register_btn_box').click(function(){
