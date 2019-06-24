@@ -33,4 +33,24 @@
 
 	<!-- AOP의 설정으로 Proxy 객체를 자동으로 생성 -->
 	<aop:aspectj-autoproxy/>
+	
+	<!-- 인터셉터 빈을 등록  -->
+	<beans:bean id="loginInterceptor" class="com.toonalyst.interceptor.LoginInterceptor"></beans:bean>
+
+	<!--인터셉터 호출을 위한 url mapping  -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/pwupdate"/>
+			<mapping path="/member/update"/>
+			<mapping path="/member/mypage"/>
+			<mapping path="/member/delete"/>
+			<mapping path="/board/modify"/>
+			<mapping path="/board/update"/>
+			<mapping path="/board/register"/>			
+			<mapping path="/board/freeboard_register"/>			
+			<beans:ref bean="loginInterceptor"/>		
+		</interceptor>	
+	</interceptors>
+	
+	
 </beans:beans>

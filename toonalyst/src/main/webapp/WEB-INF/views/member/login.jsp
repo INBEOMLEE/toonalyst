@@ -118,6 +118,15 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
+			var message = '${message}';
+						
+			
+			if (message == "nologin") {			
+				$('#login_id').focus();
+				$('.login_err_msg').text('로그인이 필요한 시스템입니다.').css('display', 'block');           				  
+			}
+			
+			
 			if(${result == 0}) {
 				$('.login_err_msg').text('아이디 또는 비밀번호를 다시 확인하세요.').css('display', 'block');
 			}
