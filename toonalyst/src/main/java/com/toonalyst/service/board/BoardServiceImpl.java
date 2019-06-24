@@ -44,14 +44,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public String delete(int bno, int flag) {
+	public void delete(int bno, int flag) {
 		 bDao.delete(bno);
-		 
-		 if(flag == 2) {
-				return "redirect:/board/list?flag=" + flag;
-			} else {
-				return "redirect:/board/boardlist?flag=" + flag;
-			}
 	}
 
 	@Override

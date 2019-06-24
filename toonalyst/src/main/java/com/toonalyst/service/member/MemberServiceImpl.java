@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
 import com.toonalyst.persistence.board.BoardDAO;
+import com.toonalyst.persistence.board.CommentDAO;
 import com.toonalyst.persistence.member.MemberDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,12 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Inject
 	private MemberDAO mDao;
+	
+	@Inject
+	private BoardDAO bDao;
+	
+	@Inject
+	private CommentDAO cDao;
 	
 	
 	
@@ -138,8 +145,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void boardCntUpdate(String id, int code, HttpSession session) {
-		mDao.boardCntUpdate(id, code);
+	public void boardCntUpdate(String id, HttpSession session) {
+		int boardcnt = bDao.selectBoardCnt(id);
+		mDao.boardCntUpdate(boardcnt, id);
 		session.removeAttribute("loginUser");
 		MemberDTO loginUser = mDao.updateView(id);
 		session.setAttribute("loginUser", loginUser);
@@ -147,8 +155,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void commentCntUpdate(String id, int code, HttpSession session) {
-		mDao.commentCntUpdate(id, code);
+	public void commentCntUpdate(String id, HttpSession session) {
+		int commentcnt = cDao.selectCommentCnt(id);
+		log.info("commentcnt"+commentcnt);
+		log.info("1111111111");
+		mDao.commentCntUpdate(id, commentcnt);
+		log.info("2222222222");
 		session.removeAttribute("loginUser");
 		MemberDTO loginUser = mDao.updateView(id);
 		session.setAttribute("loginUser", loginUser);

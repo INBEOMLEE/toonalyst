@@ -14,4 +14,6 @@ public interface CommentDAO {
 
 	public CommentDTO read(int cno);
 
+	public int selectCommentCnt(String id);
+
 }

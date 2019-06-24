@@ -85,17 +85,19 @@ public class MemberDAOImpl implements MemberDAO{
 	  return sqlSession.selectList("member.newlist",bcategory); 
 	  }
 	@Override
-	public void boardCntUpdate(String id, int code) {
-		HashMap<String, String> map = new HashMap<>();
+	public void boardCntUpdate(int boardcnt, String id) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("boardcnt", boardcnt);
 		map.put("id", id);
-		map.put("code", code+"");
+		
+		log.info(id + ", " + boardcnt);
 		sqlSession.update("member.boardCntUpdate", map);
 	}
 	@Override
-	public void commentCntUpdate(String id, int code) {
-		HashMap<String, String> map = new HashMap<>();
+	public void commentCntUpdate(String id, int commentcnt) {
+		HashMap<String, Object> map = new HashMap<>();
 		map.put("id", id);
-		map.put("code", code+"");
+		map.put("commentcnt", commentcnt);
 		sqlSession.update("member.commentCntUpdate", map);
 	}
 

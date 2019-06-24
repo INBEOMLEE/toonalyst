@@ -122,8 +122,9 @@ public class MemberController {
 	public String loginPlay(MemberDTO mDto, HttpSession session, Model model) {
 		log.info(">>>>> 로그인 기능 구현");
 		
-		int result = service.login(mDto, session);
 		expservice.expUpdate(mDto.getId(), 0, "로그인 경험치", "", session);
+		int result = service.login(mDto, session);
+		
 		if(session.getAttribute("URI") != null) {
 			if(result > 0) {
 				return "redirect:"+ session.getAttribute("URI");

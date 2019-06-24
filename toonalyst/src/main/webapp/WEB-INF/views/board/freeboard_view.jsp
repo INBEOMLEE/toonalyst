@@ -267,11 +267,11 @@
 						<td class="tbl_viewcnt_con">${bDto.bviewcnt}</td>
 					</tr>
 					<tr>
-						<th class="tbl_writer">작성자</td>
+						<th class="tbl_writer">작성자</th>
 						<td class="tbl_writer_con">${bDto.bwriter}</td>
 						<th class="tbl_good">좋아요</th>
 						<td class="tbl_good_con">${bDto.bgoodcnt}</td>
-						<th class="tbl_date">작성일</td>
+						<th class="tbl_date">작성일</th>
 						<td class="tbl_date_con">
 							<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
 							${regdate}

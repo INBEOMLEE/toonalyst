@@ -27,6 +27,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE cno = #{cno}
 	</select>
 	
+	<select id="selectCommentCnt" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM tbl_toonalyst_comment
+		WHERE cwriter = #{id}
+	</select>
 </mapper>
 
 

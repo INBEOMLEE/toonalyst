@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import com.toonalyst.domain.board.BoardDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 
@@ -105,6 +108,12 @@ public class BoardDAOImpl implements BoardDAO {
 		map.put("bno", bno);
 		map.put("code", code);
 		sqlSession.update("board.commentCntUpdate", map);
+	}
+
+	@Override
+	public int selectBoardCnt(String id) {
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+id);
+		return sqlSession.selectOne("board.selectBoardCnt", id);
 	}
 
 }

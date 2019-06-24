@@ -156,6 +156,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		WHERE bno = #{bno}
 	</update>
+	
+	<select id="selectBoardCnt" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM tbl_toonalyst_board
+		WHERE bwriter = #{id}
+	</select>
 </mapper>
 
 

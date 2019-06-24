@@ -36,4 +36,9 @@ public class CommentDAOImpl implements CommentDAO {
 		return sqlSession.selectOne("comment.read", cno);
 	}
 
+	@Override
+	public int selectCommentCnt(String id) {
+		return sqlSession.selectOne("comment.selectCommentCnt", id);
+	}
+
 }

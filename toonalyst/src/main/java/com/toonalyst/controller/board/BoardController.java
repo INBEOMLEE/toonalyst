@@ -132,7 +132,7 @@ public class BoardController {
        service.register(bDto);
        expservice.expUpdate(bDto.getBwriter(), 1, "게시글 등록 경험치 부여", "");
        // 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
-       memservice.boardCntUpdate(bDto.getBwriter(), 1, session);
+       memservice.boardCntUpdate(bDto.getBwriter(), session);
        
        if(bDto.getBcategory() == 2) {
     	   return "redirect:/board/list?flag=" + bDto.getBcategory();
@@ -153,10 +153,19 @@ public class BoardController {
 		// 삭제할 게시물 아이디와 == 현재 세션의 아이디 
 		// 다르면 남이 남의 게시물 삭제를 시도한다는 뜻이다. 운영자와 본인 외에는 비정상적인 접근으로 처리해서 보낸다.
 		
-		expservice.expUpdate(service.read(bno).getBwriter(), 2, "게시물 삭제 경험치 차감", "");
+		String bwriter = service.read(bno).getBwriter();
+		
+		expservice.expUpdate(bwriter, 2, "게시물 삭제 경험치 차감", "");
+		service.delete(bno, flag);
+		
 		// 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
-	    memservice.boardCntUpdate(service.read(bno).getBwriter(), 0, session);
-		return service.delete(bno, flag);
+	    memservice.boardCntUpdate(bwriter, session);
+		
+		if(flag == 2) {
+			return "redirect:/board/list?flag=" + flag;
+		} else {
+			return "redirect:/board/boardlist?flag=" + flag;
+		}
 	}
 	
 	// 게시글 수정 출력

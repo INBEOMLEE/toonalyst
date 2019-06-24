@@ -290,9 +290,9 @@
 							<td>${bDto.bviewcnt}</td>
 						</tr>
 						<tr>
-							<th>작성자</td>
-							<td>운영자</td>
-							<th>작성일</td>
+							<th>작성자</th>
+							<td>${bDto.bwriter}</td>
+							<th>작성일</th>
 							<td>
 								<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />${regdate}
 							</td>
@@ -308,11 +308,11 @@
 							<td class="tbl_viewcnt_con">${bDto.bviewcnt}</td>
 						</tr>
 						<tr>
-							<th class="tbl_writer">작성자</td>
-							<td class="tbl_writer_con">운영자</td>
+							<th class="tbl_writer">작성자</th>
+							<td class="tbl_writer_con">${bDto.bwriter}</td>
 							<th class="tbl_good">좋아요</th>
 							<td class="tbl_good_con">0</td>
-							<th class="tbl_date">작성일</td>
+							<th class="tbl_date">작성일</th>
 							<td class="tbl_date_con">
 								<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
 								${regdate}

@@ -16,7 +16,7 @@ public interface BoardService {
 	// 레코드 수 구하기
 	public int countArticle(String search_option, String keyword, int flag);
 	// 게시글 삭제 작업 진행
-	public String delete(int bno, int flag);
+	public void delete(int bno, int flag);
 	// 게시글 수정
 	public void update(BoardDTO bDto);
 	// 조회수 증가

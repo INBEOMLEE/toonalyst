@@ -32,7 +32,7 @@ public interface MemberDAO {
 	// 마이페이지 조회	
 	public List<BoardDTO> noticeList(int bcategory);
 	// 게시글 작성과 삭제 시 boardCnt Update
-	public void boardCntUpdate(String id, int code);
+	public void boardCntUpdate(int boardcnt, String id);
 	// 댓글 작성과 삭제 시 commentCnt Update
-	public void commentCntUpdate(String id, int code);
+	public void commentCntUpdate(String id, int commentcnt);
 }
