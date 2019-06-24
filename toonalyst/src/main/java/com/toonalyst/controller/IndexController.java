@@ -34,6 +34,9 @@ public class IndexController {
 	@RequestMapping("/naverupdate")
 	public String naverUpdate(Model model) throws IOException {
 		List<WebtoonDTO> list = new webNaverParser().getAlltoonList();
+//		= webNaverParser wnp = new webNaverParser();
+//		  List<WebtoonDTO> list = wnp.getAlltoonList();
+		
 		for (WebtoonDTO webtoonDTO : list) {
 			if(service.selectone(webtoonDTO.getTitleId())==null) {
 				service.create(webtoonDTO);
