@@ -1,15 +1,15 @@
 
 package com.toonalyst.interceptor;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.ui.Model;
+
 import org.springframework.web.servlet.FlashMap;
-import org.springframework.web.servlet.FlashMapManager;
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -27,7 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession(); 
 		if (session.getAttribute("loginUser") == null) {
 			log.info(">>>>>>>>로그인 해주세요!!!!!!!!!!!!!!!!");			
-			
+		// 로그인이 필요한 페이지에서 로그아웃시 로그인페이지로 이동후 message에 nologin을 보내 경고창을 뜨게함.	
 		    response.sendRedirect(request.getContextPath() + "/member/login");
 		    FlashMap flashMap = RequestContextUtils.getOutputFlashMap(request); 
 			flashMap.put("message", "nologin");
