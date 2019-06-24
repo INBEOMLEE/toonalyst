@@ -24,36 +24,20 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		// session체크, 값이 있으면 통과,
 		// 없으면 돌려보냄(원래페이지로 가서 모달창 키고 에러메시지 출력!)
-		
 		HttpSession session = request.getSession(); 
-		
 		if (session.getAttribute("loginUser") == null) {
 			log.info(">>>>>>>>로그인 해주세요!!!!!!!!!!!!!!!!");			
 			
 		    response.sendRedirect(request.getContextPath() + "/member/login");
-		    
 		    FlashMap flashMap = RequestContextUtils.getOutputFlashMap(request); 
 			flashMap.put("message", "nologin");
-			
-			RequestContextUtils.saveOutputFlashMap(request.getContextPath() + "/member/login", request, response);
-			
-		
-		    
-			
-		
-			
-			
-			
-			
+			RequestContextUtils.saveOutputFlashMap(request.getContextPath() + "/member/login", request, response);			
 		    return false; 
 		} else {
 			return true; 
 		}
-		
-						
-			
 	}
-	
+
 	// 메인액션 실행된후.	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
