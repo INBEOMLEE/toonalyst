@@ -58,7 +58,7 @@
 										<span class="new_time">N</span>
 									</c:if>
 								</td>
-								<td><img alt="level" src="${path}/resources/img/level/50.gif">${bDto.bwriter}</td>
+								<td><img alt="level" src="${path}/resources/img/level/${bDto.grade}.gif">${bDto.bwriter}</td>
 								<td>
 									<c:choose>
 										<c:when test="${today == regdate}">
@@ -104,10 +104,10 @@
 										<span class="new_time">N</span>
 									</c:if>
 								</td>
-								<td><img alt="level" src="${path}/resources/img/level/50.gif">${bDto.bwriter}</td>
+								<td><img alt="level" src="${path}/resources/img/level/${bDto.grade}.gif">${bDto.bwriter}</td>
 								<td>
 									<c:choose>
-										<c:when test="${today == regdate }">
+										<c:when test="${today == regdate}">
 											<fmt:formatDate pattern="hh:mm:ss" value="${bDto.bregdate}" />
 										</c:when>
 										<c:otherwise>

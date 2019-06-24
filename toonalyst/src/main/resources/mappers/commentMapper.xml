@@ -5,7 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="comment">
 	<select id="listAll"  parameterType="int" resultType="com.toonalyst.domain.board.CommentDTO">
-		SELECT * FROM tbl_toonalyst_comment
+		SELECT * 
+		FROM (SELECT c.*, m.grade 
+		      FROM tbl_toonalyst_comment c, tbl_toonalyst_member m
+		      WHERE c.cwriter = m.id) 
 		WHERE bno = #{bno}
 	</select>
 	

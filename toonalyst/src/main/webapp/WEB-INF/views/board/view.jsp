@@ -428,7 +428,7 @@ $(document).ready(function(){
 			url: "${path}/comment/list",
 			data: "bno=${bDto.bno}",
 			success: function(result){ 
-				$('#commentList').html(result); 
+				$('#commentList').html(result);
 			}
 		});
 	}

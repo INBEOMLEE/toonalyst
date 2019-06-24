@@ -67,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listAll" parameterType="HashMap" resultType="com.toonalyst.domain.board.BoardDTO">
 		SELECT *
 		FROM ( SELECT rownum AS rnum, a.*
-			   FROM ( SELECT b.*, m.id
+			   FROM ( SELECT b.*, m.id, m.grade
 					  FROM tbl_toonalyst_board b, tbl_toonalyst_member m
 				  	  <choose>
 						  <when test="search_option != 'all'">

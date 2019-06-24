@@ -98,7 +98,7 @@
 				<h1>공지사항</h1>				
 					<dl class="ft_board">
 						<c:forEach items="${nList.nList}" var="bDto">
-						<dd>[공지]<a href="#">${bDto.btitle}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}"/></span></dd>
+						<dd>[공지] <a href="#"> ${bDto.btitle}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}"/></span></dd>
 						</c:forEach>
 					</dl>
 				</li>
@@ -106,7 +106,7 @@
 				<h1>질문게시판</h1>					
 					<dl class="ft_board">
 						<c:forEach items="${nList.qList}" var="bDto">
-						<dd>[질문]<a href="#">${bDto.btitle}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}"/></span></dd>
+						<dd>[질문] <a href="#"> ${bDto.btitle}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}"/></span></dd>
 						</c:forEach>
 					</dl>
 				</li>
@@ -114,7 +114,7 @@
 				<h1>자유게시판</h1>					
 					<dl class="ft_board">
 						<c:forEach items="${nList.bList}" var="bDto">
-						<dd>[자유]<a href="#">${bDto.btitle}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}"/></span></dd>
+						<dd>[자유] <a href="#"> ${bDto.btitle}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.bregdate}"/></span></dd>
 						</c:forEach>
 					</dl>
 				</li>				

@@ -22,5 +22,7 @@ public class CommentDTO {
 	private Date cregdate;           
 	private int bno;  
 	
+	private String grade;
+	
 	
 }

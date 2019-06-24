@@ -32,7 +32,7 @@
 					<div class="comment_box">
 						<div class="writer_comment">
 							<div class="comment_head">
-								<span><img alt="이미지" src="${path}/resources/img/level/50.gif"> ${cDto.cwriter}</span>
+								<span><img alt="이미지" src="${path}/resources/img/level/${cDto.grade}.gif"> ${cDto.cwriter}</span>
 								<div class="reg_date">
 									<i class="far fa-clock"></i>
 									<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${cDto.cregdate}" />
@@ -67,7 +67,7 @@
 				</div>						
 				<div class="writing_box">
 					<div class="writer_top">
-						<span id="user"><img alt="이미지" src="${path}/resources/img/level/50.gif"> ${sessionScope.loginUser.id}</span>
+						<span id="user"><img alt="이미지" src="${path}/resources/img/level/${sessionScope.loginUser.grade}.gif"> ${sessionScope.loginUser.id}</span>
 					</div>				
 					<textarea id="textarea" name="ccontent" class="writing_area"></textarea>
 					<button type="button" id="comment_btn" class="btn_comment">댓글 등록</button>
