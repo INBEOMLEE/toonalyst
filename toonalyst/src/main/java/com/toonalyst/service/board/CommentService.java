@@ -12,5 +12,8 @@ public interface CommentService {
 	public int create(CommentDTO cDto);
 	// 댓글 삭제
 	public void delete(int cno, int bno);
+	// 댓글 조회
+	public CommentDTO read(int cno);
+
 
 }

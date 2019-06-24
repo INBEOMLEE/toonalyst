@@ -12,4 +12,6 @@ public interface CommentDAO {
 
 	public void delete(int cno);
 
+	public CommentDTO read(int cno);
+
 }

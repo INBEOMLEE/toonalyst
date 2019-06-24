@@ -21,6 +21,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM tbl_toonalyst_comment
 		WHERE cno = #{cno}
 	</delete>
+	
+	<select id="read" parameterType="int" resultType="com.toonalyst.domain.board.CommentDTO">
+		SELECT * FROM tbl_toonalyst_comment
+		WHERE cno = #{cno}
+	</select>
+	
 </mapper>
 
 

@@ -30,5 +30,10 @@ public class CommentDAOImpl implements CommentDAO {
 	public void delete(int cno) {
 		sqlSession.delete("comment.delete",cno);
 	}
+	
+	@Override
+	public CommentDTO read(int cno) {		
+		return sqlSession.selectOne("comment.read", cno);
+	}
 
 }

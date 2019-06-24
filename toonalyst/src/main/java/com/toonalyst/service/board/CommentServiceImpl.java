@@ -37,4 +37,9 @@ public class CommentServiceImpl implements CommentService {
 		bDao.commentCntUpdate(bno, 0);
 	}
 
+	@Override
+	public CommentDTO read(int cno) {		
+		return cDao.read(cno);
+	}
+
 }
