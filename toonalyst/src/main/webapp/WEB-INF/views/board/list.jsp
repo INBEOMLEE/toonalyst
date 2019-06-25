@@ -358,17 +358,17 @@
 <%@ include file="../include/footer.jsp" %>  
 <script type="text/javascript">
 $(document).ready(function(){
-	var flag = "${flag}";
+	var bcategory = "${bcategory}";
 	var curPage = "${curPage}";
 	var search_option = "${search_option}";
 	var keyword = "${keyword}";
 	var sort_option = "${sort_option}";
 	
-	board_list(sort_option, flag, curPage, search_option, keyword);
+	board_list(sort_option, bcategory, curPage, search_option, keyword);
 	
-	if(flag == 0) {
+	if(bcategory == 0) {
 		$('.board_menu ul li').eq(0).addClass("active");
-	} else if(flag == 1){
+	} else if(bcategory == 1){
 		$('.board_menu ul li').eq(1).addClass("active");
 	}
 	
@@ -378,30 +378,30 @@ $(document).ready(function(){
 	});
 	
 	$('#noticeboard').click(function(){
-		flag = 0;
+		bcategory = 0;
 		curPage = 1;
 		search_option = "all";
 		keyword = "";
 		sort_option = "new";
-		board_list(sort_option, flag, curPage, search_option, keyword);
+		board_list(sort_option, bcategory, curPage, search_option, keyword);
 	});
 	
 	$('#qaboard').click(function(){
-		flag = 1;
+		bcategory = 1;
 		curPage = 1;
 		search_option = "all";
 		keyword = "";
 		sort_option = "new";
-		board_list(sort_option, flag, curPage, search_option, keyword);
+		board_list(sort_option, bcategory, curPage, search_option, keyword);
 	});
 	
 });
 
-function board_list(sort_option, flag, curPage, search_option, keyword) {
+function board_list(sort_option, bcategory, curPage, search_option, keyword) {
 	$.ajax({
 		url: "${path}/board/list",
 		type: "GET",
-		data:  "sort_option=" + sort_option + "&search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&flag=" + flag,
+		data:  "sort_option=" + sort_option + "&search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&bcategory=" + bcategory,
 		success: function(result){
 			$('#board_list_open').html(result); 
 		},

@@ -40,17 +40,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 <if test="search_option == 'title'">
                 	WHERE b.bwriter = m.id
                 	AND btitle LIKE #{keyword}
-                	AND bcategory = #{flag}
+                	AND bcategory = #{bcategory}
                 </if>
                 <if test="search_option == 'content'">
                 	WHERE b.bwriter = m.id
                 	AND btext LIKE #{keyword}
-                	AND bcategory = #{flag}
+                	AND bcategory = #{bcategory}
                 </if>
                 <if test="search_option == 'writer'">
                 	WHERE b.bwriter = m.id
                 	AND bwriter LIKE #{keyword}
-                	AND bcategory = #{flag}
+                	AND bcategory = #{bcategory}
                 </if>
 			</when>
 			<otherwise>
@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				AND (bwriter LIKE #{keyword}
 					 OR btitle LIKE #{keyword}
 					 OR btext LIKE #{keyword} )
-				AND bcategory = #{flag}
+				AND bcategory = #{bcategory}
 			</otherwise>
 		</choose>	
 	</select>
@@ -74,17 +74,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			                  <if test="search_option == 'title'">
 			                	  WHERE b.bwriter = m.id
 			                	  AND btitle LIKE #{keyword}
-			                	  AND bcategory = #{flag}
+			                	  AND bcategory = #{bcategory}
 			                  </if>
 			                  <if test="search_option == 'content'">
 			                	  WHERE b.bwriter = m.id
 			                	  AND btext LIKE #{keyword}
-			                	  AND bcategory = #{flag}
+			                	  AND bcategory = #{bcategory}
 			                  </if>
 			                  <if test="search_option == 'writer'">
 			                	  WHERE b.bwriter = m.id
 			                	  AND bwriter LIKE #{keyword}
-			                	  AND bcategory = #{flag}
+			                	  AND bcategory = #{bcategory}
 			                  </if>
 						  </when>
 						  <otherwise>
@@ -92,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							  AND (bwriter LIKE #{keyword}
 								   OR btitle LIKE #{keyword}
 								   OR btext LIKE #{keyword} )
-							  AND bcategory = #{flag}
+							  AND bcategory = #{bcategory}
 						  </otherwise>
 					  </choose>
 						<if test="sort_option == 'new'">

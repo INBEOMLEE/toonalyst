@@ -263,10 +263,10 @@
 				<div class="board_menu">
 					<ul>
 						<li>
-							<a href="${path}/board/boardlist?flag=0" class="sub_notice">NOTICE</a>
+							<a href="${path}/board/boardlist?bcategory=0" class="sub_notice">NOTICE</a>
 						</li>
 						<li>
-							<a href="${path}/board/boardlist?flag=1">Q&A</a>
+							<a href="${path}/board/boardlist?bcategory=1">Q&A</a>
 						</li>
 					</ul>
 				</div>
@@ -275,7 +275,7 @@
 		<!-- 게시글 영역 -->
 		<div class="notice_body">
 			<div class="board_list">
-				<c:if test="${flag == 0}">
+				<c:if test="${bcategory == 0}">
 					<table class="board_view_table">
 						<colgroup>
 							<col style="width: 3%">
@@ -299,7 +299,7 @@
 						</tr>
 					</table>
 				</c:if>
-				<c:if test="${flag == 1 }">
+				<c:if test="${bcategory == 1 }">
 					<table class="board_view_table">
 						<tr>
 							<th class="tbl_title">제목</th>
@@ -331,7 +331,7 @@
 					</div>
 					<div class="list_btn_box2">
 						<c:if test="${!empty sessionScope.loginUser.id}">
-							<c:if test="${flag == 1}">
+							<c:if test="${bcategory == 1}">
 								<div class="list_btn" id="btn_good">좋아요</div>
 							</c:if>
 						</c:if>
@@ -350,12 +350,12 @@
 <%@ include file="../include/footer.jsp" %>  
 <script type="text/javascript">
 $(document).ready(function(){
-	var flag = "${flag}";
+	var bcategory = "${bcategory}";
 	
-	if(flag == 0) {
+	if(bcategory == 0) {
 		$('.board_menu ul li').removeClass("active");
 		$('.board_menu ul li').eq(0).addClass("active");
-	} else if (flag == 1) {
+	} else if (bcategory == 1) {
 		$('.board_menu ul li').removeClass("active");
 		$('.board_menu ul li').eq(1).addClass("active");
 	}
@@ -485,17 +485,17 @@ $(document).ready(function(){
 
 
 	$(document).on("click", "#remove_btn", function(){
-		location.href="${path}/board/delete?bno=${bDto.bno}&flag=${flag}";
+		location.href="${path}/board/delete?bno=${bDto.bno}&bcategory=${bcategory}";
 			
 	});
 
 
 	$(document).on("click", "#update_btn", function(){
-		location.href="${path}/board/update?bno=${bDto.bno}&flag=${flag}";
+		location.href="${path}/board/update?bno=${bDto.bno}&bcategory=${bcategory}";
 	});
 	
 	$(document).on("click", "#board_list_btn", function(){
-		location.href="${path}/board/boardlist?flag=${flag}";
+		location.href="${path}/board/boardlist?bcategory=${bcategory}";
 	});
 	
 </script>

@@ -419,18 +419,18 @@ $(document).on("click", ".comment_delete_btn", function(){
 
 
 $(document).on("click", "#remove_btn", function(){
-	location.href="${path}/board/delete?bno=${bDto.bno}&flag=2";
+	location.href="${path}/board/delete?bno=${bDto.bno}&bcategory=2";
 		
 });
 
 
 $(document).on("click", "#update_btn", function(){
-	location.href="${path}/board/update?bno=${bDto.bno}&flag=${flag}";
+	location.href="${path}/board/update?bno=${bDto.bno}&bcategory=${bcategory}";
 		
 });
 
 $(document).on("click", "#freelist_btn", function(){
-	location.href="${path}/board/list?flag=${flag}";
+	location.href="${path}/board/list?bcategory=${bcategory}";
 		
 });
 

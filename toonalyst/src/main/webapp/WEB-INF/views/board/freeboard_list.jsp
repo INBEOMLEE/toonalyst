@@ -295,16 +295,16 @@
 		<div class="array_list">
 			<!-- sort_type: 최신순 new(default), 추천순 good, 댓글순 reply, 조회순 view // 주로 a 태그를 사용해서 만든다 -->
 			<span class="array_style">
-				<a href="${path}/board/list?sort_option=new&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderNew">최신순</a>
+				<a href="${path}/board/list?sort_option=new&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2" id="orderNew">최신순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderGood">추천순</a>
+				<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2" id="orderGood">추천순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/list?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderComment">댓글순</a>
+				<a href="${path}/board/list?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2" id="orderComment">댓글순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/list?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" id="orderView">조회순</a>
+				<a href="${path}/board/list?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2" id="orderView">조회순</a>
 			</span>
 		</div>
 		<!-- 게시글 영역 -->
@@ -331,7 +331,7 @@
 									<strong>[자유]</strong>
 								</td>
 								<td id="list_title">
-									<a href="${path}/board/freeView?bno=${bDto.bno}&flag=${map.flag}">${bDto.btitle}</a>
+									<a href="${path}/board/freeView?bno=${bDto.bno}&bcategory=${map.bcategory}">${bDto.btitle}</a>
 									<c:if test="${bDto.bcommentcnt > 0}">
 										<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
 									</c:if>
@@ -367,17 +367,17 @@
 				<div class="pagination_box">
 					<div class="pagination">
 						<c:if test="${map.pager.curBlock > 1}">
-							<a href="${path}/board/list?curPage=1&keyword=${map.keyword}&search_option=${map.search_option}&flag=2"><i class="fas fa-angle-double-left"></i></a>
-							<a href="${path}/board/list?curPage=${map.pager.blockBegin - 10}&keyword=${map.keyword}&search_option=${map.search_option}&flag=2"><i class="fas fa-angle-left"></i></a> 
+							<a href="${path}/board/list?curPage=1&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2"><i class="fas fa-angle-double-left"></i></a>
+							<a href="${path}/board/list?curPage=${map.pager.blockBegin - 10}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2"><i class="fas fa-angle-left"></i></a> 
 						</c:if>
 						
 						<c:forEach begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}" var="idx">
-							<a href="${path}/board/list?curPage=${idx}&keyword=${map.keyword}&search_option=${map.search_option}&flag=2" <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>${idx}</a>
+							<a href="${path}/board/list?curPage=${idx}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2" <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>${idx}</a>
 						</c:forEach>
 						
 						<c:if test="${map.pager.curBlock < map.pager.totBlock}">
-							<a href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&keyword=${map.keyword}&search_option=${map.search_option}&flag=2"><i class="fas fa-angle-right"></i></a>
-							<a href="${path}/board/list?curPage=${map.pager.totPage}&keyword=${map.keyword}&search_option=${map.search_option}&flag=2"><i class="fas fa-angle-double-right"></i></a> 
+							<a href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2"><i class="fas fa-angle-right"></i></a>
+							<a href="${path}/board/list?curPage=${map.pager.totPage}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2"><i class="fas fa-angle-double-right"></i></a> 
 						</c:if>
 					</div>
 				</div>
@@ -428,7 +428,7 @@ $(document).ready(function(){
 		} else {
 			$('.keyword').css('border', '1px solid #ddd');
 		}
-		location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword+"&flag=2";
+		location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword+"&bcategory=2";
 	});
 	
 	$('.register_btn_box').click(function(){

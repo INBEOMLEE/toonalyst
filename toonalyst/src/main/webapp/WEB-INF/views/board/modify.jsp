@@ -163,7 +163,7 @@ h3.title {
 				<span id="conforms" class="box_btn large w150"><input type="button" id="conform" value="확인"></span>
 				<span id="cancle" class="box_btn large w150 white"><a href="${path}/board/list">취소</a></span>
 			</div>
-			<input type="hidden" name="bcategory" value="${flag}">
+			<input type="hidden" name="bcategory" value="${bcategory}">
 			<input type="hidden" name="btext" id="input_btext">
 			<input type="hidden" name="bno" value="${bDto.bno}">
 			<input type="hidden" name="bwriter" value="${sessionScope.loginUser.id}">

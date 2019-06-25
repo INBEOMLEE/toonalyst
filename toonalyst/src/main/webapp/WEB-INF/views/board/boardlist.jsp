@@ -10,28 +10,28 @@
 <body>
 	<!-- 게시글 영역 -->
 	<div class="notice_body">
-		<c:if test="${map.flag == 0}">
+		<c:if test="${map.bcategory == 0}">
 			<div class="array_list"></div>
 		</c:if>
-		<c:if test="${map.flag == 1}">
+		<c:if test="${map.bcategory == 1}">
 			<div class="array_list">
 				<span class="array_style">
-					<a href="${path}/board/boardlist?sort_option=new&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderNew">최신순</a>
+					<a href="${path}/board/boardlist?sort_option=new&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}" id="orderNew">최신순</a>
 				</span>
 				<span class="array_style">
-					<a href="${path}/board/boardlist?sort_option=good&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderGood">추천순</a>
+					<a href="${path}/board/boardlist?sort_option=good&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}" id="orderGood">추천순</a>
 				</span>
 				<span class="array_style">
-					<a href="${path}/board/boardlist?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderComment">댓글순</a>
+					<a href="${path}/board/boardlist?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}" id="orderComment">댓글순</a>
 				</span>
 				<span class="array_style">
-					<a href="${path}/board/boardlist?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}" id="orderView">조회순</a>
+					<a href="${path}/board/boardlist?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}" id="orderView">조회순</a>
 				</span>
 			</div>
 		</c:if>
 		<div class="board_list">
 			<jsp:useBean id="now" class="java.util.Date"/>
-			<c:if test="${map.flag == 0}">
+			<c:if test="${map.bcategory == 0}">
 				<table class="board_col">
 					<thead class="board_head_menu">
 						<tr class="board_head">
@@ -48,12 +48,12 @@
 							<fmt:formatDate value="${bDto.bregdate}" pattern="yyyy-MM-dd" var="regdate" />
 							<tr>
 								<td>
-									<c:if test="${map.flag == 0}">
+									<c:if test="${map.bcategory == 0}">
 										<strong>[공지]</strong>
 									</c:if>
 								</td>
 								<td id="list_title">
-									<a href="${path}/board/view?bno=${bDto.bno}&flag=${map.flag}">${bDto.btitle}</a>
+									<a href="${path}/board/view?bno=${bDto.bno}&bcategory=${map.bcategory}">${bDto.btitle}</a>
 									<c:if test="${today == regdate}">
 										<span class="new_time">N</span>
 									</c:if>
@@ -75,7 +75,7 @@
 					</tbody>
 				</table>
 			</c:if>
-			<c:if test="${map.flag == 1}">
+			<c:if test="${map.bcategory == 1}">
 				<table class="board_col">
 					<thead>
 						<tr class="qaboard_head_menu">
@@ -96,7 +96,7 @@
 									<strong>[질문]</strong>
 								</td>
 								<td id="list_title">
-									<a href="${path}/board/view?bno=${bDto.bno}&flag=${map.flag}">${bDto.btitle}</a>
+									<a href="${path}/board/view?bno=${bDto.bno}&bcategory=${map.bcategory}">${bDto.btitle}</a>
 									<c:if test="${bDto.bcommentcnt > 0}">
 										<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
 									</c:if>
@@ -133,15 +133,15 @@
 			<div class="pagination_box">
 				<div class="pagination">
 					<c:if test="${map.pager.curBlock > 1}">
-						<a href="${path}/board/boardlist?curPage=1&keyword=${map.keyword}&sort_option=${map.sort_option}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-double-left"></i></a>
-						<a href="${path}/board/boardlist?curPage=${map.pager.blockBegin - 10}&sort_option=${map.sort_option}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-left"></i></a> 
+						<a href="${path}/board/boardlist?curPage=1&keyword=${map.keyword}&sort_option=${map.sort_option}&search_option=${map.search_option}&bcategory=${map.bcategory}"><i class="fas fa-angle-double-left"></i></a>
+						<a href="${path}/board/boardlist?curPage=${map.pager.blockBegin - 10}&sort_option=${map.sort_option}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}"><i class="fas fa-angle-left"></i></a> 
 					</c:if>
 					<c:forEach begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}" var="idx">
-						<a href="${path}/board/boardlist?curPage=${idx}&keyword=${map.keyword}&sort_option=${map.sort_option}&search_option=${map.search_option}&flag=${map.flag}" <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>${idx}</a>
+						<a href="${path}/board/boardlist?curPage=${idx}&keyword=${map.keyword}&sort_option=${map.sort_option}&search_option=${map.search_option}&bcategory=${map.bcategory}" <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>${idx}</a>
 					</c:forEach>
 					<c:if test="${map.pager.curBlock < map.pager.totBlock}">
-						<a href="${path}/board/boardlist?curPage=${map.pager.blockEnd + 1}&sort_option=${map.sort_option}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-right"></i></a>
-						<a href="${path}/board/boardlist?curPage=${map.pager.totPage}&sort_option=${map.sort_option}&keyword=${map.keyword}&search_option=${map.search_option}&flag=${map.flag}"><i class="fas fa-angle-double-right"></i></a> 
+						<a href="${path}/board/boardlist?curPage=${map.pager.blockEnd + 1}&sort_option=${map.sort_option}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}"><i class="fas fa-angle-right"></i></a>
+						<a href="${path}/board/boardlist?curPage=${map.pager.totPage}&sort_option=${map.sort_option}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}"><i class="fas fa-angle-double-right"></i></a> 
 					</c:if>
 				</div>
 			</div>
@@ -154,7 +154,7 @@
 						<option value="content">내용</option>
 					</select>
 					<input type="text" name="keyword" class="form_input search keyword">
-					<input type="hidden" name="flag" value="${map.flag}">
+					<input type="hidden" name="bcategory" value="${map.bcategory}">
 					<input type="hidden" name="sort_option" value="${map.sort_option}">
 					<input type="hidden" name="curPage" value="${map.pager.curPage}">
 					<input type="button" value="검색" class="btn_search">
@@ -164,7 +164,7 @@
 	</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		var flag = "${map.flag}";
+		var bcategory = "${map.bcategory}";
 		var curPage = "${map.pager.curPage}";
 		var search_option = "${map.search_option}";
 		var keyword = "${map.keyword}";
@@ -194,11 +194,11 @@
 			} else {
 				$('.keyword').css('border', '1px solid #ddd');
 			}
-			location.href="${path}/board/boardlist?sort_option=" + sort_option + "&search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&flag=" + flag;
+			location.href="${path}/board/boardlist?sort_option=" + sort_option + "&search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&bcategory=" + bcategory;
 		});
 		
 		$('#register_btn').click(function(){
-			location.href="${path}/board/register?flag=${map.flag}";
+			location.href="${path}/board/register?bcategory=${map.bcategory}";
 		});
 		
 	});

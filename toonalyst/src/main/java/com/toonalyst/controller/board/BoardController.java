@@ -41,11 +41,11 @@ public class BoardController {
 			@RequestParam(defaultValue = "all") String search_option,
 			@RequestParam(defaultValue = "") String keyword,
 			@RequestParam(defaultValue = "1") int curPage,
-			@RequestParam(defaultValue = "0") int flag ) {
+			@RequestParam(defaultValue = "0") int bcategory ) {
 		log.info(">>>>> 게시글 목록 출력");
 		
 		// 레코드 개수 계산
-		int count = service.countArticle(search_option, keyword, flag);
+		int count = service.countArticle(search_option, keyword, bcategory);
 		
 		// 페이지 관련 설정
 		Pager pager = new Pager(count, curPage);
@@ -53,7 +53,7 @@ public class BoardController {
 		int end = pager.getPageEnd();
 		
 		// 페이지 출력할 게시글 목록
-		List<BoardDTO> list = service.listAll(sort_option, search_option, keyword, start, end, flag);
+		List<BoardDTO> list = service.listAll(sort_option, search_option, keyword, start, end, bcategory);
 		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", list);
@@ -62,14 +62,14 @@ public class BoardController {
 		map.put("sort_option", sort_option);
 		map.put("search_option", search_option);
 		map.put("keyword", keyword);
-		map.put("flag", flag);
+		map.put("bcategory", bcategory);
 		
 		model.addAttribute("map", map);
 		
-		if(flag == 2) {
-			return "board/freeboard_list";
-		} else {
+		if(bcategory < 2) {
 			return "board/boardlist";
+		} else {
+			return "board/freeboard_list";
 		}
 	}
 	
@@ -81,41 +81,41 @@ public class BoardController {
 			@RequestParam(defaultValue = "all") String search_option,
 			@RequestParam(defaultValue = "") String keyword,
 			@RequestParam(defaultValue = "1") int curPage,
-			@RequestParam(defaultValue = "0") int flag
+			@RequestParam(defaultValue = "0") int bcategory
 			) {
 		log.info(">>>>> 게시글 목록 출력");
 		model.addAttribute("sort_option", sort_option);
 		model.addAttribute("search_option", search_option);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("curPage", curPage);
-		model.addAttribute("flag", flag);
+		model.addAttribute("bcategory", bcategory);
 		return "/board/list";
 	}
 	
 	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public String view(int bno, int flag, Model model, HttpSession session) {
+	public String view(int bno, int bcategory, Model model, HttpSession session) {
 		log.info(">>>>> 상세 게시글 출력");
 		service.increaseViewCnt(bno, session);
 		BoardDTO bDto = service.read(bno);
 		model.addAttribute("bDto", bDto);
-		model.addAttribute("flag", flag);
+		model.addAttribute("bcategory", bcategory);
 		return "/board/view";
 	}
 	
 	@RequestMapping(value="/freeView", method=RequestMethod.GET)
-	public String freeboardView(int bno, int flag, Model model, HttpSession session) {
+	public String freeboardView(int bno, int bcategory, Model model, HttpSession session) {
 		log.info(">>>>> 자유 게시판 상세 게시글 출력");
 		service.increaseViewCnt(bno, session);
 		BoardDTO bDto = service.read(bno);
 		model.addAttribute("bDto", bDto);
-		model.addAttribute("flag", flag);
+		model.addAttribute("bcategory", bcategory);
 		return "/board/freeboard_view";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String registerView(int flag, Model model) {
+	public String registerView(int bcategory, Model model) {
 		log.info(">>>>> 게시글  등록 페이지 출력");
-		model.addAttribute("flag", flag);
+		model.addAttribute("bcategory", bcategory);
 		return "/board/register";
 	}
 	
@@ -129,23 +129,27 @@ public class BoardController {
 	@RequestMapping(value="/register", method=RequestMethod.POST)
     public String registerPlay(BoardDTO bDto, HttpSession session) {
        log.info(">>>>> 게시글  등록 기능 구현 ");
+       String boardUrl = "";
        service.register(bDto);
        expservice.expUpdate(bDto.getBwriter(), 1, "게시글 등록 경험치 부여", "");
        // 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
        memservice.boardCntUpdate(bDto.getBwriter(), session);
        
-       if(bDto.getBcategory() == 2) {
-    	   return "redirect:/board/list?flag=" + bDto.getBcategory();
+       if(bDto.getBcategory() < 2) {
+    	   boardUrl = "boardlist";
        } else {
-    	   return "redirect:/board/boardlist?flag=" + bDto.getBcategory(); 
+    	   boardUrl = "list";
        }
+       
+       
+       return "redirect:/board/"+boardUrl+"?bcategory=" + bDto.getBcategory(); 
     }
 	
 	
 	// 게시글 삭제 작업 
 	@Transactional
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(int bno, int flag, HttpSession session) {
+	public String delete(int bno, int bcategory, HttpSession session) {
 		
 		// 평문통신이어서 보안이 이루어지지 않고있는데 패킷을 볼 수 있다면 ID와PW도 드러나고 변조해서 보낼 수도있는데 확인작업이 없다.
 		// 최소한의 정보로 모든 정보를 뽑아내서 그 정보로 동작하게 만드는 게 좋다
@@ -154,27 +158,31 @@ public class BoardController {
 		// 다르면 남이 남의 게시물 삭제를 시도한다는 뜻이다. 운영자와 본인 외에는 비정상적인 접근으로 처리해서 보낸다.
 		
 		String bwriter = service.read(bno).getBwriter();
+		String boardUrl = "";
 		
 		expservice.expUpdate(bwriter, 2, "게시물 삭제 경험치 차감", "");
-		service.delete(bno, flag);
+		service.delete(bno, bcategory);
 		
 		// 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
 	    memservice.boardCntUpdate(bwriter, session);
 		
-		if(flag == 2) {
-			return "redirect:/board/list?flag=" + flag;
-		} else {
-			return "redirect:/board/boardlist?flag=" + flag;
-		}
+	    if(bcategory < 2) {
+	    	   boardUrl = "boardlist";
+	       } else {
+	    	   boardUrl = "list";
+	       }
+	       
+	       
+	       return "redirect:/board/"+boardUrl+"?bcategory=" + bcategory; 
 	}
 	
 	// 게시글 수정 출력
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateView(int bno, int flag, Model model) {
+	public String updateView(int bno, int bcategory, Model model) {
 		 log.info(">>>>> 게시글 수정 페이지 출력");
 		BoardDTO bDto = service.read(bno);
 		model.addAttribute("bDto", bDto);
-		model.addAttribute("flag", flag);
+		model.addAttribute("bcategory", bcategory);
 		return "board/modify"; 
 	}
 	
@@ -182,12 +190,17 @@ public class BoardController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updatePlay(BoardDTO bDto, Model model) {
 		log.info(">>>>> 게시글 수정 기능 구현 ");
+		String boardUrl = "";
+		
 		service.update(bDto);
-		if(bDto.getBcategory() == 2) {
-			return "redirect:/board/freeView?bno=" + bDto.getBno() + "&flag=" + bDto.getBcategory();
+		
+		if(bDto.getBcategory() < 2) {
+			boardUrl = "view";
 		} else {
-			return "redirect:/board/view?bno=" + bDto.getBno() + "&flag=" + bDto.getBcategory();
+			boardUrl = "freeView";
 		}
+		
+		return "redirect:/board/"+boardUrl+"?bno=" + bDto.getBno() + "&bcategory=" + bDto.getBcategory();
 	}
 	
 	

@@ -126,10 +126,10 @@ h3.title {
 				<tbody>           
 					<tr>
 						<th scope="row">분류</th>
-						<c:if test="${flag == 0}">
+						<c:if test="${bcategory == 0}">
 							<td>공지</td>
 						</c:if>
-						<c:if test="${flag == 1}">
+						<c:if test="${bcategory == 1}">
 							<td>공지</td>
 						</c:if>
 						
@@ -173,7 +173,7 @@ h3.title {
 					<a href="${path}/board/list">취소</a>
 				</span>
 			</div>
-			<input type="hidden" name="bcategory" value="${flag}">
+			<input type="hidden" name="bcategory" value="${bcategory}">
 			<input type="hidden" name="btext" id="input_btext">
 			<input type="hidden" name="bwriter" value="${sessionScope.loginUser.id}">
 		</form>
