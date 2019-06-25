@@ -186,7 +186,7 @@
 	clear : both;
 	text-align: center;
 }
-.board_search form {
+.search_wrap {
 	display: inline-block;
 	margin: 30px auto 0;
 	padding: 5px;

@@ -147,18 +147,15 @@
 			</div>
 			<!-- 검색창 부분 -->
 			<div class="board_search">
-				<form action="${path}/board/boardlist" method="GET" name="frm_srch" id="boardlist_form">
+				<div class="search_wrap">
 					<select name="search_option" class="search_option">
 						<option value="all" selected="selected">제목+내용</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 					</select>
-					<input type="text" name="keyword" class="form_input search keyword">
-					<input type="hidden" name="bcategory" value="${map.bcategory}">
-					<input type="hidden" name="sort_option" value="${map.sort_option}">
-					<input type="hidden" name="curPage" value="${map.pager.curPage}">
+					<input type="text" name="keyword" id="search_keyword" class="form_input search keyword">
 					<input type="button" value="검색" class="btn_search">
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -183,7 +180,21 @@
 			$('#orderView').css("color", "#FF6C36");
 		}
 		
+		$('#register_btn').click(function(){
+			location.href="${path}/board/register?bcategory=${map.bcategory}";
+		});
+		
+		/* 검색창 유효성체크 */
 		$('.btn_search').click(function(){
+			search_validation();
+		});
+		
+		$('#search_keyword').keyup(function(key){
+			if(key.keyCode==13)
+				search_validation();
+		});	
+		
+		function search_validation(){
 			var search_option = $('.search_option').val();
 			var keyword = $.trim($('.keyword').val());
 			
@@ -194,12 +205,8 @@
 			} else {
 				$('.keyword').css('border', '1px solid #ddd');
 			}
-			location.href="${path}/board/boardlist?sort_option=" + sort_option + "&search_option=" + search_option + "&keyword=" + keyword + "&curPage=" + curPage + "&bcategory=" + bcategory;
-		});
-		
-		$('#register_btn').click(function(){
-			location.href="${path}/board/register?bcategory=${map.bcategory}";
-		});
+			location.href="${path}/board/boardlist?search_option=" + search_option + "&keyword=" + keyword + "&bcategory=" + bcategory;
+		}
 		
 	});
 	</script>

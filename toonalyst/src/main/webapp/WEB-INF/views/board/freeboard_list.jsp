@@ -164,7 +164,7 @@
 	clear : both;
 	text-align: center;
 }
-.board_search form {
+.search_wrap {
 	display: inline-block;
 	margin: 30px auto 0;
 	padding: 5px;
@@ -295,16 +295,16 @@
 		<div class="array_list">
 			<!-- sort_type: 최신순 new(default), 추천순 good, 댓글순 reply, 조회순 view // 주로 a 태그를 사용해서 만든다 -->
 			<span class="array_style">
-				<a href="${path}/board/list?sort_option=new&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2" id="orderNew">최신순</a>
+				<a href="${path}/board/list?sort_option=new&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}" id="orderNew">최신순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2" id="orderGood">추천순</a>
+				<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}" id="orderGood">추천순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/list?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2" id="orderComment">댓글순</a>
+				<a href="${path}/board/list?sort_option=comment&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}" id="orderComment">댓글순</a>
 			</span>
 			<span class="array_style">
-				<a href="${path}/board/list?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2" id="orderView">조회순</a>
+				<a href="${path}/board/list?sort_option=view&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}" id="orderView">조회순</a>
 			</span>
 		</div>
 		<!-- 게시글 영역 -->
@@ -367,8 +367,8 @@
 				<div class="pagination_box">
 					<div class="pagination">
 						<c:if test="${map.pager.curBlock > 1}">
-							<a href="${path}/board/list?curPage=1&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2"><i class="fas fa-angle-double-left"></i></a>
-							<a href="${path}/board/list?curPage=${map.pager.blockBegin - 10}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2"><i class="fas fa-angle-left"></i></a> 
+							<a href="${path}/board/list?curPage=1&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}"><i class="fas fa-angle-double-left"></i></a>
+							<a href="${path}/board/list?curPage=${map.pager.blockBegin - 10}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}"><i class="fas fa-angle-left"></i></a> 
 						</c:if>
 						
 						<c:forEach begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}" var="idx">
@@ -376,23 +376,23 @@
 						</c:forEach>
 						
 						<c:if test="${map.pager.curBlock < map.pager.totBlock}">
-							<a href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2"><i class="fas fa-angle-right"></i></a>
-							<a href="${path}/board/list?curPage=${map.pager.totPage}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=2"><i class="fas fa-angle-double-right"></i></a> 
+							<a href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}"><i class="fas fa-angle-right"></i></a>
+							<a href="${path}/board/list?curPage=${map.pager.totPage}&keyword=${map.keyword}&search_option=${map.search_option}&bcategory=${map.bcategory}"><i class="fas fa-angle-double-right"></i></a> 
 						</c:if>
 					</div>
 				</div>
 				
 				<!-- 검색창 부분 -->
 				<div class="board_search">
-					<form action="" method="GET" name="frm_srch">
+					<div class="search_wrap">
 						<select name="search_option" class="search_option">
 							<option value="all" selected="selected">제목+내용</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
 						</select>
-						<input type="text" name="keyword" class="form_input search keyword">
+						<input type="text" name="keyword" id="search_keyword" class="form_input search keyword">
 						<input type="button" value="검색" class="btn_search">
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -403,6 +403,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var sort_option = "${map.sort_option}";
+	var bcategory = "${map.bcategory}";
 	
 	if(sort_option == "new") {
 		$('#orderNew').css("color", "#FF6C36");
@@ -416,8 +417,23 @@ $(document).ready(function(){
 	if(sort_option == "view") {
 		$('#orderView').css("color", "#FF6C36");
 	}
+
+	$('.register_btn_box').click(function(){
+		location.href = "${path}/board/freeRegister";
+	});
 	
+	
+	/* 검색창 유효성체크 */
 	$('.btn_search').click(function(){
+		search_validation();
+	});
+	
+	$('#search_keyword').keyup(function(key){
+		if(key.keyCode==13)
+			search_validation();
+	});	
+	
+	function search_validation(){
 		var search_option = $('.search_option').val();
 		var keyword = $.trim($('.keyword').val());
 		
@@ -428,13 +444,8 @@ $(document).ready(function(){
 		} else {
 			$('.keyword').css('border', '1px solid #ddd');
 		}
-		location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword+"&bcategory=2";
-	});
-	
-	$('.register_btn_box').click(function(){
-		location.href = "${path}/board/freeRegister";
-	});
-	
+		location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword+"&bcategory="+bcategory;
+	}
 });
 	
 </script>
