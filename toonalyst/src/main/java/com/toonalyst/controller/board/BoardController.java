@@ -132,9 +132,7 @@ public class BoardController {
        log.info(">>>>> 게시글  등록 기능 구현 ");
        String boardUrl = "";
        service.register(bDto);
-       expservice.expUpdate(bDto.getBwriter(), 1, "게시글 등록 경험치 부여", "");
-       // 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
-       memservice.boardCntUpdate(bDto.getBwriter(), session);
+       
        
        if(bDto.getBcategory() < 2) {
     	   boardUrl = "boardlist";
@@ -166,9 +164,8 @@ public class BoardController {
 		
 		if(bDto.getBwriter().equals(mDto.getId())) {
 			expservice.expUpdate(bwriter, 2, "게시물 삭제 경험치 차감", "");
-			service.delete(bno, bcategory);
-			// 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
 		    memservice.boardCntUpdate(bwriter, session);
+		    service.delete(bno, bcategory);
 		}
 		
 		

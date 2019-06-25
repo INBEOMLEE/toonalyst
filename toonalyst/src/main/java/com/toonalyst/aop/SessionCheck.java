@@ -1,11 +1,22 @@
 package com.toonalyst.aop;
 
 import java.util.Arrays;
+import java.util.Enumeration;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.toonalyst.domain.board.BoardDTO;
+import com.toonalyst.service.exp.ExpService;
+import com.toonalyst.service.member.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,15 +33,42 @@ public class SessionCheck {
     // Around ( 메서드 실행 전후 )
     // Before ( 메서드 실행 전 )
     // After ( 메서드 실행 후 )
+	
+	@Inject
+	private ExpService expservice;
+	@Inject
+	private MemberService memservice;
     
-    
-    // execution 경로에 //는 하위패키지들이 다 들어갈 수 있다는 의미
-    @Around("execution(* com.toonalyst.controller..*Controller.*(..))"
-            + " or execution(* com.toonalyst.service..*Impl.*(..))"
-            + " or execution(* com.toonalyst.persistence..*Impl.*(..))")
+	@Around("execution(* com.toonalyst.controller.board.BoardController.*(..))")
     public Object logPrint(ProceedingJoinPoint joinPoint) throws Throwable {
+    	
+		String method = joinPoint.getSignature().getName();
+        System.out.println("+++++++++++++++++++++++++++" + method);
+        
+        
+				
+        if(method.equals("registerPlay")) {
+        	
+        	System.out.println("/////////////////////////////////////");
+    		System.out.println(Arrays.toString(joinPoint.getArgs()));
+    		Object[] arr = joinPoint.getArgs();
+    		BoardDTO bDto = (BoardDTO) arr[0];
+    		System.out.println(">>>>>>>>>>>" + bDto.getBwriter());
+    		System.out.println("/////////////////////////////////////");
+    		
+    		String id = bDto.getBwriter();
+        	HttpSession session = (HttpSession) arr[1];
+	    	
+	    	
+		    expservice.expUpdate(id, 1, "게시글 등록 경험치 부여", "");
+	        memservice.boardCntUpdate(id, session);
+        } else if(method.equals("delete")) {
+        	
+        }
+    	/*
         // 메서드 시작시간
         long start = System.currentTimeMillis();
+        */
         
         // joinPoint.proceed(); 줄을 기준으로
         // ↑ 위에가 호출 전
@@ -39,6 +77,7 @@ public class SessionCheck {
         
         // 호출한 클래스 이름
         String type = joinPoint.getSignature().getDeclaringTypeName();
+        
         
         // 호출한 클래스의 이름에 따라 if문을 타고 출력
         String name = "";
@@ -50,6 +89,7 @@ public class SessionCheck {
             name = "DaoImpl \t:";
         }
         
+        /*
         // 호출한 클래스, method 정보
         log.info(name+type+"."+joinPoint.getSignature().getName());
         // method에 전달되는 매개변수들
@@ -58,6 +98,7 @@ public class SessionCheck {
         long end = System.currentTimeMillis();
         long time = end - start;
         log.info("실행시간 : " + time);
+        */
           
         return result;
     }
