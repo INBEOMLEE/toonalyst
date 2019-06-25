@@ -46,6 +46,7 @@
 			<mapping path="/member/delete"/>
 			<mapping path="/board/modify"/>
 			<mapping path="/board/update"/>
+			<mapping path="/board/delete"/>
 			<mapping path="/board/register"/>			
 			<mapping path="/board/freeboard_register"/>			
 			<beans:ref bean="loginInterceptor"/>		

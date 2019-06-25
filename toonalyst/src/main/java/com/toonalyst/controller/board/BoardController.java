@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.toonalyst.domain.board.BoardDTO;
+import com.toonalyst.domain.member.MemberDTO;
 import com.toonalyst.service.board.BoardService;
 import com.toonalyst.service.board.Pager;
 import com.toonalyst.service.exp.ExpService;
@@ -159,12 +160,19 @@ public class BoardController {
 		
 		String bwriter = service.read(bno).getBwriter();
 		String boardUrl = "";
+		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
 		
-		expservice.expUpdate(bwriter, 2, "게시물 삭제 경험치 차감", "");
-		service.delete(bno, bcategory);
+		BoardDTO bDto = service.read(bno);
 		
-		// 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
-	    memservice.boardCntUpdate(bwriter, session);
+		if(bDto.getBwriter().equals(mDto.getId())) {
+			expservice.expUpdate(bwriter, 2, "게시물 삭제 경험치 차감", "");
+			service.delete(bno, bcategory);
+			// 게시글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
+		    memservice.boardCntUpdate(bwriter, session);
+		}
+		
+		
+
 		
 	    if(bcategory < 2) {
 	    	   boardUrl = "boardlist";
