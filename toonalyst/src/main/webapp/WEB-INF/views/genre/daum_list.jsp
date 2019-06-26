@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>TOONALYST</title>
 <style type="text/css">
+	html { /* 부드러운 페이지 전환효과 */
+		scroll-behavior: smooth;
+	}
 	.genre_outline {
 		width: 100%;
 		height: auto;
@@ -395,7 +398,7 @@
 		$(document).ready(function(){
 			$('.genre_style').click(function(){
 				$('.genre_style').css("background", "#d5d5d5").css("border", "1px solid #d5d5d5");
-				$(this).css("background", "#FF6C36").css("border", "1px solid #FF6C36")
+				$(this).css("background", "#FF6C36").css("border", "1px solid #FF6C36");
 			});
 		});
 	

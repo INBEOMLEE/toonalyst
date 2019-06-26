@@ -62,12 +62,12 @@
 								<a href="${path}/genre/kakao"><span>Kakao</span></a>
 							</div>
 						</li>
-						<li><a href="#">Navigation</a>
+						<li><a href="#">Daily Rank</a>
 							<div class="nav_dropdown">
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
+								<a href="${path}/daily/naver"><span>Naver</span></a>
+								<a href="#"><span>Lezhin</span></a>
+								<a href="#"><span>Daum</span></a>
+								<a href="#"><span>Kakao</span></a>
 							</div>
 						</li>
 						<li><a href="#">Navigation</a>
@@ -117,8 +117,8 @@
 					$('.header_logo_outline').css('height', '157px');
 				}
 			});
-			$('#topBtn').click(function(){
-				$('html, body').animate({scrollTop : 0}, 800);
+			$('#topBtn').click(function(){ 
+				$('html, body').animate({scrollTop : 0}, 100);
 			});
 			
 			$('.index_header').hover(function(){
