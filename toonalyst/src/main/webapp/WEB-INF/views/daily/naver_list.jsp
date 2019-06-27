@@ -153,7 +153,7 @@
 					<a href="#" class="daily_style daily_tue">화</a>
 					<a href="#" class="daily_style daily_wed">수</a>
 					<a href="#" class="daily_style daily_thur">목</a>
-					<a href="#" class="daily_style daily_fri">금</a>
+					<a href="#" class="daily_style daily_fri">금</a> <!-- 4 -->
 					<a href="#" class="daily_style daily_sat">토</a>
 					<a href="#" class="daily_style daily_sun">일</a>
 					<div class="daily_menu_bottom"></div>
@@ -202,17 +202,45 @@
 						</div>
 					</div>
 				</div>
+				<jsp:useBean id="now" class="java.util.Date"/>
+				<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="today" />
+				<input type="hidden" value ="">
 			</div>
 		</div>
 	</section>
 	<%@ include file="../include/footer.jsp" %>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			var selectDate = new Date(); // 오늘 날짜
+			var theDay = selectDate.getDay(); // 목요일이라 4를 반환한다. 그런데 우리 a의 순서는 eq(4)가 금요일이다.
+			// 반환되는 숫자보다 1이 작게 만들어야 함
+			// 7진수에서 가장 큰 수 6을 더하고 7로 나누면 원래의 숫자보다 1보다 작은 나머지가 나온다.
+			var order =( theDay + 6 ) % 7; 
+			
+			$(".daily_style").eq(order).css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
+			
+			/* if(theDay == 1){ // 월요일   
+				$(".daily_mon").css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
+			} else if(theDay == 2){ 
+				$(".daily_tue").css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
+			} else if(theDay == 3){ 
+				$(".daily_wed").css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
+			} else if(theDay == 4){ 
+				$(".daily_thur").css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
+			} else if(theDay == 5){ 
+				$(".daily_fri").css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
+			} else if(theDay == 6){ 
+				$(".daily_sat").css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
+			} else if(theDay == 0){
+				$(".daily_sun").css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
+			} */
+			
 			$('.daily_style').click(function(){
 				$('.daily_style').css("background", "none").css("border", "1px solid #d5d5d5").css("color", "#d5d5d5");
 				$(this).css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
 			});
 		});
+		
 	
 	
 	</script>

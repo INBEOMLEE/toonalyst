@@ -42,7 +42,7 @@ public class SessionCheck {
 	@Around("execution(* com.toonalyst.controller.board.BoardController.*(..))")
     public Object logPrint(ProceedingJoinPoint joinPoint) throws Throwable {
     	
-		String method = joinPoint.getSignature().getName();
+		String method = joinPoint.getSignature().getName(); // 실행된 메서드의 이름을 찾음
         System.out.println("+++++++++++++++++++++++++++" + method);
         
         
@@ -50,7 +50,7 @@ public class SessionCheck {
         if(method.equals("registerPlay")) {
         	
         	System.out.println("/////////////////////////////////////");
-    		System.out.println(Arrays.toString(joinPoint.getArgs()));
+    		System.out.println(Arrays.toString(joinPoint.getArgs())); // getArgs()는 매개변수 담아줌, 반환타입 object
     		Object[] arr = joinPoint.getArgs();
     		BoardDTO bDto = (BoardDTO) arr[0];
     		System.out.println(">>>>>>>>>>>" + bDto.getBwriter());
