@@ -96,21 +96,19 @@ public class BoardController {
 	@RequestMapping(value="/view", method=RequestMethod.GET)
 	public String view(int bno, int bcategory, Model model, HttpSession session) {
 		log.info(">>>>> 상세 게시글 출력");
+		String page = "";
+		
 		service.increaseViewCnt(bno, session);
 		BoardDTO bDto = service.read(bno);
 		model.addAttribute("bDto", bDto);
 		model.addAttribute("bcategory", bcategory);
-		return "/board/view";
-	}
-	
-	@RequestMapping(value="/freeView", method=RequestMethod.GET)
-	public String freeboardView(int bno, int bcategory, Model model, HttpSession session) {
-		log.info(">>>>> 자유 게시판 상세 게시글 출력");
-		service.increaseViewCnt(bno, session);
-		BoardDTO bDto = service.read(bno);
-		model.addAttribute("bDto", bDto);
-		model.addAttribute("bcategory", bcategory);
-		return "/board/freeboard_view";
+		
+		if(bDto.getBcategory()<2) {
+			page = "/board/view";
+		}else {
+			page = "/board/freeboard_view";
+		}
+		return page;
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
