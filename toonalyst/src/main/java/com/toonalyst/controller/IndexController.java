@@ -53,4 +53,11 @@ public class IndexController {
 		
 		return "/introduction";
 	}
+	
+	@RequestMapping(value="/testpage", method=RequestMethod.GET)
+	public String testpage() {
+		log.info(">>>>> 사이트 소개 페이지 출력");
+		
+		return "/testpage";
+	}
 }

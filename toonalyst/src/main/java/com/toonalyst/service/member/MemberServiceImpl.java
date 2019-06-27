@@ -132,15 +132,27 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public HashMap<String, List<BoardDTO>> noticetList() {
+	public HashMap<String, Object> noticetList(String id) {
 		List<BoardDTO> nList = mDao.noticeList(0);
 		List<BoardDTO> qList = mDao.noticeList(1);
 		List<BoardDTO> bList = mDao.noticeList(2);
 		
-		HashMap<String, List<BoardDTO>> map = new HashMap<>();
+		List<HashMap<String, String>> lastBoardList = mDao.activeBoardList(id);
+		List<HashMap<String, String>> lastCommentList = mDao.activeCommentList(id);
+		
+		for (HashMap<String, String> map : lastCommentList) {
+			for (String key : map.keySet()) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>"+key);
+			}
+		}
+		
+		HashMap<String, Object> map = new HashMap<>();
 		map.put("nList", nList);
 		map.put("qList", qList);
 		map.put("bList", bList);
+		map.put("board", lastBoardList);
+		map.put("comment", lastCommentList);
+		
 		return map;
 	}
 

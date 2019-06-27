@@ -80,10 +80,25 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	
 	
-	  @Override public List<BoardDTO> noticeList(int bcategory) {
-	  
-	  return sqlSession.selectList("member.newlist",bcategory); 
-	  }
+	@Override 
+	public List<BoardDTO> noticeList(int bcategory) {
+	
+		return sqlSession.selectList("member.newlist",bcategory); 
+	}
+	
+	@Override 
+	public List<HashMap<String, String>> activeBoardList(String id) {
+		System.out.println("--------------------------------"+id);
+		return sqlSession.selectList("member.activeBoardList",id); 
+	}
+
+	@Override 
+	public List<HashMap<String, String>> activeCommentList(String id) {
+		
+		return sqlSession.selectList("member.activeCommentList",id); 
+	}
+	
+	
 	@Override
 	public void boardCntUpdate(int boardcnt, String id) {
 		HashMap<String, Object> map = new HashMap<>();

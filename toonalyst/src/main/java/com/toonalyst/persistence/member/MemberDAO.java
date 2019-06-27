@@ -31,6 +31,10 @@ public interface MemberDAO {
 	public void changePw(String id, String pw);
 	// 마이페이지 조회	
 	public List<BoardDTO> noticeList(int bcategory);
+	// 마이페이지 마지막으로 작성한 게시물 5개 반환
+	public List<HashMap<String, String>> activeBoardList(String id);
+	// 마이페이지 마지막으로 작성한 댓글 5개 반환
+	public List<HashMap<String, String>> activeCommentList(String id);
 	// 게시글 작성과 삭제 시 boardCnt Update
 	public void boardCntUpdate(int boardcnt, String id);
 	// 댓글 작성과 삭제 시 commentCnt Update

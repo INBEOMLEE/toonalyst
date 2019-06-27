@@ -36,7 +36,7 @@ public interface MemberService {
 	// 비밀번호 변경
 	public void changePw(String id, String pw);
 	// 마이페이지 게시글 출력
-	public HashMap<String, List<BoardDTO>> noticetList();
+	public HashMap<String, Object> noticetList(String id);
 	// 게시글 작성과 삭제시 boardCnt 업데이트
 	public void boardCntUpdate(String id, HttpSession session);
 	// 댓글 닥성과 삭제시 boardCnt 업데이트

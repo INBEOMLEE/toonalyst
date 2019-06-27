@@ -4,24 +4,20 @@
 <%@ include file="../include/common.jsp" %>    
     
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style type="text/css">
 .wrap_inner {
     width: 1200px;
     margin: 0 auto;
 }
-#footer .cs_info > ul {
+.cs_info > ul {
     font-size: 0;
     display: block;
     list-style-type: disc;
 }
-#footer .cs_info {
+.cs_info {
     padding-bottom: 100px;
 }
-#footer .cs_info > ul > li {
+.cs_info > ul > li {
     display: inline-block;
     width: 375px;
     height: 225px;
@@ -31,14 +27,14 @@
     text-align: -webkit-match-parent;
     vertical-align: top;
 }
-#footer .cs_info > ul > li h1 {
+.cs_info > ul > li h1 {
     padding-bottom: 20px;
     font-size: 18px;
     font-weight: 700;
     display: block;
     text-align: center;
 }
-#footer .cs_info > ul > li.cs strong {
+.cs_info > ul > li.cs strong {
     display: block;
     padding-bottom: 20px;
     font-size: 30px;
@@ -46,10 +42,10 @@
     line-height: 1;
 }
 
-#footer .cs_info > ul > li.faq {
+.cs_info > ul > li.faq {
     margin: 0 20px;
 }
-#footer .cs_info > ul > li dl.ft_board dd {
+.cs_info > ul > li dl.ft_board dd {
     overflow: hidden;
     padding-bottom: 8px;
     font-size: 12px;
@@ -57,39 +53,39 @@
     font-weight: 600;
     margin-inline-start: 10px;
 }
-#footer .cs_info > ul > li dl{
+.cs_info > ul > li dl{
     text-align: left
 }
+
 #footer .cs_info > ul > li dl.ft_board dd a {
     color: #777;
     font-weight: 600;
     font-size: 13px;
 }
-}
-#footer .cs_info > ul > li.cs dl dd.right p {
+
+.cs_info > ul > li.cs dl dd.right p {
     color: #999;
 }
 
-#footer .cs_info > ul > li.cs dl dd p {
+.cs_info > ul > li.cs dl dd p {
     padding-bottom: 10px;
     font-size: 16px;
     display: block;
     text-align: center;
 }
-#footer .cs_info > ul > li.cs dl dd p span {
+.cs_info > ul > li.cs dl dd p span {
     color: #999;
     font-size: inherit;
 }
-#footer .cs_info > ul > li dl.ft_board dd span {
+.cs_info > ul > li dl.ft_board dd span {
     float: right;
     color: #999;
     font-size: 14px;
 }
-#footer .cs_info > ul > li.cs dl dd p a {
+.cs_info > ul > li.cs dl dd p a {
     font-size: inherit;
 }
 </style>
-</head>
 <body>
 <div id="footer">
 		<div class="cs_info wrap_inner">
@@ -122,4 +118,3 @@
 		</div>		
 	</div>
 </body>
-</html>

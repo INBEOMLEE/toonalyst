@@ -71,6 +71,43 @@
 	height: 24px;
 	margin-top: 5px;
 }
+
+.ac_board{
+	width: 550px !important;
+	padding: 30px !important;
+}
+
+.ac_wrap{
+	padding-bottom: 50px !important;
+}
+
+.ac_board a{
+	color: #777;
+    font-weight: 600;
+    font-size: 13px;
+}
+.ac_board > dl > dd > a{
+	overflow: hidden;
+    width: 310px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-flex;
+}
+
+.ac_board_title{
+	width: 100%; 
+	display: flex; 
+	flex-direction: row;
+}
+.ac_board_title span{
+	flex:1;
+}
+
+.ac_board_title span:nth-child(3){
+	text-align: right; 
+	margin-top:10px;
+}
+
 </style>
 </head>
 <body>
@@ -85,6 +122,42 @@
 				<li><a href="#">작성한 댓글 수<span>${sessionScope.loginUser.commentcnt}</span></a></li>
 			</ul>		
 		</div>					
+	</div>
+	<div class="cs_info wrap_inner ac_wrap">
+		<ul>
+			<li class="ac_board">
+				<div class="ac_board_title">
+					<span></span>
+					<span><h1>작성한 게시글</h1></span>
+					<span><a>전체보기</a></span>
+				</div>				
+				<dl class="ft_board">
+				<c:forEach items="${nList.board}" var="bDto">
+					<dd>
+						<c:if test="${bDto.bcategory == 0}">[공지사항]</c:if>
+						<c:if test="${bDto.bcategory == 1}">[QnA]</c:if>
+						<c:if test="${bDto.bcategory == 2}">[자유게시판]</c:if>
+						<a href="#">${bDto.btitle}</a><span>2019-06-26</span>
+					</dd>
+				</c:forEach>
+				</dl>
+			</li>
+			<li class="ac_board" style="margin-left: 60px;">
+				<div class="ac_board_title">
+					<span></span>
+					<span><h1>작성한 댓글</h1></span>
+					<span><a>전체보기</a></span>
+				</div>
+				<dl class="ft_board">
+					<c:forEach items="${nList.comment}" var="cMap">
+					<dd>
+						[${cMap.BOARDNAME}]
+						<a href="#">${cMap.CCONTENT}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${cMap.CREGDATE}"/></span>
+					</dd>
+					</c:forEach>
+				</dl>
+			</li>
+		</ul>
 	</div>
 <%@ include file="../include/my_footer.jsp" %>		
 <%@ include file="../include/footer.jsp" %>	

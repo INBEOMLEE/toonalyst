@@ -218,10 +218,10 @@ public class MemberController {
 	
 	// 마이페이지 게시글 조회
 	@RequestMapping(value="/mypage", method = RequestMethod.GET)
-	public String myPagePlay(Model model) {
+	public String myPagePlay(Model model, HttpSession session) {
 		log.info(">>>>> 마이페이지 게시글 출력");
-		
-		HashMap<String, List<BoardDTO>> map = service.noticetList();	
+		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
+		HashMap<String, Object> map = service.noticetList(mDto.getId());	
 		
 		model.addAttribute("nList", map);
 		
