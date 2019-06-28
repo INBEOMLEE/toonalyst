@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.persistence.board.BoardDAO;
@@ -22,8 +22,9 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardDAO bDao;
 	
+	@Transactional
 	@Override
-	public int register(BoardDTO bDto) {
+	public int register(BoardDTO bDto, HttpSession session) {
 		
 		return bDao.register(bDto);
 	}
@@ -43,8 +44,9 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.listAll(sort_option, search_option, keyword, start, end, bcategory);
 	}
 
+	@Transactional
 	@Override
-	public void delete(int bno, int bcategory) {
+	public void delete(int bno, int bcategory, HttpSession session) {
 		 bDao.delete(bno);
 	}
 

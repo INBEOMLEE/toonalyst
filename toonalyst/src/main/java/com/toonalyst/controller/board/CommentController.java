@@ -45,16 +45,14 @@ public class CommentController {
 	
 	
 	
-	// Ajax
-	@Transactional
+	// Ajax	
 	@ResponseBody
 	@RequestMapping(value="create", method=RequestMethod.POST)
 	public int create(CommentDTO cDto, HttpSession session) {
 		log.info(">>>>> 댓글 등록 기능 구현");
 		// 댓글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
-		int result = service.create(cDto);
-		expservice.expUpdate(cDto.getCwriter(), 3, "댓글등록 경험치부여", ""); 		
-	    memservice.commentCntUpdate(cDto.getCwriter(), session);
+		int result = service.create(cDto, session);
+		
 	    return result;
 	}
 	

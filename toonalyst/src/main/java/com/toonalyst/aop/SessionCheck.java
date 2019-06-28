@@ -15,6 +15,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.toonalyst.domain.board.BoardDTO;
+import com.toonalyst.domain.board.CommentDTO;
+import com.toonalyst.domain.member.MemberDTO;
 import com.toonalyst.service.exp.ExpService;
 import com.toonalyst.service.member.MemberService;
 
@@ -39,7 +41,7 @@ public class SessionCheck {
 	@Inject
 	private MemberService memservice;
     
-	@Around("execution(* com.toonalyst.controller.board.BoardController.*(..))")
+	@Around("execution(* com.toonalyst.service.board..*Impl.*(..))")
     public Object logPrint(ProceedingJoinPoint joinPoint) throws Throwable {
     	
 		String method = joinPoint.getSignature().getName(); // 실행된 메서드의 이름을 찾음
@@ -47,24 +49,55 @@ public class SessionCheck {
         
         
 				
-        if(method.equals("registerPlay")) {
+        if(method.equals("register")) {
         	
         	System.out.println("/////////////////////////////////////");
     		System.out.println(Arrays.toString(joinPoint.getArgs())); // getArgs()는 매개변수 담아줌, 반환타입 object
     		Object[] arr = joinPoint.getArgs();
+    		
+    		for (Object object : arr) {
+				System.out.println(">>>>>>>★★★★★★★★>>>>>>>>>>>>>>>>>>>" + object);
+			}
+    		
     		BoardDTO bDto = (BoardDTO) arr[0];
     		System.out.println(">>>>>>>>>>>" + bDto.getBwriter());
-    		System.out.println("/////////////////////////////////////");
+    		
     		
     		String id = bDto.getBwriter();
         	HttpSession session = (HttpSession) arr[1];
-	    	
+        	
 	    	
 		    expservice.expUpdate(id, 1, "게시글 등록 경험치 부여", "");
 	        memservice.boardCntUpdate(id, session);
+	        
+	        System.out.println("/////////////////////////////////////");
         } else if(method.equals("delete")) {
+        	System.out.println("/////////////////////////////////////");
+    		System.out.println(Arrays.toString(joinPoint.getArgs()));
+    		Object[] arr = joinPoint.getArgs();
+    		
+    		HttpSession session = (HttpSession) arr[2];
+    		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
+    		
+    		expservice.expUpdate(mDto.getId(), 2, "게시물 삭제 경험치 차감", "");
+		    memservice.boardCntUpdate(mDto.getId(), session);
+		    
+		    System.out.println("/////////////////////////////////////");
+        } else if (method.equals("create")) {
+	    	System.out.println("/////////////////////////////////////");
+			System.out.println(Arrays.toString(joinPoint.getArgs()));
+			Object[] arr = joinPoint.getArgs();
+			CommentDTO cDto = (CommentDTO) arr[0];
+			HttpSession session = (HttpSession) arr[1];
+   		
+    		expservice.expUpdate(cDto.getCwriter(), 3, "댓글등록 경험치부여", ""); 		
+    	    memservice.commentCntUpdate(cDto.getCwriter(), session);
+			
+		}
         	
-        }
+        	
+        	
+        	
     	/*
         // 메서드 시작시간
         long start = System.currentTimeMillis();
