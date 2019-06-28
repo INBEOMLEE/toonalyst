@@ -78,9 +78,9 @@
 	<div class="footer_info">
 		<div class="footer_info_menu">
 			<ul class="footer_wrap_inner">
-				<li><a href="#">이용안내</a></li>
-				<li><a href="#">이용약관</a></li>
-				<li><a href="#">개인정보처리방침</a></li>
+				<li><a href="${path}/introduction">이용안내 및 이용약관</a></li>	
+				<li><a href="#">/</a></li>			
+				<li><a href="${path}/introduction">개인정보처리방침</a></li>
 			</ul>
 		</div>
 		<div class="footer_wrap_inner">
