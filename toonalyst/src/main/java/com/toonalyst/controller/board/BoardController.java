@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -215,6 +214,49 @@ public class BoardController {
 		int bgoodcnt = service.goodSwitch(id, bno);
 		
 		return bgoodcnt;
+	}
+	
+	// 답글 등록 페이지 출력
+	@RequestMapping(value="/answer", method = RequestMethod.GET)
+	public String answer(Model model, int bno) {
+		log.info(">>>>> 답글 등록 페이지 출력");
+		
+		// 답글을 달려고 하는 게시글 내용
+		BoardDTO bDto = service.read(bno);
+		bDto.setBcontent("(이전 게시글 내용)<br>" + bDto.getBcontent());
+		model.addAttribute("bDto", bDto);
+		model.addAttribute("bcategory", bDto.getBcategory());
+		String boardUrl = "";
+		
+		if(bDto.getBcategory() < 2) {
+			boardUrl = "answer";
+		} else {
+			boardUrl = "freeboard_answer";
+		}
+		return "board/" + boardUrl;
+	}
+	
+	// 답글 등록 Play
+	@RequestMapping(value="/answer", method = RequestMethod.POST)
+	public String answerPlay(BoardDTO bDto, HttpSession session) {
+		log.info(">>>>> 답글 기능 구현");
+		System.out.println("==========================" + bDto.toString());
+		BoardDTO one = service.read(bDto.getBno());
+		log.info("기존 게시글 정보 =====================================");
+		log.info(one.toString());
+		log.info("===================================================");
+		bDto.setBorigin(one.getBorigin());
+		bDto.setBturn(one.getBturn());
+		bDto.setBdepth(one.getBdepth());
+		
+		// DB 등록
+		service.answer(bDto, session);
+		
+		if(bDto.getBcategory() < 2) {
+			return "redirect:/board/boardlist?bcategory=" + bDto.getBcategory();
+		} else {
+			return "redirect:/board/list?bcategory=" + bDto.getBcategory();
+		}
 	}
 	
 	

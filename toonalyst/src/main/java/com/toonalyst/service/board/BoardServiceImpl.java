@@ -15,7 +15,6 @@ import com.toonalyst.persistence.board.BoardDAO;
 
 
 import lombok.extern.slf4j.Slf4j;
-@Slf4j
 @Service
 public class BoardServiceImpl implements BoardService {
 
@@ -104,6 +103,20 @@ public class BoardServiceImpl implements BoardService {
 		bDao.goodCntUpdate(bgoodcnt, bno);
 		
 		return bgoodcnt;
+	}
+
+	@Override
+	public void answer(BoardDTO bDto, HttpSession session) {
+		// 비즈니스 로직 : 답글 등록
+		// 1. 답글을 달려고 하는 게시글의 bturn 보다 큰 답글들의 bturn + 1 작업
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("borigin", bDto.getBorigin());
+		map.put("bturn", bDto.getBturn());
+		bDao.updateBturn(map);
+		// 2. 답글 테이블에 등록
+		bDto.setBturn(bDto.getBturn() + 1);
+		bDto.setBdepth(bDto.getBdepth() + 1);
+		bDao.answer(bDto);
 	} 
 
 }

@@ -11,8 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
     <insert id="register" parameterType="com.toonalyst.domain.board.BoardDTO">          
-       INSERT INTO  tbl_toonalyst_board(bno, btitle, bcontent, btext, bcategory, bwriter)
-       VALUES(seq_toonalyst_board_bno.NEXTVAL, #{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter})
+       INSERT INTO  tbl_toonalyst_board(bno, btitle, bcontent, btext, bcategory, bwriter, borigin)
+       VALUES(seq_toonalyst_board_bno.NEXTVAL, #{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter}, seq_toonalyst_board_bno.CURRVAL)
        <selectKey keyProperty="bno" resultType="Integer" order="AFTER">
 	 	SELECT seq_toonalyst_board_bno.CURRVAL FROM dual
 	 </selectKey>       
@@ -96,16 +96,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						  </otherwise>
 					  </choose>
 						<if test="sort_option == 'new'">
-							ORDER BY bno DESC
+							ORDER BY borigin DESC, bturn
 						</if>
 						<if test="sort_option == 'good'">
-							ORDER BY bgoodcnt DESC, bno DESC
+							ORDER BY bgoodcnt DESC, borigin DESC, bturn
 						</if>
 						<if test="sort_option == 'comment'">
-							ORDER BY bcommentcnt DESC, bno DESC
+							ORDER BY bcommentcnt DESC, borigin DESC, bturn
 						</if>
 						<if test="sort_option == 'view'">
-							ORDER BY bviewcnt DESC, bno DESC
+							ORDER BY bviewcnt DESC, borigin DESC, bturn
 						</if>
 		            ) a
 		      ) WHERE rnum BETWEEN #{start} AND #{end}
@@ -161,6 +161,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM tbl_toonalyst_board
 		WHERE bwriter = #{id}
 	</select>
+	
+	<update id="updateBturn" parameterType="HashMap">
+		<![CDATA[
+			UPDATE tbl_toonalyst_board
+			SET bturn = bturn + 1
+			WHERE borigin = #{borigin} AND bturn > #{bturn}
+		]]>
+	</update>
+	<insert id="answer" parameterType="com.toonalyst.domain.board.BoardDTO">
+		INSERT INTO  tbl_toonalyst_board(bno, btitle, bcontent, btext, bcategory, bwriter, borigin, bturn, bdepth)
+        VALUES(seq_toonalyst_board_bno.NEXTVAL, #{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter}, #{borigin}, #{bturn}, #{bdepth})
+	</insert>
 </mapper>
 
 

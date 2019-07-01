@@ -206,6 +206,7 @@
 }
 #list_title {
 	flex: 3;
+	justify-content: unset;
 }
 .board_col img {
 	margin-right: 3px;
@@ -287,6 +288,15 @@
 #qaboard_goodcnt_title, #qaboard_viewcnt_title, #qaboard_goodcnt, #qaboard_viewcnt {
 	flex: 0.6;
 } 
+#reply_arrow {
+	transform: rotate(-180deg);
+	margin-right: 2px;
+	color: darkgray;
+}
+#title_empty_space {
+	width: 17px;
+	height: 3px;
+}
 </style>
 </head>
 <body>
@@ -331,7 +341,13 @@
 									<strong>[자유]</strong>
 								</td>
 								<td id="list_title">
-									<a href="${path}/board/view?bno=${bDto.bno}&bcategory=${map.bcategory}">${bDto.btitle}</a>
+									<c:forEach begin="1" end="${bDto.bdepth}">
+										<div id="title_empty_space"></div>
+									</c:forEach>
+									<c:if test="${bDto.bdepth > 0}">
+										<i class="fas fa-reply" id="reply_arrow"></i>
+									</c:if>
+									<a href="${path}/board/view?bno=${bDto.bno}&bcategory=${map.bcategory}"> ${bDto.btitle}</a>
 									<c:if test="${bDto.bcommentcnt > 0}">
 										<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
 									</c:if>

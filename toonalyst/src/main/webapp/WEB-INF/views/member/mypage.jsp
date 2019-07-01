@@ -134,7 +134,9 @@
 				<dl class="ft_board">
 				<c:forEach items="${nList.board}" var="bDto">
 					<dd>
-						[${bDto.BOARDNAME}]
+						<c:if test="${bDto.BCATEGORY == 0}">[공지]</c:if>
+						<c:if test="${bDto.BCATEGORY == 1}">[질문]</c:if>
+						<c:if test="${bDto.BCATEGORY == 2}">[자유]</c:if> 
 						<a href="${path }/board/view?bno=${bDto.BNO}&bcategory=${bDto.BCATEGORY}">${bDto.BTITLE}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.BREGDATE}"/></span>
 					</dd>
 				</c:forEach>
@@ -149,7 +151,9 @@
 				<dl class="ft_board">
 					<c:forEach items="${nList.comment}" var="cMap">
 					<dd>
-						[${cMap.BOARDNAME}]
+						<c:if test="${cMap.BCATEGORY == 0}">[공지]</c:if>
+						<c:if test="${cMap.BCATEGORY == 1}">[질문]</c:if>
+						<c:if test="${cMap.BCATEGORY == 2}">[자유]</c:if> 
 						<a href="${path }/board/view?bno=${cMap.BNO}&bcategory=${cMap.BCATEGORY}">${cMap.CCONTENT}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${cMap.CREGDATE}"/></span>
 					</dd>
 					</c:forEach>

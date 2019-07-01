@@ -324,6 +324,11 @@
 				<div class="board_view_content">${bDto.bcontent}</div>
 				<div class="list_btn_box">
 					<div class="list_btn_box1">
+						<c:if test="${!empty sessionScope.loginUser.id}">
+							<c:if test="${bcategory == 1}">
+								<button class="list_btn" id="answer_btn">답글</button>
+							</c:if>
+						</c:if>
 						<c:if test="${sessionScope.loginUser.id == bDto.bwriter}">
 							<button class="list_btn" id="update_btn">수정</button>
 							<button class="list_btn" id="remove_btn">삭제</button>
@@ -496,6 +501,10 @@ $(document).ready(function(){
 	
 	$(document).on("click", "#board_list_btn", function(){
 		location.href="${path}/board/boardlist?bcategory=${bcategory}";
+	});
+	
+	$(document).on("click", "#answer_btn", function(){
+		location.href="${path}/board/answer?bno=${bDto.bno}";
 	});
 	
 </script>

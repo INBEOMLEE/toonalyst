@@ -231,6 +231,7 @@
 }
 #list_title {
 	flex: 3;
+	justify-content: unset;
 }
 .board_col img {
 	margin-right: 3px;
@@ -319,8 +320,15 @@
 	padding: 2px 5px;
 	font-weight: bold;
 }
-
-
+#reply_arrow {
+	transform: rotate(-180deg);
+	margin-right: 2px;
+	color: darkgray;
+}
+#title_empty_space {
+	width: 17px;
+	height: 3px;
+}
 
 </style>
 </head>

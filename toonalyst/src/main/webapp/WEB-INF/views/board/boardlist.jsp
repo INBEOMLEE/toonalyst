@@ -96,7 +96,13 @@
 									<strong>[질문]</strong>
 								</td>
 								<td id="list_title">
-									<a href="${path}/board/view?bno=${bDto.bno}&bcategory=${map.bcategory}">${bDto.btitle}</a>
+									<c:forEach begin="1" end="${bDto.bdepth}">
+										<div id="title_empty_space"></div>
+									</c:forEach>
+									<c:if test="${bDto.bdepth > 0}">
+										<i class="fas fa-reply" id="reply_arrow"></i>
+									</c:if>
+									<a href="${path}/board/view?bno=${bDto.bno}&bcategory=${map.bcategory}"> ${bDto.btitle}</a>
 									<c:if test="${bDto.bcommentcnt > 0}">
 										<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
 									</c:if>

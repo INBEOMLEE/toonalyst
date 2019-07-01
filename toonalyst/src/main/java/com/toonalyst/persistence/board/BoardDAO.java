@@ -1,5 +1,6 @@
 package com.toonalyst.persistence.board;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,5 +35,11 @@ public interface BoardDAO {
 	public void commentCntUpdate(int bno, int code);
 
 	public int selectBoardCnt(String id);
+
+	public void updateBturn(HashMap<String, Integer> map);
+
+	public void answer(BoardDTO bDto);
+
+
 	
 }

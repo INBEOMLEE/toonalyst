@@ -83,7 +83,7 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override 
 	public List<BoardDTO> noticeList(int bcategory) {
 	
-		return sqlSession.selectList("member.newlist",bcategory); 
+		return sqlSession.selectList("member.newlist", bcategory); 
 	}
 	
 	@Override 

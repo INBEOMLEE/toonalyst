@@ -116,8 +116,8 @@ h3.title {
 </head>
 <body>
 	<div id="counsel_write">
-    	<h3 class="title first">게시글 작성</h3>
-		<form method="post" action="${path}/board/register" id="frm_bin" name="frm_bin">
+    	<h3 class="title first">답글 작성</h3>
+		<form method="post" action="${path}/board/answer" id="frm_bin" name="frm_bin">
 			<table class="tbl_row">
 				<caption class="hidden"></caption>
 				<colgroup>
@@ -132,14 +132,13 @@ h3.title {
 						<c:if test="${bcategory == 1}">
 							<td>질문</td>
 						</c:if>
-						
 					</tr>             
 					<tr>
 						<th scope="row">
 							<label for="counsel_title">제목</label>
 						</th>
 						<td>
-							<input type="text" name="btitle" id="counsel_title" class="form_input block">
+							<input type="text" name="btitle" id="counsel_title" class="form_input block" value="${bDto.btitle}" readonly="readonly">
 						</td>
 					</tr>
 					<tr>
@@ -147,7 +146,7 @@ h3.title {
 							<label for="counsel_cnt">수정내용</label>
 						</th>
 						<td>
-							<textarea name="bcontent" id="bcontent" class="writing_area block"></textarea>
+							<textarea name="bcontent" id="bcontent" class="writing_area block">${bDto.bcontent}</textarea>
 						</td>
 						<script type="text/javascript">
 							var oEditors = [];
@@ -176,6 +175,7 @@ h3.title {
 			<input type="hidden" name="bcategory" value="${bcategory}">
 			<input type="hidden" name="btext" id="input_btext">
 			<input type="hidden" name="bwriter" value="${sessionScope.loginUser.id}">
+			<input type="hidden" name="bno" value="${bDto.bno}">
 		</form>
 	</div> 
     
@@ -199,7 +199,6 @@ $(document).on("click", "#conform", function(){
 	}
     $('.register_err_message').text("").css('display', 'none');
 	$('#frm_bin').submit();
-    
 });
 </script>
 <%@ include file="../include/footer.jsp" %> 

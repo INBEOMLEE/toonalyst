@@ -116,4 +116,16 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne("board.selectBoardCnt", id);
 	}
 
+	@Override
+	public void updateBturn(HashMap<String, Integer> map) {
+		sqlSession.update("board.updateBturn", map);
+	}
+
+	@Override
+	public void answer(BoardDTO bDto) {
+		sqlSession.insert("board.answer", bDto);
+	}
+
+
+
 }

@@ -25,6 +25,6 @@ public interface BoardService {
 	public int goodCheck(String id, int bno);
 	// 좋아요 증가와 감소
 	public int goodSwitch(String id, int bno);
-	
-	
+	// 답글 등록 기능 구현
+	public void answer(BoardDTO bDto, HttpSession session);
 }
