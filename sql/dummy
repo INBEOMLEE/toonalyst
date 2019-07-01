@@ -1,6 +1,6 @@
 -- TOONALYST DUMMY DATA
 
-DROP TABLE tbl_toonalyst_member;
+DROP TABLE tbl_toonalyst_member CASCADE CONSTRAINT;
 CREATE TABLE tbl_toonalyst_member(
     id VARCHAR2(30) PRIMARY KEY,
     pw VARCHAR2(30) NOT NULL,
@@ -15,7 +15,8 @@ CREATE TABLE tbl_toonalyst_member(
     memexp NUMBER DEFAULT 0,
     boardcnt NUMBER DEFAULT 0,
     commentcnt NUMBER DEFAULT 0,
-    regdate DATE DEFAULT SYSDATE
+    regdate DATE DEFAULT SYSDATE,
+    toonadmin NUMBER DEFAULT 0
 );
 
 INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
@@ -26,6 +27,8 @@ INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, add
 VALUES('user03', '1234', '이인범', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
 INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
 VALUES('user04', '1234', '조기훈', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
+INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2, toonadmin)
+VALUES('admin', '1234', '운영자', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층', 1);
 
 SELECT * FROM tbl_toonalyst_member;
 COMMIT;
