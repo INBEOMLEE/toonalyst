@@ -17,8 +17,6 @@ import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
 import com.toonalyst.service.board.BoardService;
 import com.toonalyst.service.board.Pager;
-import com.toonalyst.service.exp.ExpService;
-import com.toonalyst.service.member.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,10 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	@Inject
 	private BoardService service;
-	@Inject
-	private ExpService expservice;
-	@Inject
-	private MemberService memservice;
 	
 	// 페이지 이동
 	@RequestMapping(value="/list", method=RequestMethod.GET)

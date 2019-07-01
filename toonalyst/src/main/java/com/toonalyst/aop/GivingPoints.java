@@ -29,11 +29,11 @@ public class GivingPoints {
     // After ( 메서드 실행 후 )
 	
 	@Inject
-	private ExpService expservice;
+	private ExpService expService;
 	@Inject
-	private MemberService memservice;
+	private MemberService memService;
 	@Inject
-	private CommentService comservice;
+	private CommentService comService;
     
 	@Around("execution(* com.toonalyst.service.board.BoardServiceImpl.*(..))")
     public Object boardAOP(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -47,14 +47,21 @@ public class GivingPoints {
     		BoardDTO bDto = (BoardDTO) arr[0];
     		String id = bDto.getBwriter();
         	HttpSession session = (HttpSession) arr[1];
-		    expservice.expUpdate(id, 1, "게시글 등록 경험치 부여", "");
-	        memservice.boardCntUpdate(id, session);
+		    expService.expUpdate(id, 1, "게시글 등록 경험치 부여", "");
+	        memService.boardCntUpdate(id, session);
         } else if(method.equals("delete")) {
     		Object[] arr = joinPoint.getArgs();
     		HttpSession session = (HttpSession) arr[2];
     		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
-    		expservice.expUpdate(mDto.getId(), 2, "게시물 삭제 경험치 차감", "");
-		    memservice.boardCntUpdate(mDto.getId(), session);
+    		expService.expUpdate(mDto.getId(), 2, "게시물 삭제 경험치 차감", "");
+		    memService.boardCntUpdate(mDto.getId(), session);
+        }  else if(method.equals("answer")) {
+        	Object[] arr = joinPoint.getArgs();
+        	BoardDTO bDto = (BoardDTO) arr[0];
+        	String id = bDto.getBwriter();
+        	HttpSession session = (HttpSession) arr[1];
+        	expService.expUpdate(id, 1, "답글 등록 경험치 부여", "");
+  	        memService.boardCntUpdate(id, session);
         }
         Object result = joinPoint.proceed(); // 핵심업무 실행
         return result;
@@ -70,15 +77,15 @@ public class GivingPoints {
 			Object[] arr = joinPoint.getArgs();
 			CommentDTO cDto = (CommentDTO) arr[0];
 			HttpSession session = (HttpSession) arr[1];
-    		expservice.expUpdate(cDto.getCwriter(), 3, "댓글등록 경험치부여", ""); 		
-    	    memservice.commentCntUpdate(cDto.getCwriter(), session);
+    		expService.expUpdate(cDto.getCwriter(), 3, "댓글등록 경험치부여", ""); 		
+    	    memService.commentCntUpdate(cDto.getCwriter(), session);
         } else if(method.equals("delete")) {
         	Object[] arr = joinPoint.getArgs();
         	int cno = (int) arr[0];
         	String id = (String) arr[1];
         	HttpSession session = (HttpSession) arr[3];
-        	expservice.expUpdate(comservice.read(cno).getCwriter(), 4, "댓글 삭제 경험치 차감", "");
-        	memservice.commentCntUpdate(id, session);
+        	expService.expUpdate(comService.read(cno).getCwriter(), 4, "댓글 삭제 경험치 차감", "");
+        	memService.commentCntUpdate(id, session);
         }
 		Object result = joinPoint.proceed();
 		return result;
@@ -95,9 +102,10 @@ public class GivingPoints {
     		Object[] arr = joinPoint.getArgs();
     		MemberDTO mDto = (MemberDTO) arr[0];
     		HttpSession session = (HttpSession) arr[1];
-    		expservice.expUpdate(mDto.getId(), 0, "로그인 경험치", "", session);
+    		expService.expUpdate(mDto.getId(), 0, "로그인 경험치", "", session);
         } 
         Object result = joinPoint.proceed(); // 핵심업무 실행
         return result;
     }
+	
 }
