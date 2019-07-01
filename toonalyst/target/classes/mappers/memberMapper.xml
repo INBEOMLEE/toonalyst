@@ -92,11 +92,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="activeBoardList" parameterType="String" resultType="com.toonalyst.domain.board.BoardDTO">
 		<![CDATA[
-     	  SELECT *
- 			FROM (SELECT * FROM tbl_toonalyst_board
-         	WHERE  bwriter = #{id}
-      		ORDER BY bregdate DESC)
- 			WHERE rownum <= 5
+     	  select b.boardname, a.* 
+	     	from
+	     	  	(SELECT *
+		 			FROM (SELECT * FROM tbl_toonalyst_board
+		         	WHERE  bwriter = #{id}
+		      		ORDER BY bregdate DESC)
+		 			WHERE rownum <= 5) a, tbl_board_code b
+	 		where a.bcategory = b.bcategory
  	 	 ]]> 
 	</select>
 	<select id="activeCommentList" parameterType="String" resultType="hashmap">
@@ -113,17 +116,3 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 	 ]]> 
 	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

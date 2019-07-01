@@ -139,12 +139,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		List<HashMap<String, String>> lastBoardList = mDao.activeBoardList(id);
 		List<HashMap<String, String>> lastCommentList = mDao.activeCommentList(id);
-		
-		for (HashMap<String, String> map : lastCommentList) {
-			for (String key : map.keySet()) {
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>>"+key);
-			}
-		}
+
 		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("nList", nList);
