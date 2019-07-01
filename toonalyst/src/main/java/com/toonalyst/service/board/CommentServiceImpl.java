@@ -11,9 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.toonalyst.domain.board.CommentDTO;
 import com.toonalyst.persistence.board.BoardDAO;
 import com.toonalyst.persistence.board.CommentDAO;
-
-import lombok.extern.slf4j.Slf4j;
-@Slf4j
 @Service
 public class CommentServiceImpl implements CommentService {
 	@Inject
@@ -25,6 +22,7 @@ public class CommentServiceImpl implements CommentService {
 	public List<CommentDTO> listAll(int bno) {
 		return cDao.listAll(bno);
 	}
+	
 	@Transactional
 	@Override
 	public int create(CommentDTO cDto, HttpSession session) {
@@ -32,9 +30,10 @@ public class CommentServiceImpl implements CommentService {
 		bDao.commentCntUpdate(bno, 1);
 		return cDao.create(cDto);
 	}
-
+	
+	@Transactional
 	@Override
-	public void delete(int cno, int bno) {
+	public void delete(int cno, String id, int bno, HttpSession session) {
 		cDao.delete(cno);
 		bDao.commentCntUpdate(bno, 0);
 	}

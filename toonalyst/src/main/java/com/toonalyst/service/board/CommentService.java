@@ -13,7 +13,7 @@ public interface CommentService {
 	// 댓글 등록
 	public int create(CommentDTO cDto, HttpSession session);
 	// 댓글 삭제
-	public void delete(int cno, int bno);
+	public void delete(int cno, String id, int bno, HttpSession session);
 	// 댓글 조회
 	public CommentDTO read(int cno);
 

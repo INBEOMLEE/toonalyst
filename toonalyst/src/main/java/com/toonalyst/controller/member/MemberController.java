@@ -50,14 +50,6 @@ public class MemberController {
 		session.setAttribute("URI", referer);
 		return "/member/login";
 	}
-	/*
-	 * @RequestMapping(value="/mypage", method = RequestMethod.GET) public String
-	 * myPageView() { log.info(">>>>> 마이페이지 출력");
-	 * 
-	 * return "/member/mypage"; }
-	 */
-
-	
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logoutView(HttpSession session, HttpServletRequest request) {
@@ -110,19 +102,13 @@ public class MemberController {
 		log.info(">>>>> 회원 탈퇴 페이지 출력");
 		return "/member/delete";
 	}
-
-
-	
 	
 	// DB 작업
 
-	
 	@Transactional
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public String loginPlay(MemberDTO mDto, HttpSession session, Model model) {
 		log.info(">>>>> 로그인 기능 구현");
-		
-		expservice.expUpdate(mDto.getId(), 0, "로그인 경험치", "", session);
 		int result = service.login(mDto, session);
 		
 		if(session.getAttribute("URI") != null) {

@@ -56,19 +56,12 @@ public class CommentController {
 	    return result;
 	}
 	
-	@Transactional
 	@ResponseBody
 	@RequestMapping(value="delete", method=RequestMethod.GET)
 	public void delete(int cno, String id, int bno, HttpSession session) {
 		log.info(">>>>> 댓글 삭제 기능 구현");
 		log.info("bno>>>>>>>>>" + bno);
-		
-		expservice.expUpdate(service.read(cno).getCwriter(), 4, "댓글 삭제 경험치 차감", "");
-		service.delete(cno, bno);
-		memservice.commentCntUpdate(id, session);
-		
-		// 댓글 작성과 삭제 시 member 테이블의 boardcnt Update (code == 1 일 때 + 1, code == 0 일때 - 1) + session 초기화
-	    
+		service.delete(cno, id, bno, session);
 	}
 	
 }

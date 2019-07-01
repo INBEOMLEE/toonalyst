@@ -43,7 +43,7 @@ public class ExpServiceImpl implements ExpService {
 		String todaystr = today.get(Calendar.YEAR)+""+today.get(Calendar.MONTH)+today.get(Calendar.DATE);
 		int exp = 0;
 		
-		log.info("lastLoginExp"+cal);
+		log.info("lastLoginExp " + cal);
 		
 		if(cal==null||!cal.equals(todaystr)) {
 			log.info("경험치 획득");

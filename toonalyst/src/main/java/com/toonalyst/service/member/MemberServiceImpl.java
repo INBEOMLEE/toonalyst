@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
@@ -33,6 +33,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	// 로그인 기능 구현
+	@Transactional
 	@Override
 	public int login(MemberDTO mDto, HttpSession session) {
 		
@@ -108,8 +109,6 @@ public class MemberServiceImpl implements MemberService{
 		log.info(">>>>세션안에있는것>>>>"+session.getAttribute("loginUser"));
 		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
 		String id = mDto.getId();
-		log.info(">>>>>>>mDto아이디맞나용>>"+mDto.getId());
-		log.info(">>>>>>>ID아이디맞나용>>"+id);
 		int result = mDao.delete(id);
 		if(result > 0) {
 			session.invalidate();
@@ -165,9 +164,7 @@ public class MemberServiceImpl implements MemberService{
 	public void commentCntUpdate(String id, HttpSession session) {
 		int commentcnt = cDao.selectCommentCnt(id);
 		log.info("commentcnt"+commentcnt);
-		log.info("1111111111");
 		mDao.commentCntUpdate(id, commentcnt);
-		log.info("2222222222");
 		session.removeAttribute("loginUser");
 		MemberDTO loginUser = mDao.updateView(id);
 		session.setAttribute("loginUser", loginUser);
