@@ -26,7 +26,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		// 없으면 돌려보냄(원래페이지로 가서 모달창 키고 에러메시지 출력!)
 		HttpSession session = request.getSession(); 
 		if (session.getAttribute("loginUser") == null) {
-			log.info(">>>>>>>>로그인 해주세요!!!!!!!!!!!!!!!!");			
+			log.info(">>>>>>>> 인터셉터 : 로그인 해주세요");			
 		// 로그인이 필요한 페이지에서 로그아웃시 로그인페이지로 이동후 message에 nologin을 보내 경고창을 뜨게함.	
 		    response.sendRedirect(request.getContextPath() + "/member/login");
 		    FlashMap flashMap = RequestContextUtils.getOutputFlashMap(request); 

@@ -1,8 +1,6 @@
 package com.toonalyst.controller.member;
 
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
 import com.toonalyst.service.exp.ExpService;
 import com.toonalyst.service.member.MemberService;

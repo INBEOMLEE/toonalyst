@@ -25,7 +25,7 @@ public class Scheduler {
 	
 	// 0초 0분 12시 매일
 	@Transactional
-	@Scheduled(cron = "0 23 15 * * *")
+	@Scheduled(cron = "0 00 12 * * *")
 	public void cronTest() throws IOException {
 		List<WebtoonDTO> list = new webNaverParser().getAlltoonList();
 		/* WebtoonService service = new WebtoonServiceImpl(); */
