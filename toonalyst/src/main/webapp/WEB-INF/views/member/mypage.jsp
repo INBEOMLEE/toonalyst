@@ -134,10 +134,8 @@
 				<dl class="ft_board">
 				<c:forEach items="${nList.board}" var="bDto">
 					<dd>
-						<c:if test="${bDto.bcategory == 0}">[공지사항]</c:if>
-						<c:if test="${bDto.bcategory == 1}">[QnA]</c:if>
-						<c:if test="${bDto.bcategory == 2}">[자유게시판]</c:if>
-						<a href="#">${bDto.btitle}</a><span>2019-06-26</span>
+						[${bDto.BOARDNAME}]
+						<a href="${path }/board/view?bno=${bDto.BNO}&bcategory=${bDto.BCATEGORY}">${bDto.BTITLE}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.BREGDATE}"/></span>
 					</dd>
 				</c:forEach>
 				</dl>
@@ -152,7 +150,7 @@
 					<c:forEach items="${nList.comment}" var="cMap">
 					<dd>
 						[${cMap.BOARDNAME}]
-						<a href="#">${cMap.CCONTENT}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${cMap.CREGDATE}"/></span>
+						<a href="${path }/board/view?bno=${cMap.BNO}&bcategory=${cMap.BCATEGORY}">${cMap.CCONTENT}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${cMap.CREGDATE}"/></span>
 					</dd>
 					</c:forEach>
 				</dl>

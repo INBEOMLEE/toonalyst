@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE id = #{id}
 	</update>
 	
-	<select id="activeBoardList" parameterType="String" resultType="com.toonalyst.domain.board.BoardDTO">
+	<select id="activeBoardList" parameterType="String" resultType="hashmap">
 		<![CDATA[
      	  select b.boardname, a.* 
 	     	from
@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="activeCommentList" parameterType="String" resultType="hashmap">
 		<![CDATA[
-     	  SELECT c.boardname, b.btitle , a.CCONTENT, A.CREGDATE
+     	  SELECT b.bno, c.boardname, b.btitle , a.CCONTENT, b.bcategory, A.CREGDATE
 			FROM (SELECT *
 			        FROM 
 			        	(SELECT * 
