@@ -28,6 +28,7 @@ public class MemberDTO {
 	private int memexp;             // 경험치
 	private int boardcnt;           // 회원이 작성한 게시물 수를 담을 변수
 	private int commentcnt;         // 회원이 작성한 댓글 수를 담을 변수
-	private Date regdate;           // 가입 일자 
+	private Date regdate;           // 가입 일자
+	private int toonadmin;			 // 운영자계정 admin = 1
 	
 }

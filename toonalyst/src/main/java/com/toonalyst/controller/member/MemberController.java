@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.toonalyst.domain.member.MemberDTO;
-import com.toonalyst.service.exp.ExpService;
 import com.toonalyst.service.member.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +27,6 @@ public class MemberController {
 	@Inject
 	private MemberService service;
 	
-	@Inject
-	private ExpService expservice;
-
 	// 페이지 이동
 	
 	@RequestMapping(value="/join", method = RequestMethod.GET)

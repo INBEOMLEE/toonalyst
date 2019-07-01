@@ -54,6 +54,9 @@
 								</td>
 								<td id="list_title">
 									<a href="${path}/board/view?bno=${bDto.bno}&bcategory=${map.bcategory}">${bDto.btitle}</a>
+									<c:if test="${bDto.bcommentcnt > 0}">
+										<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
+									</c:if>
 									<c:if test="${today == regdate}">
 										<span class="new_time">N</span>
 									</c:if>
@@ -74,6 +77,14 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<div class="wrap_btn"> 
+				<!-- el태그 문자열 비교 -->
+				<c:if test="${sessionScope.loginUser.toonadmin > 0}">
+					<div class="box_btn write" id="register_btn">
+						<a class="register_btn">글쓰기</a>
+					</div>
+				</c:if>						
+				</div>
 			</c:if>
 			<c:if test="${map.bcategory == 1}">
 				<table class="board_col">
@@ -127,14 +138,14 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<div class="wrap_btn">
+					<c:if test="${!empty sessionScope.loginUser}">
+						<div class="box_btn write" id="register_btn">
+							<a class="register_btn">글쓰기</a>
+						</div>
+					</c:if>						
+				</div>
 			</c:if>
-			<div class="wrap_btn">
-				<c:if test="${!empty sessionScope.loginUser}">
-					<div class="box_btn write" id="register_btn">
-						<a class="register_btn">글쓰기</a>
-					</div>
-				</c:if>						
-			</div>
 			<!-- 페이지 네이션 부분 -->
 			<div class="pagination_box">
 				<div class="pagination">

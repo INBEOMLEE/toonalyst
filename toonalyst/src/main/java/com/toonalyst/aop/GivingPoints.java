@@ -42,6 +42,8 @@ public class GivingPoints {
 		String type = joinPoint.getSignature().getDeclaringTypeName();
 		System.out.println("++++++++++++ " + type + " 의 " + method + " 메서드가 실행되었습니다 " + "++++++++++++");
         
+		
+		
         if(method.equals("register")) {
     		Object[] arr = joinPoint.getArgs();
     		BoardDTO bDto = (BoardDTO) arr[0];
