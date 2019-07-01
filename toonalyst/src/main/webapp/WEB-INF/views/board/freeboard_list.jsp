@@ -282,21 +282,26 @@
     vertical-align: middle;
     font-size: 14px;
 }
+
 #qaboard_title {
 	flex: 3;
 }
+
 #qaboard_goodcnt_title, #qaboard_viewcnt_title, #qaboard_goodcnt, #qaboard_viewcnt {
 	flex: 0.6;
-} 
+}
+ 
 #reply_arrow {
 	transform: rotate(-180deg);
 	margin-right: 2px;
 	color: darkgray;
 }
+
 #title_empty_space {
 	width: 17px;
 	height: 3px;
 }
+
 </style>
 </head>
 <body>

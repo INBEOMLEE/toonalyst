@@ -60,4 +60,11 @@ public class IndexController {
 		
 		return "/testpage";
 	}
+	
+	@RequestMapping(value="/webtoon", method=RequestMethod.GET)
+	public String webtoon() {
+		log.info(">>>>> 사이트 소개 페이지 출력");
+		
+		return "/webtoon";
+	}
 }

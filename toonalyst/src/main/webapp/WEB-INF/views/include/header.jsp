@@ -70,13 +70,8 @@
 								<a href="#"><span>Kakao</span></a>
 							</div>
 						</li>
-						<li><a href="#">Navigation</a>
-							<div class="nav_dropdown">
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-							</div>
+						<li>
+							<a href="${path}/webtoon">Web Toon</a>
 						</li>
 						<li>
 							<a href="${path}/board/list?bcategory=2">Free Board</a>
