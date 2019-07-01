@@ -124,12 +124,11 @@ public class BoardController {
 		return "/board/freeboard_register";
 	}
 	
-	@Transactional
 	@RequestMapping(value="/register", method=RequestMethod.POST)
     public String registerPlay(BoardDTO bDto, HttpSession session) {
        log.info(">>>>> 게시글  등록 기능 구현 ");
        String boardUrl = "";
-       service.register(bDto);
+       service.register(bDto, session);
        
        
        if(bDto.getBcategory() < 2) {
@@ -144,7 +143,6 @@ public class BoardController {
 	
 	
 	// 게시글 삭제 작업 
-	@Transactional
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(int bno, int bcategory, HttpSession session) {
 		
@@ -154,27 +152,20 @@ public class BoardController {
 		// 삭제할 게시물 아이디와 == 현재 세션의 아이디 
 		// 다르면 남이 남의 게시물 삭제를 시도한다는 뜻이다. 운영자와 본인 외에는 비정상적인 접근으로 처리해서 보낸다.
 		
-		String bwriter = service.read(bno).getBwriter();
 		String boardUrl = "";
 		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
 		
 		BoardDTO bDto = service.read(bno);
 		
 		if(bDto.getBwriter().equals(mDto.getId())) {
-			expservice.expUpdate(bwriter, 2, "게시물 삭제 경험치 차감", "");
-		    memservice.boardCntUpdate(bwriter, session);
-		    service.delete(bno, bcategory);
+		    service.delete(bno, bcategory, session);
 		}
-		
-		
-
 		
 	    if(bcategory < 2) {
 	    	   boardUrl = "boardlist";
 	       } else {
 	    	   boardUrl = "list";
 	       }
-	       
 	       
 	       return "redirect:/board/"+boardUrl+"?bcategory=" + bcategory; 
 	}

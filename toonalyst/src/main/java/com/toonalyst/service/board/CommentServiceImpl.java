@@ -3,8 +3,10 @@ package com.toonalyst.service.board;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.toonalyst.domain.board.CommentDTO;
 import com.toonalyst.persistence.board.BoardDAO;
@@ -23,9 +25,9 @@ public class CommentServiceImpl implements CommentService {
 	public List<CommentDTO> listAll(int bno) {
 		return cDao.listAll(bno);
 	}
-
+	@Transactional
 	@Override
-	public int create(CommentDTO cDto) {
+	public int create(CommentDTO cDto, HttpSession session) {
 		int bno = cDto.getBno();
 		bDao.commentCntUpdate(bno, 1);
 		return cDao.create(cDto);
