@@ -135,9 +135,10 @@
 		background: #FF6C36;
 	}
 	.webtoon_info_view {
-		width: 100%;
+		width: 1000px;
 		border-collapse: collapse;
-		margin-top: 20px;
+		margin: 20px 0px;
+		display: none;
 	}
 	.webtoon_info_view tr, .webtoon_info_view td {
 		height: 60px;
@@ -176,6 +177,7 @@
 		width: 695px;
 		height: 165px;
 		margin: 50px auto;
+		display: none;
 	}
 	.other_work_title {
 		width: 100%;
@@ -247,6 +249,59 @@
 	.other_info i {
 		color: #FF6C36;
 	}
+	.webtoon_score_page {
+		width: 1000px;
+		height: 600px;
+		margin: 30px auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.webtoon_score_box {
+		width: 900px;
+		height: 550px;
+		display: flex;
+		justify-content: space-between;
+		
+	}
+	.score_style {
+		width: 440px;
+		height: 550px;
+		display: flex;
+		flex-direction: column;		
+	}
+	.flatform_logo_img {
+		width: 100%;
+		height: 400px;
+		border: 1px solid #ededed;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.flatform_logo_img img {
+		width: 300px;
+		height: 300px;
+	}
+	#toonalyst_logo {
+		width: 215px;
+		height: 215px;
+	}
+	.flatform_score_point {
+		width: 100%;
+		height: 150px;
+		border: 1px solid #ededed;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 35px;
+		color: #FF6C36;
+	}
+	.flatform_score_point span {
+		margin-left: 10px;
+	}
+	
+	
+	
 </style>
 </head>
 <body>
@@ -285,14 +340,112 @@
 				<!-- 웹툰 상세내용 -->
 				<div class="webtoon_infomation">
 					<div class="webtoon_info_list">
+						<div class="webtoon_info_style">웹툰 평점</div>
 						<div class="webtoon_info_style">최근 작품</div>
 						<div class="webtoon_info_style">작가의 다른 작품</div>
-						<div class="webtoon_info_style">웹툰 평점</div>
 					</div>
 					<div class="webtoon_info_border"></div>
 					
+					<!-- 웹툰 평점 -->
+					
+					<div class="webtoon_score_page">
+						<div class="webtoon_score_box">
+							<div class="score_style toonalyst_score">
+								<div class="flatform_logo_img">
+									<img alt="이미지" src="${path}/resources/img/toonalyst_logo.png" id="toonalyst_logo">
+								</div>
+								<div class="flatform_score_point">
+									<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									<span>9.99</span>
+								</div>
+							</div>
+							<div class="score_style flatform_score">
+								<div class="flatform_logo_img">
+									<img alt="이미지" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
+								</div>
+								<div class="flatform_score_point">
+									<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									<span>9.99</span>
+								</div>						
+							</div>
+						</div>
+					</div>
+					
 					<!-- 최근 작품 (5건) -->
 					<table class="webtoon_info_view">
+						<tr>
+							<td class="webtoon_info_img">
+								<img alt="이미지" src="">
+							</td>
+							<td class="webtoon_info_title">
+								1176. 나만 빼고 다
+							</td>
+							<td class="webtoon_info_score">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 
+								<span>9.53</span>
+							</td>
+							<td class="webtoon_info_date">
+								2019.06.24
+							</td>
+						</tr>
+						<tr>
+							<td class="webtoon_info_img">
+								<img alt="이미지" src="">
+							</td>
+							<td class="webtoon_info_title">
+								1175. 빔
+							</td>
+							<td class="webtoon_info_score">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 
+								<span>9.90</span>
+							</td>
+							<td class="webtoon_info_date">
+								2019.06.17
+							</td>
+						</tr><tr>
+							<td class="webtoon_info_img">
+								<img alt="이미지" src="">
+							</td>
+							<td class="webtoon_info_title">
+								1174. 가발의 모험
+							</td>
+							<td class="webtoon_info_score">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 
+								<span>9.90</span>
+							</td>
+							<td class="webtoon_info_date">
+								2019.06.10
+							</td>
+						</tr><tr>
+							<td class="webtoon_info_img">
+								<img alt="이미지" src="">
+							</td>
+							<td class="webtoon_info_title">
+								1173. 간병 마감
+							</td>
+							<td class="webtoon_info_score">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 
+								<span>9.87</span>
+							</td>
+							<td class="webtoon_info_date">
+								2019.06.03
+							</td>
+						</tr>
+						<tr>
+							<td class="webtoon_info_img">
+								<img alt="이미지" src="">
+							</td>
+							<td class="webtoon_info_title">
+								1172. 나도 웹툰작가
+							</td>
+							<td class="webtoon_info_score">
+								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 
+								<span>9.91</span>
+							</td>
+							<td class="webtoon_info_date">
+								2019.05.27
+							</td>
+						</tr>
 						<tr>
 							<td class="webtoon_info_img">
 								<img alt="이미지" src="">
@@ -484,6 +637,22 @@
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
 			</div>
 		</div>
@@ -494,10 +663,29 @@
 		
 		$('.webtoon_info_style').eq(0).css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
 		
+		$('.webtoon_info_style').eq(0).click(function(){
+			$('.webtoon_score_page').css("display", "flex");
+			$('.webtoon_info_view').css("display", "none");
+			$('.other_work').css("display", "none");
+		});
+		
+		$('.webtoon_info_style').eq(1).click(function(){
+			$('.webtoon_score_page').css("display", "none");
+			$('.webtoon_info_view').css("display", "table");
+			$('.other_work').css("display", "none");
+		});
+		
+		$('.webtoon_info_style').eq(2).click(function(){
+			$('.webtoon_score_page').css("display", "none");
+			$('.webtoon_info_view').css("display", "none");
+			$('.other_work').css("display", "block");
+		});
+		
 		$('.webtoon_info_style').click(function(){
 			$('.webtoon_info_style').css("background", "none").css("border", "1px solid #d5d5d5").css("color", "#d5d5d5");
 			$(this).css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
 		});
+		
 	});
 </script>
 </body>

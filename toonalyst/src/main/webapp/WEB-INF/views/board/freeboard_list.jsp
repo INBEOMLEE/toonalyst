@@ -352,7 +352,7 @@
 									<c:if test="${bDto.bdepth > 0}">
 										<i class="fas fa-reply" id="reply_arrow"></i>
 									</c:if>
-									<a href="${path}/board/view?bno=${bDto.bno}&bcategory=${map.bcategory}"> ${bDto.btitle}</a>
+									<a href="${path}/board/view?bno=${bDto.bno}"> ${bDto.btitle}</a>
 									<c:if test="${bDto.bcommentcnt > 0}">
 										<span class="commentcnt_style">(${bDto.bcommentcnt})</span>
 									</c:if>

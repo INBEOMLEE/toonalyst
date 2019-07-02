@@ -263,10 +263,10 @@
 				<div class="board_menu">
 					<ul>
 						<li>
-							<a href="${path}/board/boardlist?bcategory=0" class="sub_notice">NOTICE</a>
+							<a href="${path}/board/list?bcategory=0" class="sub_notice">NOTICE</a>
 						</li>
 						<li>
-							<a href="${path}/board/boardlist?bcategory=1">Q&A</a>
+							<a href="${path}/board/list?bcategory=1">Q&A</a>
 						</li>
 					</ul>
 				</div>
@@ -500,7 +500,7 @@ $(document).ready(function(){
 	});
 	
 	$(document).on("click", "#board_list_btn", function(){
-		location.href="${path}/board/boardlist?bcategory=${bcategory}";
+		location.href="${path}/board/list?bcategory=${bcategory}";
 	});
 	
 	$(document).on("click", "#answer_btn", function(){

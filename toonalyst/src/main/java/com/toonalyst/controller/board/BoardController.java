@@ -61,40 +61,21 @@ public class BoardController {
 		model.addAttribute("map", map);
 		
 		if(bcategory < 2) {
-			return "board/boardlist";
+			return "board/list";
 		} else {
 			return "board/freeboard_list";
 		}
 	}
 	
-	// 페이지 이동
-	@RequestMapping(value="/boardlist", method=RequestMethod.GET)
-	public String boardlist(
-			Model model,
-			@RequestParam(defaultValue = "new") String sort_option,
-			@RequestParam(defaultValue = "all") String search_option,
-			@RequestParam(defaultValue = "") String keyword,
-			@RequestParam(defaultValue = "1") int curPage,
-			@RequestParam(defaultValue = "0") int bcategory
-			) {
-		log.info(">>>>> 게시글 목록 출력");
-		model.addAttribute("sort_option", sort_option);
-		model.addAttribute("search_option", search_option);
-		model.addAttribute("keyword", keyword);
-		model.addAttribute("curPage", curPage);
-		model.addAttribute("bcategory", bcategory);
-		return "/board/list";
-	}
-	
 	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public String view(int bno, int bcategory, Model model, HttpSession session) {
+	public String view(int bno, Model model, HttpSession session) {
 		log.info(">>>>> 상세 게시글 출력");
 		String page = "";
 		
 		service.increaseViewCnt(bno, session);
 		BoardDTO bDto = service.read(bno);
 		model.addAttribute("bDto", bDto);
-		model.addAttribute("bcategory", bcategory);
+		model.addAttribute("bcategory", bDto.getBcategory());
 		
 		if(bDto.getBcategory()<2) {
 			page = "/board/view";
@@ -118,18 +99,9 @@ public class BoardController {
 	@RequestMapping(value="/register", method=RequestMethod.POST)
     public String registerPlay(BoardDTO bDto, HttpSession session) {
        log.info(">>>>> 게시글  등록 기능 구현 ");
-       String boardUrl = "";
        service.register(bDto, session);
        
-       
-       if(bDto.getBcategory() < 2) {
-    	   boardUrl = "boardlist";
-       } else {
-    	   boardUrl = "list";
-       }
-       
-       
-       return "redirect:/board/"+boardUrl+"?bcategory=" + bDto.getBcategory(); 
+       return "redirect:/board/list?bcategory=" + bDto.getBcategory(); 
     }
 	
 	
@@ -143,7 +115,6 @@ public class BoardController {
 		// 삭제할 게시물 아이디와 == 현재 세션의 아이디 
 		// 다르면 남이 남의 게시물 삭제를 시도한다는 뜻이다. 운영자와 본인 외에는 비정상적인 접근으로 처리해서 보낸다.
 		
-		String boardUrl = "";
 		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
 		
 		BoardDTO bDto = service.read(bno);
@@ -152,16 +123,8 @@ public class BoardController {
 		    service.delete(bno, bcategory, session);
 		}
 		
-	    if(bcategory < 2) {
-	    	   boardUrl = "boardlist";
-	       } else {
-	    	   boardUrl = "list";
-	       }
-	       
-	       return "redirect:/board/"+boardUrl+"?bcategory=" + bcategory; 
+	    return "redirect:/board/list?bcategory=" + bcategory; 
 	}
-	
-	
 	
 	// 게시글 수정 기능 구현
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -172,9 +135,6 @@ public class BoardController {
 		
 		return "redirect:/board/view?bno=" + bDto.getBno();
 	}
-	
-	
-	
 	
 	@ResponseBody
 	@RequestMapping(value="/goodcheck", method = RequestMethod.POST)
@@ -229,11 +189,8 @@ public class BoardController {
 		// DB 등록
 		service.answer(bDto, session);
 		
-		if(bDto.getBcategory() < 2) {
-			return "redirect:/board/boardlist?bcategory=" + bDto.getBcategory();
-		} else {
-			return "redirect:/board/list?bcategory=" + bDto.getBcategory();
-		}
+		return "redirect:/board/list?bcategory=" + bDto.getBcategory();
+		
 	}
 	
 	
