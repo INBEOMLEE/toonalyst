@@ -95,7 +95,7 @@ h3.title {
     background: #fff;
     color: #666 !important;   
 }
-#conforms input:hover{
+#confirms input:hover{
     background-color: #FF6C36;
 }
 #cancle :hover{
@@ -105,7 +105,7 @@ h3.title {
 	width: 100%;
 	height: auto;
 }
-.modify_err_message {
+.register_err_message {
 	width: 1180px;
 	margin: 0 auto;
 	text-align: center;
@@ -116,8 +116,8 @@ h3.title {
 </head>
 <body>
 	<div id="counsel_write">
-		<h3 class="title first">게시글 수정</h3>
-		<form method="post" action="${path}/board/update" id="frm_bin" name="frm_bin">
+		<h3 class="title first">게시글 <c:out value="${empty bDto.bno ? '등록' : '수정' }"/></h3>
+		<form method="post" action="${path}/board/<c:out value="${empty bDto.bno ? 'register':'update' }" />" id="frm_bin" name="frm_bin">
 			<table class="tbl_row">
 				<caption class="hidden"></caption>
 				<colgroup>
@@ -146,7 +146,7 @@ h3.title {
 					</tr>
 					<tr>
 						<th scope="row">
-							<label for="counsel_cnt">수정내용</label>
+							<label for="counsel_cnt">내용</label>
 						</th>
 						<td>
 							<textarea name="bcontent" id="bcontent" class="writing_area block">${bDto.bcontent}</textarea>
@@ -165,15 +165,19 @@ h3.title {
 				</tbody>
 			</table>
 			<div class="modify_err_msg">
-				<div class="modify_err_message"></div>
+				<div class="register_err_message"></div>
 			</div>
 			<div class="btn">
-				<span id="conforms" class="box_btn large w150"><input type="button" id="conform" value="확인"></span>
+				<span id="confirms" class="box_btn large w150">
+					<input type="button" id="confirm" value="<c:out value="${empty bDto.bno ? '등록':'수정' }"/>">
+				</span>
 				<span id="cancle" class="box_btn large w150 white"><a href="${path}/board/list">취소</a></span>
 			</div>
 			<input type="hidden" name="bcategory" value="${bcategory}">
 			<input type="hidden" name="btext" id="input_btext">
-			<input type="hidden" name="bno" value="${bDto.bno}">
+			<c:if test="${!empty bDto.bno}">
+				<input type="hidden" name="bno" value="${bDto.bno}">
+			</c:if>
 			<input type="hidden" name="bwriter" value="${sessionScope.loginUser.id}">
 		</form>
 	</div> 
@@ -181,7 +185,7 @@ h3.title {
     
     
 <script type="text/javascript">
-$(document).on("click", "#conform", function(){
+$(document).on("click", "#confirm", function(){
     oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
     var title = $("#counsel_title").val();
     var content = $(".writing_area").val();
@@ -190,16 +194,17 @@ $(document).on("click", "#conform", function(){
     $('#input_btext').val(text);
     
      if(title == ""){   	
-    	 $('.modify_err_message').text("제목을 입력해주세요.").css('display', 'block');
+    	 $('.register_err_message').text("제목을 입력해주세요.").css('display', 'block');
         return false;
      } else if(content == "<p><br></p>") {
-    	 $('.modify_err_message').text("제목을 입력해주세요.").css('display', 'block');
+    	 $('.register_err_message').text("제목을 입력해주세요.").css('display', 'block');
         return false;
      }
      $('.register_err_message').text("").css('display', 'none');
-    
-    $("#frm_bin").submit();
+     $("#frm_bin").submit();
 });
+
+
 </script>
 <%@ include file="../include/footer.jsp" %> 
 </body>

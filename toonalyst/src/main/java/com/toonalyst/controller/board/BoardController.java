@@ -167,17 +167,10 @@ public class BoardController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updatePlay(BoardDTO bDto, Model model) {
 		log.info(">>>>> 게시글 수정 기능 구현 ");
-		String boardUrl = "";
-		
+		log.info("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★>>>>>"+bDto.toString());
 		service.update(bDto);
 		
-		if(bDto.getBcategory() < 2) {
-			boardUrl = "view";
-		} else {
-			boardUrl = "freeView";
-		}
-		
-		return "redirect:/board/"+boardUrl+"?bno=" + bDto.getBno() + "&bcategory=" + bDto.getBcategory();
+		return "redirect:/board/view?bno=" + bDto.getBno();
 	}
 	
 	
