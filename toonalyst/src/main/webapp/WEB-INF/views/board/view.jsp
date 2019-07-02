@@ -496,7 +496,7 @@ $(document).ready(function(){
 
 
 	$(document).on("click", "#update_btn", function(){
-		location.href="${path}/board/update?bno=${bDto.bno}&bcategory=${bcategory}";
+		location.href="${path}/board/register?bno=${bDto.bno}&bcategory=${bcategory}";
 	});
 	
 	$(document).on("click", "#board_list_btn", function(){

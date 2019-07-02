@@ -380,7 +380,7 @@
 				<div class="wrap_btn">
 					<c:if test="${!empty sessionScope.loginUser}">
 						<div class="box_btn write register_btn_box">
-							<a href="${path}/board/freeRegister" class="register_btn">글쓰기</a>
+							<a href="${path}/board/register?bcategory=${map.bcategory}" class="register_btn">글쓰기</a>
 						</div>
 					</c:if>						
 				</div>
@@ -440,7 +440,7 @@ $(document).ready(function(){
 	}
 
 	$('.register_btn_box').click(function(){
-		location.href = "${path}/board/freeRegister";
+		location.href = "${path}/board/register?bcategory=${map.bcategory}";
 	});
 	
 	
