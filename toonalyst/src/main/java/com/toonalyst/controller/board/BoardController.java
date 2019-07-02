@@ -107,7 +107,7 @@ public class BoardController {
 	
 	// 게시글 삭제 작업 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(int bno, int bcategory, HttpSession session) {
+	public String delete(int bno, int bcategory, HttpSession session, Model model) {
 		
 		// 평문통신이어서 보안이 이루어지지 않고있는데 패킷을 볼 수 있다면 ID와PW도 드러나고 변조해서 보낼 수도있는데 확인작업이 없다.
 		// 최소한의 정보로 모든 정보를 뽑아내서 그 정보로 동작하게 만드는 게 좋다
@@ -115,22 +115,16 @@ public class BoardController {
 		// 삭제할 게시물 아이디와 == 현재 세션의 아이디 
 		// 다르면 남이 남의 게시물 삭제를 시도한다는 뜻이다. 운영자와 본인 외에는 비정상적인 접근으로 처리해서 보낸다.
 		
-		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
-		
-		BoardDTO bDto = service.read(bno);
-		
-		if(bDto.getBwriter().equals(mDto.getId())) {
-		    service.delete(bno, bcategory, session);
-		}
+	    service.delete(bno, bcategory, session);
 		
 	    return "redirect:/board/list?bcategory=" + bcategory; 
 	}
 	
 	// 게시글 수정 기능 구현
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePlay(BoardDTO bDto, Model model) {
+	public String updatePlay(BoardDTO bDto, Model model, HttpSession session) {
 		log.info(">>>>> 게시글 수정 기능 구현 ");
-		log.info("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★>>>>>"+bDto.toString());
+		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
 		service.update(bDto);
 		
 		return "redirect:/board/view?bno=" + bDto.getBno();

@@ -89,6 +89,11 @@
 	</aside>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			if(${message == "ERROR"}){
+				alert("비정상적인 접근입니다");
+			}
+			
 			var flag = 0;
 			$('.dropbox_btn').click(function(){
 				if(flag == 0) {
