@@ -129,14 +129,12 @@
 				<div class="ac_board_title">
 					<span></span>
 					<span><h1>작성한 게시글</h1></span>
-					<span><a>전체보기</a></span>
+					<span><a href="${path }/board/myboard">전체보기</a></span>
 				</div>				
 				<dl class="ft_board">
 				<c:forEach items="${nList.board}" var="bDto">
 					<dd>
-						<c:if test="${bDto.BCATEGORY == 0}">[공지]</c:if>
-						<c:if test="${bDto.BCATEGORY == 1}">[질문]</c:if>
-						<c:if test="${bDto.BCATEGORY == 2}">[자유]</c:if> 
+						[${bDto.BOARDNAME}]
 						<a href="${path }/board/view?bno=${bDto.BNO}&bcategory=${bDto.BCATEGORY}">${bDto.BTITLE}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${bDto.BREGDATE}"/></span>
 					</dd>
 				</c:forEach>
@@ -151,9 +149,7 @@
 				<dl class="ft_board">
 					<c:forEach items="${nList.comment}" var="cMap">
 					<dd>
-						<c:if test="${cMap.BCATEGORY == 0}">[공지]</c:if>
-						<c:if test="${cMap.BCATEGORY == 1}">[질문]</c:if>
-						<c:if test="${cMap.BCATEGORY == 2}">[자유]</c:if> 
+						[${cMap.BOARDNAME}]
 						<a href="${path }/board/view?bno=${cMap.BNO}&bcategory=${cMap.BCATEGORY}">${cMap.CCONTENT}</a><span><fmt:formatDate pattern="yyyy-MM-dd" value="${cMap.CREGDATE}"/></span>
 					</dd>
 					</c:forEach>

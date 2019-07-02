@@ -40,6 +40,8 @@ public interface BoardDAO {
 
 	public void answer(BoardDTO bDto);
 
+	public List<HashMap<String, String>> myBoardList(String keyword);
+
 
 	
 }

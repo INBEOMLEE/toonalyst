@@ -25,6 +25,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		// session체크, 값이 있으면 통과,
 		// 없으면 돌려보냄(원래페이지로 가서 모달창 키고 에러메시지 출력!)
 		HttpSession session = request.getSession(); 
+		String temp;
+		if((temp = request.getParameter("btitle"))!=null) {
+			log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+temp);
+		}
 		if (session.getAttribute("loginUser") == null) {
 			log.info(">>>>>>>> 인터셉터 : 로그인 해주세요");			
 		// 로그인이 필요한 페이지에서 로그아웃시 로그인페이지로 이동후 message에 nologin을 보내 경고창을 뜨게함.	

@@ -126,6 +126,11 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert("board.answer", bDto);
 	}
 
+	@Override
+	public List<HashMap<String, String>> myBoardList(String keyword) {
+		return sqlSession.selectList("board.myBoardList", keyword);
+	}
 
+	
 
 }

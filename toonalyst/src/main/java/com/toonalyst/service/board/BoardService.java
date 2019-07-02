@@ -1,5 +1,6 @@
 package com.toonalyst.service.board;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,4 +28,6 @@ public interface BoardService {
 	public int goodSwitch(String id, int bno);
 	// 답글 등록 기능 구현
 	public void answer(BoardDTO bDto, HttpSession session);
+	// 게시글이 있는 게시판의 코드, 게시판 이름, 게시판별 작성글 갯수 반환
+	public List<HashMap<String, String>> myBoardList(String keyword);
 }

@@ -113,6 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			        		ORDER BY cregdate DESC)
 					WHERE rownum <= 5) A, TBL_TOONALYST_BOARD B, TBL_BOARD_CODE C
 			WHERE A.BNO = B.BNO AND B.BCATEGORY = C.BCATEGORY
+			ORDER BY cregdate DESC
  	 	 ]]> 
 	</select>
 </mapper>

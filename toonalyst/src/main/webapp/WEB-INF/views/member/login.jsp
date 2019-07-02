@@ -134,35 +134,12 @@
 			$('#login_id').focus();
 			
 			$('.login_btn').click(function(){
-				var id = $.trim($('#login_id').val());
-				var pw = $.trim($('#login_pw').val());
-				
-				var regEmpty = /\s/g;
-				
-				if(id == null || id.length == 0) {
-					$('.login_err_msg').text('아이디를 입력해주세요.').css('display', 'block');
-					$('#login_id').focus();
-					return false;
-				} else if(id.match(regEmpty)) {
-					$('.login_err_msg').text('아이디 안에 공백이 포함되어 있습니다.').css('display', 'block');
-					$('#login_id').select();
-					return false;
+				login_validation();
+			});
+			$('body').keyup(function(key){
+				if(key.keyCode == 13){
+					login_validation();
 				}
-				
-				if(pw == null || pw.length == 0) {
-					$('.login_err_msg').text('비밀번호를 입력해주세요.').css('display', 'block');
-					$('#login_pw').focus();
-					return false;
-				} else if(pw.match(regEmpty)) {
-					$('.login_err_msg').text('비밀번호 안에 공백이 포함되어 있습니다.').css('display', 'block');
-					$('#login_pw').select();
-					return false;
-				}
-				
-				$('.login_err_msg').css('display', 'none');
-				
-				$('#login_form').submit();
-				
 			});
 			
 			$('.idpw_find_btn').click(function(){
@@ -171,6 +148,37 @@
 			
 			
 		});
+		
+function login_validation(){
+	var id = $.trim($('#login_id').val());
+	var pw = $.trim($('#login_pw').val());
+	
+	var regEmpty = /\s/g;
+	
+	if(id == null || id.length == 0) {
+		$('.login_err_msg').text('아이디를 입력해주세요.').css('display', 'block');
+		$('#login_id').focus();
+		return false;
+	} else if(id.match(regEmpty)) {
+		$('.login_err_msg').text('아이디 안에 공백이 포함되어 있습니다.').css('display', 'block');
+		$('#login_id').select();
+		return false;
+	}
+	
+	if(pw == null || pw.length == 0) {
+		$('.login_err_msg').text('비밀번호를 입력해주세요.').css('display', 'block');
+		$('#login_pw').focus();
+		return false;
+	} else if(pw.match(regEmpty)) {
+		$('.login_err_msg').text('비밀번호 안에 공백이 포함되어 있습니다.').css('display', 'block');
+		$('#login_pw').select();
+		return false;
+	}
+	
+	$('.login_err_msg').css('display', 'none');
+	
+	$('#login_form').submit();
+}
 	</script>
 <%@ include file="../include/footer.jsp" %>		
 </body>

@@ -173,6 +173,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO  tbl_toonalyst_board(bno, btitle, bcontent, btext, bcategory, bwriter, borigin, bturn, bdepth)
         VALUES(seq_toonalyst_board_bno.NEXTVAL, #{btitle}, #{bcontent}, #{btext}, #{bcategory}, #{bwriter}, #{borigin}, #{bturn}, #{bdepth})
 	</insert>
+	
+	<select id="myBoardList" parameterType="String" resultType="hashmap">
+		select a.*, b.boardname 
+		    from 
+		        (select bcategory, count(*) as count from tbl_toonalyst_board
+		        where bwriter = #{keyword}
+		        GROUP by bcategory
+		        order by bcategory) a, tbl_board_code b
+		    where a.bcategory = b.bcategory
+	</select>
 </mapper>
 
 

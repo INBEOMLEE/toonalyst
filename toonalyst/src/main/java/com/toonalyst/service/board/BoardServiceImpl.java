@@ -117,6 +117,12 @@ public class BoardServiceImpl implements BoardService {
 		bDto.setBturn(bDto.getBturn() + 1);
 		bDto.setBdepth(bDto.getBdepth() + 1);
 		bDao.answer(bDto);
+	}
+
+	@Override
+	public List<HashMap<String, String>> myBoardList(String keyword) {
+		List<HashMap<String, String>> list = bDao.myBoardList(keyword);
+		return list;
 	} 
 
 }
