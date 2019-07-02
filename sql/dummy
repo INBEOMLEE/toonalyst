@@ -19,6 +19,7 @@ CREATE TABLE tbl_toonalyst_member(
     toonadmin NUMBER DEFAULT 0
 );
 
+DELETE FROM tbl_toonalyst_member;
 INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
 VALUES('user01', '1234', '유수지', 'admin@toonalyst.com', '01000000000', '506111', '광주 북구 경양로 170', '한경빌딩 5층');
 INSERT INTO tbl_toonalyst_member(id, pw, name, email, phone, zipcode, addr1, addr2)
@@ -56,7 +57,7 @@ CREATE TABLE TBL_WEBTOON
 );
 
 -- TOONALYST BOARD TABLE
-DROP TABLE tbl_toonalyst_board;
+DROP TABLE tbl_toonalyst_board CASCADE CONSTRAINT;
 CREATE TABLE tbl_toonalyst_board(
     bno NUMBER PRIMARY KEY,
     btitle VARCHAR2(200) NOT NULL,
@@ -73,7 +74,6 @@ CREATE TABLE tbl_toonalyst_board(
     badmin NUMBER(5) DEFAULT 0,
     bregdate DATE DEFAULT SYSDATE
 );
-SELECT * FROM tbl_toonalyst_board;
 
 DROP SEQUENCE seq_toonalyst_board_bno;
 CREATE SEQUENCE seq_toonalyst_board_bno
@@ -81,12 +81,7 @@ START WITH 1
 INCREMENT BY 1
 NOCYCLE;
 
-DROP SEQUENCE seq_toonalyst_board_origin;
-CREATE SEQUENCE seq_toonalyst_board_origin
-START WITH 1
-INCREMENT BY 1
-NOCYCLE;
-
+DELETE FROM tbl_toonalyst_board;
 INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
 VALUES(seq_toonalyst_board_bno.NEXTVAL, '안녕하세요', '내용입니다', '내용입니다', 'user01', 2);
 INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
@@ -95,6 +90,8 @@ INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory
 VALUES(seq_toonalyst_board_bno.NEXTVAL, '3안녕하세요', '내용입니다', '내용입니다', 'user03', 2);
 INSERT INTO tbl_toonalyst_board(bno, btitle, bcontent, btext, bwriter, bcategory)
 VALUES(seq_toonalyst_board_bno.NEXTVAL, '4안녕하세요', '내용입니다', '내용입니다', 'user04', 2);
+
+SELECT * FROM tbl_toonalyst_board;
 COMMIT;
 
 
@@ -106,7 +103,6 @@ CREATE TABLE tbl_toonalyst_comment(
     cwriter VARCHAR2(30) NOT NULL,
     cregdate DATE DEFAULT SYSDATE,
     bno NUMBER NOT NULL
-    
 );
 
 DROP SEQUENCE seq_toonalyst_comment;
@@ -131,22 +127,20 @@ VALUES(seq_toonalyst_comment.NEXTVAL, '댓글3', 'user03', 1);
 INSERT INTO tbl_toonalyst_comment(cno, ccontent, cwriter, bno)
 VALUES(seq_toonalyst_comment.NEXTVAL, '댓글4', 'user04', 1);
 
-COMMIT;
 SELECT * FROM tbl_toonalyst_comment;
-
+COMMIT;
 
 
 -- 좋아요 테이블
 DROP TABLE tbl_toonalyst_good;
 CREATE TABLE tbl_toonalyst_good(
     id VARCHAR2(30) NOT NULL,
-    bno NUMBER NOT NULL);
+    bno NUMBER NOT NULL
+);
 -- 좋아요 테이블 복합키
 alter table "JAVA"."TBL_TOONALYST_GOOD" add constraint tbl_good_PK_IDBNO primary key("ID","BNO");
 alter table "JAVA"."TBL_TOONALYST_GOOD" add constraint tbl_good_FK_id foreign key("ID") references "TBL_TOONALYST_MEMBER"("ID") ON DELETE CASCADE;
 alter table "JAVA"."TBL_TOONALYST_GOOD" add constraint tbl_good_FK_bno foreign key("BNO") references "TBL_TOONALYST_BOARD"("BNO") ON DELETE CASCADE;
-
-SELECT * FROM tbl_toonalyst_good;
 
 
 -- 경험치 기능 테이블
@@ -154,7 +148,7 @@ SELECT * FROM tbl_toonalyst_good;
 DROP TABLE TBL_EXP_CODE;
 CREATE TABLE TBL_EXP_CODE(	
    	"CODE" NUMBER PRIMARY KEY, 
-    	"REASON" VARCHAR2(100 BYTE), 
+    "REASON" VARCHAR2(100 BYTE), 
 	"EXP" NUMBER
 );
 
@@ -206,6 +200,8 @@ INSERT INTO "JAVA"."TBL_EXP_CODE" (CODE, REASON, EXP) VALUES ('1', 'boardinsert'
 INSERT INTO "JAVA"."TBL_EXP_CODE" (CODE, REASON, EXP) VALUES ('2', 'boarddelete', '-10');
 INSERT INTO "JAVA"."TBL_EXP_CODE" (CODE, REASON, EXP) VALUES ('3', 'replyinsert', '5');
 INSERT INTO "JAVA"."TBL_EXP_CODE" (CODE, REASON, EXP) VALUES ('4', 'replydelete', '-5');
+
+COMMIT;
 
 DROP TABLE TBL_BOARD_CODE;
 CREATE TABLE TBL_BOARD_CODE(
