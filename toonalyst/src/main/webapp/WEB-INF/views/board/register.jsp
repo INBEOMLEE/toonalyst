@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TOONALYST</title>
+<title>게시글 작성</title>
 <script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <style type="text/css">
 #counsel_write{
@@ -35,7 +35,7 @@ h3.title {
     vertical-align: middle;
 }
 .tbl_row td {
-    padding: 15px 0px;
+    padding: 15px 5px;
     border-bottom: 1px solid #e0e0e0;
     text-align: left;
     vertical-align: middle;
@@ -101,13 +101,13 @@ h3.title {
 #cancle :hover{
     background-color: #F6F6F6;
 }
-.register_err_msg {
+.modify_err_msg {
 	width: 100%;
 	height: auto;
 }
-.register_err_message {
+.modify_err_message {
 	width: 1180px;
-	margin: 30px auto;
+	margin: 0 auto;
 	text-align: center;
 	color: tomato;
 	display: none;
@@ -116,8 +116,8 @@ h3.title {
 </head>
 <body>
 	<div id="counsel_write">
-    	<h3 class="title first">게시글 작성</h3>
-		<form method="post" action="${path}/board/register" id="frm_bin" name="frm_bin">
+		<h3 class="title first">게시글 수정</h3>
+		<form method="post" action="${path}/board/update" id="frm_bin" name="frm_bin">
 			<table class="tbl_row">
 				<caption class="hidden"></caption>
 				<colgroup>
@@ -132,14 +132,16 @@ h3.title {
 						<c:if test="${bcategory == 1}">
 							<td>질문</td>
 						</c:if>
-						
+						<c:if test="${bcategory == 2}">
+							<td>자유</td>
+						</c:if>
 					</tr>             
 					<tr>
 						<th scope="row">
 							<label for="counsel_title">제목</label>
 						</th>
 						<td>
-							<input type="text" name="btitle" id="counsel_title" class="form_input block">
+							<input type="text" name="btitle" value="${bDto.btitle}" id="counsel_title" class="form_input block">
 						</td>
 					</tr>
 					<tr>
@@ -147,7 +149,7 @@ h3.title {
 							<label for="counsel_cnt">수정내용</label>
 						</th>
 						<td>
-							<textarea name="bcontent" id="bcontent" class="writing_area block"></textarea>
+							<textarea name="bcontent" id="bcontent" class="writing_area block">${bDto.bcontent}</textarea>
 						</td>
 						<script type="text/javascript">
 							var oEditors = [];
@@ -162,19 +164,16 @@ h3.title {
 					</tr>
 				</tbody>
 			</table>
-			<div class="register_err_msg">
-				<div class="register_err_message"></div>
+			<div class="modify_err_msg">
+				<div class="modify_err_message"></div>
 			</div>
 			<div class="btn">
-				<span id="conforms" class="box_btn large w150">
-					<input type="button" id="conform" value="확인">
-				</span>
-				<span id="cancle" class="box_btn large w150 white">
-					<a href="${path}/board/list">취소</a>
-				</span>
+				<span id="conforms" class="box_btn large w150"><input type="button" id="conform" value="확인"></span>
+				<span id="cancle" class="box_btn large w150 white"><a href="${path}/board/list">취소</a></span>
 			</div>
 			<input type="hidden" name="bcategory" value="${bcategory}">
 			<input type="hidden" name="btext" id="input_btext">
+			<input type="hidden" name="bno" value="${bDto.bno}">
 			<input type="hidden" name="bwriter" value="${sessionScope.loginUser.id}">
 		</form>
 	</div> 
@@ -190,16 +189,16 @@ $(document).on("click", "#conform", function(){
     var text = content.replace(/[<][^>]*[>]/gi, "");
     $('#input_btext').val(text);
     
-    if(title == "" || title.length == 0) {
-    	$('.register_err_message').text("제목을 입력해주세요.").css('display', 'block');
-		return false;
-	} else if(content == "<p><br></p>") {
-		$('.register_err_message').text("내용을 입력해주세요.").css('display', 'block');
-		return false;
-	}
-    $('.register_err_message').text("").css('display', 'none');
-	$('#frm_bin').submit();
+     if(title == ""){   	
+    	 $('.modify_err_message').text("제목을 입력해주세요.").css('display', 'block');
+        return false;
+     } else if(content == "<p><br></p>") {
+    	 $('.modify_err_message').text("제목을 입력해주세요.").css('display', 'block');
+        return false;
+     }
+     $('.register_err_message').text("").css('display', 'none');
     
+    $("#frm_bin").submit();
 });
 </script>
 <%@ include file="../include/footer.jsp" %> 

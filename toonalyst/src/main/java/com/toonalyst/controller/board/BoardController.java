@@ -105,16 +105,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String registerView(int bcategory, Model model) {
+	public String registerView(
+			@RequestParam(defaultValue = "0") int bno,
+			int bcategory, Model model) {
 		log.info(">>>>> 게시글  등록 페이지 출력");
+		BoardDTO bDto = service.read(bno);
+		model.addAttribute("bDto", bDto);
 		model.addAttribute("bcategory", bcategory);
 		return "/board/register";
-	}
-	
-	@RequestMapping(value="/freeRegister", method=RequestMethod.GET)
-	public String freeRegisterView() {
-		log.info(">>>>> 자유 게시글  등록 페이지 출력");
-		return "/board/freeboard_register";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
@@ -163,15 +161,7 @@ public class BoardController {
 	       return "redirect:/board/"+boardUrl+"?bcategory=" + bcategory; 
 	}
 	
-	// 게시글 수정 출력
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateView(int bno, int bcategory, Model model) {
-		 log.info(">>>>> 게시글 수정 페이지 출력");
-		BoardDTO bDto = service.read(bno);
-		model.addAttribute("bDto", bDto);
-		model.addAttribute("bcategory", bcategory);
-		return "board/modify"; 
-	}
+	
 	
 	// 게시글 수정 기능 구현
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
