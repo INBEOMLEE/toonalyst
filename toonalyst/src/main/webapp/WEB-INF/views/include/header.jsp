@@ -89,8 +89,8 @@
 	</aside>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
-			if(${message == "ERROR"}){
+			var message = "${message}";	
+			if(message == "ERROR"){
 				alert("비정상적인 접근입니다");
 			}
 			

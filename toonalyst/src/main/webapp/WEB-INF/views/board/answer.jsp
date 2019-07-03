@@ -43,10 +43,11 @@ h3.title {
     word-wrap: break-word;
     display: table-cell;
 }
-.writing_area.block {
-    width: 100% !important;
+.writing_area {
+	width: 99.8% !important;
+    min-width: 260px;
 }
-.form_input.block {
+.form_input {
     width: 100% !important;
 }
 .form_input {
@@ -138,15 +139,15 @@ h3.title {
 							<label for="counsel_title">제목</label>
 						</th>
 						<td>
-							<input type="text" name="btitle" id="counsel_title" class="form_input block" value="${bDto.btitle}" readonly="readonly">
+							<input type="text" name="btitle" id="counsel_title" class="form_input" value="${bDto.btitle}" readonly="readonly">
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">
-							<label for="counsel_cnt">수정내용</label>
+							<label for="counsel_cnt">내용</label>
 						</th>
 						<td>
-							<textarea name="bcontent" id="bcontent" class="writing_area block">${bDto.bcontent}</textarea>
+							<textarea name="bcontent" id="bcontent" class="writing_area">${bDto.bcontent}</textarea>
 						</td>
 						<script type="text/javascript">
 							var oEditors = [];

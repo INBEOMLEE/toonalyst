@@ -284,7 +284,7 @@
 						<c:if test="${!empty sessionScope.loginUser.id}">
 							<button class="list_btn" id="answer_btn">답글</button>
 						</c:if>
-						<c:if test="${sessionScope.loginUser.id == bDto.bwriter}">
+						<c:if test="${sessionScope.loginUser.id == bDto.bwriter || sessionScope.loginUser.toonadmin == 1}">
 							<button class="list_btn" id="update_btn">수정</button>
 							<button class="list_btn" id="remove_btn">삭제</button>
 						</c:if>

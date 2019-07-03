@@ -49,7 +49,10 @@
 			<mapping path="/board/delete"/>
 			<mapping path="/board/register"/>			
 			<mapping path="/board/freeboard_register"/>	
-			<mapping path="/board/myboard"/>		
+			<mapping path="/board/myboard"/>
+			<mapping path="/board/answer"/>
+			<mapping path="/comment/delete"/>
+			<mapping path="/comment/create"/>			
 			<beans:ref bean="loginInterceptor"/>		
 		</interceptor>	
 	</interceptors>

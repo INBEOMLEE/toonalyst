@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      FROM tbl_toonalyst_comment c, tbl_toonalyst_member m
 		      WHERE c.cwriter = m.id) 
 		WHERE bno = #{bno}
+		ORDER BY cno DESC
 	</select>
 	
 	<insert id="create" parameterType="com.toonalyst.domain.board.CommentDTO">

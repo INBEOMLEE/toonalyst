@@ -37,7 +37,7 @@
 									<i class="far fa-clock"></i>
 									<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${cDto.cregdate}" />
 								</div>
-								<c:if test="${sessionScope.loginUser.id == cDto.cwriter}">
+								<c:if test="${sessionScope.loginUser.id == cDto.cwriter || sessionScope.loginUser.toonadmin == 1}">
 									<a class="comment_delete_btn reply_del" data_num="${cDto.cno}">삭제</a>
 								</c:if>
 							</div>
