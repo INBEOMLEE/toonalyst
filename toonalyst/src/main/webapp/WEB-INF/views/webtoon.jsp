@@ -14,7 +14,7 @@
 	.webtoon_inline {
 		width: 1180px;
 		height: auto;
-		margin: 70px auto 0;
+		margin: 50px auto 0;
 	}
 	.search_bar{
 		margin: 0 auto;
@@ -299,7 +299,157 @@
 	.flatform_score_point span {
 		margin-left: 10px;
 	}
-	
+	.webtoon_score_play {
+		width: 1000px;
+		height: auto;
+		margin: 0 auto;
+		border-top: 2px solid #dadada;
+		border-bottom: 2px solid #dadada;
+	}
+	#total_score {
+		width: 800px;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 20px auto 0;
+	}
+	#total_score div {
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	#total_score div:nth-child(odd) {
+		flex: 1;
+		border: 1px solid #dadada;
+		font-size: 20px;
+	}
+	#total_score div:nth-child(even) {
+		flex: 3;
+		border-top: 1px solid #dadada;
+		border-right: 1px solid #dadada;
+		border-bottom: 1px solid #dadada;
+		font-size: 18px;
+	}
+	.webtoon_reply_list {
+		width: 800px;
+		height: 150px;
+		margin: 20px auto 0;
+	}
+	.webtoon_reply_user {
+		width: 100%;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid #dadada;
+	}
+	.webtoon_reply_user img {
+		margin-right: 5px;
+	}
+	.webtoon_reply_user span{
+		margin-left: 20px;
+	}
+	#user_id {
+		font-weight: 600;
+		margin: 0;
+	}
+	.webtoon_reply_content {
+		width: 100%;
+		height: 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.webtoon_reply_content div{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.webtoon_score_icon {
+		flex: 1;
+		font-size: 30px;
+		height: 100%;
+		border-right: 1px solid #dadada;
+		border-left: 1px solid #dadada;
+		border-bottom: 1px solid #dadada;
+		display: flex;
+		flex-direction: column;
+	}
+	.webtoon_score_icon img {
+		margin-right: 5px;
+	}
+	.webtoon_score_icon span {
+		font-size: 16px;
+	}
+	#user {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-bottom: 1px solid #dadada;
+	}
+	#good_check {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	#good_check span {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+	#good_check i {
+		flex: 1;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 30px;
+		color: #d5d5d5;
+		
+	}
+	.webtoon_good {
+		border-right: 1px solid #dadada;
+	}
+	.webtoon_score_content {
+		flex: 4;
+		height: 100%;
+		border-right: 1px solid #dadada;
+		border-bottom: 1px solid #dadada;
+	}
+	.webtoon_reply_write {
+		width: 800px;
+		height: auto;
+		margin: 20px auto;
+		
+	}
+	.webtoon_score_content textarea {
+		width: 100%;
+		height: 98px;
+		padding: 10px;
+		border: none;
+		outline: none;
+	}
+	.webtoon_score_btn {
+		flex: 1;
+		height: 100%;
+		font-size: 20px;
+		font-weight: 600;
+		background: #d5d5d5;
+		color: white;
+		border: 1px solid #d5d5d5;
+	}
+	.webtoon_score_btn:hover {
+		background: #FF6C36;
+		cursor: pointer;
+	}
 	
 	
 </style>
@@ -638,7 +788,70 @@
 						</div>
 					</div>
 					
+					<!-- 웹툰 평가 리스트 구역 -->
+					<div class="webtoon_score_play">
+						<!-- 현재까지 종합된 개수 -->
+						<div id="total_score">
+							<div><i class="fas fa-thumbs-up" style="color: dodgerblue;"></i></div>
+							<div style="color: dodgerblue;">86%<span style="font-size: 14px; margin-left: 10px;">(172명)</span></div>
+							<div><i class="fas fa-thumbs-down" style="color: #FF4848;"></i></div>
+							<div style="color: #FF4848;">14%<span style="font-size: 14px; margin-left: 10px;">(28명)</span></div>
+						</div>
 					
+					
+					
+						<div class="webtoon_reply_list">
+							<div class="webtoon_reply_user">
+								<img alt="이미지" src="${path}/resources/img/level/50.gif">
+								<span id="user_id">user01</span>
+								<span>작성한 게시글 수 : 50개</span>
+								<span>작성한 댓글 수 : 50개</span>
+							</div>
+							<div class="webtoon_reply_content">
+								<div class="webtoon_score_icon">
+									<i class="fas fa-thumbs-up" style="color: dodgerblue;"></i>
+								</div>
+								<div class="webtoon_score_content">정말 재미있는 웹툰입니다.</div>
+							</div>
+						</div>
+						<div class="webtoon_reply_list">
+							<div class="webtoon_reply_user">
+								<img alt="이미지" src="${path}/resources/img/level/50.gif">
+								<span id="user_id">user02</span>
+								<span>작성한 게시글 수 : 50개</span>
+								<span>작성한 댓글 수 : 50개</span>
+							</div>
+							<div class="webtoon_reply_content">
+								<div class="webtoon_score_icon">
+									<i class="fas fa-thumbs-down" style="color: #FF4848;"></i>
+								</div>
+								<div class="webtoon_score_content">정말 재미없는 웹툰입니다.</div>
+							</div>
+						</div>
+						
+						<!-- 평가 작성 구역 -->
+						<div class="webtoon_reply_write">
+							<div class="webtoon_reply_user">
+								<span>작성한 게시글 수 : 50개</span>
+								<span>작성한 댓글 수 : 50개</span>
+							</div>
+							<div class="webtoon_reply_content">
+								<div class="webtoon_score_icon">
+									<div id="user">
+										<img alt="이미지" src="${path}/resources/img/level/50.gif">
+										<span id="user_id">user01</span><br>
+									</div>
+									<div id="good_check">
+										<span class="webtoon_good"><i class="fas fa-thumbs-up"></i></span>
+										<span class="webtoon_hate"><i class="fas fa-thumbs-down"></i></span>
+									</div>
+								</div>
+								<div class="webtoon_score_content"><textarea></textarea></div>
+								<div class="webtoon_score_btn">등록하기</div>
+							</div>
+						</div>
+					</div>
+						
 					
 					
 					
@@ -684,6 +897,33 @@
 		$('.webtoon_info_style').click(function(){
 			$('.webtoon_info_style').css("background", "none").css("border", "1px solid #d5d5d5").css("color", "#d5d5d5");
 			$(this).css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
+		});
+		
+		var good_flag = 0;
+		$('.webtoon_good').click(function(){
+			if(good_flag == 0) {
+				$('.webtoon_good i').css("color", "dodgerblue");
+				good_flag = 1;
+			} else if(good_flag == 1) {
+				$('.webtoon_good i').css("color", "d5d5d5");
+				good_flag = 0;
+			}
+			$('.webtoon_hate i').css("color", "d5d5d5");
+			hate_flag = 0;
+			
+		});
+		
+		var hate_flag = 0;
+		$('.webtoon_hate').click(function(){
+			if(hate_flag == 0) {
+				$('.webtoon_hate i').css("color", "#FF4848");
+				hate_flag = 1;
+			} else if(hate_flag == 1) {
+				$('.webtoon_hate i').css("color", "d5d5d5");
+				hate_flag = 0;
+			}
+			$('.webtoon_good i').css("color", "d5d5d5");
+			good_flag = 0;
 		});
 		
 	});
