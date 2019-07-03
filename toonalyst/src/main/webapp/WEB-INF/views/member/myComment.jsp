@@ -284,7 +284,7 @@
 }
 
 #qaboard_title {
-	flex: 3;
+	flex: 4;
 }
 
 #qaboard_goodcnt_title, #qaboard_viewcnt_title, #qaboard_goodcnt, #qaboard_viewcnt {
@@ -326,12 +326,10 @@
 				<table class="board_col">
 					<thead>
 						<tr class="qaboard_head_menu">
-							<th>분류</th>
-							<th id="qaboard_title">제목</th>
-							<th>작성자</th>
+							<th>게시판 분류</th>
+							<th id="qaboard_title">댓글 내용</th>
+							<th>게시글 제목</th>
 							<th>작성일</th>
-							<th id="qaboard_goodcnt_title">좋아요</th>
-							<th id="qaboard_viewcnt_title">조회수</th>
 						</tr>
 					</thead>
 					<jsp:useBean id="now" class="java.util.Date"/>

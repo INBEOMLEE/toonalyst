@@ -40,8 +40,12 @@ public interface BoardDAO {
 
 	public void answer(BoardDTO bDto);
 
-	public List<HashMap<String, String>> myBoardList(String keyword);
+	public List<HashMap<String, String>> myBoardList(String id);
 
+	int countArticle(String search_option, String keyword, int bcategory, String id);
+
+	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end, int bcategory,
+			String id);
 
 	
 }

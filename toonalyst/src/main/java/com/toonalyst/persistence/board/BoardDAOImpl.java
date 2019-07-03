@@ -54,6 +54,31 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectList("board.listAll", map);
 	}
+	
+	@Override
+	public int countArticle(String search_option, String keyword, int bcategory, String id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		map.put("bcategory", bcategory);
+		map.put("id", id);
+		
+		return sqlSession.selectOne("board.countArticle", map);
+	}
+
+	@Override
+	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end, int bcategory, String id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("sort_option", sort_option);
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		map.put("start", start);
+		map.put("end", end);
+		map.put("bcategory", bcategory);
+		map.put("id", id);
+		
+		return sqlSession.selectList("board.listAll", map);
+	}
 
 	@Override
 	public void delete(int bno) {
@@ -127,8 +152,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<HashMap<String, String>> myBoardList(String keyword) {
-		return sqlSession.selectList("board.myBoardList", keyword);
+	public List<HashMap<String, String>> myBoardList(String id) {
+		return sqlSession.selectList("board.myBoardList", id);
 	}
 
 	

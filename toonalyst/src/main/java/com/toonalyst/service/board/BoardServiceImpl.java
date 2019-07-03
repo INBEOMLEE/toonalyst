@@ -120,9 +120,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<HashMap<String, String>> myBoardList(String keyword) {
-		List<HashMap<String, String>> list = bDao.myBoardList(keyword);
-		return list;
+	public List<HashMap<String, String>> myBoardList(String id) {
+		return bDao.myBoardList(id);
+	}
+
+	@Override
+	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end,
+			int bcategory, String id) {
+		return bDao.listAll(sort_option, search_option, keyword, start, end, bcategory, id);
+	}
+
+	@Override
+	public int countArticle(String search_option, String keyword, int bcategory, String id) {
+		return bDao.countArticle(search_option, keyword, bcategory, id);
 	} 
 
 }

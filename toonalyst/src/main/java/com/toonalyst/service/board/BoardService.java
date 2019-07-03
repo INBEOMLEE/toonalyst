@@ -30,4 +30,8 @@ public interface BoardService {
 	public void answer(BoardDTO bDto, HttpSession session);
 	// 게시글이 있는 게시판의 코드, 게시판 이름, 게시판별 작성글 갯수 반환
 	public List<HashMap<String, String>> myBoardList(String keyword);
+	
+	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end,
+			int bcategory, String id);
+	public int countArticle(String search_option, String keyword, int bcategory, String id);
 }

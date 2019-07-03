@@ -52,6 +52,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 	AND bwriter LIKE #{keyword}
                 	AND bcategory = #{bcategory}
                 </if>
+                <if test="search_option == 'mytitle'">
+               		WHERE b.bwriter = m.id
+                	AND btitle LIKE #{keyword}
+                	AND bcategory = #{bcategory}
+                	AND bwriter = #{id}
+                </if>
+                <if test="search_option == 'mycontent'">
+                	WHERE b.bwriter = m.id
+                	AND btext LIKE #{keyword}
+                	AND bcategory = #{bcategory}
+                	AND bwriter = #{id}
+                </if>
+                <if test="search_option == 'myall'">
+                	WHERE b.bwriter = m.id
+					AND (btitle LIKE #{keyword}
+						 OR btext LIKE #{keyword} )
+					AND bcategory = #{bcategory}
+					AND bwriter = #{id}
+                </if>
 			</when>
 			<otherwise>
 				WHERE b.bwriter = m.id
@@ -86,6 +105,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			                	  AND bwriter LIKE #{keyword}
 			                	  AND bcategory = #{bcategory}
 			                  </if>
+			                  <if test="search_option == 'mytitle'">
+			               		WHERE b.bwriter = m.id
+			                	AND btitle LIKE #{keyword}
+			                	AND bcategory = #{bcategory}
+			                	AND bwriter = #{id}
+			               	  </if>
+			                  <if test="search_option == 'mycontent'">
+			                	WHERE b.bwriter = m.id
+			                	AND btext LIKE #{keyword}
+			                	AND bcategory = #{bcategory}
+			                	AND bwriter = #{id}
+			                 </if>
+			                 <if test="search_option == 'myall'">
+			                	WHERE b.bwriter = m.id
+								AND (btitle LIKE #{keyword}
+									 OR btext LIKE #{keyword} )
+								AND bcategory = #{bcategory}
+								AND bwriter = #{id}
+			                </if>
 						  </when>
 						  <otherwise>
 							  WHERE b.bwriter = m.id
@@ -178,7 +216,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select a.*, b.boardname 
 		    from 
 		        (select bcategory, count(*) as count from tbl_toonalyst_board
-		        where bwriter = #{keyword}
+		        where bwriter = #{id}
 		        GROUP by bcategory
 		        order by bcategory) a, tbl_board_code b
 		    where a.bcategory = b.bcategory

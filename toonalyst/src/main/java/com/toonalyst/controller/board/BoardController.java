@@ -190,16 +190,16 @@ public class BoardController {
 	//mypage에서 자신의 글 전체보기
 	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
 	public String myBoard(Model model, HttpSession session,
+			@RequestParam(defaultValue = "myall") String search_option,
+			@RequestParam(defaultValue = "") String keyword,
 			@RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue = "-1") int bcategory ) {
 		
 		log.info(">>>>> 내가 작성한 전체 게시글 페이지");
 		MemberDTO mDto = (MemberDTO) session.getAttribute("loginUser");
-		String keyword = mDto.getId();
-		String search_option = "writer";
 		String sort_option = "new";
 		
-		List<HashMap<String, String>> myBoardList = service.myBoardList(keyword);
+		List<HashMap<String, String>> myBoardList = service.myBoardList(mDto.getId());
 		if(bcategory < 0) {
 			if(myBoardList != null) {
 				bcategory = Integer.parseInt(String.valueOf(myBoardList.get(0).get("BCATEGORY")));
@@ -207,7 +207,7 @@ public class BoardController {
 		}
 		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>"+bcategory);
 		// 레코드 개수 계산
-		int count = service.countArticle(search_option, keyword, bcategory);
+		int count = service.countArticle(search_option, keyword, bcategory, mDto.getId());
 		
 		// 페이지 관련 설정
 		Pager pager = new Pager(count, curPage);
@@ -215,7 +215,7 @@ public class BoardController {
 		int end = pager.getPageEnd();
 		
 		// 페이지 출력할 게시글 목록
-		List<BoardDTO> list = service.listAll(sort_option, search_option, keyword, start, end, bcategory);
+		List<BoardDTO> list = service.listAll(sort_option, search_option, keyword, start, end, bcategory, mDto.getId());
 		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", list);
@@ -230,5 +230,11 @@ public class BoardController {
 		model.addAttribute("map", map);
 		
 		return "/member/myBoard";
+	}
+	
+	@RequestMapping(value = "/mycomment", method = RequestMethod.GET)
+	public String myBoard(HttpSession session) {
+		BoardDTO bDto = (BoardDTO) session.getAttribute("loginUser");
+		return "/member/myComment";
 	}
 }
