@@ -15,7 +15,7 @@ public class WebtoonServiceImpl implements WebtoonService{
 		wDao.create(wDto);
 	}
 	@Override
-	public WebtoonDTO selectone(int titleId) {
+	public WebtoonDTO selectone(long titleId) {
 		return wDao.selectone(titleId);
 	}
 }

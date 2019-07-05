@@ -19,7 +19,7 @@ public class WebtoonDAOImpl implements WebtoonDAO {
 	}
 
 	@Override
-	public WebtoonDTO selectone(int titleId) {
+	public WebtoonDTO selectone(long titleId) {
 		return sqlsession.selectOne("webtoon.selectone",titleId);
 	}
 

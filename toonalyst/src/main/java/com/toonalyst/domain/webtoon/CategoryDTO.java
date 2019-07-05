@@ -23,6 +23,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CategoryDTO {
-	private int titleId;
+	private long titleId;
 	private String category;
 }

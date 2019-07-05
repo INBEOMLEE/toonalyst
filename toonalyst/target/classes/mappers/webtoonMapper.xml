@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into TBL_WEBTOON(PLATFORM,TITLEID,TITLENAME,WRITER,RATING,INNERRATING,FINISH,BANNERIMG)
 		values(#{platForm},#{titleId},#{titleName},#{writer},#{rating},#{innerrating},#{finish},#{bannerimg})
 	</insert>
-	<select id="selectone" parameterType="int" resultType="com.toonalyst.domain.webtoon.WebtoonDTO">
+	<select id="selectone" parameterType="long" resultType="com.toonalyst.domain.webtoon.WebtoonDTO">
 		select * from tbl_webtoon
 		where titleid = #{titleId}
 	</select>

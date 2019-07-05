@@ -64,4 +64,10 @@ public class CommentController {
 		service.delete(cno, id, bno, session);
 	}
 	
+	@RequestMapping(value = "/mycomment", method = RequestMethod.GET)
+	public String myBoard(HttpSession session) {
+		BoardDTO bDto = (BoardDTO) session.getAttribute("loginUser");
+		
+		return "/member/myComment";
+	}
 }

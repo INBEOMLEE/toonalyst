@@ -231,10 +231,5 @@ public class BoardController {
 		
 		return "/member/myBoard";
 	}
-	
-	@RequestMapping(value = "/mycomment", method = RequestMethod.GET)
-	public String myBoard(HttpSession session) {
-		BoardDTO bDto = (BoardDTO) session.getAttribute("loginUser");
-		return "/member/myComment";
-	}
+
 }
