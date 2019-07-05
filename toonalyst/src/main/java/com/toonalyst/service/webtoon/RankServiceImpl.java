@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.toonalyst.domain.webtoon.WebtoonDTO;
 import com.toonalyst.persistence.webtoon.WebtoonDAO;
 
+import test.webLezhinSelenium;
 import test.webNaverParser;
 
 /*
@@ -56,6 +57,11 @@ public class RankServiceImpl implements RankService {
 			e.printStackTrace();
 		}
 		return ranklist;
+	}
+
+	@Override
+	public List<WebtoonDTO> lezhin() {
+		return new webLezhinSelenium().getRankList();
 	}
 
 }

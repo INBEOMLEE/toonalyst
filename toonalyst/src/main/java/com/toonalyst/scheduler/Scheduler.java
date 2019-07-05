@@ -14,6 +14,7 @@ import com.toonalyst.service.webtoon.WebtoonService;
 import com.toonalyst.service.webtoon.WebtoonServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
+import test.webLezhinSelenium;
 import test.webNaverParser;
 
 @Slf4j
@@ -29,6 +30,12 @@ public class Scheduler {
 	public void cronTest() throws IOException {
 		List<WebtoonDTO> list = new webNaverParser().getAlltoonList();
 		/* WebtoonService service = new WebtoonServiceImpl(); */
+		for (WebtoonDTO webtoonDTO : list) {
+			if (service.selectone(webtoonDTO.getTitleId()) == null) {
+				service.create(webtoonDTO);
+			}
+		}
+		list = new webLezhinSelenium().getAlltoonList();
 		for (WebtoonDTO webtoonDTO : list) {
 			if (service.selectone(webtoonDTO.getTitleId()) == null) {
 				service.create(webtoonDTO);

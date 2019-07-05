@@ -135,70 +135,70 @@
 					<div class="rank_inbox">
 						<div class="rank_box_1">
 							<div class="webtoon">
-								<p class="webtoon_title">유미의 세포들</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">복학왕</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">연놈</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">세상은 돈과 권력</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">개장수</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">이츠마인</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">헬퍼 2: 킬베로스</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">아도나이</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">신암행어사</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">신석기녀</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -216,70 +216,70 @@
 					<div class="rank_inbox">
 						<div class="rank_box_2">
 							<div class="webtoon">
-								<p class="webtoon_title">레바툰</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">아가씨와 우렁총각</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">4컷용사</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">바나나툰</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">그 끝에 있는 것</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">하루종일 조아영</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">킹스메이커</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">박쥐사육</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">천지해</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">롤플레잉겜만화</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -502,6 +502,57 @@
 			beforeSend:function(){
 				for (var i = 0; i < 10; i++) {
 					$('.rank_box_1 > .webtoon').eq(i).children('.webtoon_img').html('<img src="${path}/resources/img/ajax-loading2.gif" style="height: 100%;">');
+				}
+		    },
+			error: function(){
+				alert("System Error!");
+			}
+		});
+		$.ajax({
+			url: "${path}/rank/lezhin",
+			type: 'GET',
+			success: function(result){
+				console.log(result);
+				var starscore = '';
+				var rating = 0;
+				for (var i = 0; i < 10; i++) {
+					$('.rank_box_2 > .webtoon').eq(i).children('.webtoon_title').text(result[i].titleName);
+					$('.rank_box_2 > .webtoon').eq(i).children('.webtoon_img').html('<img src="'+result[i].bannerimg+'">');
+					starscore = '';
+					rating = result[i].rating;
+					if(rating > 0){
+						if(rating<2){
+							starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+						}else{
+							starscore = starscore+'<i class="fas fa-star"></i>';
+							if(rating<4){
+								starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+							}else{
+								starscore = starscore+'<i class="fas fa-star"></i>';
+								if(rating<6){
+									starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+								}else{
+									starscore = starscore+'<i class="fas fa-star"></i>';
+									if(rating<8){
+										starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+									}else{
+										starscore = starscore+'<i class="fas fa-star"></i>';
+										if(rating<10){
+											starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+										}else{
+											starscore = starscore+'<i class="fas fa-star"></i>';
+										}
+									}
+								}
+							}
+						}
+					}
+					$('.rank_box_2 > .webtoon').eq(i).children('.star_score').html(starscore);
+				}
+			},
+			beforeSend:function(){
+				for (var i = 0; i < 10; i++) {
+					$('.rank_box_2 > .webtoon').eq(i).children('.webtoon_img').html('<img src="${path}/resources/img/ajax-loading2.gif" style="height: 100%;">');
 				}
 		    },
 			error: function(){

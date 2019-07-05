@@ -27,4 +27,10 @@ public class RankController {
 	public List<WebtoonDTO> naverRank(){
 		return service.naver();		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "lezhin", method = RequestMethod.GET)
+	public List<WebtoonDTO> lezhinRank(){
+		return service.lezhin();		
+	}
 }
