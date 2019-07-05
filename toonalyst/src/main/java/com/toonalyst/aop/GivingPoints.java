@@ -41,8 +41,6 @@ public class GivingPoints {
 		String method = joinPoint.getSignature().getName(); // 실행된 메서드의 이름을 찾음
 		String type = joinPoint.getSignature().getDeclaringTypeName();
 		System.out.println("++++++++++++ " + type + " 의 " + method + " 메서드가 실행되었습니다 " + "++++++++++++");
-        
-		
 		
         if(method.equals("register")) {
     		Object[] arr = joinPoint.getArgs();
