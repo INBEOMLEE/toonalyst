@@ -31,25 +31,13 @@ public class webLezhinSelenium {
 	private WebElement webElement;
 
 	// Properties
-	public static final String WEB_DRIVER_ID = "webdriver.chrome.driver";
-	public static final String WEB_DRIVER_PATH = "c:/chromedriver.exe";
 
 	// 크롤링 할 URL
 	private String base_url;
 
 	public webLezhinSelenium() {
 		super();
-
-		// System Property SetUp
-		System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
-
-		// Driver SetUp
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("headless");
-		driver = new ChromeDriver(options);
-
-		
-
+		driver = SeleniumInstance.getInstance();
 	}
 
 	public List<WebtoonDTO> getAllList() {
