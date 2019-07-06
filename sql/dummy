@@ -214,3 +214,30 @@ INSERT INTO TBL_BOARD_CODE(BCATEGORY, BOARDNAME) VALUES (1 , '질문게시판');
 INSERT INTO TBL_BOARD_CODE(BCATEGORY, BOARDNAME) VALUES (2 , '자유게시판');
 
 COMMIT;
+
+SELECT bno, btitle, bturn, bdepth, borigin
+FROM tbl_toonalyst_board
+WHERE bcategory = 2
+ORDER BY borigin DESC, bturn;
+
+
+-- 자체 평가 테이블
+DROP TABLE tbl_toonalyst_score;
+CREATE TABLE tbl_toonalyst_score(
+    sno NUMBER PRIMARY KEY,
+    sid VARCHAR2(30) NOT NULL,
+    scontent VARCHAR2(2000) NOT NULL,
+    sgood VARCHAR2(10) NOT NULL,
+    titleid NUMBER NOT NULL,
+    regdate DATE DEFAULT SYSDATE
+);
+
+DROP SEQUENCE seq_toonalyst_score;
+CREATE SEQUENCE seq_toonalyst_score
+START WITH 1
+INCREMENT BY 1
+NOCYCLE;
+
+ALTER TABLE tbl_toonalyst_score
+ADD CONSTRAINT tbl_toonalyst_score_fk_titleid
+FOREIGN KEY(titleid) REFERENCES tbl_webtoon(titleid);
