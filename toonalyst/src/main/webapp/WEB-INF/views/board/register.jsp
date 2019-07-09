@@ -116,6 +116,21 @@ h3.title {
 	color: tomato;
 	display: none;
 }
+.form-group .board_div {
+	border-bottom: 1px solid #e0e0e0;
+	width : 100%;
+	text-align: center;
+	height: 250px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #515151;	
+}
+.uploadedList {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
 </style>
 </head>
 <body>
@@ -168,6 +183,20 @@ h3.title {
 					</tr>
 				</tbody>
 			</table>
+			<!-- 게시글 첨부파일 등록 -->
+			<div class="write_input_wrap form-group">
+				<div class="board_div fileDrop">
+					<p>
+						<i class="fas fa-paperclip"></i>
+						첨부파일을 드래그 해주세요.
+					</p>
+				</div>
+				<div class="write_input_wrap">
+					<ul id="uploadedList" class="mailbox-attachments clearfix uploadedList"></ul>
+				</div>
+				
+				
+			</div>
 			<div class="modify_err_msg">
 				<div class="register_err_message"></div>
 			</div>
@@ -177,6 +206,7 @@ h3.title {
 				</span>
 				<span id="cancle" class="box_btn large w150 white"><a href="${path}/board/list">취소</a></span>
 			</div>
+			
 			<input type="hidden" name="bcategory" value="${bcategory}">
 			<input type="hidden" name="btext" id="input_btext">
 			<c:if test="${!empty bDto.bno}">
@@ -189,6 +219,42 @@ h3.title {
     
     
 <script type="text/javascript">
+$(document).ready(function(){
+	// Drag & Drop 기본효과 막음
+	// : 작업안하면 실제 파일이 열림
+	$('.fileDrop').on('dragenter dragover', function(e){
+		e.preventDefault();
+	});
+	$('.fileDrop').on('drop', function(e){ // 드롭했을 때
+		e.preventDefault();
+		
+		// Ajax 파일 -> D:\\upload
+		// 첫번째 첨부파일
+		
+		var files = e.originalEvent.dataTransfer.files; // 드래그에 전달된 첨부파일 전부
+		var file = files[0]; // 그 중 하나만 꺼내옴
+		// 폼 데이터에 첨부파일 추가
+		var formData = new FormData(); // 폼 객체
+		formData.append("file", file); // 폼에 파일변수 추가
+		// 서버에 파일 업로드(백그라운드에서 실행됨)
+		// contentType : false => multipart/form-data로 처리
+		$.ajax({
+			url : "${path}/upload/uploadAjax",
+			data : formData,
+			dataType : "text",
+			processData : false,
+			contentType : false,
+			type : "POST",
+			success : function(data){
+				console.log(data);
+				// data :업로드한 파일 정보와 http 상태 코드
+				printFiles(data); // 첨부파일 출력 메서드 호출
+			}
+		});
+	});
+});
+
+
 $(document).on("click", "#confirm", function(){
     oEditors.getById["bcontent"].exec("UPDATE_CONTENTS_FIELD", []);
     var title = $("#counsel_title").val();
