@@ -3,11 +3,8 @@ package com.toonalyst.service.member;
 
 
 import java.util.HashMap;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
-import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
 
 public interface MemberService {

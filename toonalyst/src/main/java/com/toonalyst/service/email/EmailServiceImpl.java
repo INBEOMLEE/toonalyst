@@ -23,7 +23,7 @@ public class EmailServiceImpl implements EmailService {
 			// 이메일 객체
 			MimeMessage msg = mailSender.createMimeMessage();
 			// 받는사람
-			msg.addRecipient(RecipientType.TO, new InternetAddress(eDto.getReceiveMail()));
+			msg.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(eDto.getReceiveMail()));
 			// 보내는 사람(이메일 주소 + 이름)
 			msg.addFrom(new InternetAddress[] {new InternetAddress(eDto.getSenderMail(), eDto.getSenderName())});
 			// 이메일 제목

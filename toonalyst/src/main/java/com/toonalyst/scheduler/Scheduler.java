@@ -11,9 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.toonalyst.domain.webtoon.WebtoonDTO;
 import com.toonalyst.service.webtoon.WebtoonService;
-import com.toonalyst.service.webtoon.WebtoonServiceImpl;
-
 import lombok.extern.slf4j.Slf4j;
+import test.webDaumParser;
 import test.webLezhinSelenium;
 import test.webNaverParser;
 
@@ -36,6 +35,12 @@ public class Scheduler {
 			}
 		}
 		list = new webLezhinSelenium().getAlltoonList();
+		for (WebtoonDTO webtoonDTO : list) {
+			if (service.selectone(webtoonDTO.getTitleId()) == null) {
+				service.create(webtoonDTO);
+			}
+		}
+		list = new webDaumParser().getAlltoonList();
 		for (WebtoonDTO webtoonDTO : list) {
 			if (service.selectone(webtoonDTO.getTitleId()) == null) {
 				service.create(webtoonDTO);

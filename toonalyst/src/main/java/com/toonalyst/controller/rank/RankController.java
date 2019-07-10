@@ -33,4 +33,10 @@ public class RankController {
 	public List<WebtoonDTO> lezhinRank(){
 		return service.lezhin();		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "daum", method = RequestMethod.GET)
+	public List<WebtoonDTO> daumRank(){
+		return service.daum();		
+	}
 }

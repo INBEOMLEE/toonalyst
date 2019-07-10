@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.toonalyst.domain.webtoon.WebtoonDTO;
 import com.toonalyst.persistence.webtoon.WebtoonDAO;
 
+import test.webDaumParser;
 import test.webLezhinSelenium;
-import test.webNaverParser;
 
 /*
  * 최초 작성 :19.06.13 최인준
@@ -35,6 +35,7 @@ public class RankServiceImpl implements RankService {
 	@Inject
 	public WebtoonDAO wDao;
 	
+	@Override
 	@Transactional
 	public List<WebtoonDTO> naver() {
 		ArrayList<WebtoonDTO> ranklist = new ArrayList<WebtoonDTO>();
@@ -62,6 +63,11 @@ public class RankServiceImpl implements RankService {
 	@Override
 	public List<WebtoonDTO> lezhin() {
 		return new webLezhinSelenium().getRankList();
+	}
+
+	@Override
+	public List<WebtoonDTO> daum() {
+		return new webDaumParser().getRankList();
 	}
 
 }

@@ -11,6 +11,7 @@ import com.toonalyst.persistence.webtoon.WebtoonDAO;
 public class WebtoonServiceImpl implements WebtoonService{
 	@Inject
 	private WebtoonDAO wDao;
+	@Override
 	public void create(WebtoonDTO wDto) {
 		wDao.create(wDto);
 	}

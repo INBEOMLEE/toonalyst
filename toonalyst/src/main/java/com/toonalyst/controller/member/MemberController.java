@@ -1,8 +1,6 @@
 package com.toonalyst.controller.member;
 
 import java.util.HashMap;
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,13 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.domain.member.MemberDTO;
-import com.toonalyst.service.board.BoardService;
-import com.toonalyst.service.board.Pager;
 import com.toonalyst.service.member.MemberService;
 
 import lombok.extern.slf4j.Slf4j;

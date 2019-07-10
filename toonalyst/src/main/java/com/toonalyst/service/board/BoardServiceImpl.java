@@ -12,9 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.toonalyst.domain.board.BoardDTO;
 import com.toonalyst.persistence.board.BoardDAO;
-
-
-import lombok.extern.slf4j.Slf4j;
 @Service
 public class BoardServiceImpl implements BoardService {
 

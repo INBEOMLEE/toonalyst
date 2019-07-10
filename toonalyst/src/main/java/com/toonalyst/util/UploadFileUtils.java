@@ -7,8 +7,6 @@ import java.util.Calendar;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import org.imgscalr.Scalr;
 import org.springframework.util.FileCopyUtils;
 

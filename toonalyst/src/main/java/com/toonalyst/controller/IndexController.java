@@ -15,6 +15,7 @@ import com.toonalyst.domain.webtoon.WebtoonDTO;
 import com.toonalyst.service.webtoon.WebtoonService;
 
 import lombok.extern.slf4j.Slf4j;
+import test.webDaumParser;
 import test.webLezhinSelenium;
 import test.webNaverParser;
 
@@ -51,8 +52,19 @@ public class IndexController {
 	@RequestMapping("/lezhinupdate")
 	public String lezhinUpdate(Model model) throws IOException {
 		List<WebtoonDTO> list = new webLezhinSelenium().getAllList();
-//		= webNaverParser wnp = new webNaverParser();
-//		  List<WebtoonDTO> list = wnp.getAlltoonList();
+		for (WebtoonDTO webtoonDTO : list) {
+			if (service.selectone(webtoonDTO.getTitleId()) == null) {
+				service.create(webtoonDTO);
+			}
+		}
+		model.addAttribute("list",list);
+		return "updateresult";
+	}
+	
+	@Transactional	
+	@RequestMapping("/daumupdate")
+	public String daumUpdate(Model model) throws IOException {
+		List<WebtoonDTO> list = new webDaumParser().getAlltoonList();
 		for (WebtoonDTO webtoonDTO : list) {
 			if (service.selectone(webtoonDTO.getTitleId()) == null) {
 				service.create(webtoonDTO);

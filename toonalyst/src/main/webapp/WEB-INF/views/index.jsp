@@ -462,42 +462,7 @@
 			type: 'GET',
 			success: function(result){
 				console.log(result);
-				var starscore = '';
-				var rating = 0;
-				for (var i = 0; i < 10; i++) {
-					$('.rank_box_1 > .webtoon').eq(i).children('.webtoon_title').text(result[i].titleName);
-					$('.rank_box_1 > .webtoon').eq(i).children('.webtoon_img').html('<img src="'+result[i].bannerimg+'">');
-					starscore = '';
-					rating = result[i].rating;
-					if(rating > 0){
-						if(rating<2){
-							starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-						}else{
-							starscore = starscore+'<i class="fas fa-star"></i>';
-							if(rating<4){
-								starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-							}else{
-								starscore = starscore+'<i class="fas fa-star"></i>';
-								if(rating<6){
-									starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-								}else{
-									starscore = starscore+'<i class="fas fa-star"></i>';
-									if(rating<8){
-										starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-									}else{
-										starscore = starscore+'<i class="fas fa-star"></i>';
-										if(rating<10){
-											starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-										}else{
-											starscore = starscore+'<i class="fas fa-star"></i>';
-										}
-									}
-								}
-							}
-						}
-					}
-					$('.rank_box_1 > .webtoon').eq(i).children('.star_score').html(starscore);
-				}
+				starRating(result, 1);
 			},
 			beforeSend:function(){
 				for (var i = 0; i < 10; i++) {
@@ -513,46 +478,27 @@
 			type: 'GET',
 			success: function(result){
 				console.log(result);
-				var starscore = '';
-				var rating = 0;
-				for (var i = 0; i < 10; i++) {
-					$('.rank_box_2 > .webtoon').eq(i).children('.webtoon_title').text(result[i].titleName);
-					$('.rank_box_2 > .webtoon').eq(i).children('.webtoon_img').html('<img src="'+result[i].bannerimg+'">');
-					starscore = '';
-					rating = result[i].rating;
-					if(rating > 0){
-						if(rating<2){
-							starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-						}else{
-							starscore = starscore+'<i class="fas fa-star"></i>';
-							if(rating<4){
-								starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-							}else{
-								starscore = starscore+'<i class="fas fa-star"></i>';
-								if(rating<6){
-									starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-								}else{
-									starscore = starscore+'<i class="fas fa-star"></i>';
-									if(rating<8){
-										starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-									}else{
-										starscore = starscore+'<i class="fas fa-star"></i>';
-										if(rating<10){
-											starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-										}else{
-											starscore = starscore+'<i class="fas fa-star"></i>';
-										}
-									}
-								}
-							}
-						}
-					}
-					$('.rank_box_2 > .webtoon').eq(i).children('.star_score').html(starscore);
-				}
+				starRating(result, 2);
 			},
 			beforeSend:function(){
 				for (var i = 0; i < 10; i++) {
 					$('.rank_box_2 > .webtoon').eq(i).children('.webtoon_img').html('<img src="${path}/resources/img/ajax-loading2.gif" style="height: 100%;">');
+				}
+		    },
+			error: function(){
+				alert("System Error!");
+			}
+		});
+		$.ajax({
+			url: "${path}/rank/daum",
+			type: 'GET',
+			success: function(result){
+				console.log(result);
+				starRating(result, 3);
+			},
+			beforeSend:function(){
+				for (var i = 0; i < 10; i++) {
+					$('.rank_box_3 > .webtoon').eq(i).children('.webtoon_img').html('<img src="${path}/resources/img/ajax-loading2.gif" style="height: 100%;">');
 				}
 		    },
 			error: function(){
@@ -603,6 +549,44 @@
 			}
 		});
 	});
+	function starRating(result, num){
+		var starscore = '';
+		var rating = 0;
+		for (var i = 0; i < 10; i++) {
+			$('.rank_box_'+num+' > .webtoon').eq(i).children('.webtoon_title').text(result[i].titleName);
+			$('.rank_box_'+num+' > .webtoon').eq(i).children('.webtoon_img').html('<img src="'+result[i].bannerimg+'">');
+			starscore = '';
+			rating = result[i].rating;
+			if(rating > 0){
+				if(rating<2){
+					starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+				}else{
+					starscore = starscore+'<i class="fas fa-star"></i>';
+					if(rating<4){
+						starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+					}else{
+						starscore = starscore+'<i class="fas fa-star"></i>';
+						if(rating<6){
+							starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+						}else{
+							starscore = starscore+'<i class="fas fa-star"></i>';
+							if(rating<8){
+								starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+							}else{
+								starscore = starscore+'<i class="fas fa-star"></i>';
+								if(rating<10){
+									starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+								}else{
+									starscore = starscore+'<i class="fas fa-star"></i>';
+								}
+							}
+						}
+					}
+				}
+			}
+			$('.rank_box_'+num+' > .webtoon').eq(i).children('.star_score').html(starscore);
+		}
+	}
 	
 </script>
 </body>

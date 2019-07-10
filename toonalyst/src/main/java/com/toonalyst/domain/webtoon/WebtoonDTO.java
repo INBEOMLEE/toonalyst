@@ -1,7 +1,5 @@
 package com.toonalyst.domain.webtoon;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
