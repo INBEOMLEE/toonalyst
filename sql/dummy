@@ -229,6 +229,7 @@ CREATE TABLE tbl_toonalyst_score(
     scontent VARCHAR2(2000) NOT NULL,
     sgood VARCHAR2(10) NOT NULL,
     titleid NUMBER NOT NULL,
+    sdate NUMBER NOT NULL,
     regdate DATE DEFAULT SYSDATE
 );
 
