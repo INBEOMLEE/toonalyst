@@ -90,7 +90,8 @@ public class BoardController {
 			@RequestParam(defaultValue = "0") int bno,
 			int bcategory, Model model) {
 		log.info(">>>>> 게시글  등록 페이지 출력");
-		BoardDTO bDto = service.read(bno);
+		BoardDTO bDto = null;
+		if (bno != 0) bDto = service.read(bno);
 		model.addAttribute("bDto", bDto);
 		model.addAttribute("bcategory", bcategory);
 		return "/board/register";

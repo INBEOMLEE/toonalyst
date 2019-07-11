@@ -71,7 +71,7 @@
 							</div>
 						</li>
 						<li>
-							<a href="${path}/webtoon">Web Toon</a>
+							<a href="${path}/score/webtoon">Web Toon</a>
 						</li>
 						<li>
 							<a href="${path}/board/list?bcategory=2">Free Board</a>

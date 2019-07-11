@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="score">
+
+<select id="listAll">
+	SELECT *
+	FROM tbl_toonalyst_score
+	WHERE titleid = #{titleid}
+</select>
+
+<insert id="create" parameterType="com.toonalyst.domain.score.ScoreDTO">
+	INSERT INTO tbl_toonalyst_score(sno, sid, scontent, sgood, titleid)
+	VALUES (seq_toonalyst_score.NEXTVAL, #{sid}, #{scontent}, #{sgood}, #{titleid})
+</insert>
+
+</mapper>

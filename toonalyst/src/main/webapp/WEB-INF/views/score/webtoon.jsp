@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +55,6 @@
 	.webtoon_img {
 		width: 218px;
 		height: 120px;
-		border: 1px solid black;
 		position: relative;
 	}
 	.flatform_logo {
@@ -450,6 +449,25 @@
 		background: #FF6C36;
 		cursor: pointer;
 	}
+	.txt_box_wrap {
+		width: 100%;
+		height: 20px;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	#txt_box {
+		color: #FF6C36;
+		font-size: 16px;
+		display: none;
+	}
+	/* 댓글창 디자인 */
+	.score_outline {
+		width: 100%;
+	}
+	.score_inline {
+		width: 1180px;
+		margin: 0 auto;
+	}
 	
 	
 </style>
@@ -473,9 +491,10 @@
 						<div class="flatform_logo">
 							<img alt="logo" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 						</div>
+						<img src="${wDto.bannerimg}">
 					</div>
 					<div class="webtoon_info">
-						<div class="webtoon_title_writer">마음의 소리 (조 석)</div>
+						<div class="webtoon_title_writer">${wDto.titleName} (${wDto.writer})</div>
 						<div class="webtoon_score">
 							<div class="score_title">최근 평가</div>
 							<div class="lately_score">매우 긍적적인</div>
@@ -505,8 +524,8 @@
 									<img alt="이미지" src="${path}/resources/img/toonalyst_logo.png" id="toonalyst_logo">
 								</div>
 								<div class="flatform_score_point">
-									<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-									<span>9.99</span>
+									<div class="star_score"></div>
+									<span>${wDto.innerrating}</span>
 								</div>
 							</div>
 							<div class="score_style flatform_score">
@@ -514,8 +533,8 @@
 									<img alt="이미지" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
 								</div>
 								<div class="flatform_score_point">
-									<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-									<span>9.99</span>
+									<div class="star_score"></div>
+									<span>${wDto.rating}</span>
 								</div>						
 							</div>
 						</div>
@@ -798,36 +817,13 @@
 							<div style="color: #FF4848;">14%<span style="font-size: 14px; margin-left: 10px;">(28명)</span></div>
 						</div>
 					
-					
-					
-						<div class="webtoon_reply_list">
-							<div class="webtoon_reply_user">
-								<img alt="이미지" src="${path}/resources/img/level/50.gif">
-								<span id="user_id">user01</span>
-								<span>작성한 게시글 수 : 50개</span>
-								<span>작성한 댓글 수 : 50개</span>
-							</div>
-							<div class="webtoon_reply_content">
-								<div class="webtoon_score_icon">
-									<i class="fas fa-thumbs-up" style="color: dodgerblue;"></i>
-								</div>
-								<div class="webtoon_score_content">정말 재미있는 웹툰입니다.</div>
+						<!-- 평점 영역 -->
+						<div class="score_outline">
+							<div class="score_inline" id="scoreList">
+							<!-- 여기에 scoreList띄움 -->
 							</div>
 						</div>
-						<div class="webtoon_reply_list">
-							<div class="webtoon_reply_user">
-								<img alt="이미지" src="${path}/resources/img/level/50.gif">
-								<span id="user_id">user02</span>
-								<span>작성한 게시글 수 : 50개</span>
-								<span>작성한 댓글 수 : 50개</span>
-							</div>
-							<div class="webtoon_reply_content">
-								<div class="webtoon_score_icon">
-									<i class="fas fa-thumbs-down" style="color: #FF4848;"></i>
-								</div>
-								<div class="webtoon_score_content">정말 재미없는 웹툰입니다.</div>
-							</div>
-						</div>
+						
 						
 						<!-- 평가 작성 구역 -->
 						<div class="webtoon_reply_write">
@@ -839,18 +835,28 @@
 								<div class="webtoon_score_icon">
 									<div id="user">
 										<img alt="이미지" src="${path}/resources/img/level/50.gif">
-										<span id="user_id">user01</span><br>
+										<span id="user_id">${sessionScope.loginUser.id}</span><br>
 									</div>
 									<div id="good_check">
 										<span class="webtoon_good"><i class="fas fa-thumbs-up"></i></span>
 										<span class="webtoon_hate"><i class="fas fa-thumbs-down"></i></span>
 									</div>
 								</div>
-								<div class="webtoon_score_content"><textarea></textarea></div>
+								<div class="webtoon_score_content"><textarea id="webtoon_score_area"></textarea></div>
 								<div class="webtoon_score_btn">등록하기</div>
 							</div>
 						</div>
+						<div class="txt_box_wrap">
+							<div id="txt_box">내용을 입력해 주세요</div>
+						</div>
 					</div>
+					
+					<form id="frm_webtoon_review" method="">
+						<input type="hidden" name="titleid" value ="${wDto.titleId}">
+						<input type="hidden" name ="sid" value ="${sessionScope.loginUser.id}">
+						<input type="hidden" name="scontent" id="scontent">
+						<input type="hidden" name="sgood" id="sgood" value="">
+					</form>
 						
 					
 					
@@ -870,9 +876,12 @@
 			</div>
 		</div>
 	</section>
-<%@ include file="include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
+		score_list();
+		starRating("${wDto.innerrating}", 0);
+		starRating("${wDto.rating}", 1);
 		
 		$('.webtoon_info_style').eq(0).css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
 		
@@ -899,14 +908,18 @@
 			$(this).css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
 		});
 		
+		var score_check = false;
 		var good_flag = 0;
 		$('.webtoon_good').click(function(){
 			if(good_flag == 0) {
 				$('.webtoon_good i').css("color", "dodgerblue");
 				good_flag = 1;
+				score_check = true;
+				
 			} else if(good_flag == 1) {
 				$('.webtoon_good i').css("color", "d5d5d5");
 				good_flag = 0;
+				score_check = false;
 			}
 			$('.webtoon_hate i').css("color", "d5d5d5");
 			hate_flag = 0;
@@ -918,15 +931,106 @@
 			if(hate_flag == 0) {
 				$('.webtoon_hate i').css("color", "#FF4848");
 				hate_flag = 1;
+				score_check = true;
 			} else if(hate_flag == 1) {
 				$('.webtoon_hate i').css("color", "d5d5d5");
 				hate_flag = 0;
+				score_check = false;
 			}
 			$('.webtoon_good i').css("color", "d5d5d5");
 			good_flag = 0;
 		});
 		
-	});
+		
+		// 공백과 좋아요/싫어요 필수 유효성 체크
+		$('.webtoon_score_btn').click(function(){
+			var content = $("#webtoon_score_area").val();
+			if(content == null || content.length == 0) { 
+				// 유효성체크(Null 체크)
+				$("#webtoon_score_area").focus();
+				$("#txt_box").css("display", "inline-block").text("내용을 입력해 주세요");
+				return false;
+			} else if(!score_check) {
+				$("#txt_box").css("display", "inline-block").text("좋아요 또는 싫어요를 체크해 주세요");
+				return false;
+			}
+			$("#txt_box").css("display", "none");
+			$("#scontent").val(content);
+			if(good_flag == 1){
+				$("#sgood").val("good");
+			} else if(hate_flag == 1) {
+				$("#sgood").val("hate");
+			}
+			
+			
+			$.ajax({ 
+				type:"get",
+				url: "${path}/score/review",
+				data: $("#frm_webtoon_review").serialize(),
+				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+				success: function(){
+					$("#webtoon_score_area").val("");
+					$('.webtoon_good i').css("color", "d5d5d5");
+					$('.webtoon_hate i').css("color", "d5d5d5");
+					
+				},
+				error: function(){
+				}
+			});
+			
+			
+		});
+		
+	}); 
+	
+	
+	
+	// 평가 댓글 띄우는 함수
+	function score_list(){
+		$.ajax({
+			type:"get",
+			url: "${path}/score/list",
+			data: "titleid=${sDto.titleid}",
+			success: function(result){ 
+				$('#scoreList').html(result);
+			}
+		});
+	}
+	
+	function starRating(rating, num){
+		var starscore = '';
+		for (var i = 0; i < 10; i++) {
+			starscore = '';
+			if(rating > 0){
+				if(rating<2){
+					starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+				}else{
+					starscore = starscore+'<i class="fas fa-star"></i>';
+					if(rating<4){
+						starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+					}else{
+						starscore = starscore+'<i class="fas fa-star"></i>';
+						if(rating<6){
+							starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+						}else{
+							starscore = starscore+'<i class="fas fa-star"></i>';
+							if(rating<8){
+								starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+							}else{
+								starscore = starscore+'<i class="fas fa-star"></i>';
+								if(rating<10){
+									starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
+								}else{
+									starscore = starscore+'<i class="fas fa-star"></i>';
+								}
+							}
+						}
+					}
+				}
+			}
+			$('.star_score').eq(num).html(starscore);
+		}
+	}
 </script>
 </body>
 </html>
