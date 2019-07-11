@@ -17,23 +17,36 @@ response.setStatus(HttpServletResponse.SC_OK);
 		justify-content: center;
 		align-items: center;
 	}
-	.error_page_content {
-		font-size: 80px;
-		font-weight: 600;
-		color: tomato;
-		text-shadow: 2px 2px red;
-		font-family: 'Dancing Script', cursive;
+	.error_box {
+		border: 1px solid black;
+		padding: 10px 20px 20px 20px;
+		width: 400px;
+		height: 150px;
+		border-radius: 10px;
+	}
+	.error_msg {
+		border-bottom: 1px solid #dadada;
+		font-size: 30px;
+		padding-bottom: 10px;
+		text-align: center;
 	}
 	.error_code {
 		width: 100%;
-		text-align: center;
+		height: 115px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 30px;
+		font-weight: 600;
 	}
-	
 	</style>
 </head>
 <body>
 	<div class="error_page">
-		<div class="error_page_content">Sorry, Please wait<br>
+		<div class="error_box">
+			<div class="error_msg">
+				<i class="fas fa-pray"></i> Please wait
+			</div>
 			<div class="error_code">500 Error</div>
 		</div>
 	</div>
