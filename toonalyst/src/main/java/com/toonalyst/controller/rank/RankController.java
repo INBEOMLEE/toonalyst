@@ -39,4 +39,10 @@ public class RankController {
 	public List<WebtoonDTO> daumRank(){
 		return service.daum();		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "kakao", method = RequestMethod.GET)
+	public List<WebtoonDTO> kakaoRank(){
+		return service.kakao();		
+	}
 }

@@ -74,8 +74,8 @@ public class webDaumParser {
 		return result;
 	}
 	
-	public List<WebtoonDTO> getRankList(){
-		ArrayList<WebtoonDTO> result = new ArrayList<WebtoonDTO>();
+	public List<Integer> getRankList(){
+		ArrayList<Integer> result = new ArrayList<Integer>();
 		try {
 			ObjectMapper obm = new ObjectMapper();
 			Map<String, Object> map = obm.readValue(new URL("http://webtoon.daum.net/data/pc/webtoon/list_daily_ranking/serialized"), new TypeReference<Map<String, Object>>() {});
@@ -83,20 +83,8 @@ public class webDaumParser {
 			String str = "";
 			for (int i = 0; i < 10; i++) {
 				HashMap<String, String> listmap = list.get(i);
-				String platForm = "daum";
 				int titleId = Integer.parseInt(String.valueOf(listmap.get("id")));
-				String titleName = String.valueOf(listmap.get("title"));
-				String writer = writer(listmap.get("cartoon"));
-				float rating = 0;
-				float innerrating = 0;
-				int finish = 0;
-				if(listmap.get("finishYn").equals("Y")) {
-					finish = 1;
-				}
-				Object imgobj = listmap.get("pcRecommendImage");
-				HashMap<String, String> imgmap = (HashMap<String, String>)imgobj;
-				String bannerimg = imgmap.get("url");
-				result.add(new WebtoonDTO(platForm, titleId, titleName, writer, rating, innerrating, finish, bannerimg));
+				result.add(titleId);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

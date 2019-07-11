@@ -16,6 +16,7 @@ import com.toonalyst.service.webtoon.WebtoonService;
 
 import lombok.extern.slf4j.Slf4j;
 import test.webDaumParser;
+import test.webKakaoParser;
 import test.webLezhinSelenium;
 import test.webNaverParser;
 
@@ -65,6 +66,19 @@ public class IndexController {
 	@RequestMapping("/daumupdate")
 	public String daumUpdate(Model model) throws IOException {
 		List<WebtoonDTO> list = new webDaumParser().getAlltoonList();
+		for (WebtoonDTO webtoonDTO : list) {
+			if (service.selectone(webtoonDTO.getTitleId()) == null) {
+				service.create(webtoonDTO);
+			}
+		}
+		model.addAttribute("list",list);
+		return "updateresult";
+	}
+	
+	@Transactional	
+	@RequestMapping("/kakaoupdate")
+	public String kakaoUpdate(Model model) throws IOException {
+		List<WebtoonDTO> list = new webKakaoParser().getAlltoonList();
 		for (WebtoonDTO webtoonDTO : list) {
 			if (service.selectone(webtoonDTO.getTitleId()) == null) {
 				service.create(webtoonDTO);

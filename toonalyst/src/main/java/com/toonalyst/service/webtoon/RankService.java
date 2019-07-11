@@ -10,4 +10,6 @@ public interface RankService {
 	public List<WebtoonDTO> lezhin();
 
 	public List<WebtoonDTO> daum();
+
+	public List<WebtoonDTO> kakao();
 }

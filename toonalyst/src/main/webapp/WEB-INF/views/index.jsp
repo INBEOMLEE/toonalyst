@@ -505,6 +505,22 @@
 				alert("System Error!");
 			}
 		});
+		$.ajax({
+			url: "${path}/rank/kakao",
+			type: 'GET',
+			success: function(result){
+				console.log(result);
+				starRating(result, 4);
+			},
+			beforeSend:function(){
+				for (var i = 0; i < 10; i++) {
+					$('.rank_box_4 > .webtoon').eq(i).children('.webtoon_img').html('<img src="${path}/resources/img/ajax-loading2.gif" style="height: 100%;">');
+				}
+		    },
+			error: function(){
+				alert("System Error!");
+			}
+		});
 		$('.rank_box_1').scroll(function() {
 			var scrollValue = $(this).scrollTop();
 			if(scrollValue <= 0) {
