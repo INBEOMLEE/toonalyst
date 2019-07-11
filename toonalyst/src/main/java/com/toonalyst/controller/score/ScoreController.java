@@ -41,21 +41,19 @@ public class ScoreController {
 	}
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String listAll(long titleid, Model model) {
+	public String list(long titleId, Model model) {
 		log.info(">>>>> 평가글 목록 출력");
-		
-		List<ScoreDTO> list = service.listAll(titleid);
+		List<ScoreDTO> list = service.list(titleId);
 		model.addAttribute("list", list);
 		
 		return "score/score_list";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="review", method=RequestMethod.GET)
-	public void review(ScoreDTO sDto) {
+	@RequestMapping(value="create", method=RequestMethod.GET)
+	public int create(ScoreDTO sDto) {
 		log.info(">>>>> 웹툰 리뷰 등록 기능 구현");
-		log.info(sDto.toString());
-		service.create(sDto);
+		return service.create(sDto);
 	}
 	
 	

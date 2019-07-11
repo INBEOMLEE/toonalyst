@@ -19,13 +19,18 @@ public class ScoreDAOImpl implements ScoreDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<ScoreDTO> listAll(long titleid) {
-		return sqlSession.selectOne("score.listAll", titleid);
+	public List<ScoreDTO> list(long titleid) {
+		return sqlSession.selectList("score.list", titleid);
 	}
 
 	@Override
 	public void create(ScoreDTO sDto) {
 		sqlSession.insert("score.create", sDto);
+	}
+
+	@Override
+	public ScoreDTO read(ScoreDTO sDto) {
+		return sqlSession.selectOne("score.read", sDto);
 	}
 
 }

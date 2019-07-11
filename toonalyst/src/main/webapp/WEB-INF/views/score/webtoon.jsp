@@ -465,7 +465,7 @@
 		width: 100%;
 	}
 	.score_inline {
-		width: 1180px;
+		width: 1000px;
 		margin: 0 auto;
 	}
 	
@@ -824,35 +824,36 @@
 							</div>
 						</div>
 						
-						
-						<!-- 평가 작성 구역 -->
-						<div class="webtoon_reply_write">
-							<div class="webtoon_reply_user">
-								<span>작성한 게시글 수 : 50개</span>
-								<span>작성한 댓글 수 : 50개</span>
-							</div>
-							<div class="webtoon_reply_content">
-								<div class="webtoon_score_icon">
-									<div id="user">
-										<img alt="이미지" src="${path}/resources/img/level/50.gif">
-										<span id="user_id">${sessionScope.loginUser.id}</span><br>
-									</div>
-									<div id="good_check">
-										<span class="webtoon_good"><i class="fas fa-thumbs-up"></i></span>
-										<span class="webtoon_hate"><i class="fas fa-thumbs-down"></i></span>
-									</div>
+						<c:if test="${!empty sessionScope.loginUser.id}"> <!-- 세션을 체크해서 비어있지 않으면 등록할 수 있게 해준다. -->
+							<!-- 평가 작성 구역 -->
+							<div class="webtoon_reply_write">
+								<div class="webtoon_reply_user">
+									<span>작성한 게시글 수 : ${sessionScope.loginUser.boardcnt}개</span>
+									<span>작성한 댓글 수 : ${sessionScope.loginUser.commentcnt}개</span>
 								</div>
-								<div class="webtoon_score_content"><textarea id="webtoon_score_area"></textarea></div>
-								<div class="webtoon_score_btn">등록하기</div>
+								<div class="webtoon_reply_content">
+									<div class="webtoon_score_icon">
+										<div id="user">
+											<img alt="이미지" src="${path}/resources/img/level/${sessionScope.loginUser.grade}.gif">
+											<span id="user_id">${sessionScope.loginUser.id}</span><br>
+										</div>
+										<div id="good_check">
+											<span class="webtoon_good"><i class="fas fa-thumbs-up"></i></span>
+											<span class="webtoon_hate"><i class="fas fa-thumbs-down"></i></span>
+										</div>
+									</div>
+									<div class="webtoon_score_content"><textarea id="webtoon_score_area"></textarea></div>
+									<div class="webtoon_score_btn">등록하기</div>
+								</div>
 							</div>
-						</div>
+						</c:if>
 						<div class="txt_box_wrap">
 							<div id="txt_box">내용을 입력해 주세요</div>
 						</div>
 					</div>
 					
-					<form id="frm_webtoon_review" method="">
-						<input type="hidden" name="titleid" value ="${wDto.titleId}">
+					<form id="frm_webtoon_review">
+						<input type="hidden" name="titleId" value ="${wDto.titleId}">
 						<input type="hidden" name ="sid" value ="${sessionScope.loginUser.id}">
 						<input type="hidden" name="scontent" id="scontent">
 						<input type="hidden" name="sgood" id="sgood" value="">
@@ -965,14 +966,17 @@
 			
 			$.ajax({ 
 				type:"get",
-				url: "${path}/score/review",
+				url: "${path}/score/create",
 				data: $("#frm_webtoon_review").serialize(),
 				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-				success: function(){
+				success: function(data){
 					$("#webtoon_score_area").val("");
 					$('.webtoon_good i').css("color", "d5d5d5");
 					$('.webtoon_hate i').css("color", "d5d5d5");
-					
+					if(data == 0) { // data 값이 0 이면 등록 실패
+						$("#txt_box").css("display", "inline-block").text("이미 해당 웹툰을 평가 해주셨습니다. 일주일마다 재등록 가능합니다");
+					}
+					score_list();
 				},
 				error: function(){
 				}
@@ -990,7 +994,7 @@
 		$.ajax({
 			type:"get",
 			url: "${path}/score/list",
-			data: "titleid=${sDto.titleid}",
+			data: "titleId=${wDto.titleId}",
 			success: function(result){ 
 				$('#scoreList').html(result);
 			}

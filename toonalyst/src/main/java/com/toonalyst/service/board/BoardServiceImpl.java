@@ -54,7 +54,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void increaseViewCnt(int bno, HttpSession session) {
-		long update_time=0;
+		long update_time= 0;
 		if(session.getAttribute("update_time_"+bno)!=null) {
 			// 최근에 조회수를 올린 시간
 			update_time = (long)session.getAttribute("update_time_"+bno);

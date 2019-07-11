@@ -6,7 +6,7 @@ import com.toonalyst.domain.score.ScoreDTO;
 
 public interface ScoreService {
 
-	public List<ScoreDTO> listAll(long titleid);
+	public List<ScoreDTO> list(long titleid);
 	
-	public void create(ScoreDTO sDto);
+	public int create(ScoreDTO sDto);
 }
