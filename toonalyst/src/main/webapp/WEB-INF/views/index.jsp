@@ -574,30 +574,11 @@
 			starscore = '';
 			rating = result[i].rating;
 			if(rating > 0){
-				if(rating<2){
-					starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-				}else{
-					starscore = starscore+'<i class="fas fa-star"></i>';
-					if(rating<4){
-						starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-					}else{
-						starscore = starscore+'<i class="fas fa-star"></i>';
-						if(rating<6){
-							starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-						}else{
-							starscore = starscore+'<i class="fas fa-star"></i>';
-							if(rating<8){
-								starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-							}else{
-								starscore = starscore+'<i class="fas fa-star"></i>';
-								if(rating<10){
-									starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-								}else{
-									starscore = starscore+'<i class="fas fa-star"></i>';
-								}
-							}
-						}
-					}
+				var j = 0;
+				while (j <= rating) {
+					j += 2;
+					if(rating<j){starscore = starscore+'<i class="fas fa-star-half-alt"></i>';}
+					else{starscore = starscore+'<i class="fas fa-star"></i>';}
 				}
 			}
 			$('.rank_box_'+num+' > .webtoon').eq(i).children('.star_score').html(starscore);

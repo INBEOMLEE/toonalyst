@@ -57,6 +57,9 @@
 		height: 120px;
 		position: relative;
 	}
+	.webtoon_img > img{
+		width: inherit;
+	}
 	.flatform_logo {
 		position: absolute;
 		top: -20%;
@@ -489,7 +492,7 @@
 				<div class="webtoon_box">
 					<div class="webtoon_img">
 						<div class="flatform_logo">
-							<img alt="logo" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
+							<img alt="logo" src="${path}/resources/img/${wDto.platForm}_Webtoon_logo.png">
 						</div>
 						<img src="${wDto.bannerimg}">
 					</div>
@@ -981,10 +984,7 @@
 				error: function(){
 				}
 			});
-			
-			
 		});
-		
 	}); 
 	
 	
@@ -1006,30 +1006,11 @@
 		for (var i = 0; i < 10; i++) {
 			starscore = '';
 			if(rating > 0){
-				if(rating<2){
-					starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-				}else{
-					starscore = starscore+'<i class="fas fa-star"></i>';
-					if(rating<4){
-						starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-					}else{
-						starscore = starscore+'<i class="fas fa-star"></i>';
-						if(rating<6){
-							starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-						}else{
-							starscore = starscore+'<i class="fas fa-star"></i>';
-							if(rating<8){
-								starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-							}else{
-								starscore = starscore+'<i class="fas fa-star"></i>';
-								if(rating<10){
-									starscore = starscore+'<i class="fas fa-star-half-alt"></i>';
-								}else{
-									starscore = starscore+'<i class="fas fa-star"></i>';
-								}
-							}
-						}
-					}
+				var j = 0;
+				while (j <= rating) {
+					j += 2;
+					if(rating<j){starscore = starscore+'<i class="fas fa-star-half-alt"></i>';}
+					else{starscore = starscore+'<i class="fas fa-star"></i>';}
 				}
 			}
 			$('.star_score').eq(num).html(starscore);

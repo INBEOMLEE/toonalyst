@@ -9,12 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.toonalyst.domain.score.ScoreDTO;
 import com.toonalyst.domain.webtoon.WebtoonDTO;
 import com.toonalyst.service.score.ScoreService;
 import com.toonalyst.service.webtoon.RankService;
+import com.toonalyst.service.webtoon.WebtoonService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,13 +31,20 @@ public class ScoreController {
 	@Inject
 	private RankService rService;
 	
+	@Inject
+	private WebtoonService wService;
 	// 페이지 출력
 	@RequestMapping(value="/webtoon", method=RequestMethod.GET)
-	public String webtoon(Model model) {
+	public String webtoon(@RequestParam(defaultValue = "0") long titleId, Model model) {
 		log.info(">>>>> 사이트 소개 페이지 출력");
-		List<WebtoonDTO> list = rService.naver();
-		
-		WebtoonDTO wDto = list.get(0);
+		WebtoonDTO wDto = null;
+		if(titleId !=0){
+			wDto = wService.selectone(titleId);
+		}
+		if(wDto == null) {
+			List<WebtoonDTO> list = rService.naver();
+			wDto = list.get(0);
+		}
 		model.addAttribute("wDto", wDto);
 		return "score/webtoon";
 	}
