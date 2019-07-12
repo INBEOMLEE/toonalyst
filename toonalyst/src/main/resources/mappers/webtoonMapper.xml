@@ -13,4 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from tbl_webtoon
 		where titleid = #{titleId}
 	</select>
+	<select id="selectList" parameterType="String" resultType="com.toonalyst.domain.webtoon.WebtoonDTO">
+		select * from tbl_webtoon
+		where titlename like #{keyword}
+	</select>
 </mapper>

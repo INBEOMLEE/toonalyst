@@ -23,6 +23,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		position: relative;
 	}
 	.search_content {
 		width: 700px;
@@ -36,6 +37,36 @@
 		align-items: center;
 		font-size: 25px;
 	}
+	
+	#search_result{
+		position: absolute; 
+		width: 700px; 
+		min-height: 50px; 
+		top: 50px; 
+		left: 25px;
+		border: 1px solid lightgray; 
+		background-color: white; 
+		padding: 10px;
+		z-index: 1;
+		display: none;
+	}
+	
+	#search_result > div{
+		padding: 2px;
+	}
+	#search_result > div:hover{
+		background-color: #eeeeee;
+	}
+	#search_result > div > a{
+		display: flex;
+	}
+	#search_result > div > a > span{
+		margin-left: 5px;
+	}
+	#search_result img{
+		width: 20px;
+	}
+	
 	.webtoon_bar {
 		width: 1000px;
 		height: 50px;
@@ -484,6 +515,8 @@
 					<input type="text" class="search_content">
 					<div class="search_icon">
 						<i class="fas fa-search"></i>
+					</div>
+					<div id="search_result">
 					</div>
 				</div>	
 				
@@ -985,9 +1018,43 @@
 				}
 			});
 		});
+		
+		$(".search_content").keyup(function(e){
+			var keyword = $(this).val().trim();
+			search(keyword);
+		});
+		
+		$(".search_content").focus(function(e){
+			var keyword = $(this).val().trim();
+			search(keyword);
+		});
 	}); 
 	
-	
+	// 자동완성 기능이 있는 검색 함수
+	function search(keyword){
+		var search_html = "";
+		var title = "";
+		if(keyword.length == 0){
+			$("#search_result").css('display','none');
+		}
+		$.ajax({
+			type: "get",
+			url: "${path}/score/search",
+			data : "keyword="+keyword,
+			success:function(data){
+				data.forEach(function(wDto){
+					title = wDto.titleName;
+					title = title.replace(keyword,'<i style="color: orange; font-style : normal">'+keyword+'</i>');
+					var linkURL = '${path }/score/webtoon?titleId='+wDto.titleId;
+					search_html = search_html+'<div><a href="'+linkURL+'"><img src="${path }/resources/img/'+wDto.platForm+'_Webtoon_logo.png"><span>'+title+'</span> </a></div>';
+				});
+				if(data.length != 0){
+					$("#search_result").css('display','block');
+					$("#search_result").html(search_html);
+				}
+			}
+		});
+	}
 	
 	// 평가 댓글 띄우는 함수
 	function score_list(){

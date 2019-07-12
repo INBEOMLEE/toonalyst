@@ -49,6 +49,13 @@ public class ScoreController {
 		return "score/webtoon";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public List<WebtoonDTO> search(String keyword) {
+		log.info("검색어 >>>>> "+keyword);
+		return wService.selectList(keyword);
+	}
+	
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public String list(long titleId, Model model) {
 		log.info(">>>>> 평가글 목록 출력");
