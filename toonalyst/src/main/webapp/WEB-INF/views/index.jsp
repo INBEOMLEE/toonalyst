@@ -128,7 +128,7 @@
 		<div class="section_outline">
 			<div class="section_inline">
 				<div class="section_title">
-					<img alt="네이버웹툰로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png"><h3>Ranking</h3>
+					<img alt="네이버웹툰로고" src="${path}/resources/img/naver_Webtoon_logo.png"><h3>Ranking</h3>
 					<p>2019.06.11 15:41 TUE</p>
 				</div>
 				<div class="rank_outbox">
@@ -209,7 +209,7 @@
 					</div>
 				</div>
 				<div class="section_title">
-					<img alt="레진코믹스로고" src="${path}/resources/img/Lezhin_Webtoon_logo.png" id="lezhin_logo"><h3>Ranking</h3>
+					<img alt="레진코믹스로고" src="${path}/resources/img/lezhin_Webtoon_logo.png" id="lezhin_logo"><h3>Ranking</h3>
 					<p>2019.06.11 15:41 TUE</p>
 				</div>
 				<div class="rank_outbox">
@@ -290,7 +290,7 @@
 					</div>
 				</div>
 				<div class="section_title">
-					<img alt="다음웹툰로고" src="${path}/resources/img/Daum_Webtoon_logo.png" id="daum_logo"><h3>Ranking</h3>
+					<img alt="다음웹툰로고" src="${path}/resources/img/daum_Webtoon_logo.png" id="daum_logo"><h3>Ranking</h3>
 					<p>2019.06.11 15:41 TUE</p>
 				</div>
 				<div class="rank_outbox">
@@ -371,7 +371,7 @@
 					</div>
 				</div>
 				<div class="section_title">
-					<img alt="카카오웹툰로고" src="${path}/resources/img/Kakao_Webtoon_logo.png" id="kakao_logo"><h3>Ranking</h3>
+					<img alt="카카오웹툰로고" src="${path}/resources/img/kakao_Webtoon_logo.png" id="kakao_logo"><h3>Ranking</h3>
 					<p>2019.06.11 15:41 TUE</p>
 				</div>
 				<div class="rank_outbox">
