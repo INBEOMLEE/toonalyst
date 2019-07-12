@@ -1041,6 +1041,7 @@
 			type: "get",
 			url: "${path}/score/search",
 			data : "keyword="+keyword,
+			dataType: "json",
 			success:function(data){
 				data.forEach(function(wDto){
 					title = wDto.titleName;
