@@ -221,6 +221,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        order by bcategory) a, tbl_board_code b
 		    where a.bcategory = b.bcategory
 	</select>
+	<!-- 첨부파일 동작 -->
+	<insert id="addAttach">
+		INSERT INTO tbl_toonalyst_attach (fullName, bno)
+		VALUES(#{fullname}, seq_toonalyst_board_bno.CURRVAL)
+	</insert>
+	
+	
+	
 </mapper>
 
 

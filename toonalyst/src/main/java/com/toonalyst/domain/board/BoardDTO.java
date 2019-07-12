@@ -20,6 +20,7 @@ public class BoardDTO {
 	private String bwriter; 	 // 게시글 작성자
     private int	 bviewcnt;        // 조회수
     private int	 bgoodcnt;        // 좋아요
+    private String[] files;	// 파일 이름 저장( local에 실제파일 있으니 DB에는 이름만 들어가면 된다)
     private int	 bcommentcnt;     // 댓글수
     private int bcategory;       // 상세 카테고리
     private int borigin;   		 // 숙주 	

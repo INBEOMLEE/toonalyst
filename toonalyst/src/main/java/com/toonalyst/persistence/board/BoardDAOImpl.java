@@ -156,6 +156,12 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectList("board.myBoardList", id);
 	}
 
+	@Override
+	public void addAttach(String fullName) {
+		sqlSession.insert("board.addAttach", fullName);
+			
+	}
+
 	
 
 }

@@ -22,7 +22,19 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int register(BoardDTO bDto, HttpSession session) {
 		
-		return bDao.register(bDto);
+		// 게시글 등록
+		int result = bDao.register(bDto);
+		
+		// attach 테이블에 첨부파일 이름 추가
+		String[] files = bDto.getFiles();
+		if (files != null) {
+			for (String name : files) {
+				bDao.addAttach(name); // attach 테이블에 insert
+				
+			}
+			// 첨부파일 없으면 skip
+		}
+		 return result;
 	}
 
 	@Override

@@ -44,10 +44,20 @@ public class AjaxUploadController {
 
 	// 업로드한 파일은 MultipartFile 변수에 저장됨
 	@ResponseBody // json 형식으로 리턴
-	@RequestMapping(value = "upload/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
+	@RequestMapping(value = "upload/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=utf-8") // 첨부파일은 POST방식만 가능하다. GET은 안된다
+	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception { // 추가하고싶은 첨부파일이 들어있고 첨부파일은 multipartFile로 받아야함
 		// 업로드한 파일 정보와 Http 상태 코드를 함께 리턴
+		// uploadPath=D:/upload
+		// file.getOriginalFilename = file이름(라이언13.jpg)
+		// file.getBytes() = file사이즈 
 		return new ResponseEntity<String>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
+		// response는 전송한다. 데이터나 화면단주소를 평소에는 보내지만 
+		// 지금은 responseEntity 기존에 보내던 것 + Httpsatus 상태코드 지금 처리하려고 보낸 것이 잘 됐다는 것을 보내준다.
+		// 처리가 잘되면 HttpStatus를 200번대를 보낸다. 200은 성공, 다 됐을 때,  400서버를 못찾을 때, 500은 화면단 못찾을 때 이렇게 보낸다.
+		// UploadPath 대문자 클래스를 static이기 때문에 직접 참조한다. 클래스명을 직접 접근한다.
+		// .은 참조연산자이다. 클래스 내의 uploadFile() 메서드를 참조해서 사용한다.
+		// 매개변수로 첨부파일 크기와 이름을 가져간다.
+		// uploadPath는 위에 업로드 디렉토리, servlet-context.xml을 보면 D드라이브 경로가 있다.
 	}
 
 	// 이미지 표시 기능

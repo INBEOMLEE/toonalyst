@@ -266,17 +266,20 @@ $(document).ready(function(){
 	$('.fileDrop').on('dragenter dragover', function(e){
 		e.preventDefault();
 	});
-	$('.fileDrop').on('drop', function(e){ // 드롭했을 때
+	
+	// 1. 파일을 드래그 앤 드롭했을 때
+	$('.fileDrop').on('drop', function(e){
+		// 드래그앤드롭시 파일 실행을 막음
 		e.preventDefault();
 		
 		// Ajax 파일 -> D:\\upload
 		// 첫번째 첨부파일
 		
-		var files = e.originalEvent.dataTransfer.files; // 드래그에 전달된 첨부파일 전부
-		var file = files[0]; // 그 중 하나만 꺼내옴
+		var files = e.originalEvent.dataTransfer.files; // 드래그에 전달된 첨부파일 전부... 첨부가 3개가 되어있을 때 5개를 더 올리면 드래그앤드롭했을 때 files로 들어가는데 
+		var file = files[0]; // 그 중 하나만 꺼내옴 0번째꺼 
 		// 폼 데이터에 첨부파일 추가
 		var formData = new FormData(); // 폼 객체
-		formData.append("file", file); // 폼에 파일변수 추가
+		formData.append("file", file); // 폼에 파일변수 추가. 기존에 있는 것에 맨 마지막에 추가된다.
 		// 서버에 파일 업로드(백그라운드에서 실행됨)
 		// contentType : false => multipart/form-data로 처리
 		$.ajax({
@@ -286,7 +289,7 @@ $(document).ready(function(){
 			processData : false,
 			contentType : false,
 			type : "POST",
-			success : function(data){
+			success : function(data){ // 썸네일 이름이 들어온다 \2019\07\12\s_5be0b7af-cf5e-461b-a02c-dcdd5b6474e8_오렌지.png
 				console.log(data);
 				// data :업로드한 파일 정보와 http 상태 코드
 				printFiles(data); // 첨부파일 출력 메서드 호출
@@ -347,11 +350,13 @@ $(document).on("click", "#confirm", function(){
         return false;
      }
      $('.register_err_message').text("").css('display', 'none');
+     
+     
      var str="";
 		// uploadedList 내부의 .file 태그 각각 반복
-		$("#uploadedList .file").each(function(i){
+		$("#uploadedList .file").each(function(i){ // each는 for문 i는 index값
 			console.log(i);
-			//hidden 태그 구성
+			//hidden 태그 구성, files배열에 들어있는데
 			str += "<input type='hidden' name='files["+i+"]' value='" + $(this).val()+"'>";
 		});
 		
@@ -376,7 +381,11 @@ function getFileInfo(fullName) {
     // 이미지 파일이면
     if (checkImageType(fullName)) {
         imgSrc = "${path}/upload/displayFile?fileName=" + fullName; // 썸네일 이미지 링크
-        uuidFileName = fullName.substr(14);
+        // 실제 uuid가 붙은 원본파일 이름
+        // substr(0, 12) -> 0부터 12까지 자른다
+        // substr(14) -> 14부터 끝까지
+        // 이렇게 하면 12, 13이 빠진다 (s_)가 빠진다.
+        uuidFileName = fullName.substr(14);  
         var originalImg = fullName.substr(0, 12) + fullName.substr(14);
         // 원본 이미지 요청 링크
         originalFileUrl = "${path}/upload/displayFile?fileName=" + originalImg;
@@ -384,10 +393,10 @@ function getFileInfo(fullName) {
         imgSrc = "${path}/resources/img/file-icon.png"; // 파일 아이콘 이미지 링크
         uuidFileName = fullName.substr(12);
         // 파일 다운로드 요청 링크
-        originalFileUrl = "${path}/upload/displayFile?fileName=" + fullName;
+        originalFileUrl = "${path}/upload/displayFile?fileName=" + fullName; // 변수만 만든 상태
     }
-    originalFileName = uuidFileName.substr(uuidFileName.indexOf("_") + 1);
- // 전체 파일명의 크기가 14보다 작으면 그대로 이름 출력,
+    originalFileName = uuidFileName.substr(uuidFileName.indexOf("_") + 1); // 오렌지.png
+	 // 전체 파일명의 크기가 14보다 작으면 그대로 이름 출력,
     // 14보다 크면 실행
     if(originalFileName.length > 14) {
     	// 앞에서부터 11글자 자름
@@ -401,10 +410,11 @@ function getFileInfo(fullName) {
 	// 맨 처음 문자열 10글자 + ... + 확장자
 	originalFileName = shortName + "..." + formatVal[arrNum];
     }
-    return {originalFileName: originalFileName, imgSrc: imgSrc, originalFileUrl: originalFileUrl, fullName: fullName, basicFileName: basicFileName};
+    return {originalFileName: originalFileName, imgSrc: imgSrc, originalFileUrl: originalFileUrl, fullName: fullName, basicFileName: basicFileName}; // json타입
 }
 //첨부파일 출력
 function printFiles(data) {
+	// data = \2019\07\12\s_5be0b7af-cf5e-461b-a02c-dcdd5b6474e8_오렌지.png
     // 파일 정보 처리
     var fileInfo = getFileInfo(data);
     /* console.log(fileInfo); */
@@ -413,13 +423,14 @@ function printFiles(data) {
     html += "<input type='hidden' class='file' value='"
 		+fileInfo.fullName+"'>";
     // Handlebars 파일 템플릿 컴파일을 통해 생성된 HTML을 DOM에 주입
-    $(".uploadedList").append(html);
+    $(".uploadedList").append(html); // 추가, 즉 하나씩 들어가게 된다.
     // 이미지 파일인 경우 aaaaaaaaaaa파일 템플릿에 lightbox 속성 추가
-    if (fileInfo.fullName.substr(12, 2) === "s_") {
+    if (fileInfo.fullName.substr(12, 2) === "s_") { // 12부터 2개를 읽어서 잘라라 s_는 이미지라고 판별났으니까 라이트박스 속성을 추가하겠다는 뜻이다.
         // 마지막에 추가된 첨부파일 템플릿 선택자
         var that = $(".uploadedList li").last();
         // lightbox 속성 추가
-        that.find(".mailbox-attachment-name").attr("data-lightbox", "uploadImages");
+        that.find(".mailbox-attachment-name").attr("data-lightbox", "uploadImages"); // 이미지네임부분을 클릭하면 라이트박스가 실행되게 함. 원래는 다운되는 기능이 있다. 근데 이 기능을 쓰면 라이트박스 기능이 추가된다.
+        // 내가 첨부하는 기능이기 때문에 다운로드 기능 대신에 라이트박스 속성을 추가해준다.
         // 파일 아이콘에서 이미지 아이콘으로 변경
         that.find(".fa-paperclip").attr("class", "fa fa-camera");
     }
@@ -440,7 +451,7 @@ function getImageLink(fileName){
 	return front+end;
 }
 function checkImageType(fileName){
-	var pattern=/jpg|gif|png|jpeg/i; //정규표현식(대소문자 무시)
+	var pattern=/jpg|gif|png|jpeg/i; //정규표현식(대소문자 무시) jpg, gif, png, jpeg, i가 있는지 없는지 찾는다
 	return fileName.match(pattern); //규칙에 맞으면 true
 }
 
