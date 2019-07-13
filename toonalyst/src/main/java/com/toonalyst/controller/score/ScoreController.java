@@ -1,11 +1,13 @@
 package com.toonalyst.controller.score;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +36,7 @@ public class ScoreController {
 	@Inject
 	private WebtoonService wService;
 	// 페이지 출력
+	
 	@RequestMapping(value="/webtoon", method=RequestMethod.GET)
 	public String webtoon(@RequestParam(defaultValue = "0") long titleId, Model model) {
 		log.info(">>>>> 사이트 소개 페이지 출력");
@@ -65,12 +68,19 @@ public class ScoreController {
 		return "score/score_list";
 	}
 	
+	@Transactional
 	@ResponseBody
 	@RequestMapping(value="create", method=RequestMethod.GET)
 	public int create(ScoreDTO sDto) {
 		log.info(">>>>> 웹툰 리뷰 등록 기능 구현");
-		return service.create(sDto);
+		int result = service.create(sDto);
+		wService.ratingUpdate(service.scoreOne(sDto.getTitleId()));
+		return result;
 	}
-	
-	
+
+	@ResponseBody
+	@RequestMapping(value="scoreMap", method = RequestMethod.GET)
+	public HashMap<String, Object> scoreMap(long titleId){
+		return service.scoreOne(titleId);
+	}
 }

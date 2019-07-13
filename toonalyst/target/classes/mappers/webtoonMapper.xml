@@ -17,4 +17,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from tbl_webtoon
 		where titlename like #{keyword}
 	</select>
+	<update id="ratingUpdate" parameterType="hashmap">
+		update tbl_webtoon
+		set innerrating = #{RATING}
+		where titleid = #{TITLEID}
+	</update>
 </mapper>

@@ -561,12 +561,12 @@
 								</div>
 								<div class="flatform_score_point">
 									<div class="star_score"></div>
-									<span>${wDto.innerrating}</span>
+									<span class="rating_score"></span>
 								</div>
 							</div>
 							<div class="score_style flatform_score">
 								<div class="flatform_logo_img">
-									<img alt="이미지" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
+									<img alt="이미지" src="${path}/resources/img/${wDto.platForm}_Webtoon_logo.png">
 								</div>
 								<div class="flatform_score_point">
 									<div class="star_score"></div>
@@ -846,11 +846,11 @@
 					<!-- 웹툰 평가 리스트 구역 -->
 					<div class="webtoon_score_play">
 						<!-- 현재까지 종합된 개수 -->
-						<div id="total_score">
+						<div id="total_score">						
 							<div><i class="fas fa-thumbs-up" style="color: dodgerblue;"></i></div>
-							<div style="color: dodgerblue;">86%<span style="font-size: 14px; margin-left: 10px;">(172명)</span></div>
+							<div class="score_percent" style="color: dodgerblue;"></div>
 							<div><i class="fas fa-thumbs-down" style="color: #FF4848;"></i></div>
-							<div style="color: #FF4848;">14%<span style="font-size: 14px; margin-left: 10px;">(28명)</span></div>
+							<div class="score_percent" style="color: #FF4848;"><span style="font-size: 14px; margin-left: 10px;"></span></div>
 						</div>
 					
 						<!-- 평점 영역 -->
@@ -894,28 +894,16 @@
 						<input type="hidden" name="scontent" id="scontent">
 						<input type="hidden" name="sgood" id="sgood" value="">
 					</form>
-						
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 				</div>
 			</div>
 		</div>
 	</section>
 <%@ include file="../include/footer.jsp" %>
+
+
 <script type="text/javascript">
 	$(document).ready(function(){
+		scoreMap();
 		score_list();
 		starRating("${wDto.innerrating}", 0);
 		starRating("${wDto.rating}", 1);
@@ -1026,7 +1014,8 @@
 		
 		$(".search_content").focus(function(e){
 			var keyword = $(this).val().trim();
-			search(keyword);
+			if(keyword.length > 0)
+				search(keyword);
 		});
 	}); 
 	
@@ -1047,7 +1036,11 @@
 					title = wDto.titleName;
 					title = title.replace(keyword,'<i style="color: orange; font-style : normal">'+keyword+'</i>');
 					var linkURL = '${path }/score/webtoon?titleId='+wDto.titleId;
-					search_html = search_html+'<div><a href="'+linkURL+'"><img src="${path }/resources/img/'+wDto.platForm+'_Webtoon_logo.png"><span>'+title+'</span> </a></div>';
+					search_html = search_html+'<div>'+
+												'<a href="'+linkURL+'">'+
+													'<img src="${path }/resources/img/'+wDto.platForm+'_Webtoon_logo.png"><span>'+title+'</span>'+
+												'</a>'+
+											   '</div>';
 				});
 				if(data.length != 0){
 					$("#search_result").css('display','block');
@@ -1065,17 +1058,19 @@
 			data: "titleId=${wDto.titleId}",
 			success: function(result){ 
 				$('#scoreList').html(result);
+				scoreMap();
 			}
 		});
 	}
 	
+	// 별점 메기는 함수 첫번째 매개변수는 점수, 두번째 매개변수는 칸(싸이트 내 평가, 파싱으로 구한 외부 평가)
 	function starRating(rating, num){
 		var starscore = '';
 		for (var i = 0; i < 10; i++) {
 			starscore = '';
 			if(rating > 0){
 				var j = 0;
-				while (j <= rating) {
+				while (j < rating) {
 					j += 2;
 					if(rating<j){starscore = starscore+'<i class="fas fa-star-half-alt"></i>';}
 					else{starscore = starscore+'<i class="fas fa-star"></i>';}
@@ -1084,6 +1079,32 @@
 			$('.star_score').eq(num).html(starscore);
 		}
 	}
+	
+	// 사이트 내 평가 점수와 백분율
+	function scoreMap(){
+		var scorehtml="";
+		$.ajax({
+			type:"get",
+			url: "${path}/score/scoreMap",
+			data: "titleId=${wDto.titleId}",
+			success: function(result){ 
+				console.log(result);
+				scorehtml = result.GOODP.toFixed(1)+'%<span style="font-size: 14px; margin-left: 10px;">('+result.GOOD+'명)</span>';
+				$('.score_percent').eq(0).html(scorehtml);
+				scorehtml = result.HATEP.toFixed(1)+'%<span style="font-size: 14px; margin-left: 10px;">('+result.HATE+'명)</span>';
+				$('.score_percent').eq(1).html(scorehtml);
+				var rating = result.RATING.toFixed(1);
+
+				if(rating>0 || result.HATE>0){
+					starRating(rating, 0);
+					$('.rating_score').text(rating);
+				}else{
+					$('.rating_score').text('아직 평가가 없어요!');
+				}
+			}
+		});
+	}
 </script>
+
 </body>
 </html>

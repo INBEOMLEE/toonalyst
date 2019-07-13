@@ -2,6 +2,7 @@ package com.toonalyst.persistence.webtoon;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -43,6 +44,11 @@ public class WebtoonDAOImpl implements WebtoonDAO {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public void ratingUpdate(HashMap<String, Object> hashMap) {
+		sqlsession.update("webtoon.ratingUpdate", hashMap);
 	}
 
 }

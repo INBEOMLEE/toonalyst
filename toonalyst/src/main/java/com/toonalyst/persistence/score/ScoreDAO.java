@@ -1,5 +1,6 @@
 package com.toonalyst.persistence.score;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.toonalyst.domain.score.ScoreDTO;
@@ -11,4 +12,6 @@ public interface ScoreDAO {
 	public void create(ScoreDTO sDto);
 
 	public ScoreDTO read(ScoreDTO sDto);
+
+	public HashMap<String, Object> scoreOne(long titleId);
 }

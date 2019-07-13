@@ -575,7 +575,7 @@
 			rating = result[i].rating;
 			if(rating > 0){
 				var j = 0;
-				while (j <= rating) {
+				while (j < rating) {
 					j += 2;
 					if(rating<j){starscore = starscore+'<i class="fas fa-star-half-alt"></i>';}
 					else{starscore = starscore+'<i class="fas fa-star"></i>';}

@@ -1,6 +1,8 @@
 package com.toonalyst.service.score;
 
+import java.text.Format;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -42,6 +44,35 @@ public class ScoreServiceImpl implements ScoreService {
 			System.out.println("평가 등록 실패");
 			return 0;                                // 리턴 0을 받으면 등록 실패 ( 에러메시지 띄우기 위한 변수 )
 		}
+	}
+
+	@Override
+	public HashMap<String, Object> scoreOne(long titleId) {
+		/*
+		 * 반환되는 hashMap 키값과 들어있는 정보
+		 * GOOD - 좋아요 갯수
+		 * GOODP - 좋아요/평가 갯수 백분율
+		 * HATE - 싫어요 갯수
+		 * HATEP - 싫어요/평가 갯수 백분율
+		 * RATING - 점수, 10점 만점이며 GOODP/10 값과 같음
+		 * TITLEID - 작품 고유 번호
+		 * TOTAL - 전체 평가 갯수
+		 */
+		HashMap<String, Object> score = sDao.scoreOne(titleId);
+		float good = Float.parseFloat(String.valueOf(score.get("GOOD")));
+		float hate = Float.parseFloat(String.valueOf(score.get("HATE")));
+		float total = Float.parseFloat(String.valueOf(score.get("TOTAL")));
+		
+		float goodp = good>0 ? good/total*100:0;
+		float hatep = hate>0 ? hate/total*100:0;
+		
+		float rating = good>0? goodp/10:0;
+		
+		score.put("GOODP", goodp);
+		score.put("HATEP", hatep);
+		score.put("RATING", rating);
+		
+		return score;
 	}
 	
 }

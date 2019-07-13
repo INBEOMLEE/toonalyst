@@ -1,5 +1,6 @@
 package com.toonalyst.persistence.score;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,6 +32,11 @@ public class ScoreDAOImpl implements ScoreDAO {
 	@Override
 	public ScoreDTO read(ScoreDTO sDto) {
 		return sqlSession.selectOne("score.read", sDto);
+	}
+
+	@Override
+	public HashMap<String, Object> scoreOne(long titleId) {
+		return sqlSession.selectOne("score.scoreOne", titleId);
 	}
 
 }
