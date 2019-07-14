@@ -58,13 +58,15 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 댓글 입력 XSS시도 방지 -->
 	<filter>
 	    <filter-name>XSS</filter-name>
 	    <filter-class>filter.CrossScriptingFilter</filter-class>
 	</filter>
 	<filter-mapping>
 	    <filter-name>XSS</filter-name>
-	    <url-pattern>/*</url-pattern>
+	    <url-pattern>/comment/*</url-pattern>
+	    <url-pattern>/score/*</url-pattern>
 	</filter-mapping>
 	
 </web-app>
