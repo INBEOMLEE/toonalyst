@@ -227,6 +227,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{fullname}, seq_toonalyst_board_bno.CURRVAL)
 	</insert>
 	
+	<!-- 첨부파일 목록 -->
+	<select id="getAttach" resultType="String">
+		select fullname from tbl_toonalyst_attach
+		where bno = #{bno}
+		order by regdate desc
+	</select>
 	
 	
 </mapper>

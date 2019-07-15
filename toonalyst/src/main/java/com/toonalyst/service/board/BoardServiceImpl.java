@@ -142,6 +142,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int countArticle(String search_option, String keyword, int bcategory, String id) {
 		return bDao.countArticle(search_option, keyword, bcategory, id);
+	}
+
+	@Override
+	public List<String> getAttach(int bno) {
+		return bDao.getAttach(bno);
 	} 
 
 }

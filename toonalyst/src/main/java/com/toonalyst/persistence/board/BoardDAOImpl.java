@@ -162,6 +162,11 @@ public class BoardDAOImpl implements BoardDAO {
 			
 	}
 
+	@Override
+	public List<String> getAttach(int bno) {
+		return sqlSession.selectList("board.getAttach", bno);
+	}
+
 	
 
 }

@@ -48,6 +48,7 @@ public interface BoardDAO {
 
 	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end, int bcategory,
 			String id);
+	public List<String> getAttach(int bno);
 
 	
 }

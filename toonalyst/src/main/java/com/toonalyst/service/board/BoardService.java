@@ -34,4 +34,6 @@ public interface BoardService {
 	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end,
 			int bcategory, String id);
 	public int countArticle(String search_option, String keyword, int bcategory, String id);
+	
+	public List<String> getAttach(int bno);	// 첨부파일 목록
 }

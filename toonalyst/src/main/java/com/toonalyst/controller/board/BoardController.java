@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,14 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	@Inject
 	private BoardService service;
+	
+	//첨부파일 목록을 리턴
+	//ArrayList를 json배열로 변환하여 리턴
+	@RequestMapping("getAttach/{bno}")	// 값이 안들어오면 error
+	@ResponseBody // view가 아닌 데이터 자체를 리턴
+	public List<String> getAttach(@PathVariable int bno){	// 쿼리스트링이 아닌 데이터를 url로 보낼경우 @PathVariable 사용
+		return service.getAttach(bno);
+	}
 	
 	// 페이지 이동
 	@RequestMapping(value="/list", method=RequestMethod.GET)
@@ -232,5 +241,5 @@ public class BoardController {
 		
 		return "/member/myBoard";
 	}
-
+	
 }

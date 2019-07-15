@@ -33,14 +33,11 @@
 //  }
 //  @Test
 //  public void untitled() {
-//    driver.get("https://www.lezhin.com/ko/top100");
-//    driver.manage().window().setSize(new Dimension(1920, 1040));
-//    {
-//      WebElement element = driver.findElement(By.cssSelector("button:nth-child(7)"));
-//      Action builder = new Actions(driver);
-//      builder.moveToElement(element).perform();
-//    }
-//    driver.findElement(By.cssSelector("#top100-tab-list > button:nth-child(2)")).click();
-//    driver.findElement(By.cssSelector("#top100-tab-list > button:nth-child(3)")).click();
+//    driver.get("https://nid.naver.com/nidlogin.login");
+//    driver.manage().window().setSize(new Dimension(1246, 621));
+//    driver.findElement(By.id("id")).click();
+//    driver.findElement(By.id("id")).sendKeys("inmonking");
+//    driver.findElement(By.id("pw")).sendKeys("cij3071");
+//    driver.findElement(By.cssSelector(".btn_global")).click();
 //  }
 //}
