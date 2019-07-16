@@ -146,7 +146,7 @@
 			<div class="daily_inline">
 				<div id="daily_daily"></div>
 				<div class="daily_list_flatform">
-					<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
+					<img alt="플랫폼 로고" src="${path}/resources/img/naver_Webtoon_logo.png">
 				</div>
 				<div class="daily_menu">
 					<a href="#" class="daily_style daily_mon">월</a>
@@ -168,7 +168,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/naver_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -182,7 +182,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/naver_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -196,7 +196,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Naver_Line_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/naver_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>

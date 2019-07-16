@@ -66,6 +66,7 @@
 		margin-right: 10px;
 		border-radius: 10px;
 		background: #fff;
+		cursor: pointer;
 	}
 	.empty_bar {
 		width: 1px;
@@ -140,6 +141,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -147,6 +149,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -154,6 +157,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -161,6 +165,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -168,6 +173,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -175,6 +181,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -182,6 +189,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -189,6 +197,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -196,6 +205,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -203,6 +213,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="empty_bar"></div>
 						</div>
@@ -221,6 +232,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -228,6 +240,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -235,6 +248,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -242,6 +256,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -249,6 +264,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -256,6 +272,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -263,6 +280,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -270,6 +288,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -277,6 +296,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">Loading...</p>
@@ -284,6 +304,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="empty_bar"></div>
 						</div>
@@ -302,6 +323,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">우리집이거든요!</p>
@@ -309,6 +331,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">화양연화</p>
@@ -316,6 +339,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">겟 레디 위드 미</p>
@@ -323,6 +347,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">지옥사원</p>
@@ -330,6 +355,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">오무라이스 잼잼</p>
@@ -337,6 +363,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">아쿠아맨</p>
@@ -344,6 +371,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">살생부 (2014)</p>
@@ -351,6 +379,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">허세남길들이기</p>
@@ -358,6 +387,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">취향저격 그녀</p>
@@ -365,6 +395,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="empty_bar"></div>
 						</div>
@@ -383,6 +414,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">이것이 명의다</p>
@@ -390,6 +422,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">하드캐리 서포터</p>
@@ -397,6 +430,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">내 남자 주인공의 아내</p>
@@ -404,6 +438,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">해연</p>
@@ -411,6 +446,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">강호사설</p>
@@ -418,6 +454,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">게임 폐인의 리셋 라이프</p>
@@ -425,6 +462,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">분홍색</p>
@@ -432,6 +470,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">패스파인더</p>
@@ -439,6 +478,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
 								<p class="webtoon_title">악녀의 후견인</p>
@@ -446,6 +486,7 @@
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
 								<div class="star_score"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="empty_bar"></div>
 						</div>
@@ -564,13 +605,20 @@
 				$('.rank_box_4 div').css('top', scrollValue+'px').css('left', '-1492px');
 			}
 		});
+		
+		$('.webtoon').click(function(){
+			var titleId = $(this).children('.webtoon_titleId').val();
+			location.href = "${path}/score/webtoon?titleId="+titleId;
+		});
 	});
+	
 	function starRating(result, num){
 		var starscore = '';
 		var rating = 0;
 		for (var i = 0; i < 10; i++) {
 			$('.rank_box_'+num+' > .webtoon').eq(i).children('.webtoon_title').text(result[i].titleName);
 			$('.rank_box_'+num+' > .webtoon').eq(i).children('.webtoon_img').html('<img src="'+result[i].bannerimg+'">');
+			$('.rank_box_'+num+' > .webtoon').eq(i).children('.webtoon_titleId').val(result[i].titleId);
 			starscore = '';
 			rating = result[i].rating;
 			if(rating > 0){

@@ -28,6 +28,7 @@
 	.search_content {
 		width: 700px;
 		height: 50px;
+		padding: 10px;
 	}
 	.search_icon {
 		width: 50px;
