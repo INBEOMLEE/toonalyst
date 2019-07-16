@@ -15,27 +15,31 @@ public class GenreController {
 	public String naver() {
 		log.info(">>>>> 장르별 랭킹 출력");
 		
-		return "/genre/naver_list";
+		/* return "/genre/naver_list"; */
+		return "construction";
 	}
 	
 	@RequestMapping(value="/lezhin", method=RequestMethod.GET)
 	public String lezhin() {
 		log.info(">>>>> 장르별 랭킹 출력");
 		
-		return "/genre/lezhin_list";
+		/* return "/genre/lezhin_list"; */
+		return "construction";
 	}
 	
 	@RequestMapping(value="/daum", method=RequestMethod.GET)
 	public String daum() {
 		log.info(">>>>> 장르별 랭킹 출력");
 		
-		return "/genre/daum_list";
+		/* return "/genre/daum_list"; */
+		return "construction";
 	}
 	
 	@RequestMapping(value="/kakao", method=RequestMethod.GET)
 	public String kakao() {
 		log.info(">>>>> 장르별 랭킹 출력");
 		
-		return "/genre/kakao_list";
+		/* return "/genre/kakao_list"; */
+		return "construction";
 	}
 }

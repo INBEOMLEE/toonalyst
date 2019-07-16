@@ -4,6 +4,7 @@ import java.text.Format;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -29,7 +30,7 @@ public class ScoreServiceImpl implements ScoreService {
 	@Override
 	public int create(ScoreDTO sDto) {
 		long current_time = System.currentTimeMillis(); // 현재 시간
-		long  sdate = 0;
+		long sdate = 0;
 		
 		if(sDao.read(sDto) != null) { // sDao.read(sDto) 는 해당 유저가 해당 웹툰 평가를 한적이 있는지 파악하는 메서드
 			sdate = sDao.read(sDto).getSdate(); // 등록했던 시간 (type long)
@@ -78,6 +79,75 @@ public class ScoreServiceImpl implements ScoreService {
 	@Override
 	public List<HashMap<String, Object>> scoreChart(long titleId) {
 		return sDao.scoreChart(titleId);
+	}
+
+	@Override
+	public HashMap<String, String> scoreCheck(long titleId) {
+		long current_time = System.currentTimeMillis(); // 현재 시간
+		List<ScoreDTO> list = sDao.selectList(titleId); // 스코어 테이블에서 titleId 조건에 맞는 평가리스트 모두 뽑아오기
+		float lately_good = 0;
+		float lately_hate = 0;
+		float total_good = 0;
+		float total_hate = 0;
+		
+		for (ScoreDTO scoreDTO : list) {
+			if((current_time - scoreDTO.getSdate())/1000 < 30*24*60*60) { // 한달 안에 쓰여진 평가글 판단
+				if(scoreDTO.getSgood().equals("good")) {
+					lately_good += 1;
+				} else if(scoreDTO.getSgood().equals("hate")) {
+					lately_hate += 1;
+				}
+			}
+			
+			if(scoreDTO.getSgood().equals("good")) {
+				total_good += 1;
+			} else if(scoreDTO.getSgood().equals("hate")) {
+				total_hate += 1;
+			}
+		}
+		
+		float lately = lately_good + lately_hate;
+		float total = total_good + total_hate;
+		
+		float lately_score = lately_good > 0 ? lately_good / lately * 100 / 10 : 0;     // 30일 이내에 평가
+		float total_score = total_good > 0 ? total_good / total * 100 / 10 : 0;         // 모든 평가
+		
+		String lately_content = "";
+		String total_content = "";
+		
+		if(lately_score == 0) {
+			lately_content = "평가 부족";
+		} else if(lately_score > 8) {
+			lately_content = "매우 긍정";
+		} else if(lately_score > 6) {
+			lately_content = "긍정";
+		} else if(lately_score > 4) {
+			lately_content = "보통";
+		} else if(lately_score > 2) {
+			lately_content = "부정";
+		} else {
+			lately_content = "매우 부정";
+		}
+		
+		if(total_score == 0) {
+			total_content = "평가 부족";
+		} else if(total_score > 8) {
+			total_content = "매우 긍정";
+		} else if(total_score > 6) {
+			total_content = "긍정";
+		} else if(total_score > 4) {
+			total_content = "보통";
+		} else if(total_score > 2) {
+			total_content = "부정";
+		} else {
+			total_content = "매우 부정";
+		}
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("lately_content", lately_content);
+		map.put("total_content", total_content);
+		
+		return map;
 	}
 	
 }

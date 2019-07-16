@@ -134,6 +134,8 @@
 	.flatform_score img {
 		width: 40px;
 		height: 40px;
+		position: relative;
+   		left: -2px;
 	}
 	.toonalyst_score img {
 		width: 30px;

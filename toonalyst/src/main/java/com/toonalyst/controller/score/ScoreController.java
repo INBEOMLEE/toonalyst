@@ -2,6 +2,7 @@ package com.toonalyst.controller.score;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -89,4 +90,13 @@ public class ScoreController {
 	public List<HashMap<String, Object>> scoreChart(long titleId){
 		return service.scoreChart(titleId);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "scoreCheck", method = RequestMethod.GET)
+	public HashMap<String, String> scoreCheck(long titleId){
+		HashMap<String, String> map = service.scoreCheck(titleId);
+		return map;
+	}
+	
+	
 }

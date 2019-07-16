@@ -152,7 +152,7 @@
 			<div class="genre_inline">
 				<div id="genre_daily"></div>
 				<div class="genre_list_flatform">
-					<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+					<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 				</div>
 				<div class="genre_menu">
 					<a href="#genre_daily" class="genre_style genre_daily">일상</a>
@@ -172,7 +172,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -186,7 +186,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -200,7 +200,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -218,7 +218,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -232,7 +232,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -246,7 +246,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -264,7 +264,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -278,7 +278,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -292,7 +292,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -310,7 +310,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -324,7 +324,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -338,7 +338,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -356,7 +356,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -370,7 +370,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -384,7 +384,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/Daum_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/daum_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>

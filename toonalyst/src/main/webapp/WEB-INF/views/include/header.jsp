@@ -47,12 +47,6 @@
 					<ul class="category">
 						<li>
 							<a href="${path}/introduction">Introduction</a>
-							<div class="nav_dropdown">
-								<a href="#"><span><span>Nav DROPDOWN</span></span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-								<a href="#"><span>Nav DROPDOWN</span></a>
-							</div>
 						</li>
 						<li><a href="#">Genre Rank</a>
 							<div class="nav_dropdown">
@@ -65,9 +59,9 @@
 						<li><a href="#">Daily Rank</a>
 							<div class="nav_dropdown">
 								<a href="${path}/daily/naver"><span>Naver</span></a>
-								<a href="#"><span>Lezhin</span></a>
-								<a href="#"><span>Daum</span></a>
-								<a href="#"><span>Kakao</span></a>
+								<a href="${path}/daily/lezhin"><span>Lezhin</span></a>
+								<a href="${path}/daily/daum"><span>Daum</span></a>
+								<a href="${path}/daily/kakao"><span>Kakao</span></a>
 							</div>
 						</li>
 						<li>

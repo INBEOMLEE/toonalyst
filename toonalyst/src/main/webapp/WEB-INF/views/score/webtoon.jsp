@@ -504,7 +504,23 @@
 		margin: 0 auto;
 	}
 	
-	
+	/* 공사중 디자인 */
+	.under_construction {
+		width: 100%;
+		height: 500px;
+		display: none;
+		justify-content: center;
+		align-items: center;
+	}
+	.under_construction img {
+		width: 150px;
+		height: 150px;
+	}
+	.under_construction span {
+		font-size: 20px;
+		font-weight: 600;
+		margin-left: 30px;
+	}
 </style>
 </head>
 <body>
@@ -577,8 +593,14 @@
 						</div>
 					</div>
 					
+					<!-- 공사중입니다. -->
+					<div class="under_construction">
+						<img alt="이미지" src="${path}/resources/img/under_construction.png">
+						<span>공사 중입니다. 이용에 불편을 끼쳐드려 죄송합니다.</span>
+					</div>
+					
 					<!-- 최근 작품 (5건) -->
-					<table class="webtoon_info_view">
+					<!-- <table class="webtoon_info_view">
 						<tr>
 							<td class="webtoon_info_img">
 								<img alt="이미지" src="">
@@ -681,7 +703,8 @@
 							<td class="webtoon_info_date">
 								2019.06.17
 							</td>
-						</tr><tr>
+						</tr>
+						<tr>
 							<td class="webtoon_info_img">
 								<img alt="이미지" src="">
 							</td>
@@ -695,7 +718,8 @@
 							<td class="webtoon_info_date">
 								2019.06.10
 							</td>
-						</tr><tr>
+						</tr>
+						<tr>
 							<td class="webtoon_info_img">
 								<img alt="이미지" src="">
 							</td>
@@ -725,10 +749,10 @@
 								2019.05.27
 							</td>
 						</tr>
-					</table>
+					</table> -->
 					
 					<!-- 작가의 다른 작품 -->
-					<div class="other_work">
+					<!-- <div class="other_work">
 						<div class="other_work_title"><span>대표</span>마음의 소리</div>
 						<div class="other_work_box">
 							<div class="other_work_content">
@@ -842,7 +866,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					
 					<!-- 웹툰 평가 리스트 구역 -->
 					<div class="webtoon_score_play">
@@ -908,6 +932,7 @@
 		score_list();
 		starRating("${wDto.innerrating}", 0);
 		starRating("${wDto.rating}", 1);
+		scoreContent();
 		
 		$('.webtoon_info_style').eq(0).css("background", "#FF6C36").css("border", "1px solid #FF6C36").css("color", "white");
 		
@@ -915,18 +940,21 @@
 			$('.webtoon_score_page').css("display", "flex");
 			$('.webtoon_info_view').css("display", "none");
 			$('.other_work').css("display", "none");
+			$('.under_construction').css("display", "none");
 		});
 		
 		$('.webtoon_info_style').eq(1).click(function(){
 			$('.webtoon_score_page').css("display", "none");
 			$('.webtoon_info_view').css("display", "table");
 			$('.other_work').css("display", "none");
+			$('.under_construction').css("display", "flex");
 		});
 		
 		$('.webtoon_info_style').eq(2).click(function(){
 			$('.webtoon_score_page').css("display", "none");
 			$('.webtoon_info_view').css("display", "none");
 			$('.other_work').css("display", "block");
+			$('.under_construction').css("display", "flex");
 		});
 		
 		$('.webtoon_info_style').click(function(){
@@ -1002,6 +1030,7 @@
 						$("#txt_box").css("display", "inline-block").text("이미 해당 웹툰을 평가 해주셨습니다. 일주일마다 재등록 가능합니다");
 					}
 					score_list();
+					scoreContent();
 				},
 				error: function(){
 				}
@@ -1100,8 +1129,20 @@
 					starRating(rating, 0);
 					$('.rating_score').text(rating);
 				}else{
-					$('.rating_score').text('아직 평가가 없어요!');
+					$('.rating_score').text('아직 평가가 없어요 !');
 				}
+			}
+		});
+	}
+	
+	function scoreContent(){
+		$.ajax({
+			type:"get",
+			url: "${path}/score/scoreCheck",
+			data: "titleId=${wDto.titleId}",
+			success: function(result){ 
+				$('.lately_score').text(result.lately_content);
+				$('.total_score').text(result.total_content);
 			}
 		});
 	}

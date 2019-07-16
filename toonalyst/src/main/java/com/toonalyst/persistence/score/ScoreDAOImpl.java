@@ -44,4 +44,9 @@ public class ScoreDAOImpl implements ScoreDAO {
 		return sqlSession.selectList("score.scoreChart", titleId);
 	}
 
+	@Override
+	public List<ScoreDTO> selectList(long titleId) {
+		return sqlSession.selectList("score.scoreList", titleId);
+	}
+
 }

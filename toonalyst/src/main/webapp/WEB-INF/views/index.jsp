@@ -125,12 +125,16 @@
 </style>
 </head>
 <body>
+
+	<jsp:useBean id="now" class="java.util.Date" />
+	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="today" />
+
 	<section>
 		<div class="section_outline">
 			<div class="section_inline">
 				<div class="section_title">
 					<img alt="네이버웹툰로고" src="${path}/resources/img/naver_Webtoon_logo.png"><h3>Ranking</h3>
-					<p>2019.06.11 15:41 TUE</p>
+					<p><c:out value="${today}"/></p>
 				</div>
 				<div class="rank_outbox">
 					<div class="rank_inbox">
@@ -221,7 +225,7 @@
 				</div>
 				<div class="section_title">
 					<img alt="레진코믹스로고" src="${path}/resources/img/lezhin_Webtoon_logo.png" id="lezhin_logo"><h3>Ranking</h3>
-					<p>2019.06.11 15:41 TUE</p>
+					<p><c:out value="${today}"/></p>
 				</div>
 				<div class="rank_outbox">
 					<div class="rank_inbox">
@@ -312,7 +316,7 @@
 				</div>
 				<div class="section_title">
 					<img alt="다음웹툰로고" src="${path}/resources/img/daum_Webtoon_logo.png" id="daum_logo"><h3>Ranking</h3>
-					<p>2019.06.11 15:41 TUE</p>
+					<p><c:out value="${today}"/></p>
 				</div>
 				<div class="rank_outbox">
 					<div class="rank_inbox">
@@ -403,7 +407,7 @@
 				</div>
 				<div class="section_title">
 					<img alt="카카오웹툰로고" src="${path}/resources/img/kakao_Webtoon_logo.png" id="kakao_logo"><h3>Ranking</h3>
-					<p>2019.06.11 15:41 TUE</p>
+					<p><c:out value="${today}"/></p>
 				</div>
 				<div class="rank_outbox">
 					<div class="rank_inbox">

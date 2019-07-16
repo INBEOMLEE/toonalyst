@@ -16,4 +16,6 @@ public interface ScoreDAO {
 	public HashMap<String, Object> scoreOne(long titleId);
 
 	public List<HashMap<String, Object>> scoreChart(long titleId);
+
+	public List<ScoreDTO> selectList(long titleId);
 }

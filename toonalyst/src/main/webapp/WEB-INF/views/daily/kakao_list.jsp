@@ -25,8 +25,8 @@
 		text-align: center;
 	}
 	.daily_list_flatform img {
-		width: 150px;
-		height: 150px;
+		width: 110px;
+		height: 110px;
 	}
 	.daily_menu {
 		width: 800px;
@@ -128,10 +128,9 @@
 		border: 1px solid #FF6C36;
 	}
 	.flatform_score img {
-		width: 40px;
-		height: 40px;
-		position: relative;
-    	left: -2px;
+		width: 30px;
+		height: 30px;
+		margin-right: 6px;
 	}
 	.toonalyst_score img {
 		width: 30px;
@@ -148,7 +147,7 @@
 			<div class="daily_inline">
 				<div id="daily_daily"></div>
 				<div class="daily_list_flatform">
-					<img alt="플랫폼 로고" src="${path}/resources/img/naver_Webtoon_logo.png">
+					<img alt="플랫폼 로고" src="${path}/resources/img/kakao_Webtoon_logo.png">
 				</div>
 				<div class="daily_menu">
 					<a href="#" class="daily_style daily_mon">월</a>
@@ -170,7 +169,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/naver_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/kakao_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -184,7 +183,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/naver_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/kakao_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
@@ -198,7 +197,7 @@
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 							<div class="flatform_score">
-								<img alt="플랫폼 로고" src="${path}/resources/img/naver_Webtoon_logo.png">
+								<img alt="플랫폼 로고" src="${path}/resources/img/kakao_Webtoon_logo.png">
 								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 							</div>
 						</div>
