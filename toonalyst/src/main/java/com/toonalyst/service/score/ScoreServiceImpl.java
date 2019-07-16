@@ -74,5 +74,10 @@ public class ScoreServiceImpl implements ScoreService {
 		
 		return score;
 	}
+
+	@Override
+	public List<HashMap<String, Object>> scoreChart(long titleId) {
+		return sDao.scoreChart(titleId);
+	}
 	
 }

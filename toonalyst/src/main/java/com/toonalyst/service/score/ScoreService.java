@@ -12,4 +12,6 @@ public interface ScoreService {
 	public int create(ScoreDTO sDto);
 
 	public HashMap<String, Object> scoreOne(long titleId);
+
+	public List<HashMap<String, Object>> scoreChart(long titleId);
 }

@@ -39,4 +39,9 @@ public class ScoreDAOImpl implements ScoreDAO {
 		return sqlSession.selectOne("score.scoreOne", titleId);
 	}
 
+	@Override
+	public List<HashMap<String, Object>> scoreChart(long titleId) {
+		return sqlSession.selectList("score.scoreChart", titleId);
+	}
+
 }

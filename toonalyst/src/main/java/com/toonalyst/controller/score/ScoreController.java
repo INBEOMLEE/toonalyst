@@ -83,4 +83,10 @@ public class ScoreController {
 	public HashMap<String, Object> scoreMap(long titleId){
 		return service.scoreOne(titleId);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "scoreChart", method = RequestMethod.GET)
+	public List<HashMap<String, Object>> scoreChart(long titleId){
+		return service.scoreChart(titleId);
+	}
 }

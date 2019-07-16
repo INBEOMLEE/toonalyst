@@ -24,12 +24,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						FROM TBL_TOONALYST_SCORE 
 							WHERE SID=#{sid} AND TITLEID = #{titleId})
 </select>
+
 <select id="scoreOne" parameterType="long" resultType="hashmap">
-	select  webtoon.titleid, good.* , hate.*, good.good+hate.hate as total from 
-		(select count(*) as good from tbl_toonalyst_score where sgood='good' and TITLEID = #{titleId}) good,
-		(select count(*) as hate from tbl_toonalyst_score where sgood='hate' and TITLEID = #{titleId}) hate,
-	    tbl_webtoon webtoon
-	where webtoon.titleid = #{titleId}
+	select webtoon.titleid, nvl(score.good,0) as good, nvl(score.hate,0) as hate, nvl(score.total,0) as total from 
+	    (select titleid, COUNT(DECODE(sgood, 'good',1)) as good ,COUNT(DECODE(sgood, 'hate',1)) as hate, count(*) as total 
+	    from tbl_toonalyst_score
+	    GROUP BY titleid) score, tbl_webtoon webtoon
+	where webtoon.titleid = #{titleId} and score.titleid(+) = webtoon.titleid
 </select>
 
+<select id="scoreChart" parameterType="long" resultType="hashmap">
+	select webtoon.titleid, nvl(score.good,0) as good, nvl(score.hate,0) as hate, nvl(score.days,0) as days, nvl(score.total,0) as total from
+	    (select titleid, COUNT(DECODE(sgood, 'good',1)) as good ,COUNT(DECODE(sgood, 'hate',1)) as hate ,TO_CHAR(REGDATE,'YYYY/MM/DD') as days, count(*) as total 
+	    from tbl_toonalyst_score score
+		GROUP BY TO_CHAR(REGDATE,'YYYY/MM/DD'), titleid
+		ORDER by days desc) score, tbl_webtoon webtoon
+	where webtoon.titleid = #{titleId} and score.titleid(+) = webtoon.titleid
+</select>
 </mapper>
