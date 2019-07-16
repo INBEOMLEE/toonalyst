@@ -1079,52 +1079,54 @@
 				}
 			}
 		});
-		
-		
 	}
 	
 	/* 그래프 그리기 함수 */
-	function drawchart(){
-		google.charts.load('current', {packages: ['corechart', 'line']});
-		google.charts.setOnLoadCallback(drawCurveTypes);
-	}
-	
-	function drawCurveTypes() {
-	    var data = new google.visualization.DataTable();
-	    data.addColumn('string', 'Day');
-	    data.addColumn('number', '점수');
-		
-	    var scoreArray = new Array();
-	      
-	      $.ajax({
+	var drawChart = {
+		chartDraw : function(){
+			var result;
+			$.ajax({
 				type:"get",
 				url: "${path}/score/scoreChart",
 				data: "titleId=${wDto.titleId}",
 				async: false,
-				success: function(result){ 
-					console.log(result);
-					for (var i = 0; i < result.length; i++) {
-						console.log(result[i]);
-						var days = result[i].DAYS;
-						var good = result[i].GOOD;
-						var total = result[i].TOTAL;
-						var score = good/total*100;
-						data.addRow([days,score]);
-					}
+				success: function(data){ 
+					console.log(data);
+					result = data;
 				}
 	      });
-	      var options = {
-	        hAxis: {
-	          title: '날짜'
-	        },
-	        series: {
-	          1: {curveType: 'function'}
-	        }
-	      };
-
-	      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-	      chart.draw(data, options);
-	 }
+			function drawDashboard(){
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Day');
+			    data.addColumn('number', '점수');
+			    
+			    var scoreArray = new Array();
+			    
+			    for (var i = 0; i < result.length; i++) {
+					console.log(result[i]);
+					var days = result[i].DAYS;
+					var good = result[i].GOOD;
+					var total = result[i].TOTAL;
+					var score = good/total*100;
+					data.addRow([days,score]);
+				}
+			    var options = {
+				        hAxis: {
+				          title: '날짜'
+				        },
+				        series: {
+				          1: {curveType: 'function'}
+				        }
+				      };
+			    var divman = $('#chart_div');
+			    var chart = new google.visualization.LineChart(divman);
+			   	chart.draw(data, options);
+			}
+			google.charts.load('current', {packages: ['corechart', 'line']});
+			google.charts.setOnLoadCallback(drawDashboard);
+		}
+	}
+	
 	// 평가 댓글 띄우는 함수
 	function score_list(){
 		$.ajax({
@@ -1133,7 +1135,7 @@
 			data: "titleId=${wDto.titleId}",
 			success: function(result){ 
 				$('#scoreList').html(result);
-				drawchart();
+				drawChart.chartDraw(1);
 				scoreMap();
 			}
 		});

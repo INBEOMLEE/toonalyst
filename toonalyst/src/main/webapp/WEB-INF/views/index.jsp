@@ -224,7 +224,7 @@
 					</div>
 				</div>
 				<div class="section_title">
-					<img alt="레진코믹스로고" src="${path}/resources/img/lezhin_Webtoon_logo.png" id="lezhin_logo"><h3>Ranking</h3>
+					<img alt="레진코믹스로고" src="${path}/resources/img/Lezhin_Webtoon_logo.png" id="lezhin_logo"><h3>Ranking</h3>
 					<p><c:out value="${today}"/></p>
 				</div>
 				<div class="rank_outbox">
@@ -322,7 +322,7 @@
 					<div class="rank_inbox">
 						<div class="rank_box_3">
 							<div class="webtoon">
-								<p class="webtoon_title">아비무쌍</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -330,7 +330,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">우리집이거든요!</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -338,7 +338,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">화양연화</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -346,7 +346,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">겟 레디 위드 미</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -354,7 +354,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">지옥사원</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -362,7 +362,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">오무라이스 잼잼</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -370,7 +370,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">아쿠아맨</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -378,7 +378,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">살생부 (2014)</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -386,7 +386,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">허세남길들이기</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -394,7 +394,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">취향저격 그녀</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -413,7 +413,7 @@
 					<div class="rank_inbox">
 						<div class="rank_box_4">
 							<div class="webtoon">
-								<p class="webtoon_title">너네 스킬 다 내꺼!</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -421,7 +421,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">이것이 명의다</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -429,7 +429,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">하드캐리 서포터</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -437,7 +437,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">내 남자 주인공의 아내</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -445,7 +445,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">해연</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -453,7 +453,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">강호사설</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -461,7 +461,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">게임 폐인의 리셋 라이프</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -469,7 +469,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">분홍색</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -477,7 +477,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">패스파인더</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>
@@ -485,7 +485,7 @@
 								<input type="hidden" class="webtoon_titleId">
 							</div>
 							<div class="webtoon">
-								<p class="webtoon_title">악녀의 후견인</p>
+								<p class="webtoon_title">Loading...</p>
 								<div class="webtoon_img"></div>
 								<div class="lately_score"><span>최근평가 </span>매우 긍정적인</div>
 								<div class="total_score"><span>모든평가 </span>매우 긍정적인</div>

@@ -313,7 +313,7 @@ $(document).ready(function(){
 				}, error: function() {
 					alert("System Error!!!");
 				}
-			});	
+			});
 		} else {
 			/* 
 				첨부파일 x버튼 클릭시 바로바로 드라이브에서 삭제해버리면

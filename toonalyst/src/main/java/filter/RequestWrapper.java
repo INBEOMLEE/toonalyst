@@ -40,7 +40,7 @@ public final class RequestWrapper extends HttpServletRequestWrapper {
     }
  
     private String cleanXSS(String value) {
-        //You'll need to remove the spaces from the html entities below
+    	//변환패턴 여기에 추가
         value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         value = value.replaceAll("\\(", "&#40;").replaceAll("\\)", "&#41;");
         value = value.replaceAll("'", "&#39;");
