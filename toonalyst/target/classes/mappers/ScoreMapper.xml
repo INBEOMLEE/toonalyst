@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    (select titleid, COUNT(DECODE(sgood, 'good',1)) as good ,COUNT(DECODE(sgood, 'hate',1)) as hate ,TO_CHAR(REGDATE,'YYYY/MM/DD') as days, count(*) as total 
 	    from tbl_toonalyst_score score
 		GROUP BY TO_CHAR(REGDATE,'YYYY/MM/DD'), titleid
-		ORDER by days desc) score, tbl_webtoon webtoon
+		ORDER by days) score, tbl_webtoon webtoon
 	where webtoon.titleid = #{titleId} and score.titleid(+) = webtoon.titleid
 </select>
 </mapper>

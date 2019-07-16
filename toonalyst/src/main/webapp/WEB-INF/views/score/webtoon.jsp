@@ -870,6 +870,8 @@
 					
 					<!-- 웹툰 평가 리스트 구역 -->
 					<div class="webtoon_score_play">
+						<!-- 그래프 -->
+						<div id="chart_div"></div>
 						<!-- 현재까지 종합된 개수 -->
 						<div id="total_score">						
 							<div><i class="fas fa-thumbs-up" style="color: dodgerblue;"></i></div>
@@ -924,8 +926,7 @@
 		</div>
 	</section>
 <%@ include file="../include/footer.jsp" %>
-
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		scoreMap();
@@ -1078,8 +1079,52 @@
 				}
 			}
 		});
+		
+		
 	}
 	
+	/* 그래프 그리기 함수 */
+	function drawchart(){
+		google.charts.load('current', {packages: ['corechart', 'line']});
+		google.charts.setOnLoadCallback(drawCurveTypes);
+	}
+	
+	function drawCurveTypes() {
+	    var data = new google.visualization.DataTable();
+	    data.addColumn('string', 'Day');
+	    data.addColumn('number', '점수');
+		
+	    var scoreArray = new Array();
+	      
+	      $.ajax({
+				type:"get",
+				url: "${path}/score/scoreChart",
+				data: "titleId=${wDto.titleId}",
+				async: false,
+				success: function(result){ 
+					console.log(result);
+					for (var i = 0; i < result.length; i++) {
+						console.log(result[i]);
+						var days = result[i].DAYS;
+						var good = result[i].GOOD;
+						var total = result[i].TOTAL;
+						var score = good/total*100;
+						data.addRow([days,score]);
+					}
+				}
+	      });
+	      var options = {
+	        hAxis: {
+	          title: '날짜'
+	        },
+	        series: {
+	          1: {curveType: 'function'}
+	        }
+	      };
+
+	      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+	      chart.draw(data, options);
+	 }
 	// 평가 댓글 띄우는 함수
 	function score_list(){
 		$.ajax({
@@ -1088,6 +1133,7 @@
 			data: "titleId=${wDto.titleId}",
 			success: function(result){ 
 				$('#scoreList').html(result);
+				drawchart();
 				scoreMap();
 			}
 		});
