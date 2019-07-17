@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${path}/resources/css/common.css?v=1">
-<title>Insert title here</title>
+<title>TOONALYST</title>
 <style type="text/css">
 #cnt{
 	width:auto;	
@@ -95,10 +95,10 @@
 				</colgroup>			
 				<thead>
 					<tr>
-						<th scope="row">쇼핑 통장</th>
-						<th scope="row">상품관리</th>
-						<th scope="row">주문관리</th>
-						<th scope="row">활동관리</th>
+						<th scope="row">공사 중</th>
+						<th scope="row">공사 중</th>
+						<th scope="row">공사 중</th>
+						<th scope="row">공사 중</th>
 						<th scope="row" class="last">정보 관리</th>
 					</tr>
 				</thead>
@@ -106,27 +106,22 @@
 					<tr>
 						<td>
 							<ul>
-								<li><a href="#" class="underline">적립금</a></li>
-								<li><a href="#" class="underline">쿠폰</a></li>					
+								<li><a href="#" class="underline">공사 중</a></li>
 							</ul>
 						</td>
 						<td>
 							<ul>		
-								<li><a href="#" class="underline">장바구니</a></li>
-								<li><a href="#" class="underline">관심상품</a></li>
-								<li><a href="#" class="underline">최근 본 상품</a></li>
+								<li><a href="#" class="underline">공사 중</a></li>
 							</ul>
 						</td>
 						<td>		
 							<ul>
-								<li><a href="#" class="underline">주문배송조회</a></li>
+								<li><a href="#" class="underline">공사 중</a></li>
 							</ul>
 						</td>
 						<td>
 							<ul>
-								<li><a href="#" class="underline">1:1문의</a></li>
-								<li><a href="#" class="underline">나의 상품문의</a></li>
-								<li><a href="#" class="underline">나의 상품후기</a></li>	
+								<li><a href="#" class="underline">공사 중</a></li>
 							</ul>
 						</td>
 						<td class="last">

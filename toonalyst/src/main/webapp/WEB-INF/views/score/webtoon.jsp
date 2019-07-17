@@ -521,6 +521,15 @@
 		font-weight: 600;
 		margin-left: 30px;
 	}
+	img.style {
+		width: 37px;
+		height: 37px;
+		margin: 7px 0px 0px 7px;
+	}
+	img.style2 {
+		width: 215px;
+		height: 215px;
+	}
 </style>
 </head>
 <body>
@@ -542,7 +551,7 @@
 				<div class="webtoon_box">
 					<div class="webtoon_img">
 						<div class="flatform_logo">
-							<img alt="logo" src="${path}/resources/img/${wDto.platForm}_Webtoon_logo.png">
+							<img alt="logo" src="${path}/resources/img/${wDto.platForm}_Webtoon_logo.png" <c:out value="${wDto.platForm != 'naver' ? 'class=style':'' }"/>>
 						</div>
 						<img src="${wDto.bannerimg}">
 					</div>
@@ -583,7 +592,7 @@
 							</div>
 							<div class="score_style flatform_score">
 								<div class="flatform_logo_img">
-									<img alt="이미지" src="${path}/resources/img/${wDto.platForm}_Webtoon_logo.png">
+									<img alt="이미지" src="${path}/resources/img/${wDto.platForm}_Webtoon_logo.png" <c:out value="${wDto.platForm != 'naver' ? 'class=style2':'' }"/>>
 								</div>
 								<div class="flatform_score_point">
 									<div class="star_score"></div>
@@ -1118,8 +1127,7 @@
 				          1: {curveType: 'function'}
 				        }
 				      };
-			    var divman = $('#chart_div');
-			    var chart = new google.visualization.LineChart(divman);
+			    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 			   	chart.draw(data, options);
 			}
 			google.charts.load('current', {packages: ['corechart', 'line']});
@@ -1135,7 +1143,7 @@
 			data: "titleId=${wDto.titleId}",
 			success: function(result){ 
 				$('#scoreList').html(result);
-				drawChart.chartDraw(1);
+				drawChart.chartDraw();
 				scoreMap();
 			}
 		});
